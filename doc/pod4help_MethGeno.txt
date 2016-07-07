@@ -1,0 +1,63 @@
+=pod
+
+=head1 NAME
+
+ViewBS MethGeno - Generate methylation information across chromosome.
+
+=head1 VERSION
+
+v0.0.0
+
+=head1 SYNOPSIS
+
+ViewBS MethGeno
+--project_dir directory to store the results
+--data_dir directory for data 
+--reference ref_index 
+--fastq_surfix fq 
+--core_num 10 
+--SICER pair_list,...
+
+=head1 DESCRIPTION
+
+Onestop will help you process ChIP-seq data from the raw sequencde
+data, including default deconseq step, cutadapt step and mapping step, as well
+as calling peaks using SICER, calling diff-peaks using SICER-df. 
+
+=head1 Required arguments
+
+=over 8
+
+=item B<-help> | B<-h>
+
+ - Prints the help message and exists.
+
+=item B<--verbose>
+   
+ - 
+
+=item B<genomeLength [required]>
+
+ - chromosome length information. Can be generated using 'samtools faidx
+   ref.fa'
+
+=item B<sample [required]>
+
+ - Provide the sample information. [Format: methlationfile,samplename]
+
+=item B<refere>
+
+ - Provide the information for bowtie2 index
+
+=back
+
+=head1 DISCUSSION FORUM
+
+Recent changes, bug fixes and feature additions will be announced through this
+Google discussion group: ViewBS discussion forum. Users are encouraged to
+ask questions through this forum (instead of shooting me emails) so that the
+answers can be shared. If you are interested, you can sign up to receive
+updates through E-mails.
+=head1 Affiliation
+
+=cut

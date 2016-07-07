@@ -1,0 +1,68 @@
+=pod
+
+=head1 NAME
+
+ViewBS - Tools for exploring and visualizing deep sequencing of  bisulfite
+ seuquencing (BS-seq) data.
+
+=head1 VERSION
+
+0.2.0
+
+=head1 SYNOPSIS
+
+ViewBS <subcmd> [options]
+
+=head1 DESCRIPTION
+
+ViewBS is developped to mine and visualize bisulfite seuquencing data.
+
+=head1 Options
+
+=over 8
+
+=item B<-help> | B<-h>
+
+Prints the help message and exits.
+
+=item B<-Subcommands:>
+
+=item B<-MethGeno>
+
+ - Generate the methylation information across each chromosome and plot the information.
+
+=item B<-MethRegion>
+  
+ - Generate the methylation information across the regions provided here. The regions 
+   can be genes, transposable elements, etc. 
+
+=item B<-MethHeatmap>
+
+ - Generate methylation information for a list of regions in different samples or contexts.
+   
+
+=item B<-MethMidpoint>
+
+ - Generate methylation information across the midpoints of a list of regions, like DMR. 
+ 
+=back
+
+=head1 HELP
+
+Here is the discussion group from google group:
+https://groups.google.com/forum/#!forum/viewbs
+
+=head1 Denpendcies
+
+=over 8
+
+=item B<perl>
+
+ - >perl-5.20.1
+
+=item B<Perl packages>
+   
+ - Getopt::Long::Subcommand;
+ -  
+
+=back

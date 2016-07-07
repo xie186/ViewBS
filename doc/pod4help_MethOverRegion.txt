@@ -1,0 +1,59 @@
+=pod
+
+=head1 NAME
+
+ViewBS MethOverRegion - Generate methylation information over a list of
+regions.
+
+=head1 SYNOPSIS
+
+ViewBS MethOverRegion --region <region> 
+--sample <meth,sample_name> [--sample <meth,sample_name> .......]
+--prefix <prefix for output>
+
+=head1 DESCRIPTION
+
+MethOverRegion will calculate DNA methylation information across the provide
+regions, genes, transposable elements, etc. 
+
+=head1 Required arguments
+
+=over 8
+
+=item B<-help> | B<-h>
+
+ - Prints the help message and exists.
+
+=item B<--verbose>
+   
+=item B<region [required]>
+
+ - regions you want to investigate. 
+
+=item B<sample [required]>
+
+ - Provide the sample information. [Format: methlationfile,samplename] 
+   It is possible to specify more than one sample pair by using the options 
+   --sample more than once. The methylation information can also be read from
+   a TEXT file. Instead of giving an explicit sample information pairs, 
+   you need to write file: followed by the name of the TEXT file.
+
+=item B<prefix [required]>
+
+ - Provide prefix for the output file.
+
+=back
+
+=head1 DISCUSSION FORUM
+
+Recent changes, bug fixes and feature additions will be announced through this
+Google discussion group: ViewBS discussion forum. Users are encouraged to
+ask questions through this forum (instead of shooting me emails) so that the
+answers can be shared. If you are interested, you can sign up to receive
+updates through E-mails.
+
+=head1 Affiliation
+
+
+
+=cut
