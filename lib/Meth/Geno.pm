@@ -22,8 +22,13 @@ sub drawMeth{
     my ($class, $opts_sub) = @_;
     foreach my $context(@{$opts_sub->{context}}){
         my $output = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethGeno_$context.txt";
+        my $cmd_out = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethGeno_$context.sh";
+	my $cmd = "R --vanilla --slave --input $output --output $fig < $FindBin::Bin/lib/Meth/Geno.R";
+	open OUT, "+>$cmd_out" or die "$!:$cmd_out";
+ 
         my $fig = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethGeno_$context.pdf";
-        my $r_rep = `R --vanilla --slave --input $output --output $fig < $FindBin::Bin/lib/Meth/Geno.R`;
+        my $r_rep = `$cmd`;
+	close OUT;
         print "$class: $r_rep\n";
     }
 }
