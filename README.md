@@ -1,19 +1,39 @@
 # VBS
 
 ###Installation
+
 ##### Requirements:
-1. R version: > 3.3.0
-* pheatmap
-* ggplot2
- 
+1. Install htslib
+
+https://github.com/samtools/htslib
+
 2. Perl version: > 5.14.4 
 3. Perl packages:
 * Getopt::Long::Subcommand
 * Bio::DB::HTS::Tabix
+```
+wget https://raw.githubusercontent.com/miyagawa/cpanminus/master/cpanm
+chmod 755 cpanm
+./cpanm Getopt::Long::Subcommand
+./cpanm Bio::DB::HTS::Tabix
+```
+4. R version: > 3.3.0
 
-4. R packages
+5. R packages
+* ggplot2
+* pheatmap
+Install some required libraries in R:
+```
+install.packages("ggplot2", dep=T)
+install.packages("pheatmap", dep=T)
+```
 
+### USAGE
+#### ViewBS 
 
+###Appendix: Full list of options
+
+#### 1) Top level commands
 
 ```
 NAME
@@ -24,9 +44,11 @@ VERSION
        0.2.0
 
 SYNOPSIS
+
        ViewBS <subcmd> [options]
 
 DESCRIPTION
+
        ViewBS is developped to mine and visualize bisulfite seuquencing data.
 
 Options
@@ -62,3 +84,6 @@ Denpendcies
                 - pheatmap
 
 ```
+
+####
+

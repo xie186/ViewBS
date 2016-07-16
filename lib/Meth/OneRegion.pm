@@ -35,7 +35,7 @@ sub calMeth{
    ## Process the --sample arguments 
    my $pro_sample = Meth::Sample -> new();
    #print "$opts_sub\t", keys %$opts_sub, "\n";
-   $pro_sample -> processArgvSampleOverRegion($opts_sub);
+   $pro_sample -> processArgvSampleOneRegion($opts_sub);
    
    ## Start calculate methylation information for target context
    &generTab($class, $opts_sub);
@@ -49,20 +49,22 @@ sub generTab{
         my $output = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethOneRegion_$context.txt";
         open OUT, "+>$output" or die "$!:$output";
         my ($chr, $stt, $end) = $opts_sub->{region} =~ /(.*):(\d+)-(\d+)/;
+	
         foreach my $sam_info(@{$opts_sub->{sample_list}}){   ## sample information: meth_file,sample,region
+	    my ($meth_file, $sample_name ) = split(/,/, $sam_info);
             my $tabix = Bio::DB::HTS::Tabix->new( filename => $meth_file);
             my $iter = $tabix->query("$chrom:$stt-$end");
-            my ($tot_c_num, $tot_t_num) = (0, 0);
-            my $total_cov_num = 0;
             while ( my $line = $iter->next) {
                 my ($chr, $pos, $strand, $c_num, $t_num, $tem_context, $seq) = split(/\t/, $line);
                 if($context eq $tem_context || $context eq "CXX"){
-                    ++$total_cov_num;
                     next if ($c_num + $t_num < $opts_sub->{minDepth} || $c_num + $t_num > $opts_sub->{maxDepth});
+		    my $lev = $c_num/($c_num + $t_num);
+		    print OUT "$chr\t$pos\t$c_num\t$t_num\t$lev\n";
                     $tot_c_num += $c_num;
                     $tot_t_num += $t_num;
                 }
             }
+	}
     }
 }
 

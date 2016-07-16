@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/env perl -w
 
 ####################################################################
 # This toolkits are developped to analyze and visualize bisulfite  #
@@ -64,6 +64,14 @@ sub check_parameter{
 	$check_para -> run_methOverRegion(\%opts_subcmd, \%opts);
     }
     if($sub_cmd eq "MethHeatmap"){
+        print "@{$opts_subcmd{sample}}\n";
+        my $check_para = SubCmd::MethHeatmap -> new();
+        my $status = $check_para -> check_para_sub(\%opts_subcmd, \%opts);
+        $check_para -> run_methHeatmap(\%opts_subcmd, \%opts);
+    }
+ 
+    Meth/OneRegion
+    if($sub_cmd eq "MethOneRegion"){
         print "@{$opts_subcmd{sample}}\n";
         my $check_para = SubCmd::MethHeatmap -> new();
         my $status = $check_para -> check_para_sub(\%opts_subcmd, \%opts);
