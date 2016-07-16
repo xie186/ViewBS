@@ -49,20 +49,29 @@ Prints the help message and exits.
 
 =head1 HELP
 
+=over 8
+
 Here is the discussion group from google group:
 https://groups.google.com/forum/#!forum/viewbs
+
+=back
 
 =head1 Denpendcies
 
 =over 8
 
-=item B<perl>
-
- - >perl-5.20.1
+=item B<perl> > v5.14.4
 
 =item B<Perl packages>
    
  - Getopt::Long::Subcommand;
- -  
+ - Bio::DB::HTS::Tabix; 
+
+=item B<R>  > v3.1.2
+
+=item B<R packages>
+
+ - ggplot2;
+ - pheatmap 
 
 =back

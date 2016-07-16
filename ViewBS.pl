@@ -1,9 +1,9 @@
 #!/usr/bin/perl -w
 
-#################################################################
-# This toolkits are developped to analyze and visualize bisulfite
-# sequencing data.                                          
-#################################################################
+####################################################################
+# This toolkits are developped to analyze and visualize bisulfite  #
+# sequencing data.                                                 #
+####################################################################
 
 use strict;
 use Getopt::Long::Subcommand;
@@ -86,6 +86,7 @@ sub processCMD{
 	    'minDepth:s'  => \$opts_subcmd{minDepth},
 	    'maxDepth:s'  => \$opts_subcmd{maxDepth},
 	    'context:s'   => \@{$opts_subcmd{context}},    # context
+	    'flank:i'     => \$opts_subcmd{flank},
          },
          subcommands => {
              MethGeno => {       
@@ -100,7 +101,7 @@ sub processCMD{
 		    'win:i'                  => \$opts_subcmd{win},
                     'step:i'                 => \$opts_subcmd{step},       
 		    'minLength:s'            => \$opts_subcmd{minLength},  # cutoff for minimum length of chromosome.
-		    'split:s'                => \$opts_subcmd{"split"},      # 
+		    'split:s'                => \$opts_subcmd{'split'},      #
                  }
             },
 	    MethOverRegion => {
@@ -111,7 +112,6 @@ sub processCMD{
                     'sample:s'               => \@{$opts_subcmd{sample}},
                     'prefix:s'               => \$opts_subcmd{prefix},
 		    # Optional arguments
-		    'flank:i'                => \$opts_subcmd{flank},
 		    'binLength:i'	     => \$opts_subcmd{binLength},
 		    'binNumber:i'            => \$opts_subcmd{binNumber},
 	            'minLength:i'	     => \$opts_subcmd{minLength},
@@ -127,7 +127,15 @@ sub processCMD{
                     'prefix:s'               => \$opts_subcmd{prefix},
                     # Optional arguments
                 }
-            }
+            },
+	    MethOneRegion => {
+                summary => 'Generate heatmap for a given regions.',
+                options => {
+	        'regions:s'              => \$opts_subcmd{region},
+                'sample:s'               => \@{$opts_subcmd{sample}},
+                'prefix:s'               => \$opts_subcmd{prefix},
+	         }
+	    },
         }
     );
 }
