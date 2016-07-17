@@ -31,6 +31,14 @@ install.packages("pheatmap", dep=T)
 ### USAGE
 #### ViewBS 
 
+#### View MethOneRegion
+
+View MethOneRegion will output the methylation information for one region give by the users and then plot the methylation levels across the chromsomesome region. 
+
+Here is an example:
+
+![image/MethOneRegion_example1.png](./image/MethOneRegion_example1.png)
+
 ###Appendix: Full list of options
 
 #### 1) Top level commands
