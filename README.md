@@ -39,6 +39,11 @@ Here is an example:
 
 ![image/MethOneRegion_example1.png](./image/MethOneRegion_example1.png)
 
+To generate the figure above, you can use the following command line:
+```
+perl ViewBS.pl MethOneRegion --region chr5:19499001-19499600 --sample bis_WT.tab.gz,WT --sample bis_cmt23.tab.gz,cmt23 --prefix chr5_19499001-19499600 --context CHG
+```
+
 ###Appendix: Full list of options
 
 #### 1) Top level commands
