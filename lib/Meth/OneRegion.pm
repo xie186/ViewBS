@@ -20,9 +20,8 @@ sub drawMeth{
 	my $out = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethOneRegion_$context.sh";
 	open OUT, "+>$out" or die "$!: $out";
 	my $output = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethOneRegion_$context.txt";
-        my $fig1 = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethOneRegion_$context.pdf";
-        my $fig2 = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethHist_$context.pdf";
-	my $cmd = "R --vanilla --slave --input $output --output1 $fig1 --output2 $fig2  < $FindBin::Bin/lib/Meth/Heatmap.R";
+        my $fig = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethOneRegion_$context.pdf";
+	my $cmd = "R --vanilla --slave --input $output --output $fig  < $FindBin::Bin/lib/Meth/OneRegion.R";
 	print OUT "$cmd\n";
         my $r_rep = `$cmd`;
         print "$class: $r_rep\n";
@@ -48,20 +47,20 @@ sub generTab{
 	print "$context\n" if !$opts_sub->{verbose};
         my $output = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethOneRegion_$context.txt";
         open OUT, "+>$output" or die "$!:$output";
+	print OUT "Sample\tchr\tposition\tC_num\tT_num\tMethylationLevel\n";
         my ($chr, $stt, $end) = $opts_sub->{region} =~ /(.*):(\d+)-(\d+)/;
-	
+        print "xxy$chr, $stt, $end\n";	
         foreach my $sam_info(@{$opts_sub->{sample_list}}){   ## sample information: meth_file,sample,region
 	    my ($meth_file, $sample_name ) = split(/,/, $sam_info);
             my $tabix = Bio::DB::HTS::Tabix->new( filename => $meth_file);
-            my $iter = $tabix->query("$chrom:$stt-$end");
+            my $iter = $tabix->query("$chr:$stt-$end");
             while ( my $line = $iter->next) {
                 my ($chr, $pos, $strand, $c_num, $t_num, $tem_context, $seq) = split(/\t/, $line);
+	        #print "$line\n";
                 if($context eq $tem_context || $context eq "CXX"){
                     next if ($c_num + $t_num < $opts_sub->{minDepth} || $c_num + $t_num > $opts_sub->{maxDepth});
 		    my $lev = $c_num/($c_num + $t_num);
-		    print OUT "$chr\t$pos\t$c_num\t$t_num\t$lev\n";
-                    $tot_c_num += $c_num;
-                    $tot_t_num += $t_num;
+		    print OUT "$sample_name\t$chr\t$pos\t$c_num\t$t_num\t$lev\n";
                 }
             }
 	}

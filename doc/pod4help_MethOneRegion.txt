@@ -2,21 +2,19 @@
 
 =head1 NAME
 
-ViewBS MethOneRegion - Generate methylation for one region and each sample and
-generate corresponding figure.
+ViewBS MethOneRegion - Extract methylation information for one region of each sample. 
 
 =head1 SYNOPSIS
 
-ViewBS MethOneRegion
---region <region>
+ViewBS MethHeatmap
+--region <region chr1:100-200>
 --sample <methlation information,sample_name> [--sample <methlation information,sample_name>]
 --prefix <prefix for output file>
 
 =head1 DESCRIPTION
 
-ViewBS MethOneRegion will first extract the methylation information for the
-region you give and then plot the methylation information along the give
-region. 
+ViewBS MethOneRegion - Extract methylation information for one region of each
+sample and plot the methylation information. 
 
 =head1 Required arguments
 
@@ -32,7 +30,7 @@ region.
 
 =item B<region [required]>
 
- - regions you want to investigate. 
+ - One target region. [chr1:100-200]
 
 =item B<sample [required]>
 

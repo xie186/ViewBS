@@ -26,7 +26,8 @@ use Meth::Geno;
 use Meth::Sample;
 use SubCmd::MethOverRegion;
 use SubCmd::MethHeatmap;
-use Meth::Heatmap; 
+use Meth::Heatmap;
+use SubCmd::MethOneRegion; 
 my $main_path = dirname(abs_path $0);
 
 my %opts;   ##
@@ -70,12 +71,12 @@ sub check_parameter{
         $check_para -> run_methHeatmap(\%opts_subcmd, \%opts);
     }
  
-    Meth/OneRegion
+    #Meth/OneRegion
     if($sub_cmd eq "MethOneRegion"){
         print "@{$opts_subcmd{sample}}\n";
-        my $check_para = SubCmd::MethHeatmap -> new();
+        my $check_para = SubCmd::MethOneRegion -> new();
         my $status = $check_para -> check_para_sub(\%opts_subcmd, \%opts);
-        $check_para -> run_methHeatmap(\%opts_subcmd, \%opts);
+        $check_para -> run_methOneRegion(\%opts_subcmd, \%opts);
     } 
 }
 

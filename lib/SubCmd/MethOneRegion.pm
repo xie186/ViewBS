@@ -1,4 +1,4 @@
-package SubCmd::MethHeatmap;
+package SubCmd::MethOneRegion;
 
 use strict;
 use warnings;
@@ -7,7 +7,7 @@ use FindBin;
 use Pod::Usage;
 use Cwd qw(abs_path);
 
-use Meth::Heatmap;
+use Meth::OneRegion;
 
 ## class, $opts, $opts_sub
 sub new{
@@ -20,13 +20,13 @@ sub check_para_sub{
     my ($class, $opts_sub, $opts) = @_;
 
     if($opts->{help}){
-        pod2usage(-exitval => 0, -verbose => 2, -input => "$FindBin::Bin/doc/pod4help_MethHeatmap.txt");
+        pod2usage(-exitval => 0, -verbose => 2, -input => "$FindBin::Bin/doc/pod4help_MethOneRegion.txt");
         exit 0;
     }
 
     if(!&check_para($class, $opts_sub)){
         print "Please provide parameters\n";
-        pod2usage(-exitval => 1, -verbose => 2, -input => "$FindBin::Bin/doc/pod4help_MethHeatmap.txt");
+        pod2usage(-exitval => 1, -verbose => 2, -input => "$FindBin::Bin/doc/pod4help_MethOneRegion.txt");
         exit 0;
     }
 
@@ -44,11 +44,7 @@ sub check_para_sub{
         ++$exit_code; #exit 0;
     }else{
 	print "$opts_sub->{region}\n";
-	my ($sub_cmd) = @{$opts->{"subcommand"}};
-	if($sub_cmd eq "MethHeatmap"){
-	    print "nnn\n";
-	    $opts_sub->{"region"} = abs_path $opts_sub->{"region"};
-        }
+        #$opts_sub->{"region"} = abs_path $opts_sub->{"region"};
     }
 
     if(!$opts_sub->{"prefix"}){
@@ -104,9 +100,9 @@ sub check_para{
 }
 
 
-sub run_methHeatmap{ 
+sub run_methOneRegion{ 
     my ($class, $opts_sub) = @_;
-    my $meth_geno = Meth::Heatmap->new(); 
+    my $meth_geno = Meth::OneRegion->new(); 
     $meth_geno -> calMeth($opts_sub);
     $meth_geno -> drawMeth($opts_sub);
 }
