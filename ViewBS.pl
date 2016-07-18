@@ -125,6 +125,7 @@ sub processCMD{
 		    'binNumber:i'            => \$opts_subcmd{binNumber},
 	            'minLength:i'	     => \$opts_subcmd{minLength},
 		    'maxLength:i'            => \$opts_subcmd{maxLength},
+                    'type:s'                 => \$opts_subcmd{type}
 		}
 	    },
 	    MethHeatmap => {

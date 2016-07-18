@@ -68,18 +68,18 @@ Options
        -help | -h
                Prints the help message and exits.
 
-       -Subcommands:
-       -MethGeno
+       Subcommands:
+       MethGeno
                 - Generate the methylation information across each chromosome and plot the information.
 
-       -MethRegion
+       MethRegion
                 - Generate the methylation information across the regions provided here. The regions
                   can be genes, transposable elements, etc.
 
-       -MethHeatmap
-                - Generate methylation information for a list of regions in different samples or contexts.
+       MethHeatmap
+               - Generate methylation information for a list of regions in different samples or contexts.
 
-       -MethMidpoint
+       MethMidpoint
                 - Generate methylation information across the midpoints of a list of regions, like DMR.
 
 HELP
