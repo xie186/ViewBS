@@ -49,7 +49,6 @@ sub generTab{
         open OUT, "+>$output" or die "$!:$output";
 	print OUT "Sample\tchr\tposition\tC_num\tT_num\tMethylationLevel\n";
         my ($chr, $stt, $end) = $opts_sub->{region} =~ /(.*):(\d+)-(\d+)/;
-        print "xxy$chr, $stt, $end\n";	
         foreach my $sam_info(@{$opts_sub->{sample_list}}){   ## sample information: meth_file,sample,region
 	    my ($meth_file, $sample_name ) = split(/,/, $sam_info);
             my $tabix = Bio::DB::HTS::Tabix->new( filename => $meth_file);

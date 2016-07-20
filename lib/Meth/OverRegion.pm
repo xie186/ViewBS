@@ -22,8 +22,14 @@ sub drawMeth{
     my ($class, $opts_sub) = @_;
     foreach my $context(@{$opts_sub->{context}}){
         my $output = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethOverRegion_$context.txt";
-        my $fig = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethOverRegion_$context.pdf";
-        my $r_rep = `R --vanilla --slave --input $output --output $fig < $FindBin::Bin/lib/Meth/MethOverRegion.R`;
+
+	open OUT, "+>$opts_sub->{outdir}/$opts_sub->{prefix}_MethOverRegion_$context.sh" or die "$!";
+	my $fig = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethOverRegion_$context.pdf";
+	my $cmd = "R --vanilla --slave --input $output --output $fig < $FindBin::Bin/lib/Meth/OverRegion.R";
+	print OUT "$cmd\n";
+	close OUT;
+
+	my $r_rep = `$cmd`;
         print "$class: $r_rep\n";
     }
 }
@@ -45,7 +51,7 @@ sub generTab{
     print "Start calculate methylation information for target context\n" if !$opts_sub->{verbose};
     foreach my $context(@{$opts_sub->{context}}){
 	print "$context\n" if !$opts_sub->{verbose};
-        my $output = "$opts_sub->{outdir}/$opts_sub->{prefix}_OverRegion_$context.txt";
+        my $output = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethOverRegion_$context.txt";
         open OUT, "+>$output" or die "$!:$output";
 	print OUT "sample_name\tregion\tbin_num\tC_number\tT_number\tMethylation_level\n";
 	my %rec_meth_bin;

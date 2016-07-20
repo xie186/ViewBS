@@ -125,7 +125,7 @@ sub run_methOverRegion{
     my ($class, $opts_sub) = @_;
     my $meth_geno = Meth::OverRegion->new(); 
     $meth_geno -> calMeth($opts_sub);
-    #$meth_geno -> drawMeth($opts_sub);
+    $meth_geno -> drawMeth($opts_sub);
 }
 
 1;

@@ -53,6 +53,7 @@ sub generTab{
 	&get_meth_info($class, $opts_sub, \%rec_meth_bin, \@sample_list, $context);
 	print OUT "\t", join("\t", @sample_list), "\n";
 	foreach my $id(keys %rec_meth_bin){
+	    print "$id\n";
 	    my @level = @{$rec_meth_bin{$id}}{@sample_list};
 	    #my @level = @rec_meth_bin{$id}{@sample_list};
 	    my $level = join("\t", @level);
@@ -68,14 +69,24 @@ sub get_meth_info{
 	push @$sample_list, $sam_name;
         open REGION, $region or die "$!:$region";
 	my $flag = 0;
+	my %rec_region_id;
         while(my $line = <REGION>){
             chomp $line;
+	    #print "$line\n";
 	    ++$flag;
 	    print "." if $flag % 1000 == 0;
             my ($chr, $stt, $end, $name) = split(/\s+/,$line);
 	    my $id = $name ? $name : "$chr\_$stt\_$end";
+	    if(!exists $rec_region_id{$id}){
+		$rec_region_id{$id} = 0;
+	    }else{
+		$rec_region_id{$id} ++;
+	        $id = $id.$rec_region_id{$id};
+	    }
+	    
 	    my $level = &get_CT_num($class, $meth_file, $chr, $stt, $end, $context, $opts_sub);
 	    $rec_meth_bin->{$id} -> {$sam_name} = $level;
+	    print "$id\t$sam_name\n";
 	}
     }
 }

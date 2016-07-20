@@ -44,11 +44,7 @@ sub check_para_sub{
         ++$exit_code; #exit 0;
     }else{
 	print "$opts_sub->{region}\n";
-	my ($sub_cmd) = @{$opts->{"subcommand"}};
-	if($sub_cmd eq "MethHeatmap"){
-	    print "nnn\n";
-	    $opts_sub->{"region"} = abs_path $opts_sub->{"region"};
-        }
+	$opts_sub->{"region"} = abs_path $opts_sub->{"region"};
     }
 
     if(!$opts_sub->{"prefix"}){

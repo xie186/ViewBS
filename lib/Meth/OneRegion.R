@@ -21,5 +21,6 @@ for(i in 1:length(Args)){
     if(Args[i] == "--input")   input  = Args[i+1]
     if(Args[i] == "--output")  fig = Args[i+1]
 }
+options(warn=-1)
 
-methGeno(input, fig);
+suppressWarnings(methGeno(input, fig))

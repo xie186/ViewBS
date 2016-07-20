@@ -2,9 +2,12 @@ methGeno <- function(meth, out){
 
     library(ggplot2)
     tab<-read.table(meth,head=T);
+     tab <- tab[order(tab[,3]),]
 
-    p=ggplot(tab, aes(x=bin_num, y=Methylation_level, group=sample_name, col=sample_name))
-	     +geom_line()
+    p=ggplot(tab, aes(x=bin_num, y=Methylation_level, group=sample_name, col=sample_name)) +
+	     geom_line()
+    #p = p + scale_x_continuous(breaks=c(min(tab$Pos), 0.5,max(tab$Pos)+min(tab$Pos), max(tab$Pos)), labels=c(abs(min(tab$Pos))/10, "TSS", "TTS", abs(min(tab$Pos))/10))
+ 
     p = p + scale_x_continuous(breaks=c(0.5,61.5), labels=c("TSS", "TTS"))
      
     ggsave(out, p)

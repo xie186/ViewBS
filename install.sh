@@ -14,6 +14,5 @@ autoconf       # ...and configure script (or use autoreconf to do both)
 make
 make install
 
-
 echo "Checking R packages";
 R --vanilla --slave < lib/scripts/install_R_packages.R 

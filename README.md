@@ -31,6 +31,18 @@ install.packages("pheatmap", dep=T)
 ### USAGE
 #### ViewBS 
 
+#### View MethHeatmap
+
+Region file format:
+* 1st column: chromsome ID;
+* 2nd column: start position;
+* 3rd column: end position;
+* 4th column: region ID
+
+*Note: If the file has 4th column, each row in this column should be unique. * 
+
+
+
 #### View MethOneRegion
 
 View MethOneRegion will output the methylation information for one region give by the users and then plot the methylation levels across the chromsomesome region. 

@@ -66,7 +66,7 @@ sub check_para_sub{
     if(!$opts_sub->{"outdir"}){
         $opts_sub->{"outdir"} = "./";
     }
-    print "xxx\t@{$opts_sub->{context}}\n";
+    #print "xxx\t@{$opts_sub->{context}}\n";
     if(!@{$opts_sub->{"context"}}){
         push @{$opts_sub->{"context"}}, "CG";
     }
