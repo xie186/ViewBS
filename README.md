@@ -54,7 +54,7 @@ Region file format:
 * 3rd column: end position;
 * 4th column: region ID
 
-*Note: If the file has 4th column, each row in this column should be unique. * 
+*Note: If the file has 4th column, each row in this column should be unique.* 
 
 
 
