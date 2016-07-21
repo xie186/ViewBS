@@ -26,11 +26,11 @@
     * ggplot2
 
     * pheatmap
-Install some required libraries in R:
-```
-install.packages("ggplot2", dep=T)
-install.packages("pheatmap", dep=T)
-```
+    Install some required libraries in R:
+    ```
+    install.packages("ggplot2", dep=T)
+    install.packages("pheatmap", dep=T)
+    ```
 
 ### Work flow of ViewBS
 
