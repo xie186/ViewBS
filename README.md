@@ -43,8 +43,18 @@ Here is the workflow of ViewBS:
   <b>The workflow of ViewBS commands</b><br>
 </p>
 
-### USAGE
-#### ViewBS 
+## USAGE
+### ViewBS 
+
+#### MethGeno
+
+<p align="center">
+  <img src="./image/bis_geno_sample_MethGeno_CHH.PNG">
+</p>
+<p align="center">
+  <b>An example of MethGeno</b><br>
+</p>
+
 
 #### View MethHeatmap
 
