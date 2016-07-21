@@ -20,7 +20,9 @@ chmod 755 cpanm
 4. R version: > 3.3.0
 
 5. R packages
+
 * ggplot2
+
 * pheatmap
 Install some required libraries in R:
 ```
