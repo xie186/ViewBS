@@ -1,6 +1,6 @@
 Args <- commandArgs();
 
-cat("Usage: R --vanilla --slave --input <input tab> --xlab <Gene> --flank <flanking regions> --tts <bin number> --output <output> < *R", "\n")
+cat("Usage: R --vanilla --slave --input <input tab> --xlab <Gene>  --output <output> < *R", "\n")
 
 cat(Args, "\n")
 

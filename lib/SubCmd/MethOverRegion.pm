@@ -91,6 +91,11 @@ sub check_para_sub{
     if(!$opts_sub->{"maxDepth"}){
         $opts_sub->{"maxDepth"} = 400;
     }
+
+    if(!$opts_sub->{"RegionName"}){
+        $opts_sub->{"RegionName"} = "Gene";
+	print "\nIt seemed that the reigons you provided are Genes. Please make sure of this.\n\n"
+    }
  
     if($exit_code > 0){
         exit 0;

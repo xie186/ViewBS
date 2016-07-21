@@ -25,7 +25,7 @@ sub drawMeth{
 
 	open OUT, "+>$opts_sub->{outdir}/$opts_sub->{prefix}_MethOverRegion_$context.sh" or die "$!";
 	my $fig = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethOverRegion_$context.pdf";
-	my $cmd = "R --vanilla --slave --input $output --output $fig < $FindBin::Bin/lib/Meth/OverRegion.R";
+	my $cmd = "R --vanilla --slave --input $output --xlab $opts_sub->{RegionName} --output $fig < $FindBin::Bin/lib/Meth/OverRegion.R";
 	print OUT "$cmd\n";
 	close OUT;
 

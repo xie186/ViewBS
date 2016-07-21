@@ -42,6 +42,10 @@ regions, genes, transposable elements, etc.
 
  - Provide prefix for the output file.
 
+=item B<RegionName [Optional]>
+
+ - The type of regions provided, like Gene, TE, DMR, etc. [Default: Gene]
+
 =back
 
 =head1 DISCUSSION FORUM
