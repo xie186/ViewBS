@@ -56,10 +56,11 @@ Region file format:
 
 *Note: If the file has 4th column, each row in this column should be unique.* 
 
-![image/MethOneRegion_example2.png](./image/CHG_hypo_DMR_drm12cmt23_to_WT_MethHeatmap_CHG.png)
 
 <p align="center">
   <img src="./image/CHG_hypo_DMR_drm12cmt23_to_WT_MethHeatmap_CHG.png">
+</p>
+<p align="center">
   <b>An example of MethHeatmap</b><br>
 </p>
 
@@ -67,6 +68,8 @@ Region file format:
 
 <p align="center">
   <img src="./image/bis_TE_chr1_sample_MethOverRegion_CHG.png">
+</p>
+<p align="center">
   <b>An example of MethOverregion</b><br>
 </p>
 
