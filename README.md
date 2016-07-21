@@ -1,6 +1,6 @@
-# VBS
+# ViewBS
 
-###Installation
+##Installation
 
 ##### Requirements:
 1. Install [htslib](https://github.com/samtools/htslib)
@@ -32,7 +32,7 @@
     install.packages("pheatmap", dep=T)
     ```
 
-### Work flow of ViewBS
+## Work flow of ViewBS
 
 For ViewBS, the first thing that users should provide is the regions of interest. These regions could be functional elements, like genes, transposable elements (TE), or differentially methylated regions (DMR). The other thing that the users should provide is the methylation information. Methylation information are the outputs from BS-seq aligner, like Bismark, etc.
 
