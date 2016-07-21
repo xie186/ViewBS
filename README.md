@@ -3,7 +3,7 @@
 ###Installation
 
 ##### Requirements:
-1. Install (htslib)[https://github.com/samtools/htslib]
+1. Install [htslib](https://github.com/samtools/htslib)
 
 2. Perl version: > 5.14.4
  
@@ -56,9 +56,22 @@ Region file format:
 
 *Note: If the file has 4th column, each row in this column should be unique.* 
 
+![image/MethOneRegion_example2.png](./image/CHG_hypo_DMR_drm12cmt23_to_WT_MethHeatmap_CHG.png)
+
+<p align="center">
+  <img src="./image/CHG_hypo_DMR_drm12cmt23_to_WT_MethHeatmap_CHG.png">
+  <b>An example of MethHeatmap</b><br>
+</p>
+
+#### MethOverRegion
+
+<p align="center">
+  <img src="./image/bis_TE_chr1_sample_MethOverRegion_CHG.png">
+  <b>An example of MethOverregion</b><br>
+</p>
 
 
-#### View MethOneRegion
+#### MethOneRegion
 
 View MethOneRegion will output the methylation information for one region give by the users and then plot the methylation levels across the chromsomesome region. 
 
