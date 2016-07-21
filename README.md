@@ -33,7 +33,11 @@ install.packages("pheatmap", dep=T)
 For ViewBS, the first thing that users should provide is the regions of interest. These regions could be functional elements, like genes, transposable elements (TE), or differentially methylated regions (DMR). The other thing that the users should provide is the methylation information. Methylation information are the outputs from BS-seq aligner, like Bismark, etc.
 
 Here is the workflow of ViewBS:
-![image/ViewBS_workflow.png](./image/ViewBS_workflow.png)
+
+<p align="center">
+  <img src="./image/ViewBS_workflow.png">
+  <b>The workflow of ViewBS commands</b><br>
+</p>
 
 ### USAGE
 #### ViewBS 
