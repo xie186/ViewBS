@@ -7,10 +7,14 @@
 
 https://github.com/samtools/htslib
 
-2. Perl version: > 5.14.4 
+2. Perl version: > 5.14.4
+ 
 3. Perl packages:
+
 * Getopt::Long::Subcommand
+
 * Bio::DB::HTS::Tabix
+
 ```
 wget https://raw.githubusercontent.com/miyagawa/cpanminus/master/cpanm
 chmod 755 cpanm
