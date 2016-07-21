@@ -3,31 +3,29 @@
 ###Installation
 
 ##### Requirements:
-1. Install htslib
-
-https://github.com/samtools/htslib
+1. Install (htslib)[https://github.com/samtools/htslib]
 
 2. Perl version: > 5.14.4
  
 3. Perl packages:
 
-* Getopt::Long::Subcommand
+   * Getopt::Long::Subcommand
 
-* Bio::DB::HTS::Tabix
+   * Bio::DB::HTS::Tabix
 
-```
-wget https://raw.githubusercontent.com/miyagawa/cpanminus/master/cpanm
-chmod 755 cpanm
-./cpanm Getopt::Long::Subcommand
-./cpanm Bio::DB::HTS::Tabix
-```
+    ```
+    wget https://raw.githubusercontent.com/miyagawa/cpanminus/master/cpanm
+    chmod 755 cpanm
+    ./cpanm Getopt::Long::Subcommand
+    ./cpanm Bio::DB::HTS::Tabix
+    ```
 4. R version: > 3.3.0
 
 5. R packages
 
-* ggplot2
+    * ggplot2
 
-* pheatmap
+    * pheatmap
 Install some required libraries in R:
 ```
 install.packages("ggplot2", dep=T)
