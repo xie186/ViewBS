@@ -137,6 +137,8 @@ sub processCMD{
                     'sample:s'               => \@{$opts_subcmd{sample}},
                     'prefix:s'               => \$opts_subcmd{prefix},
                     # Optional arguments
+                    'cluster_cols:s'	     => \$opts_subcmd{cluster_cols},
+		    'cluster_rowss:s'         => \$opts_subcmd{cluster_rows},
                 }
             },
 	    MethOneRegion => {

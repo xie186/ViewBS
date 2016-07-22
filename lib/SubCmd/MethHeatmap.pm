@@ -66,7 +66,29 @@ sub check_para_sub{
     if(!$opts_sub->{"outdir"}){
         $opts_sub->{"outdir"} = "./";
     }
-    print "xxx\t@{$opts_sub->{context}}\n";
+
+    if(!$opts_sub->{"cluster_rows"}){
+        $opts_sub->{"cluster_rows"} = "TRUE";
+    }else{
+	$opts_sub->{"cluster_rows"} = uc $opts_sub->{"cluster_rows"};
+	my $value = $opts_sub->{"cluster_rows"};
+	if($value ne "TRUE" && $value ne "FALSE"){
+	    print "--cluster_rows should be either FALSE or TRUE. Please check\n";
+	    ++$exit_code;
+	}
+    }
+
+    if(!$opts_sub->{"cluster_cols"}){
+        $opts_sub->{"cluster_cols"} = "FALSE";
+    }else{
+        $opts_sub->{"cluster_cols"} = uc $opts_sub->{"cluster_cols"};
+        my $value = $opts_sub->{"cluster_cols"};
+        if($value ne "TRUE" && $value ne "FALSE"){
+            print "--cluster_cols should be either FALSE or TRUE. Please check\n";
+            ++$exit_code;
+        }
+    }
+
     if(!@{$opts_sub->{"context"}}){
         push @{$opts_sub->{"context"}}, "CG";
     }
