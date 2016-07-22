@@ -92,6 +92,9 @@ perl ViewBS.pl MethOverRegion --region TAIR10_Transposable_Elements.chr1.bed --s
   <b>An example of MethOverregion</b><br>
 </p>
 
+```
+perl ViewBS.pl MethOverRegion --region TAIR10_Transposable_Elements.chr1.bed --sample bis_WT.tab.gz,WT --sample bis_cmt23.tab.gz,cmt23 --sample bis_cmt2-3.tab.gz,cmt2-3 --sample bis_drm12cmt2.tab.gz,drm12cmt2 --sample bis_drm12cmt23.tab.gz,drm12cmt23 --prefix bis_TE_chr1_sample --context CHG
+```
 
 #### MethOneRegion
 
