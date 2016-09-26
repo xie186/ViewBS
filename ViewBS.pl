@@ -27,7 +27,8 @@ use Meth::Sample;
 use SubCmd::MethOverRegion;
 use SubCmd::MethHeatmap;
 use Meth::Heatmap;
-use SubCmd::MethOneRegion; 
+use SubCmd::MethOneRegion;
+use SubCmd::MethCoverage; 
 my $main_path = dirname(abs_path $0);
 
 my %opts;   ##
@@ -77,6 +78,13 @@ sub check_parameter{
         my $check_para = SubCmd::MethOneRegion -> new();
         my $status = $check_para -> check_para_sub(\%opts_subcmd, \%opts);
         $check_para -> run_methOneRegion(\%opts_subcmd, \%opts);
+    }
+   
+    if($sub_cmd eq "MethCoverage"){
+        print "@{$opts_subcmd{sample}}\n";
+        my $check_para = SubCmd::MethCoverage -> new();
+        my $status = $check_para -> check_para_sub(\%opts_subcmd, \%opts);
+        $check_para -> run_methCoverage(\%opts_subcmd, \%opts);
     } 
 }
 
@@ -149,6 +157,13 @@ sub processCMD{
                 'prefix:s'               => \$opts_subcmd{prefix},
 	         }
 	    },
+            MethCoverage => {
+                summary => 'Generate heatmap for a given regions.',
+                options => {
+                'sample:s'               => \@{$opts_subcmd{sample}},
+                'prefix:s'               => \$opts_subcmd{prefix},
+                 }
+            },
         }
     );
 }
