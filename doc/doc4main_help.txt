@@ -27,6 +27,11 @@ Prints the help message and exits.
 
 =item B<-Subcommands:>
 
+
+=item B<-MethCoverage>
+
+ - Generate MethCoverage report
+
 =item B<-MethGeno>
 
  - Generate the methylation information across each chromosome and plot the information.

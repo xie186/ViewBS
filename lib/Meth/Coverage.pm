@@ -1,4 +1,4 @@
-package Meth::OverRegion;
+package Meth::Coverage;
 
 use strict;
 use warnings;
@@ -7,10 +7,7 @@ use FindBin;
 use Pod::Usage;
 use Cwd qw(abs_path);
 use Bio::DB::HTS::Tabix;
-
-my $PROM =  "Upstream";
-my $BODY =  "Body";
-my $DOWN =  "Downstream";
+use Bio::SeqIO;
 
 sub new{
     my $class     = shift;
@@ -20,18 +17,13 @@ sub new{
 
 sub drawMeth{
     my ($class, $opts_sub) = @_;
-    foreach my $context(@{$opts_sub->{context}}){
-        my $output = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethCoverage_$context.txt";
-
-	open OUT, "+>$opts_sub->{outdir}/$opts_sub->{prefix}_MethCoverage_$context.sh" or die "$!";
-	my $fig = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethCoverage_$context.pdf";
-	my $cmd = "R --vanilla --slave --input $output --xlab $opts_sub->{RegionName} --output $fig < $FindBin::Bin/lib/Meth/OverRegion.R";
-	print OUT "$cmd\n";
-	close OUT;
-
-	my $r_rep = `$cmd`;
-        print "$class: $r_rep\n";
-    }
+    my $output = "$opts_sub->{outdir}/$opts_sub->{prefix}.tab";
+    open OUT, "+>$opts_sub->{outdir}/$opts_sub->{prefix}.sh" or die "$!";
+    my $fig = "$opts_sub->{outdir}/$opts_sub->{prefix}.pdf";
+    my $cmd = "R --vanilla --slave --input $output --output $fig < $FindBin::Bin/lib/Meth/Coverage.R";
+    print OUT "$cmd\n";
+    close OUT;
+    my $r_rep = `$cmd`;
 }
 
 sub calMeth{
@@ -40,7 +32,7 @@ sub calMeth{
    ## Process the --sample arguments 
    my $pro_sample = Meth::Sample -> new();
    #print "$opts_sub\t", keys %$opts_sub, "\n";
-   $pro_sample -> processArgvSampleOverRegion($opts_sub);
+   $pro_sample -> processArgvSampleCoverage($opts_sub);
    
    ## Start calculate methylation information for target context
    &generTab($class, $opts_sub);
@@ -48,83 +40,98 @@ sub calMeth{
 
 sub generTab{
     my ($class, $opts_sub) = @_;
-    print "Start calculate methylation information for target context\n" if !$opts_sub->{verbose};
-    foreach my $context(@{$opts_sub->{context}}){
-	print "$context\n" if !$opts_sub->{verbose};
-        my $output = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethOverRegion_$context.txt";
-        open OUT, "+>$output" or die "$!:$output";
-	print OUT "sample_name\tregion\tbin_num\tC_number\tT_number\tMethylation_level\n";
-	my %rec_meth_bin;
-	&get_meth_info($class, $opts_sub, \%rec_meth_bin, $context);
-	foreach my $keys(keys %rec_meth_bin){
-	    my ($c_num, $t_num) = @{$rec_meth_bin{$keys}};
-	    my $level = $c_num/($c_num + $t_num);
-	    print OUT "$keys\t$c_num\t$t_num\t$level\n";
-	}
-    }
-}
+    print "Start reading the methylation file\n" if !$opts_sub->{verbose};
 
-sub get_meth_info{
-    my ($class, $opts_sub, $rec_meth_bin, $context) = @_;
-    my ($bin_length, $bin_num, $min_len, $max_len, $flank) = ($opts_sub->{binLength}, $opts_sub->{binNumber}, $opts_sub->{minLength}, $opts_sub->{maxLength}, $opts_sub->{flank});
-    foreach my $sam_info(@{$opts_sub->{sample_list}}){ ## sample information: meth_file,sample,region
-        my ($meth_file, $sam_name, $region) = split(/,/, $sam_info);
-        open REGION, $region or die "$!:$region";
-	my $flag = 0;
-        while(my $line = <REGION>){
-            chomp $line;
-	    ++$flag;
-	    print "." if $flag % 1000 == 0;
-            my ($chr, $stt, $end, $name, $strand)=split(/\t/,$line);
-	    $strand = $strand ? $strand: "+";  #if there is no column for strand
-	    my $tabix = Bio::DB::HTS::Tabix->new( filename => $meth_file);
-            my $stt_flank = $stt - $flank < 0 ? 1 : $stt - $flank + 2;
-	    my $end_flank = $end + $flank -2 ;
-	    #print "$chr:$stt_flank-$end_flank,$bin_length, $bin_num, $min_len, $max_len, $flank\n";
-            my $iter = $tabix->query("$chr:$stt_flank-$end_flank");
-            my ($tot_c_num, $tot_t_num) = (0, 0);
-            while ( my $line = $iter->next) {
-		my ($chr, $pos, $strand, $c_num, $t_num, $tem_context, $seq) = split(/\t/, $line);
-                if($context eq $tem_context || $context eq "CXX"){
-		    next if ($c_num + $t_num < $opts_sub->{minDepth} || $c_num + $t_num > $opts_sub->{maxDepth});
-		    &judge_bin($class,$rec_meth_bin, $sam_name, $stt,$end,$strand,$pos,$c_num,$t_num, $opts_sub);
-        	}
+    my %rec_meth;
+    my %rec_meth_tot;
+    my %rec_meth_context;
+    my $max_depth = 0;
+    my $min_depth = 10000;
+   
+    &cal_CG_num($class, $opts_sub);
+    
+    my @sample_list; 
+    foreach my $sam_info(@{$opts_sub->{sample_list}}){   ## sample information: meth_file,sample,region
+        my ($meth_file, $sam_name) = split(/,/, $sam_info);
+        push @sample_list, $sam_name;
+	open METH, "zcat $meth_file |" or die "$!: $meth_file\n";
+	while(my $line = <METH>){
+	    my ($chr, $pos, $strand, $c_num, $t_num, $tem_context, $seq) = split(/\t/, $line);
+	    my $depth = $c_num + $t_num;
+	    $rec_meth{$sam_name} -> {$tem_context} -> {$depth} ++;
+	    $rec_meth_tot{$depth} ++;
+	    $rec_meth_context{$tem_context} ++;
+	    $min_depth = $depth if $depth < $min_depth;
+	    $max_depth = $depth if $depth > $max_depth;
+	}
+	close METH;
+    }
+
+    my $num_sam = keys %rec_meth;  # how many samples
+    my ($max_depth_rep) = &determine_max_depth($class, $max_depth, $num_sam, \%rec_meth_tot, $opts_sub);   ## to detemine when should we stop
+  
+    open OUT, "+>$opts_sub->{outdir}/$opts_sub->{prefix}.tab" or die "$!";
+    print OUT "Sample\tContext\tDepth\tPercentage\n";
+    foreach my $sam_name(keys %rec_meth){
+	foreach my $tem_context(sort keys %rec_meth_context){
+	    for(my $i = 1; $i <= $max_depth_rep; ++$i){
+		my $num_cov = 0;
+		for(my $j = $i; $j <= $max_depth; ++$j){
+		    $num_cov += $rec_meth{$sam_name} -> {$tem_context} -> {$j} if exists $rec_meth{$sam_name} -> {$tem_context} -> {$j};
+		}
+		my $perc = 100* $num_cov/$opts_sub->{"ref_C"}->{$tem_context};
+		print OUT "$sam_name\t$tem_context\t$i\t$perc\n";
 	    }
-	}
+        }
     }
+    close OUT;
 }
 
-sub judge_bin{
-    my ($class, $rec_meth_bin, $sam_name, $stt,$end,$strand,$pos1,$c_num,$t_num, $opts_sub) = @_;
-    my ($bin_length, $bin_num, $flank) = ($opts_sub->{binLength}, $opts_sub->{binNumber}, $opts_sub->{flank});
-    my $unit = ($end-$stt+1)/($bin_num - 0.01);
-    my $keys = 0;
-    if($strand eq '+'){
-        if($pos1 < $stt){
-            $keys = $stt - $pos1 + 1 == $flank ? -int(($stt - $pos1 + 1)/$bin_length) +1 : -int(($stt - $pos1 + 1)/$bin_length);
-            $keys = "$PROM\t$keys";
-        }elsif($pos1>=$stt && $pos1<$end){
-            $keys = int (($pos1 - $stt + 1) /$unit) + 1;
-            $keys = "$BODY\t$keys";
-        }else{
-            $keys = $pos1 - $end + 1 == $flank ? int(($pos1 - $end + 1)/$bin_length) + $bin_num -2: int(($pos1-$end+1)/$bin_length) + $bin_num + 1;
-            $keys="$DOWN\t$keys";
+#### Detemine the maximum depth
+sub determine_max_depth{
+    my ($class, $max_depth, $num_sam, $rec_meth_tot, $opts_sub) = @_;
+    my $max_depth_rep;
+    for(my $i = 1; $i <= $max_depth; ++$i){
+        my $num_cov = 0;
+        for(my $j = $i; $j <= $max_depth; ++$j){
+            $num_cov += $$rec_meth_tot{$j} if exists $$rec_meth_tot{$j};
         }
-    }else{
-        if($pos1<=$stt){
-            $keys = $stt - $pos1 + 1 == $flank ? int(($stt-$pos1+1)/$bin_length) + $bin_num -2 : int(($stt-$pos1+1)/$bin_length) + $bin_num + 1;
-            $keys="$DOWN\t$keys";
-        }elsif($pos1>$stt && $pos1<=$end){
-            $keys=int (($end-$pos1+1)/$unit) + 1;
-            $keys="$BODY\t$keys";
-        }else{
-            $keys = $pos1 - $end + 1 == $flank ? -int(($pos1-$end + 1)/$bin_length) + 1 : -int(($pos1 - $end + 1)/$bin_length);
-            $keys="$PROM\t$keys";
+        if($num_cov/($opts_sub->{"ref_C"}->{"C_G"} * $num_sam) < 0.1){
+            $max_depth_rep = $i;
+            last;
         }
     }
-    $keys="$sam_name\t$keys";
-    ${$rec_meth_bin->{$keys}}[0] += $c_num;
-    ${$rec_meth_bin->{$keys}}[1] += $t_num;
+    print "Maximum depth that will be calculed is $max_depth_rep\n";
+    return $max_depth_rep;
+}
+
+### calculate the genomic 
+sub cal_CG_num{
+    my ($class, $opts_sub) = @_; 
+    my $ref = $opts_sub->{reference};
+    my $seq_in = Bio::SeqIO->new( -format => 'fasta',
+                              -file   => $ref,
+                             );
+    
+    print "$class: start to calculate CG, CHG and CHH number\n";
+    print "ID: C_G_number\tCG_number\tCHG_number\tCHH_number\n";
+    while ( my $seq = $seq_in->next_seq() ) {
+        my $id = $seq->id;
+	my $seq = $seq->seq;
+	my $num_c_g = $seq =~ tr/CG/CG/; ### cal total C and G number
+	my $num_cg = $seq =~ s/CG/CG/g;	### calculate CG number
+	$num_cg = $num_cg * 2;
+	my $num_cag = $seq =~ s/CAG/CAG/g;
+	my $num_ctg = $seq =~ s/CTG/CTG/g;
+	my $num_ccg = $seq =~ s/CCG/CCG/g;
+	my $num_chg = 2* ($num_cag + $num_ctg + $num_ccg);
+	my $num_chh = $num_c_g - $num_cg - $num_chg;
+	print "$id:$num_c_g\t$num_cg\t$num_chg\t$num_chh\n";
+	$opts_sub->{"ref_C"} -> {"C_G"} += $num_c_g;
+        $opts_sub->{"ref_C"} -> {"CG"}  += $num_cg;
+	$opts_sub->{"ref_C"} -> {"CHG"} += $num_chg;
+	$opts_sub->{"ref_C"} -> {"CHH"} += $num_chh;
+    }
 }
 
 sub get_CT_num{

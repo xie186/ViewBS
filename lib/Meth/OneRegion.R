@@ -7,7 +7,11 @@ methGeno <- function(meth, out){
 	geom_segment() + facet_grid(Sample ~.)+
 	ylab("Methylation Level") + 
 	xlab(paste(levels(tab[,2])))
- 
+      #par("din") : the device dimensions in inches,
+      #par("fin") : the current figure dimensions in inches,
+      #par("pin") : the current plot region dimensions in inches,
+      #par("fig") : NDC coordinates for the figure region,
+      #par("plt") : NDC coordinates for the plot region,
       ggsave(out, p, height=length(levels(tab[,1]))*par("din")[2]/6)
 }
 

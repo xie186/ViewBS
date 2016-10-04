@@ -1,5 +1,9 @@
 # ViewBS
 
+##Authors
+
+Xiaosan Huang
+
 ##Installation
 
 ##### Requirements:

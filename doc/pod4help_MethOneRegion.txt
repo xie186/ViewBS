@@ -34,7 +34,7 @@ sample and plot the methylation information.
 
 =item B<sample [required]>
 
- - Provide the sample information. [Format: methlationfile,samplename] 
+ - Provide the sample information. [Format: methlationFile,samplenName] 
    It is possible to specify more than one sample pair by using the options 
    --sample more than once. The methylation information can also be read from
    a TEXT file. Instead of giving an explicit sample information pairs, 

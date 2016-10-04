@@ -28,7 +28,8 @@ use SubCmd::MethOverRegion;
 use SubCmd::MethHeatmap;
 use Meth::Heatmap;
 use SubCmd::MethOneRegion;
-use SubCmd::MethCoverage; 
+use SubCmd::MethCoverage;
+use SubCmd::MethLevDist; 
 my $main_path = dirname(abs_path $0);
 
 my %opts;   ##
@@ -81,11 +82,19 @@ sub check_parameter{
     }
    
     if($sub_cmd eq "MethCoverage"){
+	print "$opts_subcmd{reference}\n";
         print "@{$opts_subcmd{sample}}\n";
         my $check_para = SubCmd::MethCoverage -> new();
         my $status = $check_para -> check_para_sub(\%opts_subcmd, \%opts);
         $check_para -> run_methCoverage(\%opts_subcmd, \%opts);
     } 
+
+    if($sub_cmd eq "MethLevDist"){
+        print "@{$opts_subcmd{sample}}\n";
+        my $check_para = SubCmd::MethLevDist -> new();
+        my $status = $check_para -> check_para_sub(\%opts_subcmd, \%opts);
+        $check_para -> run_methLevDist(\%opts_subcmd, \%opts);
+    }
 }
 
 my $t_end = Benchmark->new;
@@ -158,10 +167,33 @@ sub processCMD{
 	         }
 	    },
             MethCoverage => {
-                summary => 'Generate heatmap for a given regions.',
+                summary => 'Generate statistics of read coverage of the provided samples.',
                 options => {
+		'reference:s'		 => \$opts_subcmd{reference},
                 'sample:s'               => \@{$opts_subcmd{sample}},
                 'prefix:s'               => \$opts_subcmd{prefix},
+		'outdir:s'               => \$opts_subcmd{outdir},
+                 }
+            },
+	    MethLevDist => {
+                summary => 'Generate distribution of methylation levels for the provided samples.',
+                options => {
+                'sample:s'               => \@{$opts_subcmd{sample}},
+        	'minDepth:s'             => \$opts_subcmd{minDepth},
+                'maxDepth:s'  		 => \$opts_subcmd{maxDepth},
+		'binMethLev:s'		 => \$opts_subcmd{binMethLev},
+                'prefix:s'               => \$opts_subcmd{prefix},
+                'outdir:s'               => \$opts_subcmd{outdir},
+                 }
+            },
+	    GlobalMethLev => {
+                summary => 'Generate global (bulk) methylation levels for the provided samples.',
+                options => {
+                'sample:s'               => \@{$opts_subcmd{sample}},
+                'minDepth:s'             => \$opts_subcmd{minDepth},
+                'maxDepth:s'             => \$opts_subcmd{maxDepth},
+                'prefix:s'               => \$opts_subcmd{prefix},
+                'outdir:s'               => \$opts_subcmd{outdir},
                  }
             },
         }

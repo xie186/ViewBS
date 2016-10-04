@@ -25,9 +25,9 @@ regions, genes, transposable elements, etc.
 
 =item B<--verbose>
    
-=item B<region [required]>
+=item B<reference [required]>
 
- - regions you want to investigate. 
+ - reference genome in fasta file. 
 
 =item B<sample [required]>
 
@@ -37,13 +37,13 @@ regions, genes, transposable elements, etc.
    a TEXT file. Instead of giving an explicit sample information pairs, 
    you need to write file: followed by the name of the TEXT file.
 
-=item B<prefix [required]>
+=item B<outdir [optional]>
 
- - Provide prefix for the output file.
+ - Provide the output directory. [default: ./]
 
-=item B<RegionName [Optional]>
+=item B<prefix [optional]>
 
- - The type of regions provided, like Gene, TE, DMR, etc. [Default: Gene]
+ - Provide prefix for the output file. [default: MethCoverage]
 
 =back
 

@@ -36,28 +36,51 @@ sub check_para_sub{
     if(!@{$opts_sub->{"sample"}}){
 	print "Please provide --sample!\n";
 	++$exit_code; #exit 0;
-    }else{
-	
     }
 
+    if(!$opts_sub->{"reference"}){
+	print "Please provide --reference!\n"; ## Reference will be needed to calculate the total number of Cs, CGs, CHGs, and CHHs.
+        ++$exit_code; #exit 0;
+    }else{
+	if(!-e $opts_sub->{"reference"}){
+	    print "Reference file: $opts_sub->{reference} not exists. Please check!\n";
+	    ++$exit_code; #exit 0;    
+	}
+	#print "xxx: $opts_sub->{reference}: xx\n";
+	$opts_sub->{"reference"} = abs_path $opts_sub->{"reference"};
     }
+
 
     ## output directory  
     if(!$opts_sub->{"outdir"}){
-        $opts_sub->{"outdir"} = "./";
+        $opts_sub->{"outdir"} = abs_path "./";
+    }else{
+        if(-e  $opts_sub->{"outdir"} && !-d $opts_sub->{"outdir"}){
+            print "File $opts_sub->{outdir} already exists. Please provide a new directory name.\n";
+            ++$exit_code; #exit 0;
+        }
+        `mkdir $opts_sub->{"outdir"}` if !-d $opts_sub->{outdir};
+        $opts_sub->{"outdir"} = abs_path $opts_sub->{"outdir"};
+    }
+    `mkdir $opts_sub->{"outdir"}` if !-d $opts_sub->{outdir};
+    print "Output directory is: $opts_sub->{outdir}\n";
+ 
+    ### 
+    if(!$opts_sub->{"prefix"}){
+        $opts_sub->{"prefix"} = "MethCoverage";
     }
 
-    if(!@{$opts_sub->{"context"}}){
-        push @{$opts_sub->{"context"}}, "CG";
-    }
-
-    if(!$opts_sub->{"minDepth"}){
-        $opts_sub->{"minDepth"} = 3;
-    }
-
-    if(!$opts_sub->{"maxDepth"}){
-        $opts_sub->{"maxDepth"} = 400;
-    }
+#    if(!@{$opts_sub->{"context"}}){
+#        push @{$opts_sub->{"context"}}, "CG";
+#    }
+#
+#    if(!$opts_sub->{"minDepth"}){
+#        $opts_sub->{"minDepth"} = 3;
+#    }
+#
+#    if(!$opts_sub->{"maxDepth"}){
+#        $opts_sub->{"maxDepth"} = 400;
+#    }
 
  
     if($exit_code > 0){
