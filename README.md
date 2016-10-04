@@ -14,9 +14,9 @@ Shaojun Xie
  
 3. Perl packages:
 
-   * Getopt::Long::Subcommand
+   * Getopt::Long::Subcommand - Process command-line options, with subcommands and completion
 
-   * Bio::DB::HTS::Tabix
+   * Bio::DB::HTS::Tabix - Object oriented access to the underlying tbx C methods
 
     ```
     wget https://raw.githubusercontent.com/miyagawa/cpanminus/master/cpanm
@@ -44,14 +44,25 @@ ViewBS uses __Genome-wide cytosine methylation report__ as input file. It is sor
 ```
 Please see details in [Bismark](http://www.bioinformatics.babraham.ac.uk/projects/bismark/) websites.
 
-*Tips: how to generate __Genome-wide Cytosine Methylation Report__ *
+*Tips: how to generate __Genome-wide Cytosine Methylation Report__*
 
 If you already have finished the mapping using Bismark, you should have a sam/bam file. Let's say you have a sam file named *test.sam*. What you can do to generate __Genome-wide Cytosine Methylation Report__ is:
 
 ```
+### This step will generate several files:
 bismark_methylation_extractor --bedGraph --CX test.sam
-coverage2cytosine -CX -o bis_cmt2-3.tab --genome_folder ../../data/ara/ test.bismark.cov
+### This step will generate a file named bis_test.tab
+coverage2cytosine -CX -o test.bis_rep.cov --genome_folder ara/ test.bismark.cov
+```
 
+Since ViewBS uses Bio::DB::HTS::Tabix to quickly retrieves information from the input (TAB-delited) files, the __Genome-wide Cytosine Methylation Report__ files should be *bgzip*ped and *tabix* indexed. *bgzip* and *tabix* . 
+
+*Note: tabix and bgzip binaries are now part of the HTSlib project. https://github.com/samtools/htslib*
+
+Here is an example:
+```
+bgzip test.bis_rep.cov            ## test.bis_rep.cov.gz will be generated. Note: test.bis_rep.cov shoud be sorted based on chromosome coordinates.
+tabix -p vcf test.bis_rep.cov.gz  ## test.bis_rep.cov.gz.tbi will be generated. Now test.bis_rep.cov.gz can be used as input for ViewBS. 
 ```
 
 ## Work flow of ViewBS
