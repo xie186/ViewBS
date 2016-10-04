@@ -1,10 +1,12 @@
 # ViewBS
 
-##Authors
+## Where to find help
 
-Xiaosan Huang
-
-Shaojun Xie
+Recent changes, bug fixes and feature additions will be announced through this
+Google discussion group: ViewBS discussion forum. Users are encouraged to
+ask questions through this forum (instead of shooting me emails) so that the
+answers can be shared. If you are interested, you can sign up to receive
+updates through E-mails.
 
 ##Installation
 
