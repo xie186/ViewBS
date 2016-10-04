@@ -3,6 +3,7 @@
 ##Authors
 
 Xiaosan Huang
+Shaojun Xie
 
 ##Installation
 
@@ -35,6 +36,15 @@ Xiaosan Huang
     install.packages("ggplot2", dep=T)
     install.packages("pheatmap", dep=T)
     ```
+## Preparation of input files
+
+ViewBS uses genome-wide cytosine methylation report as input file. It is sorted by chromosomal coordinates but also contains the sequence context and is in the following format:
+```
+<chromosome> <position> <strand> <count methylated> <count unmethylated> <C-context> <trinucleotide context>
+```
+Please see details in [Bismark](http://www.bioinformatics.babraham.ac.uk/projects/bismark/) websites.
+
+*Tips: how to generate __genome-wide cytosine methylation report__ *
 
 ## Work flow of ViewBS
 

@@ -59,7 +59,7 @@ sub generTab{
 	    my $depth = $c_num + $t_num;
 	    next if ($depth < $opts_sub->{minDepth} || $depth > $opts_sub->{maxDepth});
 	    my $lev = $c_num / $depth;
-	    my $bin_num = ($lev ==1) ? $BINNUM -1 : int( $lev / $opts_sub->{binMethLev}); 
+	    my $bin_num = ($lev ==1) ? $BINNUM -1 : int ( $lev / $opts_sub->{binMethLev}); 
 	    $rec_meth{$sam_name}-> {$tem_context}-> {$bin_num} ++;
 	    $rec_meth_tot{$sam_name} -> {$tem_context} ++;
 	    $rec_meth_context{$tem_context} ++;
@@ -72,6 +72,7 @@ sub generTab{
     foreach my $sam_name(keys %rec_meth){
 	foreach my $tem_context(sort keys %rec_meth_context){
 	    for(my $i = 1; $i <= $BINNUM; ++$i){
+		print "$sam_name, $tem_context, $i\n";
 		my $num = $rec_meth{$sam_name} -> {$tem_context} -> {$i};
 		my $tot_num = $rec_meth{$sam_name} -> {$tem_context};
 		my $perc = 100* $num/$tot_num;
