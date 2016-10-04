@@ -38,13 +38,21 @@ Shaojun Xie
     ```
 ## Preparation of input files
 
-ViewBS uses genome-wide cytosine methylation report as input file. It is sorted by chromosomal coordinates but also contains the sequence context and is in the following format:
+ViewBS uses __Genome-wide cytosine methylation report__ as input file. It is sorted by chromosomal coordinates but also contains the sequence context and is in the following format:
 ```
 <chromosome> <position> <strand> <count methylated> <count unmethylated> <C-context> <trinucleotide context>
 ```
 Please see details in [Bismark](http://www.bioinformatics.babraham.ac.uk/projects/bismark/) websites.
 
-*Tips: how to generate __genome-wide cytosine methylation report__ *
+*Tips: how to generate __Genome-wide Cytosine Methylation Report__ *
+
+If you already have finished the mapping using Bismark, you should have a sam/bam file. Let's say you have a sam file named *test.sam*. What you can do to generate __Genome-wide Cytosine Methylation Report__ is:
+
+```
+bismark_methylation_extractor --bedGraph --CX test.sam
+coverage2cytosine -CX -o bis_cmt2-3.tab --genome_folder ../../data/ara/ test.bismark.cov
+
+```
 
 ## Work flow of ViewBS
 
