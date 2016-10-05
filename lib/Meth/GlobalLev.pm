@@ -1,4 +1,4 @@
-package Meth::LevDist;
+package Meth::GlobalLev;
 
 use strict;
 use warnings;
@@ -45,8 +45,6 @@ sub generTab{
     my ($class, $opts_sub) = @_;
     print "Start reading the methylation file\n" if !$opts_sub->{verbose};
 
-    my $BINNUM = 1 / $opts_sub->{binMethLev};
-    
     my %rec_meth;
     my %rec_meth_context;
     my %rec_meth_tot; 
@@ -61,7 +59,7 @@ sub generTab{
 	    my $depth = $c_num + $t_num;
 	    next if ($depth < $opts_sub->{minDepth} || $depth > $opts_sub->{maxDepth});
 	    #my $lev = $c_num / $depth;
-	    my $bin_num = ($lev ==1) ? $BINNUM -1 : int ( $lev / $opts_sub->{binMethLev}); 
+	    #my $bin_num = ($lev ==1) ? $BINNUM -1 : int ( $lev / $opts_sub->{binMethLev}); 
 	    $rec_meth{$sam_name}-> {$tem_context} -> {$TOTC_DEP} += $c_num;
 	    $rec_meth{$sam_name}-> {$tem_context} -> {$TOT_DEP}  += $depth;
 	    $rec_meth_tot{$sam_name} -> {$tem_context} ++;

@@ -101,13 +101,12 @@ sub check_para{
     }
 }
 
-
 sub run_methLevDist{ 
     my ($class, $opts_sub) = @_;
     my $meth_geno = Meth::LevDist->new();
     print "$class\n"; 
     $meth_geno -> calMeth($opts_sub);
-    #$meth_geno -> drawMeth($opts_sub);
+    $meth_geno -> drawMeth($opts_sub);
 }
 
 1;

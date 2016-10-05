@@ -72,7 +72,7 @@ sub generTab{
     foreach my $sam_name(keys %rec_meth){
 	foreach my $tem_context(sort keys %rec_meth_context){
 	    for(my $i = 1; $i <= $BINNUM; ++$i){
-		print "$sam_name, $tem_context, $i\n";
+		#print "$sam_name, $tem_context, $i\n";
 		my $num = $rec_meth{$sam_name} -> {$tem_context} -> {$i-1};
 		my $tot_num = $rec_meth{$sam_name} -> {$tem_context};
 		my $perc = 100* $num/$tot_num;
