@@ -101,7 +101,7 @@ sub run_globalMethLev{
     my $meth_geno = Meth::GlobalLev->new();
     print "$class\n"; 
     $meth_geno -> calMeth($opts_sub);
-    #$meth_geno -> drawMeth($opts_sub);
+    $meth_geno -> drawMeth($opts_sub);
 }
 
 1;

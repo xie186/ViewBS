@@ -76,8 +76,22 @@ Here is the workflow of ViewBS:
 </p>
 
 ## USAGE
+
+### Download test data
+
+https://zenodo.org/record/58470#.V_UR-E0rJhE
+
 ### ViewBS 
 
+#### MethCoverage
+
+#### GlobalMethLev
+
+```
+
+```
+
+#### MethLevDist
 #### MethGeno
 
 <p align="center">
@@ -102,7 +116,6 @@ Region file format:
 
 *Note: If the file has 4th column, each row in this column should be unique.* 
 
-
 <p align="center">
   <img src="./image/CHG_hypo_DMR_drm12cmt23_to_WT_MethHeatmap_CHG.png">
 </p>
@@ -112,7 +125,7 @@ Region file format:
 
 To generate the figure above, use the command shown as below:
 ```
-perl ViewBS MethOverRegion --region TAIR10_Transposable_Elements.chr1.bed --sample bis_WT.tab.gz,WT --sample bis_cmt23.tab.gz,cmt23 --sample bis_cmt2-3.tab.gz,cmt2-3 --sample bis_drm12cmt2.tab.gz,drm12cmt2 --sample bis_drm12cmt23.tab.gz,drm12cmt23 --prefix bis_TE_chr1_sample --context CHG
+ViewBS MethOverRegion --region TAIR10_Transposable_Elements.chr1.bed --sample bis_WT.tab.gz,WT --sample bis_cmt23.tab.gz,cmt23 --sample bis_cmt2-3.tab.gz,cmt2-3 --sample bis_drm12cmt2.tab.gz,drm12cmt2 --sample bis_drm12cmt23.tab.gz,drm12cmt23 --prefix bis_TE_chr1_sample --context CHG
 ```
 
 #### MethOverRegion
