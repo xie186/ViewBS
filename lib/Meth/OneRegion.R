@@ -3,10 +3,12 @@ methGeno <- function(meth, out){
      tab <-read.table(meth, head = T, sep = "\t")
      library(ggplot2)
  
-     p<-ggplot(tab,aes(x=position,xend=position,y=0,yend=MethylationLevel))+
+     p<-ggplot(tab,aes(x=position,xend=position,y=0,yend=MethylationLevel, col=Sample))+
 	geom_segment() + facet_grid(Sample ~.)+
 	ylab("Methylation Level") + 
-	xlab(paste(levels(tab[,2])))
+	xlab(paste(levels(tab[,2]))) +
+        theme(legend.position="none")
+
       #par("din") : the device dimensions in inches,
       #par("fin") : the current figure dimensions in inches,
       #par("pin") : the current plot region dimensions in inches,
