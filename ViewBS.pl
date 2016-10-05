@@ -30,6 +30,7 @@ use Meth::Heatmap;
 use SubCmd::MethOneRegion;
 use SubCmd::MethCoverage;
 use SubCmd::MethLevDist; 
+use SubCmd::GlobalMethLev;
 my $main_path = dirname(abs_path $0);
 
 my %opts;   ##
@@ -94,6 +95,13 @@ sub check_parameter{
         my $check_para = SubCmd::MethLevDist -> new();
         my $status = $check_para -> check_para_sub(\%opts_subcmd, \%opts);
         $check_para -> run_methLevDist(\%opts_subcmd, \%opts);
+    }
+    
+    if($sub_cmd eq "GlobalMethLev"){
+        print "@{$opts_subcmd{sample}}\n";
+        my $check_para = SubCmd::MethLevDist -> new();
+        my $status = $check_para -> check_para_sub(\%opts_subcmd, \%opts);
+        $check_para -> run_globalMethLev(\%opts_subcmd, \%opts);
     }
 }
 

@@ -1,0 +1,74 @@
+=pod
+
+=head1 NAME
+
+ViewBS MethGlobalLevl - xyx Generate methylation information over a list of
+regions.
+
+=head1 SYNOPSIS
+
+ViewBS MethMethLevDist --sample <meth,sample_name> [--sample <meth,sample_name> .......]
+--prefix <prefix for output> xyx
+
+=head1 DESCRIPTION
+
+xyz MethMethLevDist will calculate DNA methylation information across the provide
+regions, genes, transposable elements, etc. 
+
+=head1 Required arguments
+
+=over 8
+
+=item B<-help> | B<-h>
+
+ - Prints the help message and exists.
+
+=item B<--verbose>
+   
+=item B<reference [required]>
+
+ - reference genome in fasta file. 
+
+=item B<sample [required]>
+
+ - Provide the sample information. [Format: methlationfile,samplename] 
+   It is possible to specify more than one sample pair by using the options 
+   --sample more than once. The methylation information can also be read from
+   a TEXT file. Instead of giving an explicit sample information pairs, 
+   you need to write file: followed by the name of the TEXT file.
+
+=item B<minDepth [optional]>
+
+ - Minimum read depth for calculating methylation level. [default: 5]
+
+=item B<maxDepth [optional]>
+
+ - Maximum read depth for calculating methylation level. [default: 10000]
+
+=item B<binMethLev [optional]>
+
+ - Bin size to calculate the distribution of methylation level. [default: 0.1]
+
+=item B<outdir [optional]>
+
+ - Provide the output directory. [default: ./]
+
+=item B<prefix [optional]>
+
+ - Provide prefix for the output file. [default: MethMethLevDist]
+
+=back
+
+=head1 DISCUSSION FORUM
+
+Recent changes, bug fixes and feature additions will be announced through this
+Google discussion group: ViewBS discussion forum. Users are encouraged to
+ask questions through this forum (instead of shooting me emails) so that the
+answers can be shared. If you are interested, you can sign up to receive
+updates through E-mails.
+
+=head1 Affiliation
+
+
+
+=cut

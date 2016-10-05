@@ -55,7 +55,7 @@ sub check_para_sub{
     #print "After outdir: $exit_code\n";
     ### 
     if(!$opts_sub->{"prefix"}){
-        $opts_sub->{"prefix"} = "MethCoverage";
+        $opts_sub->{"prefix"} = "MethLevDist";
     }
 
     if(!$opts_sub->{"minDepth"}){
@@ -67,7 +67,7 @@ sub check_para_sub{
     }
   
     if(!$opts_sub->{"binMethLev"}){
-        $opts_sub->{"binMethLev"} = 0.02;
+        $opts_sub->{"binMethLev"} = 0.1;
     }
     print "$opts_sub->{binMethLev}\n"; 
 
