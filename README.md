@@ -94,6 +94,23 @@ https://zenodo.org/record/58470#.V_UR-E0rJhE
   <b>An Example of Coverage Distribution of BS-seq</b><br>
 </p>
 
+To generate the figure above, use the command shown as below:
+```
+```
+Under *methCoverage* folder, there will be three files generated.
+
+* Table for global methylation level.
+
+| Sample 	| Context  	| Depth 	| Percentage       	|
+|--------	|----------	|-------	|------------------	|
+| cmt2-3 	| CG       	| 1     	| 93.3323115145888 	|
+| cmt2-3 	| CG       	| 2     	| 91.6474703919394 	|
+| ...    	| ...      	| ...   	| ...              	|
+| ...    	| ...      	| ...   	| ...              	|
+| WT     	| CG       	| 1     	| 93.8364493009668 	|
+
+* A shell script which can re-generate the figure in PDF file.
+* A figure in PDF file.
 
 #### GlobalMethLev
 
@@ -110,7 +127,7 @@ perl ../ViewBS/ViewBS.pl GlobalMethLev --sample bis_WT.tab.gz,WT --sample bis_cm
 ```
 Under *methGlobal*, there will be three files generated.
 
-1. Table for global methylation level.
+* Table for global methylation level.
 
 | Sample     	| CG    	| CHG   	| CHH   	|
 |------------	|-------	|-------	|-------	|
@@ -120,8 +137,8 @@ Under *methGlobal*, there will be three files generated.
 | drm12cmt23 	| 0.219 	| 0.004 	| 0.005 	|
 | WT         	| 0.245 	| 0.079 	| 0.029 	|
 
-2. A shell script which can re-generate the figure in PDF file.
-3. A figure in PDF file. 
+* A shell script which can re-generate the figure in PDF file.
+* A figure in PDF file. 
 
 #### MethLevDist
 
