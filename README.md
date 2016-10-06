@@ -100,6 +100,7 @@ https://zenodo.org/record/58470#.V_UR-E0rJhE
 
 To generate the figure above, use the command shown as below:
 ```
+ViewBS MethCoverage --reference TAIR10_chr_all.fasta --sample bis_WT.tab.gz,WT --sample bis_cmt23.tab.gz,cmt23 --sample bis_cmt2-3.tab.gz,cmt2-3 --sample bis_drm12cmt23.tab.gz,drm12cmt12 --sample bis_drm12cmt2.tab.gz,drm12cmt2 --outdir methCoverage --prefix cmt2_proj_allsam
 ```
 Under *methCoverage* folder, there will be three files generated.
 
