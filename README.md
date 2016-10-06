@@ -17,11 +17,14 @@ Recent changes, bug fixes and feature additions will be announced through this G
 
    * Bio::DB::HTS::Tabix - Object oriented access to the underlying tbx C methods
 
+   * Bio::SeqIO - Handler for SeqIO Formats
+
     ```
     wget https://raw.githubusercontent.com/miyagawa/cpanminus/master/cpanm
     chmod 755 cpanm
     ./cpanm Getopt::Long::Subcommand
     ./cpanm Bio::DB::HTS::Tabix
+    ./cpanm Bio::SeqIO
     ```
 4. R version: > 3.3.0
 
@@ -34,6 +37,7 @@ Recent changes, bug fixes and feature additions will be announced through this G
     ```
     install.packages("ggplot2", dep=T)
     install.packages("pheatmap", dep=T)
+    install.packages("reshape2", dep=T)
     ```
 ## Preparation of input files
 
