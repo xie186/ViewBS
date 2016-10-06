@@ -151,6 +151,7 @@ Under *methGlobal*, there will be three files generated.
 
 To generate the figure above, use the command shown as below:
 ```
+ViewBS.pl MethLevDist --sample bis_WT.tab.gz,WT --sample bis_cmt23.tab.gz,cmt23 --sample bis_cmt2-3.tab.gz,cmt2-3 --sample bis_drm12cmt23.tab.gz,drm12cmt12 --sample bis_drm12cmt2.tab.gz,drm12cmt2 --outdir methLevDist --prefix cmt2_proj_allsam --binMethLev 0.1
 ```
 * Table for numbers and percentages of sites in each methylation level bin.
 
