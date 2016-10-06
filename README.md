@@ -88,7 +88,7 @@ https://zenodo.org/record/58470#.V_UR-E0rJhE
 #### MethCoverage
 
 <p align="center">
-  <img src="image/methCoverage_example1.PNG">
+  <img src="image/methCoverage_example1.PNG" width="50%" height="50%">
 </p>
 <p align="center">
   <b>An Example of Coverage Distribution of BS-seq</b><br>
@@ -115,7 +115,7 @@ Under *methCoverage* folder, there will be three files generated.
 #### GlobalMethLev
 
 <p align="center">
-  <img src="image/GlobalMethLev_example1.png">
+  <img src="image/GlobalMethLev_example1.png" width="50%" height="50%">
 </p>
 <p align="center">
   <b>An Example of GlobalMethLev</b><br>
