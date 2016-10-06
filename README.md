@@ -66,7 +66,11 @@ tabix -p vcf test.bis_rep.cov.gz  ## test.bis_rep.cov.gz.tbi will be generated. 
 
 ## Work flow of ViewBS
 
-For ViewBS, the first thing that users should provide is the regions of interest. These regions could be functional elements, like genes, transposable elements (TE), or differentially methylated regions (DMR). The other thing that the users should provide is the methylation information. Methylation information are the outputs from BS-seq aligner, like Bismark, etc.
+ViewBS has several top level commands which determine the required and optimal arguments. These top level commands can be divided into two parts: methylation report and data visualization of functional regions. 
+
+Methylation report part has several different top commands which can generate report about read coverage, distribution of methylation level, global methylation leve, etc.
+
+The part of visualization for functional regions also has several different top commands. For ViewBS, the first input that users should provide is the regions of interest. These regions could be functional elements, like genes, transposable elements (TE), or differentially methylated regions (DMR). The other type of input that the users should provide is the methylation information. Methylation information are the outputs from BS-seq aligner, like Bismark, etc.
 
 Here is the workflow of ViewBS:
 
