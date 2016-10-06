@@ -152,9 +152,9 @@ Under *methGlobal*, there will be three files generated.
 To generate the figure above, use the command shown as below:
 ```
 ```
-* Table for global methylation level.
+* Table for numbers and percentages of sites in each methylation level bin.
 
-| Sample 	| Context  	| MethylationLevel 	| Number   	| Percentage 	|
+| Sample 	| Context  	| MethLevBinMidPoint 	| Number   	| Percentage 	|
 |--------	|----------	|------------------	|----------	|------------	|
 | cmt2-3 	| CG       	| 0.05             	| 3305969  	| 12.83      	|
 | cmt2-3 	| CG       	| 0.15             	| 62823    	| 0.24       	|

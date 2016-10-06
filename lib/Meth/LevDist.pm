@@ -68,7 +68,7 @@ sub generTab{
     }
 
     open OUT, "+>$opts_sub->{outdir}/$opts_sub->{prefix}.tab" or die "$!";
-    print OUT "Sample\tContext\tMethylationLevel\tNumber\tPercentage\n";
+    print OUT "Sample\tContext\tMethLevBinMidPoint\tNumber\tPercentage\n";
     foreach my $sam_name(keys %rec_meth){
 	foreach my $tem_context(sort keys %rec_meth_context){
 	    for(my $i = 1; $i <= $BINNUM; ++$i){
