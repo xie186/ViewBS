@@ -87,9 +87,9 @@ Here is the workflow of ViewBS:
 
 https://zenodo.org/record/58470#.V_UR-E0rJhE
 
-### ViewBS 
+### Top commands of ViewBS 
 
-#### MethCoverage
+#### Top command: MethCoverage
 
 <p align="center">
   <img src="image/methCoverage_example1.PNG" width="50%" height="50%">
