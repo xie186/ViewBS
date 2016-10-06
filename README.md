@@ -115,7 +115,7 @@ Under *methCoverage* folder, there will be three files generated.
 #### GlobalMethLev
 
 <p align="center">
-  <img src="image/GlobalMethLev_example1.png" width="50%" height="50%">
+  <img src="image/GlobalMethLev_example2.png" width="50%" height="50%">
 </p>
 <p align="center">
   <b>An Example of GlobalMethLev</b><br>
