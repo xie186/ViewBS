@@ -55,8 +55,17 @@ sub check_para_sub{
    
     ## output directory  
     if(!$opts_sub->{"outdir"}){
-        $opts_sub->{"outdir"} = "./";
+        $opts_sub->{"outdir"} = abs_path "./";
+    }else{
+        if(-e  $opts_sub->{"outdir"} && !-d $opts_sub->{"outdir"}){
+            print "File $opts_sub->{outdir} already exists. Please provide a new directory name.\n";
+            ++$exit_code; #exit 0;
+        }
+        `mkdir $opts_sub->{"outdir"}` if !-d $opts_sub->{outdir};
+        $opts_sub->{"outdir"} = abs_path $opts_sub->{"outdir"};
     }
+    `mkdir $opts_sub->{"outdir"}` if !-d $opts_sub->{outdir};
+    print "Output directory is: $opts_sub->{outdir}\n";
 
     if(!@{$opts_sub->{"context"}}){
         push @{$opts_sub->{"context"}}, "CG";
