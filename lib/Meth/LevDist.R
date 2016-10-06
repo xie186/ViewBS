@@ -4,9 +4,10 @@ methGeno <- function(meth, out){
      library(ggplot2)
      #Sample  Context MethylationLevel        Number  Percentage
 
-     p <- ggplot(tab, aes(x=MethylationLevel, y=Percentage)) +
+     p <- ggplot(tab, aes(x=MethylationLevel, y=Percentage, fill=Context)) +
                geom_bar(stat="identity") +
-               facet_grid( Context ~ Sample, scales = "free")
+               facet_grid( Context ~ Sample, scales = "free") + 
+	       theme(legend.position="none")
      #p <- ggplot(tab, aes(x=MethylationLevel, y=Percentage, group = Context, col=Context)) +
      #	         geom_line() +
      #	         facet_wrap("Sample");

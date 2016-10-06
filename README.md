@@ -142,7 +142,28 @@ Under *methGlobal*, there will be three files generated.
 
 #### MethLevDist
 
+<p align="center">
+  <img src="image/methLevDist_example1.PNG" width="50%" height="50%">
+</p>
+<p align="center">
+  <b>An Example of MethLevDist</b><br>
+</p>
 
+To generate the figure above, use the command shown as below:
+```
+```
+* Table for global methylation level.
+
+| Sample 	| Context  	| MethylationLevel 	| Number   	| Percentage 	|
+|--------	|----------	|------------------	|----------	|------------	|
+| cmt2-3 	| CG       	| 0.05             	| 3305969  	| 12.83      	|
+| cmt2-3 	| CG       	| 0.15             	| 62823    	| 0.24       	|
+| cmt2-3 	| CG       	| 0.25             	| 25182    	| 0.09       	|
+| ...    	| ...      	| ...              	| ...      	| ..         	|
+| WT     	| CG       	| 0.05             	| 3470693  	| 13.73      	|
+
+* A shell script which can re-generate the figure in PDF file.
+* A figure in PDF file.
 
 #### MethGeno
 
