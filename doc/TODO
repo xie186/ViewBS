@@ -2,3 +2,8 @@
 add tss
 
 add MethMidpoint
+
+=item B<-MethMidpoint>
+
+ - Generate methylation information across the midpoints of a list of regions, like DMR.
+

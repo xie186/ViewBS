@@ -2,8 +2,7 @@
 
 =head1 NAME
 
-ViewBS MethCoverage - Generate methylation information over a list of
-regions.
+ViewBS MethCoverage - Generate coverage report for BS-seq data
 
 =head1 SYNOPSIS
 
@@ -56,7 +55,5 @@ answers can be shared. If you are interested, you can sign up to receive
 updates through E-mails.
 
 =head1 Affiliation
-
-
 
 =cut

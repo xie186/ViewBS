@@ -15,7 +15,6 @@ ViewBS MethGeno
 --data_dir directory for data 
 --reference ref_index 
 --fastq_surfix fq 
---core_num 10 
 --SICER pair_list,...
 
 =head1 DESCRIPTION
@@ -32,10 +31,6 @@ as calling peaks using SICER, calling diff-peaks using SICER-df.
 
  - Prints the help message and exists.
 
-=item B<--verbose>
-   
- - 
-
 =item B<genomeLength [required]>
 
  - chromosome length information. Can be generated using 'samtools faidx
@@ -45,9 +40,13 @@ as calling peaks using SICER, calling diff-peaks using SICER-df.
 
  - Provide the sample information. [Format: methlationfile,samplename]
 
-=item B<refere>
+=item B<outdir>
 
- - Provide the information for bowtie2 index
+ - Output directory
+
+=item B<prefix>
+
+ - Prefix for the output
 
 =back
 

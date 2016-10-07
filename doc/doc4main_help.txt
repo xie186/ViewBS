@@ -2,8 +2,7 @@
 
 =head1 NAME
 
-ViewBS - Tools for exploring and visualizing deep sequencing of  bisulfite
- seuquencing (BS-seq) data.
+ViewBS - Tools for exploring and visualizing deep sequencing of  bisulfite seuquencing (BS-seq) data.
 
 =head1 VERSION
 
@@ -27,10 +26,21 @@ Prints the help message and exits.
 
 =item B<-Subcommands:>
 
-
 =item B<-MethCoverage>
 
- - Generate MethCoverage report
+ - Generate coverage report for BS-seq data
+
+=item B<-BisNonConvRate>
+
+ - Generate bisulfite non-conversion rate for BS-seq data
+
+=item B<-GlobalMethLev>
+ 
+ - Generate global (bulk) methylation level report for BS-seq data
+
+=item B<-MethLevDist>
+
+ - Generate distribution of methylation level for different sequence context (CG, CHG and CHH) for BS-seq data
 
 =item B<-MethGeno>
 
@@ -46,10 +56,6 @@ Prints the help message and exits.
  - Generate methylation information for a list of regions in different samples or contexts.
    
 
-=item B<-MethMidpoint>
-
- - Generate methylation information across the midpoints of a list of regions, like DMR. 
- 
 =back
 
 =head1 HELP
