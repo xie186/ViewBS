@@ -4,7 +4,7 @@ wget https://raw.githubusercontent.com/miyagawa/cpanminus/master/cpanm
 chmod 755 cpanm
 ./cpanm Getopt::Long::Subcommand
 ./cpanm Bio::DB::HTS::Tabix
-
+./cpanm Bio::SeqIO 
 ## With 
 git clone https://github.com/samtools/htslib.git
 cd htslib
@@ -15,4 +15,7 @@ make
 su -c "make install" 
 
 echo "Checking R packages";
-R --vanilla --slave < lib/scripts/install_R_packages.R 
+R --vanilla --slave < lib/scripts/install_R_packages.R
+
+chmod 755 ViewBS
+

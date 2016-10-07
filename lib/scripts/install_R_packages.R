@@ -10,3 +10,5 @@ if(!suppressMessages(require(ShortRead, warn.conflicts=F))) {
 
 install.packages("ggplot2", dep=T)
 install.packages("pheatmap", dep=T)
+install.packages("reshape2", dep=T)
+
