@@ -54,7 +54,7 @@ sub check_para_sub{
 
     # minDepth for DNA methylation data
     if(!$opts_sub->{"minDepth"}){
-        $opts_sub->{"minDepth"} = 3;
+        $opts_sub->{"minDepth"} = 5;
     }
    
     # maxDepth for DNA methylation data

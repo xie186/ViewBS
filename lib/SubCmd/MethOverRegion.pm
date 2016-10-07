@@ -94,7 +94,7 @@ sub check_para_sub{
     }
 
     if(!$opts_sub->{"minDepth"}){
-        $opts_sub->{"minDepth"} = 3;
+        $opts_sub->{"minDepth"} = 5;
     }
 
     if(!$opts_sub->{"maxDepth"}){
