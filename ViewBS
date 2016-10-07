@@ -194,8 +194,6 @@ sub processCMD{
                 summary => 'Generate distribution of methylation levels for the provided samples.',
                 options => {
                 'sample:s'               => \@{$opts_subcmd{sample}},
-        	'minDepth:s'             => \$opts_subcmd{minDepth},
-                'maxDepth:s'  		 => \$opts_subcmd{maxDepth},
 		'binMethLev:s'		 => \$opts_subcmd{binMethLev},
                  }
             },
