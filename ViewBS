@@ -128,6 +128,7 @@ sub processCMD{
 	    'version|v'   => \$opts{version},
 	    'verbose'     => \$opts{verbose},
 	    'outdir:s'    => \$opts_subcmd{outdir},
+	    'prefix:s'    => \$opts_subcmd{prefix},
 	    'minDepth:s'  => \$opts_subcmd{minDepth},
 	    'maxDepth:s'  => \$opts_subcmd{maxDepth},
 	    'context:s'   => \@{$opts_subcmd{context}},    # context
@@ -141,7 +142,6 @@ sub processCMD{
 		    # mandatory arguments
         	    'genomeLength|g:s'       => \$opts_subcmd{genomeLength},
 		    'sample:s'               => \@{$opts_subcmd{sample}},
-		    'prefix:s'               => \$opts_subcmd{prefix}, 
 		    # Optional arguments
 		    'win:i'                  => \$opts_subcmd{win},
                     'step:i'                 => \$opts_subcmd{step},       
@@ -155,7 +155,6 @@ sub processCMD{
 		    # mandatory arguments
 		    'regions:s'              => \$opts_subcmd{region},
                     'sample:s'               => \@{$opts_subcmd{sample}},
-                    'prefix:s'               => \$opts_subcmd{prefix},
 		    # Optional arguments
 		    'binLength:i'	     => \$opts_subcmd{binLength},
 		    'binNumber:i'            => \$opts_subcmd{binNumber},
@@ -171,7 +170,6 @@ sub processCMD{
                     # mandatory arguments
                     'regions:s'              => \$opts_subcmd{region},
                     'sample:s'               => \@{$opts_subcmd{sample}},
-                    'prefix:s'               => \$opts_subcmd{prefix},
                     # Optional arguments
                     'cluster_cols:s'	     => \$opts_subcmd{cluster_cols},
 		    'cluster_rowss:s'         => \$opts_subcmd{cluster_rows},
@@ -182,7 +180,6 @@ sub processCMD{
                 options => {
 	        'regions:s'              => \$opts_subcmd{region},
                 'sample:s'               => \@{$opts_subcmd{sample}},
-                'prefix:s'               => \$opts_subcmd{prefix},
 	         }
 	    },
             MethCoverage => {
@@ -190,7 +187,6 @@ sub processCMD{
                 options => {
 		'reference:s'		 => \$opts_subcmd{reference},
                 'sample:s'               => \@{$opts_subcmd{sample}},
-                'prefix:s'               => \$opts_subcmd{prefix},
 		'outdir:s'               => \$opts_subcmd{outdir},
                  }
             },
@@ -201,18 +197,12 @@ sub processCMD{
         	'minDepth:s'             => \$opts_subcmd{minDepth},
                 'maxDepth:s'  		 => \$opts_subcmd{maxDepth},
 		'binMethLev:s'		 => \$opts_subcmd{binMethLev},
-                'prefix:s'               => \$opts_subcmd{prefix},
-                'outdir:s'               => \$opts_subcmd{outdir},
                  }
             },
 	    GlobalMethLev => {
                 summary => 'Generate global (bulk) methylation levels for the provided samples.',
                 options => {
                 'sample:s'               => \@{$opts_subcmd{sample}},
-                'minDepth:s'             => \$opts_subcmd{minDepth},
-                'maxDepth:s'             => \$opts_subcmd{maxDepth},
-                'prefix:s'               => \$opts_subcmd{prefix},
-                'outdir:s'               => \$opts_subcmd{outdir},
                  }
             },
 	    BisNonConvRate => {
@@ -220,8 +210,6 @@ sub processCMD{
                 options => {
                 'sample:s'               => \@{$opts_subcmd{sample}},
 	        'chrom:s'               => \@{$opts_subcmd{chrom}},
-                'prefix:s'               => \$opts_subcmd{prefix},
-                'outdir:s'               => \$opts_subcmd{outdir},
                  }
             },
         }

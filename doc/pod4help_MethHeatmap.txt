@@ -10,6 +10,7 @@ make heatmap.
 ViewBS MethHeatmap
 --region <region>
 --sample <methlation information,sample_name> [--sample <methlation information,sample_name>]
+--outdir <output folder>
 --prefix <prefix for output file>
 
 =head1 DESCRIPTION
@@ -42,9 +43,13 @@ as calling peaks using SICER, calling diff-peaks using SICER-df.
    a TEXT file. Instead of giving an explicit sample information pairs, 
    you need to write file: followed by the name of the TEXT file.
 
-=item B<prefix [required]>
+=item B<prefix [optional]>
 
- - Provide prefix for the output file.
+ - Output folder. [Default: ./]
+
+=item B<prefix [optional]>
+
+ - Provide prefix for the output file. [Default: ]
 
 =back
 

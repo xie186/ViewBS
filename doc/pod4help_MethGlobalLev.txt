@@ -2,13 +2,12 @@
 
 =head1 NAME
 
-ViewBS MethGlobalLevl - xyx Generate methylation information over a list of
-regions.
+ViewBS MethGlobalLevl - Generate global (bulk) methylation level report
 
 =head1 SYNOPSIS
 
 ViewBS MethMethLevDist --sample <meth,sample_name> [--sample <meth,sample_name> .......]
---prefix <prefix for output> xyx
+--prefix <prefix for output> --outdir <output folder> 
 
 =head1 DESCRIPTION
 
@@ -25,9 +24,6 @@ regions, genes, transposable elements, etc.
 
 =item B<--verbose>
    
-=item B<reference [required]>
-
- - reference genome in fasta file. 
 
 =item B<sample [required]>
 
@@ -45,17 +41,13 @@ regions, genes, transposable elements, etc.
 
  - Maximum read depth for calculating methylation level. [default: 10000]
 
-=item B<binMethLev [optional]>
-
- - Bin size to calculate the distribution of methylation level. [default: 0.1]
-
 =item B<outdir [optional]>
 
  - Provide the output directory. [default: ./]
 
 =item B<prefix [optional]>
 
- - Provide prefix for the output file. [default: MethMethLevDist]
+ - Provide prefix for the output file. [default: GlobalMethLev]
 
 =back
 
