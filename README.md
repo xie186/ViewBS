@@ -132,12 +132,13 @@ Under *BisNonConvRate*, there will be three files generated.
 
 * Table for global methylation level.
 
-Sample  BisNonConvRate
-cmt2-3  0.053
-drm12cmt2       0.048
-drm12cmt12      0.040
-cmt23   0.046
-WT      0.075
+| Sample     | BisNonConvRate |
+|------------|----------------|
+| cmt2-3     | 0.053          |
+| drm12cmt2  | 0.048          |
+| drm12cmt12 | 0.040          |
+| cmt23      | 0.046          |
+| WT         | 0.075          |
 
 * A shell script which can re-generate the figure in PDF file.
 * A figure in PDF file.
