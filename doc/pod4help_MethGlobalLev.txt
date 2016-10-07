@@ -35,7 +35,7 @@ regions, genes, transposable elements, etc.
 
 =item B<minDepth [optional]>
 
- - Minimum read depth for calculating methylation level. [default: 5]
+ - Minimum read depth for calculating methylation level. [default: 1]
 
 =item B<maxDepth [optional]>
 
