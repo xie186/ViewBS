@@ -8,7 +8,7 @@ Recent changes, bug fixes and feature additions will be announced through this G
 
 ##### Requirements:
 1. Install [htslib](https://github.com/samtools/htslib)
-2. Perl version: > 5.14.4
+2. Perl version: >= 5.14.4
 3. Perl packages:
    * Getopt::Long::Subcommand - Process command-line options, with subcommands and completion
    * Bio::DB::HTS::Tabix - Object oriented access to the underlying tbx C methods
