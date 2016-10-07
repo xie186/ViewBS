@@ -24,6 +24,7 @@ Recent changes, bug fixes and feature additions will be announced through this G
 5. R packages
     * ggplot2
     * pheatmap
+    * reshape2
     Install some required libraries in R:
     ```
     install.packages("ggplot2", dep=T)
