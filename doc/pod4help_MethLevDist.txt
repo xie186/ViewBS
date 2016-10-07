@@ -25,10 +25,6 @@ regions, genes, transposable elements, etc.
 
 =item B<--verbose>
    
-=item B<reference [required]>
-
- - reference genome in fasta file. 
-
 =item B<sample [required]>
 
  - Provide the sample information. [Format: methlationfile,samplename] 
