@@ -43,6 +43,22 @@ as calling peaks using SICER, calling diff-peaks using SICER-df.
    a TEXT file. Instead of giving an explicit sample information pairs, 
    you need to write file: followed by the name of the TEXT file.
 
+=item B<minDepth [optional]>
+
+ - Minimum read depth for calculating methylation level. [default: 5]
+
+=item B<maxDepth [optional]>
+
+ - Maximum read depth for calculating methylation level. [default: 10000]
+
+=item B<cluster_cols [optional]>
+
+ - boolean values determining if rows should be clustered or hclust object. 
+
+=item B<cluster_cols [optional]>
+
+ - boolean values determining if columns should be clustered or hclust object.
+
 =item B<prefix [optional]>
 
  - Output folder. [Default: ./]
