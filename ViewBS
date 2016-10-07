@@ -33,6 +33,8 @@ use SubCmd::MethOneRegion;
 use SubCmd::MethCoverage;
 use SubCmd::MethLevDist; 
 use SubCmd::GlobalMethLev;
+use SubCmd::BisNonConvRate;
+
 my $main_path = dirname(abs_path $0);
 
 my %opts;   ##
@@ -104,6 +106,13 @@ sub check_parameter{
         my $check_para = SubCmd::GlobalMethLev -> new();
         my $status = $check_para -> check_para_sub(\%opts_subcmd, \%opts);
         $check_para -> run_globalMethLev(\%opts_subcmd, \%opts);
+    }
+
+    if($sub_cmd eq "BisNonConvRate"){
+        print "Sample list: @{$opts_subcmd{sample}}\n";
+        my $check_para = SubCmd::BisNonConvRate -> new();
+        my $status = $check_para -> check_para_sub(\%opts_subcmd, \%opts);
+        $check_para -> run_bisNonConvRate(\%opts_subcmd, \%opts);
     }
 }
 
@@ -202,6 +211,15 @@ sub processCMD{
                 'sample:s'               => \@{$opts_subcmd{sample}},
                 'minDepth:s'             => \$opts_subcmd{minDepth},
                 'maxDepth:s'             => \$opts_subcmd{maxDepth},
+                'prefix:s'               => \$opts_subcmd{prefix},
+                'outdir:s'               => \$opts_subcmd{outdir},
+                 }
+            },
+	    BisNonConvRate => {
+                summary => 'Estimate non-conversion rate of BS-seq data.',
+                options => {
+                'sample:s'               => \@{$opts_subcmd{sample}},
+	        'chrom:s'               => \@{$opts_subcmd{chrom}},
                 'prefix:s'               => \$opts_subcmd{prefix},
                 'outdir:s'               => \$opts_subcmd{outdir},
                  }

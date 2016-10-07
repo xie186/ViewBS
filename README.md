@@ -115,6 +115,33 @@ Under *methCoverage* folder, there will be three files generated.
 * A shell script which can re-generate the figure in PDF file.
 * A figure in PDF file.
 
+#### Top command: BisNonConvRate
+
+<p align="center">
+  <img src="image/BisNonConversionRate_example1.png" width="50%" height="50%">
+</p>
+<p align="center">
+  <b>An Example of BisNonConvRate</b><br>
+</p>
+
+To generate the figure above, use the command shown as below:
+```
+ViewBS BisNonConvRate --sample bis_WT.tab.gz,WT --sample bis_cmt23.tab.gz,cmt23 --sample bis_cmt2-3.tab.gz,cmt2-3 --sample bis_drm12cmt2.tab.gz,drm12cmt2 --sample bis_drm12cmt23.tab.gz,drm12cmt23 --outdir BisNonConvRate --prefix cmt2_proj_allsam
+```
+Under *BisNonConvRate*, there will be three files generated.
+
+* Table for global methylation level.
+
+Sample  BisNonConvRate
+cmt2-3  0.053
+drm12cmt2       0.048
+drm12cmt12      0.040
+cmt23   0.046
+WT      0.075
+
+* A shell script which can re-generate the figure in PDF file.
+* A figure in PDF file.
+
 #### GlobalMethLev
 
 <p align="center">
@@ -126,7 +153,7 @@ Under *methCoverage* folder, there will be three files generated.
 
 To generate the figure above, use the command shown as below:
 ```
-perl ../ViewBS/ViewBS.pl GlobalMethLev --sample bis_WT.tab.gz,WT --sample bis_cmt23.tab.gz,cmt23 --sample bis_cmt2-3.tab.gz,cmt2-3 --sample bis_drm12cmt2.tab.gz,drm12cmt2 --sample bis_drm12cmt23.tab.gz,drm12cmt23 --outdir methGlobal --prefix cmt2_proj_allsam
+ViewBS GlobalMethLev --sample bis_WT.tab.gz,WT --sample bis_cmt23.tab.gz,cmt23 --sample bis_cmt2-3.tab.gz,cmt2-3 --sample bis_drm12cmt2.tab.gz,drm12cmt2 --sample bis_drm12cmt23.tab.gz,drm12cmt23 --outdir methGlobal --prefix cmt2_proj_allsam
 ```
 Under *methGlobal*, there will be three files generated.
 
