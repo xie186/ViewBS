@@ -38,7 +38,16 @@ regions, genes, transposable elements, etc.
    a TEXT file. Instead of giving an explicit sample information pairs, 
    you need to write file: followed by the name of the TEXT file.
 
-=item B<prefix [required]>
+=item B<binLength [optional]>
+
+ - .
+
+=item B<binLength [optional]>
+
+ - .
+
+
+=item B<prefix [optional]>
 
  - Provide prefix for the output file.
 
