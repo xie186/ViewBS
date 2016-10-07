@@ -27,7 +27,7 @@ sub drawMeth{
 	my $cmd = "R --vanilla --slave --input $output --output $fig < $FindBin::Bin/lib/Meth/Geno.R";
 	open OUT, "+>$cmd_out" or die "$!:$cmd_out";
         my $r_rep = `$cmd`;
-	print "$cmd\n";
+	print OUT "$cmd\n";
 	close OUT;
         print "$class: $r_rep\n";
     }
