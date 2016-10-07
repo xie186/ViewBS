@@ -40,9 +40,21 @@ sample and plot the methylation information.
    a TEXT file. Instead of giving an explicit sample information pairs, 
    you need to write file: followed by the name of the TEXT file.
 
-=item B<prefix [required]>
+=item B<minDepth [optional]>
 
- - Provide prefix for the output file.
+ - Minimum read depth for calculating methylation level. [default: 5]
+
+=item B<maxDepth [optional]>
+
+ - Maximum read depth for calculating methylation level. [default: 400]
+
+=item B<prefix [optional]>
+
+ - Output folder. [Default: ./]
+
+=item B<prefix [optional]>
+
+ - Provide prefix for the output file. [Default: MethOneRegion]
 
 =back
 
