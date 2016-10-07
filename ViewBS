@@ -87,8 +87,6 @@ sub check_parameter{
     }
    
     if($sub_cmd eq "MethCoverage"){
-	print "$opts_subcmd{reference}\n";
-        print "@{$opts_subcmd{sample}}\n";
         my $check_para = SubCmd::MethCoverage -> new();
         my $status = $check_para -> check_para_sub(\%opts_subcmd, \%opts);
         $check_para -> run_methCoverage(\%opts_subcmd, \%opts);
