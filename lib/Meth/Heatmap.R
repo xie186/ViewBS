@@ -35,6 +35,8 @@ print(1)
         #geom_boxplot(outlier.shape=NA) +
         geom_boxplot() +
         theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-        coord_cartesian(ylim = range(boxplot(long$value, plot=FALSE)$stats)*c(.9, 1.1))
+        stat_boxplot(geom='errorbar')
+        #coord_cartesian(ylim = range(boxplot(long$value, plot=FALSE)$stats)*c(.9, 1.1)) +
+        #stat_boxplot(geom='errorbar',coef=10)
    ggsave(output2, p)
 
