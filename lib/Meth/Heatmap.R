@@ -15,10 +15,11 @@ for (i in 1:length(Args)) {
 }
 print(1)
 cat(clus_col, clus_row, "\n")
+clus_col = type.convert(clus_col, as.is=T)
+clus_row = type.convert(clus_row, as.is=T)
 print(1)
    pdf(output1,height=5,width=3.5, onefile=FALSE)
    cc<-read.table(cpg,header=T)
-   library(gplots)
    library(pheatmap)
    #library("RColorBrewer")
    x  <- as.matrix(cc)
