@@ -79,7 +79,7 @@ sub get_meth_info{
 	    $strand = $strand ? $strand: "+";  #if there is no column for strand
 	    my $tabix = Bio::DB::HTS::Tabix->new( filename => $meth_file);
             my $stt_flank = $stt - $flank < 0 ? 1 : $stt - $flank + 2;
-	    my $end_flank = $end + $flank -2 ;
+	    my $end_flank = $end + $flank - 2;
 	    #print "$chr:$stt_flank-$end_flank,$bin_length, $bin_num, $min_len, $max_len, $flank\n";
             my $iter = $tabix->query("$chr:$stt_flank-$end_flank");
             my ($tot_c_num, $tot_t_num) = (0, 0);
@@ -91,6 +91,7 @@ sub get_meth_info{
         	}
 	    }
 	}
+        print "\n";
     }
 }
 
@@ -101,26 +102,30 @@ sub judge_bin{
     my $keys = 0;
     if($strand eq '+'){
         if($pos1 < $stt){
-            $keys = $stt - $pos1 + 1 == $flank ? -int(($stt - $pos1 + 1)/$bin_length) +1 : -int(($stt - $pos1 + 1)/$bin_length);
+	    my $flank_len = $stt - $pos1;
+            $keys = $flank_len == $flank ? -int($flank_len/$bin_length) +1 : -int($flank_len/$bin_length);
             $keys = "$PROM\t$keys";
         }elsif($pos1>=$stt && $pos1<$end){
             $keys = int (($pos1 - $stt + 1) /$unit) + 1;
             $keys = "$BODY\t$keys";
         }else{
-            $keys = $pos1 - $end + 1 == $flank ? int(($pos1 - $end + 1)/$bin_length) + $bin_num -2: int(($pos1-$end+1)/$bin_length) + $bin_num + 1;
+	    my $flank_len = $pos1 - $end;
+            $keys = $flank_len == $flank ? int($flank_len/$bin_length) + $bin_num -1: int($flank_len/$bin_length) + $bin_num + 1;
             $keys="$DOWN\t$keys";
         }
     }else{
         if($pos1<=$stt){
-            $keys = $stt - $pos1 + 1 == $flank ? int(($stt-$pos1+1)/$bin_length) + $bin_num -2 : int(($stt-$pos1+1)/$bin_length) + $bin_num + 1;
+	    my $flank_len = $stt - $pos1;
+            $keys = $flank_len == $flank ? int($flank_len/$bin_length) + $bin_num -1 : int($flank_len/$bin_length) + $bin_num + 1;
             $keys="$DOWN\t$keys";
         }elsif($pos1>$stt && $pos1<=$end){
             $keys=int (($end-$pos1+1)/$unit) + 1;
             $keys="$BODY\t$keys";
         }else{
-            $keys = $pos1 - $end + 1 == $flank ? -int(($pos1-$end + 1)/$bin_length) + 1 : -int(($pos1 - $end + 1)/$bin_length);
+	    my $flank_len = $pos1 - $end;
+            $keys = $flank_len == $flank ? -int($flank_len/$bin_length) + 1 : -int($flank_len/$bin_length);
             $keys="$PROM\t$keys";
-        }
+        } 
     }
     $keys="$sam_name\t$keys";
     ${$rec_meth_bin->{$keys}}[0] += $c_num;

@@ -51,7 +51,7 @@ as calling peaks using SICER, calling diff-peaks using SICER-df.
 
  - Maximum read depth for calculating methylation level. [default: 10000]
 
-=item B<cluster_cols [optional]>
+=item B<cluster_rows [optional]>
 
  - boolean values determining if rows should be clustered or hclust object. 
 
@@ -59,13 +59,13 @@ as calling peaks using SICER, calling diff-peaks using SICER-df.
 
  - boolean values determining if columns should be clustered or hclust object.
 
-=item B<prefix [optional]>
+=item B<outdir [optional]>
 
  - Output folder. [Default: ./]
 
-=item B<prefix [optional]>
+=item B<prefix [required]>
 
- - Provide prefix for the output file. [Default: ]
+ - Provide prefix for the output file.
 
 =back
 

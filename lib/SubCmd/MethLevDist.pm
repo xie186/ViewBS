@@ -6,7 +6,7 @@ use File::Basename;
 use FindBin;
 use Pod::Usage;
 use Cwd qw(abs_path);
-
+use Term::ANSIColor;
 
 use Meth::LevDist;
 
@@ -56,6 +56,11 @@ sub check_para_sub{
     ### 
     if(!$opts_sub->{"prefix"}){
         $opts_sub->{"prefix"} = "MethLevDist";
+    }
+    
+    if($opts_sub->{region}){
+        $opts_sub->{region} = abs_path $opts_sub->{region};
+	print "\nDistribution of methylation levels in $opts_sub->{region} will be calculated!\n\n";
     }
 
     if(!$opts_sub->{"minDepth"}){

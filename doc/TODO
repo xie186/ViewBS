@@ -1,3 +1,4 @@
+1) add --region for lib/Meth/LevDist.pm; 2) create the Bio::DB::HTS::Tabix first, then extract the information.  
 
 add tss
 
@@ -6,4 +7,6 @@ add MethMidpoint
 =item B<-MethMidpoint>
 
  - Generate methylation information across the midpoints of a list of regions, like DMR.
+
+https://www.biostars.org/p/186976/
 

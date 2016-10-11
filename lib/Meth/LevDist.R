@@ -7,7 +7,9 @@ methGeno <- function(meth, out){
      p <- ggplot(tab, aes(x=MethLevBinMidPoint, y=Percentage, fill=Context)) +
                geom_bar(stat="identity") +
                facet_grid( Context ~ Sample, scales = "free") + 
-	       theme(legend.position="none")
+	       theme(legend.position="none") +
+	       xlab("Methylation level") +
+	       ylab("Percentage (%)")
      #p <- ggplot(tab, aes(x=MethylationLevel, y=Percentage, group = Context, col=Context)) +
      #	         geom_line() +
      #	         facet_wrap("Sample");
@@ -31,6 +33,3 @@ for(i in 1:length(Args)){
 options(warn=-1)
 
 suppressWarnings(methGeno(input, fig))
-
-
-
