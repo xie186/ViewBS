@@ -168,6 +168,7 @@ sub processCMD{
                     # mandatory arguments
                     'regions:s'              => \$opts_subcmd{region},
                     'sample:s'               => \@{$opts_subcmd{sample}},
+                    'merge'                 => \$opts_subcmd{merge},
                     # Optional arguments
                     'cluster_cols:s'	     => \$opts_subcmd{cluster_cols},
 		    'cluster_rows:s'         => \$opts_subcmd{cluster_rows},

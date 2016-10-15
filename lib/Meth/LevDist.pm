@@ -63,13 +63,13 @@ sub generTab{
 	    }
 	    close METH;
         }
-    else{
+    }else{
 	my @tabix;
 	for(my $i = 0; $i < @{$opts_sub->{sample_list}}; ++$i){
 	    my $sam_info = ${$opts_sub->{sample_list}}[$i];
 	    my ($meth_file, $sam_name) = split(/,/, $sam_info);
 	    my $tabix = Bio::DB::HTS::Tabix->new(filename => $meth_file);
-            &get_CT_num($class, $opts_sub, $tabix, \%rec_meth, \%rec_meth_tot, \%rec_meth_context); 
+            &get_CT_num($class, $opts_sub, $tabix, $sam_name, \%rec_meth, \%rec_meth_tot, \%rec_meth_context); 
            
         }
     }
@@ -92,11 +92,11 @@ sub generTab{
 }
 
 sub get_CT_num{
-    my ($class, $opts_sub, $tabix, $rec_meth, $rec_meth_tot, $rec_meth_context) = @_;
+    my ($class, $opts_sub, $tabix, $sam_name, $rec_meth, $rec_meth_tot, $rec_meth_context) = @_;
     my $BINNUM = int (1 / $opts_sub->{binMethLev});
-    open REG, $opts_sub{region} or die "$!";
+    open REG, $opts_sub->{region} or die "$!";
     while(my $reg = <REG>){
-	my ($chrom, $stt, $end) = split("\s+", $reg);
+	my ($chrom, $stt, $end) = split(/\s+/, $reg);
 	my $iter = $tabix->query("$chrom:$stt-$end");
 	while ( my $line = $iter->next) {
 	    my ($chr, $pos, $strand, $c_num, $t_num, $tem_context, $seq) = split(/\t/, $line);

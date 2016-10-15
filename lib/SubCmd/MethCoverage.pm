@@ -37,7 +37,7 @@ sub check_para_sub{
 	print "Please provide --sample!\n";
 	++$exit_code; #exit 0;
     }
-    print "Sample(s): @{$opts_sub->{"sample"}}\n";
+    print "Sample(s): @{$opts_sub->{sample}}\n";
 
     if(!$opts_sub->{"reference"}){
 	print "Please provide --reference!\n"; ## Reference will be needed to calculate the total number of Cs, CGs, CHGs, and CHHs.

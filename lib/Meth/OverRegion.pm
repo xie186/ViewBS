@@ -67,6 +67,12 @@ sub generTab{
 sub get_meth_info{
     my ($class, $opts_sub, $rec_meth_bin, $context) = @_;
     my ($bin_length, $bin_num, $min_len, $max_len, $flank) = ($opts_sub->{binLength}, $opts_sub->{binNumber}, $opts_sub->{minLength}, $opts_sub->{maxLength}, $opts_sub->{flank});
+    
+    my %rec_tabix;
+    foreach my $sam_info(@{$opts_sub->{sample_list}}){
+	my ($meth_file, $sam_name, $region) = split(/,/, $sam_info);
+	$rec_tabix{$sam_name} = Bio::DB::HTS::Tabix->new( filename => $meth_file);
+    }
     foreach my $sam_info(@{$opts_sub->{sample_list}}){ ## sample information: meth_file,sample,region
         my ($meth_file, $sam_name, $region) = split(/,/, $sam_info);
         open REGION, $region or die "$!:$region";
@@ -77,14 +83,14 @@ sub get_meth_info{
 	    print "." if $flag % 1000 == 0;
             my ($chr, $stt, $end, $name, $strand)=split(/\t/,$line);
 	    $strand = $strand ? $strand: "+";  #if there is no column for strand
-	    my $tabix = Bio::DB::HTS::Tabix->new( filename => $meth_file);
+	    my $tabix = $rec_tabix{$sam_name};
             my $stt_flank = $stt - $flank < 0 ? 1 : $stt - $flank + 2;
 	    my $end_flank = $end + $flank - 2;
 	    #print "$chr:$stt_flank-$end_flank,$bin_length, $bin_num, $min_len, $max_len, $flank\n";
             my $iter = $tabix->query("$chr:$stt_flank-$end_flank");
             my ($tot_c_num, $tot_t_num) = (0, 0);
             while ( my $line = $iter->next) {
-		my ($chr, $pos, $strand, $c_num, $t_num, $tem_context, $seq) = split(/\t/, $line);
+		my ($chr, $pos, $C_strand, $c_num, $t_num, $tem_context, $seq) = split(/\t/, $line);
                 if($context eq $tem_context || $context eq "CXX"){
 		    next if ($c_num + $t_num < $opts_sub->{minDepth} || $c_num + $t_num > $opts_sub->{maxDepth});
 		    &judge_bin($class,$rec_meth_bin, $sam_name, $stt,$end,$strand,$pos,$c_num,$t_num, $opts_sub);
@@ -130,22 +136,6 @@ sub judge_bin{
     $keys="$sam_name\t$keys";
     ${$rec_meth_bin->{$keys}}[0] += $c_num;
     ${$rec_meth_bin->{$keys}}[1] += $t_num;
-}
-
-sub get_CT_num{
-    my ($class, $meth_file, $chrom, $stt, $end, $context) = @_;
-    my $tabix = Bio::DB::HTS::Tabix->new( filename => $meth_file);
-    my $iter = $tabix->query("$chrom:$stt-$end");
-    my ($tot_c_num, $tot_t_num) = (0, 0);
-    while ( my $line = $iter->next) {
-	#chrC    13      +       3       643     CG      CGG
-        my ($chr, $pos, $strand, $c_num, $t_num, $tem_context, $seq) = split(/\t/, $line);
-	if($context eq $tem_context){
-	    $tot_c_num += $c_num;
-	    $tot_t_num += $t_num;
-	}
-    }
-    return ($tot_c_num, $tot_t_num);
 }
 
 1;

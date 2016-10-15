@@ -32,6 +32,7 @@ max <- abs(max(tab$bin_num))
 flank = paste( -min/10, "kb", sep = " ")
 
 p = p + scale_x_continuous(breaks=c(min, max), labels=c(flank, flank));
-p = p + geom_vline(xintercept = c(0.5, max + min + 1.5), linetype = "dashed")
+p = p + geom_vline(xintercept = c(0, max + min), linetype = "dashed")
+p = p + expand_limits(y=0)
 ggsave(fig, p)
 
