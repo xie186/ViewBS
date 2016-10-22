@@ -57,6 +57,7 @@ sub check_para_sub{
     if(!$opts_sub->{"prefix"}){
         $opts_sub->{"prefix"} = "MethLevDist";
     }
+    print "Output prefix is: $opts_sub->{prefix}\n";
     
     if($opts_sub->{region}){
         $opts_sub->{region} = abs_path $opts_sub->{region};
@@ -66,15 +67,17 @@ sub check_para_sub{
     if(!$opts_sub->{"minDepth"}){
         $opts_sub->{"minDepth"} = 5;
     }
+    print "Minmum read depth is $opts_sub->{minDepth}\n";
 
     if(!$opts_sub->{"maxDepth"}){
         $opts_sub->{"maxDepth"} = 10000;
     }
+    print "Maximum read depth is $opts_sub->{maxDepth}\n";    
   
     if(!$opts_sub->{"binMethLev"}){
         $opts_sub->{"binMethLev"} = 0.1;
     }
-    print "$opts_sub->{binMethLev}\n"; 
+    print "Bin size is: $opts_sub->{binMethLev}\n"; 
 
     if($exit_code > 0){
 	print "$exit_code\n";

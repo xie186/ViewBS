@@ -21,7 +21,7 @@ tab <- tab[order(tab[,3]),]
 p=ggplot(tab, aes(x=bin_num, y=Methylation_level, group=sample_name, col=sample_name)) +
     geom_line() + xlab(xlab)
     
-min <- min(tab$bin_num) -1
+min <- min(tab$bin_num)  ## by default the lowest value is -19
 max <- abs(max(tab$bin_num))
     #p = p + scale_x_continuous(breaks=c(min(tab$Pos), 0.5,max(tab$Pos)+min(tab$Pos), max(tab$Pos)), labels=c(abs(min(tab$Pos))/10, "TSS", "TTS", abs(min(tab$Pos))/10))
 
@@ -32,7 +32,11 @@ max <- abs(max(tab$bin_num))
 flank = paste( -min/10, "kb", sep = " ")
 
 p = p + scale_x_continuous(breaks=c(min, max), labels=c(flank, flank));
-p = p + geom_vline(xintercept = c(0, max + min), linetype = "dashed")
+
+## 1 means the first bin in the gene body, max + min + 1 means the last bean in the gene body.
+
+p = p + geom_vline(xintercept = c(1, max + min - 1), linetype = "dashed")
 p = p + expand_limits(y=0)
+p = p + ylab("Methylation level")
 ggsave(fig, p)
 

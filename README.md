@@ -248,6 +248,14 @@ ViewBS MethOverRegion --region TAIR10_Transposable_Elements.chr1.bed --sample bi
 ViewBS MethOverRegion --region TAIR10_Transposable_Elements.chr1.bed --sample bis_WT.tab.gz,WT --sample bis_cmt23.tab.gz,cmt23 --sample bis_cmt2-3.tab.gz,cmt2-3 --sample bis_drm12cmt2.tab.gz,drm12cmt2 --sample bis_drm12cmt23.tab.gz,drm12cmt23 --prefix bis_TE_chr1_sample --context CHG
 ```
 
+Besides providing sample and region information in the commind line, you can also read the information from a TEXT file. For example, if you are interested in more than one group of genes and you want to study the differences of DNA methylation patterns in the one sample, the methylation information can also be read from a TEXT file. Instead of giving an explicit sample information pairs, you need to write "file:" followed by the name of the TEXT file. In this case, you can only use --sample once and you cann't use --region anymore. 
+
+The TEXT file should follow the following format:
+
+| DNAmethylation | RegionName1 | Region_file1 |
+|----------------|-------------|--------------|
+| DNAmethylation | RegionName1 | Region_file2 |
+
 #### MethOneRegion
 
 View MethOneRegion will output the methylation information for one region give by the users and then plot the methylation levels across the chromsomesome region. 

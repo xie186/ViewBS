@@ -39,7 +39,8 @@ sub check_para_sub{
 	
     }
 
-    if(!$opts_sub->{"region"}){
+    my $samples = join("", @{$opts_sub->{sample}});
+    if(!$opts_sub->{"region"} && $samples !~ /file:/){
         print "Please provide --region!\n";
         ++$exit_code; #exit 0;
     }else{

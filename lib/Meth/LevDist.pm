@@ -20,7 +20,7 @@ sub drawMeth{
     my $output = "$opts_sub->{outdir}/$opts_sub->{prefix}.tab";
     open OUT, "+>$opts_sub->{outdir}/$opts_sub->{prefix}.sh" or die "$!";
     my $fig = "$opts_sub->{outdir}/$opts_sub->{prefix}.pdf";
-    my $cmd = "R --vanilla --slave --input $output --output $fig < $FindBin::Bin/lib/Meth/LevDist.R";
+    my $cmd = "R --vanilla --slave --input $output --percentage TRUE --output $fig < $FindBin::Bin/lib/Meth/LevDist.R";
     print OUT "$cmd\n";
     close OUT;
     my $r_rep = `$cmd`;
@@ -94,21 +94,41 @@ sub generTab{
 sub get_CT_num{
     my ($class, $opts_sub, $tabix, $sam_name, $rec_meth, $rec_meth_tot, $rec_meth_context) = @_;
     my $BINNUM = int (1 / $opts_sub->{binMethLev});
+    my ($num_qualify, $num_remove) = (0, 0);
     open REG, $opts_sub->{region} or die "$!";
     while(my $reg = <REG>){
 	my ($chrom, $stt, $end) = split(/\s+/, $reg);
+        my ($tot_c, $tot_t) = (0, 0);
+	my %rec_context;
+	my %rec_number;
 	my $iter = $tabix->query("$chrom:$stt-$end");
 	while ( my $line = $iter->next) {
 	    my ($chr, $pos, $strand, $c_num, $t_num, $tem_context, $seq) = split(/\t/, $line);
 	    my $depth = $c_num + $t_num;
+	    if($depth < $opts_sub->{minDepth} || $depth > $opts_sub->{maxDepth}){
+	        $num_remove ++;
+            }else{
+		$num_qualify ++;
+            }
             next if ($depth < $opts_sub->{minDepth} || $depth > $opts_sub->{maxDepth});
-            my $lev = $c_num / $depth;
-            my $bin_num = ($lev ==1) ? $BINNUM -1 : int ( $lev / $opts_sub->{binMethLev});
-            $rec_meth->{$sam_name}-> {$tem_context}-> {$bin_num} ++;
-            $rec_meth_tot->{$sam_name} -> {$tem_context} ++;
-            $rec_meth_context->{$tem_context} ++;
+	    $rec_context{$tem_context} ++;
+	    ${$rec_number{$tem_context}}[0] += $c_num;
+	    ${$rec_number{$tem_context}}[1] += $c_num + $t_num;
+            #my $lev = $c_num / $depth;
+            #my $bin_num = ($lev ==1) ? $BINNUM -1 : int ( $lev / $opts_sub->{binMethLev});
+            #$rec_meth->{$sam_name}-> {$tem_context}-> {$bin_num} ++;
+            #$rec_meth_tot->{$sam_name} -> {$tem_context} ++;
+            #$rec_meth_context->{$tem_context} ++;
+	}
+	foreach my $tem_context(keys %rec_context){
+	    my $lev = ${$rec_number{$tem_context}}[0] / ${$rec_number{$tem_context}}[1];
+	    my $bin_num = ($lev ==1) ? $BINNUM -1 : int ( $lev / $opts_sub->{binMethLev});
+	    $rec_meth->{$sam_name}-> {$tem_context}-> {$bin_num} ++;
+	    $rec_meth_context->{$tem_context} ++;
+	    $rec_meth_tot->{$sam_name} -> {$tem_context} ++;
 	}
     }
+    print "Number of sites used: $num_qualify; Not used: $num_remove\n";
 }
 
 1;

@@ -56,7 +56,7 @@ sub generTab{
 	print OUT "sample_name\tregion\tbin_num\tC_number\tT_number\tMethylation_level\n";
 	my %rec_meth_bin;
 	&get_meth_info($class, $opts_sub, \%rec_meth_bin, $context);
-	foreach my $keys(keys %rec_meth_bin){
+	foreach my $keys(sort keys %rec_meth_bin){
 	    my ($c_num, $t_num) = @{$rec_meth_bin{$keys}};
 	    my $level = $c_num/($c_num + $t_num);
 	    print OUT "$keys\t$c_num\t$t_num\t$level\n";

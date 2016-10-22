@@ -32,7 +32,8 @@ Prints the help message and exits.
 
 =item B<-BisNonConvRate>
 
- - Generate bisulfite non-conversion rate for BS-seq data
+ - Generate bisulfite non-conversion rate for BS-seq data using the
+   provided chromosome (usually chloroplast for plants). 
 
 =item B<-GlobalMethLev>
  
@@ -40,22 +41,23 @@ Prints the help message and exits.
 
 =item B<-MethLevDist>
 
- - Generate distribution of methylation level for different sequence context (CG, CHG and CHH) for BS-seq data
+ - Generate distribution of methylation level for different sequence context (CG, 
+   CHG and CHH) for BS-seq data
 
 =item B<-MethGeno>
 
- - Generate the methylation information across each chromosome and plot the information.
+ - Generate the methylation information across each chromosome and plot the 
+   information.
 
-=item B<-MethRegion>
+=item B<-MethOverRegion>
   
- - Generate the methylation information across the regions provided here. The regions 
-   can be genes, transposable elements, etc. 
+ - Generate the methylation information across the regions provided and generate 
+   meta-plot. The regions can be genes, transposable elements, etc. 
 
 =item B<-MethHeatmap>
 
  - Generate methylation information for a list of regions in different samples or contexts.
    
-
 =back
 
 =head1 HELP
