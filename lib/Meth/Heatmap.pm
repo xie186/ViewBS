@@ -129,6 +129,7 @@ sub get_meth_info{
 		$rec_region_id{$id} = 0;
 	    }else{
 		$rec_region_id{$id} ++;
+	        print "In the region file, there are regions with either duplcate regions or duplicate region names in the 4th column.\n";
 	        $id = $id.$rec_region_id{$id};
 	    }
 	    

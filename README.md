@@ -1,9 +1,5 @@
 # ViewBS
 
-## Where to find help
-
-Recent changes, bug fixes and feature additions will be announced through this Google discussion group: [ViewBS discussion forum](https://groups.google.com/forum/#!forum/viewbs). Users are encouraged to ask questions through this forum (instead of shooting me emails) so that the answers can be shared. If you are interested, you can sign up to receive updates through E-mails.
-
 ##Installation
 
 ##### Requirements:
@@ -268,6 +264,10 @@ To generate the figure above, you can use the following command line:
 ```
 ViewBS MethOneRegion --region chr5:19499001-19499600 --sample bis_WT.tab.gz,WT --sample bis_cmt23.tab.gz,cmt23 --prefix chr5_19499001-19499600 --context CHG
 ```
+
+## Where to find help
+
+Recent changes, bug fixes and feature additions will be announced through this Google discussion group: [ViewBS discussion forum](https://groups.google.com/forum/#!forum/viewbs). Users are encouraged to ask questions through this forum (instead of shooting me emails) so that the answers can be shared. If you are interested, you can sign up to receive updates through E-mails.
 
 ##Appendix: Full list of options
 
