@@ -20,9 +20,12 @@ clus_row = type.convert(clus_row, as.is=T)
 print(1)
    pdf(output1,height=5,width=3.5, onefile=FALSE)
    cc<-read.table(cpg,header=T)
+
+   cc <- cc[complete.cases(cc),]  ## will only select rows with complete data in all columns
    library(pheatmap)
    #library("RColorBrewer")
    x  <- as.matrix(cc)
+   
    #heatmap.2(x, col=brewer.pal(11,"RdBu"), trace = "none", density.info=c("none"), labRow=FALSE, Colv = F, dendrogram = c("row"),margins=c(10,0))
    #heatmap.2(x, col= colorpanel(100,low="lightyellow",mid="darkred",high="black"), keysize=2, trace = "none", density.info=c("none"), labRow=FALSE, Colv = F, dendrogram = c("none"),margins=c(10,0))
    pheatmap(x, show_rownames = F, cluster_rows = clus_row, cluster_cols = clus_col)

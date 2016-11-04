@@ -97,13 +97,17 @@ sub check_para_sub{
     if(!$opts_sub->{"minDepth"}){
         $opts_sub->{"minDepth"} = 5;
     }
+    #$opts_sub->{legendTitle}
+    if(!$opts_sub->{"legendTitle"}){
+        $opts_sub->{"legendTitle"} = "Samples";
+    }
 
     if(!$opts_sub->{"maxDepth"}){
         $opts_sub->{"maxDepth"} = 400;
     }
 
-    if(!$opts_sub->{"RegionName"}){
-        $opts_sub->{"RegionName"} = "Gene";
+    if(!$opts_sub->{"regionName"}){
+        $opts_sub->{"regionName"} = "Gene";
 	print "\nIt seemed that the reigons you provided are Genes. Please make sure of this.\n\n"
     }
  

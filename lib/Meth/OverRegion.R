@@ -5,12 +5,15 @@ cat("Usage: R --vanilla --slave --input <input tab> --xlab <Gene>  --output <out
 cat(Args, "\n")
 
 xlab = "Gene"
+legend_title = "Sample"
 
 for(i in 1:length(Args)){
-    if(Args[i] == "--input")   meth = Args[i+1]
-    if(Args[i] == "--tts")     tss  = Args[i+1]
-    if(Args[i] == "--xlab")     xlab  = Args[i+1]
-    if(Args[i] == "--output")  fig = Args[i+1]
+    if(Args[i] == "--input")            meth = Args[i+1]
+    if(Args[i] == "--tts")              tss  = Args[i+1]
+    if(Args[i] == "--legend_title")     legend_title  = Args[i+1]
+    if(Args[i] == "--xlab")             xlab  = Args[i+1]
+    if(Args[i] == "--output")           fig = Args[i+1]
+
 }
 
 
@@ -32,6 +35,8 @@ max <- abs(max(tab$bin_num))
 flank = paste( -min/10, "kb", sep = " ")
 
 p = p + scale_x_continuous(breaks=c(min, max), labels=c(flank, flank));
+
+p = p + scale_fill_continuous(guide = guide_legend(title = legend_title)) # title text
 
 ## 1 means the first bin in the gene body, max + min + 1 means the last bean in the gene body.
 

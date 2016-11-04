@@ -45,10 +45,11 @@ sub generTab{
     my ($class, $opts_sub) = @_;
     print "Start reading the methylation file\n" if !$opts_sub->{verbose};
 
-    my %rec_meth;
+    my %rec_meth;            #record total number of Cs and depth
+    my %rec_meth_tot_lev;    #sum of the methylation level for all cytosines
+    my %rec_meth_tot;        #Number of sites for each context.
     my %rec_meth_context;
-    my %rec_meth_tot; 
-     
+ 
     my @sample_list; 
     foreach my $sam_info(@{$opts_sub->{sample_list}}){   ## sample information: meth_file,sample,region
         my ($meth_file, $sam_name) = split(/,/, $sam_info);
@@ -63,6 +64,7 @@ sub generTab{
 	    $rec_meth{$sam_name}-> {$tem_context} -> {$TOTC_DEP} += $c_num;
 	    $rec_meth{$sam_name}-> {$tem_context} -> {$TOT_DEP}  += $depth;
 	    $rec_meth_tot{$sam_name} -> {$tem_context} ++;
+	    $rec_meth_tot_lev{$sam_name} -> {$tem_context} += $c_num/$depth;   
 	    $rec_meth_context{$tem_context} ++;
 	}
 	close METH;
@@ -77,7 +79,10 @@ sub generTab{
 	foreach my $tem_context(sort keys %rec_meth_context){
 	    my $c_num = $rec_meth{$sam_name}-> {$tem_context} -> {$TOTC_DEP};
 	    my $tot_num = $rec_meth{$sam_name}-> {$tem_context} -> {$TOT_DEP};
-	    my $meth_lev = sprintf("%.3f", $c_num/$tot_num);
+
+	    my $total_sites_num = $rec_meth_tot{$sam_name} -> {$tem_context};
+            my $total_meth_lev  = $rec_meth_tot_lev{$sam_name} -> {$tem_context};
+	    my $meth_lev = $opts_sub->{methodAverage} ? sprintf("%.3f", $total_meth_lev/$total_sites_num) : sprintf("%.3f", $c_num/$tot_num);
 	    push @meth_lev, $meth_lev;
         }
 	print OUT "$sam_name\t", join("\t", @meth_lev), "\n";

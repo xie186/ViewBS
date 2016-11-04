@@ -40,11 +40,15 @@ regions, genes, transposable elements, etc.
 
 =item B<binNumber [optional]>
 
- - The number of bins for the given regions
+ - The number of bins for the given regions [default: 60]. 
+
+=item B<flank [optional]>
+
+ - Flanking regions [default: 2000].
 
 =item B<binLength [optional]>
 
- - The length of bins for the flanking regions for the given regions.
+ - The length of bins for the flanking regions for the given regions [default: 100].
 
 =item B<minDepth [optional]>
 
@@ -62,9 +66,14 @@ regions, genes, transposable elements, etc.
 
  - Provide prefix for the output file.
 
-=item B<RegionName [Optional]>
+=item B<regionName [Optional]>
 
  - The type of regions provided, like Gene, TE, DMR, etc. [Default: Gene]
+
+=item B<legendTitle [Optional]>
+
+ - The title for the figure's legend, like sample, category, etc. [Default: Sample]
+
 
 =back
 

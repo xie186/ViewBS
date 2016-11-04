@@ -151,7 +151,7 @@ sub processCMD{
 		summary => 'Plot average distribution of methylation over your defined regions.',
 		options => {
 		    # mandatory arguments
-		    'regions:s'              => \$opts_subcmd{region},
+		    'region:s'              => \$opts_subcmd{region},
                     'sample:s'               => \@{$opts_subcmd{sample}},
 		    # Optional arguments
 		    'binLength:i'	     => \$opts_subcmd{binLength},
@@ -159,7 +159,8 @@ sub processCMD{
 	            'minLength:i'	     => \$opts_subcmd{minLength},
 		    'maxLength:i'            => \$opts_subcmd{maxLength},
                     'type:s'                 => \$opts_subcmd{type},
-	            'RegionName:s'           => \$opts_subcmd{RegionName},
+	            'regionName:s'           => \$opts_subcmd{regionName},
+	            'legendTitle:s'          => \$opts_subcmd{legendTitle},
 		}
 	    },
 	    MethHeatmap => {
@@ -201,6 +202,7 @@ sub processCMD{
                 summary => 'Generate global (bulk) methylation levels for the provided samples.',
                 options => {
                 'sample:s'               => \@{$opts_subcmd{sample}},
+	        'methodAverage'          => \$opts_subcmd{methodAverage},  ## Calculate the average methylation level rather than the weighted methylated level.
                  }
             },
 	    BisNonConvRate => {

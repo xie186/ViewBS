@@ -1,3 +1,5 @@
+1) add weighted methylation level/ average methylation level
+
 1) add --region for lib/Meth/LevDist.pm; 2) create the Bio::DB::HTS::Tabix first, then extract the information.  
 
 add tss

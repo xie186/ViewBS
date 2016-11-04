@@ -124,6 +124,10 @@ sub get_meth_info{
 	    ++$flag;
 	    print "." if $flag % 1000 == 0;
             my ($chr, $stt, $end, $name) = split(/\s+/,$line);
+	    if($stt !~ /^\d+$/ || $end !~ /^\d+$/){
+	        print "Skip this line: $chr, $stt, $end\n";
+		next;
+            }
 	    my $id = $name ? $name : "$chr\_$stt\_$end";
 	    if(!exists $rec_region_id{$id}){
 		$rec_region_id{$id} = 0;
@@ -143,7 +147,7 @@ sub get_meth_info{
 sub get_CT_num{
     my ($class, $tabix, $chrom, $stt, $end, $context, $opts_sub) = @_;
     my $iter = $tabix->query("$chrom:$stt-$end");
-    my ($tot_c_num, $tot_t_num) = (0, 0);
+    my ($tot_c_num, $tot_t_num, $tot_cover) = (0, 0, 0);
     my $total_cov_num = 0;
     while ( my $line = $iter->next) {
 	#chrC    13      +       3       643     CG      CGG
@@ -153,9 +157,11 @@ sub get_CT_num{
 	    next if ($c_num + $t_num < $opts_sub->{minDepth} || $c_num + $t_num > $opts_sub->{maxDepth});
 	    $tot_c_num += $c_num;
 	    $tot_t_num += $t_num;
+	    ++$tot_cover;
 	}
     }
-    my $level = $tot_c_num / ($tot_c_num + $tot_t_num + 0.0000001);
+    my $level =  $tot_cover > 0 ? $tot_c_num / ($tot_c_num + $tot_t_num) : "NA";
+    
     return $level;
 }
 
