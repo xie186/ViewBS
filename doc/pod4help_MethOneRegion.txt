@@ -46,9 +46,13 @@ sample and plot the methylation information.
 
 =item B<maxDepth [optional]>
 
- - Maximum read depth for calculating methylation level. [default: 400]
+ - Maximum read depth for calculating methylation level. [default: 10000]
 
-=item B<prefix [optional]>
+=item B<flank [optional]>
+
+ - Extend the provided reigons to the flanking regions. [default: 400]
+
+=item B<outdir [optional]>
 
  - Output folder. [Default: ./]
 

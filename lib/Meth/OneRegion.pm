@@ -21,7 +21,8 @@ sub drawMeth{
 	open OUT, "+>$out" or die "$!: $out";
 	my $output = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethOneRegion_$context.txt";
         my $fig = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethOneRegion_$context.pdf";
-	my $cmd = "R --vanilla --slave --input $output --output $fig  < $FindBin::Bin/lib/Meth/Coverage.R";
+	my ($chr, $stt, $end) = $opts_sub->{region} =~ /(.*):(\d+)-(\d+)/;
+	my $cmd = "R --vanilla --slave --input $output --region $stt-$end --output $fig  < $FindBin::Bin/lib/Meth/OneRegion.R";
 	print OUT "$cmd\n";
         my $r_rep = `$cmd`;
         print "$class: $r_rep\n";
@@ -49,6 +50,8 @@ sub generTab{
         open OUT, "+>$output" or die "$!:$output";
 	print OUT "Sample\tchr\tposition\tC_num\tT_num\tMethylationLevel\n";
         my ($chr, $stt, $end) = $opts_sub->{region} =~ /(.*):(\d+)-(\d+)/;
+	$stt = $stt - $opts_sub->{flank} < 0 ? 1: $stt - $opts_sub->{flank};
+	$end = $end + $opts_sub->{flank};
         foreach my $sam_info(@{$opts_sub->{sample_list}}){   ## sample information: meth_file,sample,region
 	    my ($meth_file, $sample_name ) = split(/,/, $sam_info);
             my $tabix = Bio::DB::HTS::Tabix->new( filename => $meth_file);

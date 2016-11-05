@@ -5,7 +5,7 @@ cat("Usage: R --vanilla --slave --input <input tab> --xlab <Gene>  --output <out
 cat(Args, "\n")
 
 xlab = "Gene"
-legend_title = "Sample"
+legend_title = "Sample name"
 
 for(i in 1:length(Args)){
     if(Args[i] == "--input")            meth = Args[i+1]
@@ -32,7 +32,7 @@ max <- abs(max(tab$bin_num))
 #p = p + scale_x_continuous(breaks=c(min/2, (max + min)/2, max + min/2), labels=c("Upstream", xlab, "Downstream"))
 #p = p + theme(axis.text.x = element_blank())
 
-flank = paste( -min/10, "kb", sep = " ")
+flank = paste( -(min -1)/10, "kb", sep = " ")
 
 p = p + scale_x_continuous(breaks=c(min, max), labels=c(flank, flank));
 
@@ -43,5 +43,5 @@ p = p + scale_fill_continuous(guide = guide_legend(title = legend_title)) # titl
 p = p + geom_vline(xintercept = c(1, max + min - 1), linetype = "dashed")
 p = p + expand_limits(y=0)
 p = p + ylab("Methylation level")
-ggsave(fig, p)
+ggsave(fig, p,  width = 10, height = 7, units = "cm")
 

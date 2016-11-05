@@ -51,15 +51,19 @@ sub check_para_sub{
         print "Please provide --prefix for your output file!!!\n";
         ++$exit_code; #exit 0;
     }
+   
+    if(!$opts_sub->{flank}){
+        $opts_sub->{flank} = 400;
+    }
 
     # minDepth for DNA methylation data
-    if(!$opts_sub->{"minDepth"}){
-        $opts_sub->{"minDepth"} = 5;
+    if(!$opts_sub->{minDepth}){
+        $opts_sub->{minDepth} = 5;
     }
    
     # maxDepth for DNA methylation data
     if(!$opts_sub->{"maxDepth"}){
-        $opts_sub->{"maxDepth"} = 400;
+        $opts_sub->{"maxDepth"} = 10000;
     }
 
     ## output directory  

@@ -176,7 +176,7 @@ sub processCMD{
                 }
             },
 	    MethOneRegion => {
-                summary => 'Generate heatmap for a given regions.',
+                summary => 'Visualize DNA methylation for a given regions.',
                 options => {
 	        'regions:s'              => \$opts_subcmd{region},
                 'sample:s'               => \@{$opts_subcmd{sample}},
