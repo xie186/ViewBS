@@ -127,10 +127,11 @@ sub processCMD{
 	    'verbose'     => \$opts{verbose},
 	    'outdir:s'    => \$opts_subcmd{outdir},
 	    'prefix:s'    => \$opts_subcmd{prefix},
-	    'minDepth:s'  => \$opts_subcmd{minDepth},
-	    'maxDepth:s'  => \$opts_subcmd{maxDepth},
+	    'minDepth:s'  => \$opts_subcmd{minDepth},      # minmum read depth for BS-seq
+	    'maxDepth:s'  => \$opts_subcmd{maxDepth},	   # maximum read depth for BS-seq
 	    'context:s'   => \@{$opts_subcmd{context}},    # context
-	    'flank:i'     => \$opts_subcmd{flank},
+	    'flank:i'     => \$opts_subcmd{flank},         # flanking region size 
+	    'binLength:i' => \$opts_subcmd{binLength},	   # bin Lenghth size flank % binLength needs to be 0
          },
          subcommands => {
              MethGeno => {       
@@ -163,6 +164,17 @@ sub processCMD{
 	            'legendTitle:s'          => \$opts_subcmd{legendTitle},
 		}
 	    },
+  	    #MethOverMid => {
+            #    summary => 'Plot average distribution of methylation over the flanking regions of the middle point of the regions',
+            #    options => {
+		      # mandatory arguments
+	    #         'region:s'              => \$opts_subcmd{region},
+            #          'sample:s'               => \@{$opts_subcmd{sample}},
+	    #	      # Optional arguments
+	    #	      'binLength:i'            => \$opts_subcmd{binLength},
+		      
+	    #    }
+            #},	      
 	    MethHeatmap => {
                 summary => 'Generate heatmap for a given regions.',
                 options => {
@@ -212,6 +224,7 @@ sub processCMD{
 	        'chrom:s'               => \@{$opts_subcmd{chrom}},
                  }
             },
+	    
         }
     );
 }

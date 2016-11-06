@@ -93,6 +93,35 @@ sub processArgvSampleOverRegion{
    }
 }
 
+sub processArgvSampleOverMid{
+   my ($class, $opts_sub) = @_;
+   my @sample = @{$opts_sub->{sample}};
+   if(join("", @sample) !~ /file:/){
+        my $region = $opts_sub -> {region};
+        foreach my $sam(@sample){
+             my ($meth_file, $sam_name) = split(/,/, $sam);
+             push @{$opts_sub -> {$SAMPLELIST}}, "$meth_file,$sam_name,$region";
+        }
+   }else{
+        if(@sample > 1){
+            print "Only one --sample should be provided if you use a TEXT file to provide the sample information.\n";
+            exit 0;
+        }else{
+            $sample[0] =~s/file://;
+            open SAM, $sample[0] or die "$!";
+            while( my $line = <SAM>){
+                next if $line =~ /#/;
+                print "$line";
+                chomp $line;
+                my ($meth_file, $legend, $tem_region) = split(/\s+/, $line);
+                my $region = ($tem_region) ? $tem_region: $opts_sub -> {region};
+                push @{$opts_sub -> {$SAMPLELIST}}, "$meth_file,$legend,$region";
+            }
+        }
+   }
+}
+
+
 sub processArgvSampleOneRegion{
    my ($class, $opts_sub) = @_;
    my @sample = @{$opts_sub->{sample}};

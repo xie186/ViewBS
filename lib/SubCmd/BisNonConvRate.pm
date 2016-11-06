@@ -20,13 +20,13 @@ sub check_para_sub{
     my ($class, $opts_sub, $opts) = @_;
 
     if($opts->{help}){
-        pod2usage(-exitval => 0, -verbose => 2, -input => "$FindBin::Bin/doc/pod4help_MethGlobalLev.txt");
+        pod2usage(-exitval => 0, -verbose => 2, -input => "$FindBin::Bin/doc/pod4help_BisNonConvRate.txt");
         exit 0;
     }
 
     if(!&check_para($class, $opts_sub)){
         print "Please provide parameters\n";
-        pod2usage(-exitval => 1, -verbose => 2, -input => "$FindBin::Bin/doc/pod4help_MethGlobalLev.txt");
+        pod2usage(-exitval => 1, -verbose => 2, -input => "$FindBin::Bin/doc/pod4help_BisNonConvRate.txt");
         exit 0;
     }
 

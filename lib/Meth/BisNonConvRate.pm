@@ -66,12 +66,12 @@ sub generTab{
 
     open OUT, "+>$opts_sub->{outdir}/$opts_sub->{prefix}.tab" or die "$!";
     
-    print OUT "Sample\tBisNonConvRate\n";
+    print OUT "Sample\tBisNonConvRate\tC_number\tTotal_Depth\n";
     foreach my $sam_name(keys %rec_meth){
 	my $c_num = $rec_meth{$sam_name} -> {$TOTC_DEP};
 	my $tot_num = $rec_meth{$sam_name}-> {$TOT_DEP};
 	my $meth_lev = sprintf("%.3f", $c_num/$tot_num);   ## Non-conversion rate here
-	print OUT "$sam_name\t$meth_lev\n";
+	print OUT "$sam_name\t$meth_lev\t$c_num\t$tot_num\n";
     }
     close OUT;
 }

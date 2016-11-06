@@ -2,16 +2,17 @@
 
 =head1 NAME
 
-ViewBS MethGlobalLevl - Generate global (bulk) methylation level report
+ViewBS BisNonConvRate - Estimate non-conversion rate of BS-seq data
 
 =head1 SYNOPSIS
 
-ViewBS MethGlobalLevl --sample <meth,sample_name> [--sample <meth,sample_name> .......]
+ViewBS BisNonConvRate --chrom <ChrC> --sample <meth,sample_name> [--sample <meth,sample_name> .......]
 --prefix <prefix for output> --outdir <output folder> 
 
 =head1 DESCRIPTION
 
-ViewBS MethGlobalLevl will generate global (bulk) methylation level report
+ViewBS BisNonConvRate will estimate non-conversion rate of BS-seq data based on the unmethlated
+Chromsome, like chloroplast genome in plant or PhiX genome. 
 
 =head1 Required arguments
 
@@ -31,6 +32,10 @@ ViewBS MethGlobalLevl will generate global (bulk) methylation level report
    --sample more than once. The methylation information can also be read from
    a TEXT file. Instead of giving an explicit sample information pairs, 
    you need to write file: followed by the name of the TEXT file.
+
+=item B<chrom [optional]>
+
+ - Chromosome ID that the users want to use to estimate non-conversion rate. 
 
 =item B<minDepth [optional]>
 
@@ -59,7 +64,5 @@ answers can be shared. If you are interested, you can sign up to receive
 updates through E-mails.
 
 =head1 Affiliation
-
-
 
 =cut
