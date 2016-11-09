@@ -34,18 +34,25 @@ sub check_para_sub{
 
     if(!@{$opts_sub->{"sample"}}){
 	print "Please provide --sample!\n";
-	++$exit_code; #exit 0;
-    }else{
-	
+	exit 0;
     }
 
     my $samples = join("", @{$opts_sub->{sample}});
-    if(!$opts_sub->{"region"} && $samples !~ /file:/){
-        print "Please provide --region!\n";
-        ++$exit_code; #exit 0;
+    if(!$opts_sub->{"region"}){
+        if($samples !~ /file:/){
+            print "Please provide --region!\n$opts_sub->{region}::$samples\n";
+            exit 0;
+        }else{
+            if(@{$opts_sub->{sample}} == 1){
+     	        print "The sample and region information is stored in $samples\n";
+            }else{
+	        print "Please check --sample parameter. Since a file is provided, you should only use --sample one time.\n"; 
+                exit 0;
+ 	    }
+        }
     }else{
 	print "$opts_sub->{region}\n";
-       $opts_sub->{"region"} = abs_path $opts_sub->{"region"};
+        $opts_sub->{"region"} = abs_path $opts_sub->{"region"};
     }
 
     if(!$opts_sub->{"prefix"}){
@@ -98,12 +105,12 @@ sub check_para_sub{
         $opts_sub->{"minDepth"} = 5;
     }
     #$opts_sub->{legendTitle}
-    if(!$opts_sub->{"legendTitle"}){
-        $opts_sub->{"legendTitle"} = "Samples";
-    }
+    #if(!$opts_sub->{"legendTitle"}){
+    #    $opts_sub->{"legendTitle"} = "Samples";
+    #}
 
     if(!$opts_sub->{"maxDepth"}){
-        $opts_sub->{"maxDepth"} = 400;
+        $opts_sub->{"maxDepth"} = 10000;
     }
 
     if(!$opts_sub->{"regionName"}){

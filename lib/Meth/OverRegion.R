@@ -10,7 +10,6 @@ legend_title = "Sample name"
 for(i in 1:length(Args)){
     if(Args[i] == "--input")            meth = Args[i+1]
     if(Args[i] == "--tts")              tss  = Args[i+1]
-    if(Args[i] == "--legend_title")     legend_title  = Args[i+1]
     if(Args[i] == "--xlab")             xlab  = Args[i+1]
     if(Args[i] == "--output")           fig = Args[i+1]
 
@@ -32,16 +31,17 @@ max <- abs(max(tab$bin_num))
 #p = p + scale_x_continuous(breaks=c(min/2, (max + min)/2, max + min/2), labels=c("Upstream", xlab, "Downstream"))
 #p = p + theme(axis.text.x = element_blank())
 
-flank = paste( -(min -1)/10, "kb", sep = " ")
+flank = paste( (-min -1)/10, "kb", sep = " ")
 
 p = p + scale_x_continuous(breaks=c(min, max), labels=c(flank, flank));
 
-p = p + scale_fill_continuous(guide = guide_legend(title = legend_title)) # title text
+p <- p + theme(legend.title=element_blank()) ## no legend title
+#p = p + scale_fill_continuous(guide = guide_legend(title = legend_title)) # title text
 
 ## 1 means the first bin in the gene body, max + min + 1 means the last bean in the gene body.
 
 p = p + geom_vline(xintercept = c(1, max + min - 1), linetype = "dashed")
 p = p + expand_limits(y=0)
 p = p + ylab("Methylation level")
-ggsave(fig, p,  width = 10, height = 7, units = "cm")
+ggsave(fig, p)
 
