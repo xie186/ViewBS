@@ -122,15 +122,16 @@ sub processCMD{
     $resOpt = GetOptions(   # Return hash structure, with these keys: success, subcommand (array of str)
         ## common options recognized by all subcommands
         options => {
-	    'help|h|?'    => \$opts{help},
-	    'version|v'   => \$opts{version},
-	    'verbose'     => \$opts{verbose},
-	    'outdir:s'    => \$opts_subcmd{outdir},
-	    'prefix:s'    => \$opts_subcmd{prefix},
-	    'minDepth:s'  => \$opts_subcmd{minDepth},
-	    'maxDepth:s'  => \$opts_subcmd{maxDepth},
-	    'context:s'   => \@{$opts_subcmd{context}},    # context
-	    'flank:i'     => \$opts_subcmd{flank},
+	    'help|h|?'       => \$opts{help},
+	    'version|v'      => \$opts{version},
+	    'verbose'        => \$opts{verbose},
+	    'outdir:s'       => \$opts_subcmd{outdir},
+	    'prefix:s'       => \$opts_subcmd{prefix},
+	    'minDepth:s'     => \$opts_subcmd{minDepth},
+	    'maxDepth:s'     => \$opts_subcmd{maxDepth},
+	    'context:s'      => \@{$opts_subcmd{context}},    # context
+	    'flank:i'        => \$opts_subcmd{flank},
+	    'methodAverage'  => \$opts_subcmd{methodAverage},  ## Calculate the average methylation level rather than the weighted methylated level.
          },
          subcommands => {
              MethGeno => {       
@@ -202,7 +203,6 @@ sub processCMD{
                 summary => 'Generate global (bulk) methylation levels for the provided samples.',
                 options => {
                 'sample:s'               => \@{$opts_subcmd{sample}},
-	        'methodAverage'          => \$opts_subcmd{methodAverage},  ## Calculate the average methylation level rather than the weighted methylated level.
                  }
             },
 	    BisNonConvRate => {

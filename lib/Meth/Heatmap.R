@@ -41,5 +41,8 @@ print(1)
         stat_boxplot(geom='errorbar')
         #coord_cartesian(ylim = range(boxplot(long$value, plot=FALSE)$stats)*c(.9, 1.1)) +
         #stat_boxplot(geom='errorbar',coef=10)
-   ggsave(output2, p)
+   p <- p + ylab("Methylation level")
+   p <- p + xlab("Sample")
+   p <- p + theme(legend.title=element_blank()) ## no legend title
+   ggsave(output2, p, width = 10, height = 9, units = "cm")
 

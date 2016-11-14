@@ -59,7 +59,7 @@ sub generTab{
 	my @sample_list;
 	&get_meth_info($class, $opts_sub, \@sample_list, \%rec_meth_merge, $context);
 
-        next if $opts_sub->{merge}; ### 
+        next if !$opts_sub->{merge}; ### 
         my $output = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethHeatmap_$context.txt";
         open OUT, "+>$output" or die "$!:$output";
 	print OUT "\t", join("\t", @sample_list), "\n";
@@ -128,12 +128,12 @@ sub get_meth_info{
 	        print "Skip this line: $chr, $stt, $end\n";
 		next;
             }
-	    my $id = $name ? $name : "$chr\_$stt\_$end";
+	    my $id = "$chr\_$stt\_$end";
 	    if(!exists $rec_region_id{$id}){
 		$rec_region_id{$id} = 0;
 	    }else{
 		$rec_region_id{$id} ++;
-	        print "In the region file, there are regions with either duplcate regions or duplicate region names in the 4th column.\n";
+	        print "In the region file, there are regions with either duplcate regions or duplicate region names in the 4th column:$chr:$stt-$end.\n";
 	        $id = $id.$rec_region_id{$id};
 	    }
 	    

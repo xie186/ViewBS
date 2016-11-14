@@ -100,6 +100,7 @@ sub get_CT_num{
 	my ($chrom, $stt, $end) = split(/\s+/, $reg);
         my ($tot_c, $tot_t) = (0, 0);
 	my %rec_context;
+	my %rec_lev;
 	my %rec_number;
 	my $iter = $tabix->query("$chrom:$stt-$end");
 	while ( my $line = $iter->next) {
@@ -112,16 +113,17 @@ sub get_CT_num{
             }
             next if ($depth < $opts_sub->{minDepth} || $depth > $opts_sub->{maxDepth});
 	    $rec_context{$tem_context} ++;
-	    ${$rec_number{$tem_context}}[0] += $c_num;
-	    ${$rec_number{$tem_context}}[1] += $c_num + $t_num;
-            #my $lev = $c_num / $depth;
-            #my $bin_num = ($lev ==1) ? $BINNUM -1 : int ( $lev / $opts_sub->{binMethLev});
-            #$rec_meth->{$sam_name}-> {$tem_context}-> {$bin_num} ++;
-            #$rec_meth_tot->{$sam_name} -> {$tem_context} ++;
-            #$rec_meth_context->{$tem_context} ++;
+   
+            if(!$opts_sub->{methodAverage}){  ## calculate weighted average methylation level
+	        ${$rec_number{$tem_context}}[0] += $c_num;
+	        ${$rec_number{$tem_context}}[1] += $c_num + $t_num;
+            }else{  ## calculate average methylation level
+                my $lev = $c_num / $depth;
+		$rec_lev{$tem_context} += $lev;
+            }
 	}
 	foreach my $tem_context(keys %rec_context){
-	    my $lev = ${$rec_number{$tem_context}}[0] / ${$rec_number{$tem_context}}[1];
+	    my $lev = !$opts_sub->{methodAverage}  ? ${$rec_number{$tem_context}}[0] / ${$rec_number{$tem_context}}[1] : $rec_lev{$tem_context} / $rec_context{$tem_context};  ## weighted or normal
 	    my $bin_num = ($lev ==1) ? $BINNUM -1 : int ( $lev / $opts_sub->{binMethLev});
 	    $rec_meth->{$sam_name}-> {$tem_context}-> {$bin_num} ++;
 	    $rec_meth_context->{$tem_context} ++;
