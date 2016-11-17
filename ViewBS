@@ -112,6 +112,7 @@ sub check_parameter{
         my $status = $check_para -> check_para_sub(\%opts_subcmd, \%opts);
         $check_para -> run_bisNonConvRate(\%opts_subcmd, \%opts);
     }
+    
 }
 
 my $t_end = Benchmark->new;

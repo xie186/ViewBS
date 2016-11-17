@@ -80,7 +80,7 @@ sub generTab{
 	foreach my $tem_context(sort keys %rec_meth_context){
 	    for(my $i = 1; $i <= $BINNUM; ++$i){
 		#print "$sam_name, $tem_context, $i\n";
-		my $num = $rec_meth{$sam_name} -> {$tem_context} -> {$i-1};
+		my $num = exists $rec_meth{$sam_name} -> {$tem_context} -> {$i-1} ? $rec_meth{$sam_name} -> {$tem_context} -> {$i-1} : 0;
 		my $tot_num = $rec_meth_tot{$sam_name} -> {$tem_context};
 		my $perc = 100* $num/$tot_num;
 		my $bin = $opts_sub->{binMethLev} * $i - $opts_sub->{binMethLev}/2;
@@ -128,6 +128,7 @@ sub get_CT_num{
 	    $rec_meth->{$sam_name}-> {$tem_context}-> {$bin_num} ++;
 	    $rec_meth_context->{$tem_context} ++;
 	    $rec_meth_tot->{$sam_name} -> {$tem_context} ++;
+	    print "Region\t$tem_context\t$reg\t$lev\t$sam_name\t$opts_sub->{methodAverage}\n";
 	}
     }
     print "Number of sites used: $num_qualify; Not used: $num_remove\n";
