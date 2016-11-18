@@ -31,7 +31,7 @@ max <- abs(max(tab$bin_num))
 #p = p + scale_x_continuous(breaks=c(min/2, (max + min)/2, max + min/2), labels=c("Upstream", xlab, "Downstream"))
 #p = p + theme(axis.text.x = element_blank())
 
-flank = paste( (-min -1)/10, "kb", sep = " ")
+flank = paste( -(min -1)/10, "kb", sep = " ")
 
 p = p + scale_x_continuous(breaks=c(min, max), labels=c(flank, flank));
 
