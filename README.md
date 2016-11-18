@@ -284,4 +284,4 @@ ViewBS MethOneRegion --region chr5:19499001-19499600 --sample bis_WT.tab.gz,WT -
 
 ## Where to find help
 
-If you have bugs, feature requests, please report the issues here: (https://github.com/readbio/ViewBS/issues)[]
+If you have bugs, feature requests, please report the issues here: (https://github.com/readbio/ViewBS/issues)
