@@ -234,7 +234,7 @@ ViewBS MethOverRegion --region TAIR10_Transposable_Elements.chr1.bed --sample bi
 #### MethOverRegion
 
 <p align="center">
-  <img src="./image/bis_TE_chr1_sample_MethOverRegion_CHG.png">
+  <img src="./image/methOverRegion_TE.png">
 </p>
 <p align="center">
   <b>An example of MethOverregion</b><br>
