@@ -82,7 +82,7 @@ sub processArgvSampleOverRegion{
             $sample[0] =~s/file://;
             open SAM, $sample[0] or die "$!";
             while( my $line = <SAM>){
-                next if $line =~ /#/;
+                next if ($line =~ /^#/ || $line =~ /^\s*\n/);
                 print "$line";
                 chomp $line;
                 my ($meth_file, $legend, $tem_region) = split(/\s+/, $line);

@@ -252,6 +252,19 @@ The TEXT file should follow the following format:
 |----------------|-------------|--------------|
 | DNAmethylation | RegionName1 | Region_file2 |
 
+Here is an example:
+```
+ViewBS MethOverRegion --sample file:sampl_info_tab.txt --prefix bis_gene_5rank --context CG --outdir MethOverRegion
+```
+
+| #DNAmethylationData 	| Region 	| RegionFile                     	|
+|---------------------	|--------	|--------------------------------	|
+| bis_WT.tab.gz       	| Rank1  	| TAIR10_GFF3_genes.WT.rank1.tab 	|
+| bis_WT.tab.gz       	| Rank2  	| TAIR10_GFF3_genes.WT.rank2.tab 	|
+| bis_WT.tab.gz       	| Rank3  	| TAIR10_GFF3_genes.WT.rank3.tab 	|
+| bis_WT.tab.gz       	| Rank4  	| TAIR10_GFF3_genes.WT.rank4.tab 	|
+| bis_WT.tab.gz       	| Rank5  	| TAIR10_GFF3_genes.WT.rank5.tab 	|
+
 #### MethOneRegion
 
 View MethOneRegion will output the methylation information for one region give by the users and then plot the methylation levels across the chromsomesome region. 
