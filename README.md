@@ -234,7 +234,7 @@ ViewBS MethOverRegion --region TAIR10_Transposable_Elements.chr1.bed --sample bi
 #### MethOverRegion
 
 <p align="center">
-  <img src="./image/methOverRegion_TE.png" width:10%>
+  <img src="./image/methOverRegion_TE.png">
 </p>
 <p align="center">
   <b>An example of MethOverregion</b><br>
@@ -253,9 +253,12 @@ The TEXT file should follow the following format:
 | DNAmethylation | RegionName1 | Region_file2 |
 
 Here is an example:
+
 ```
 ViewBS MethOverRegion --sample file:sampl_info_tab.txt --prefix bis_gene_5rank --context CG --outdir MethOverRegion
 ```
+
+The genes were devided into quintiles based on gene expression level. Rank1 group was the group with lowest expression level. Users can use this method to study the correlation between DNA methylation and gene expression. 
 
 | #DNAmethylationData 	| Region 	| RegionFile                     	|
 |---------------------	|--------	|--------------------------------	|
