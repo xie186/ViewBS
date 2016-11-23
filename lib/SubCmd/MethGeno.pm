@@ -37,11 +37,11 @@ sub check_para_sub{
     }else{
        $opts_sub->{"genomeLength"} = abs_path $opts_sub->{"genomeLength"};
     }
-
-    if(!$opts_sub->{"prefix"}){
-        print "Please provide --prefix for your output file!!!\n";
-        ++$exit_code; #exit 0;
-    }
+   
+    #### Common arguments
+    my $cm_arg = SubCmd::CommonArgument -> new();
+    my $exit_num_return = $cm_arg -> common_argument($opts_sub);
+    $exit_code += $exit_num_return;
 
     # window size 
     if(!$opts_sub->{"win"}){

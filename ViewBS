@@ -131,6 +131,10 @@ sub processCMD{
 	    'maxDepth:s'     => \$opts_subcmd{maxDepth},
 	    'context:s'      => \@{$opts_subcmd{context}},    # context
 	    'flank:i'        => \$opts_subcmd{flank},
+	    'height:i'       => \$opts_subcmd{height},  ## figure size: height
+	    'width:i'        => \$opts_subcmd{width},   ## figure size: width
+	    'height2:i'       => \$opts_subcmd{height2}, ## for histogram
+	    'width2:i'        => \$opts_subcmd{width2},  ## for histogram
 	    'methodAverage'  => \$opts_subcmd{methodAverage},  ## Calculate the average methylation level rather than the weighted methylated level.
          },
          subcommands => {

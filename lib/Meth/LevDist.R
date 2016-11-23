@@ -1,4 +1,4 @@
-methGeno <- function(meth, out, percentage){
+methGeno <- function(meth, out, percentage, fig_height, fig_width){
      print(meth)
      tab <-read.table(meth, head = T, sep = "\t")
      library(ggplot2)
@@ -12,7 +12,7 @@ methGeno <- function(meth, out, percentage){
 	       theme(legend.position="none") +
 	       xlab("Methylation level") +
 	       ylab("Percentage (%)")
-         ggsave(out, p)
+         ggsave(out, p, height = fig_height, width = fig_width, unit="cm")
      }else{
 	p <- ggplot(tab, aes(x=MethLevBinMidPoint, y=Number, fill=Context))
         p <- p + geom_bar(stat="identity") 
@@ -20,7 +20,7 @@ methGeno <- function(meth, out, percentage){
         p <- p + theme(legend.position="none") 
         p <- p + xlab("Methylation level") 
         p <- p + ylab("Number")
-         ggsave(out, p)
+         ggsave(out, p, height = fig_height, width = fig_width, unit="cm")
      }
 }
 
@@ -30,11 +30,16 @@ cat("Usage: R --vanilla --slave --input <input tab> --percentage --output <outpu
 
 cat(Args, "\n")
 
+fig_height = 10
+fig_width  = 10
+
 percentage = "TRUE"
 for(i in 1:length(Args)){
     if(Args[i] == "--input")       input  = Args[i+1]
     if(Args[i] == "--output")      fig = Args[i+1]
     if(Args[i] == "--percentage")  percentage = Args[i+1]
+    if(Args[i] == "--height")           fig_height = as.numeric(Args[i+1])
+    if(Args[i] == "--width")            fig_width  = as.numeric(Args[i+1])
 }
 
 percentage = type.convert(percentage, as.is=T)

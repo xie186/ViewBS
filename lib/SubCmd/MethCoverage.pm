@@ -9,7 +9,7 @@ use Cwd qw(abs_path);
 
 
 use Meth::Coverage;
-
+use SubCmd::CommonArgument;
 ## class, $opts, $opts_sub
 sub new{
     my $class     = shift;
@@ -51,38 +51,11 @@ sub check_para_sub{
 	$opts_sub->{"reference"} = abs_path $opts_sub->{"reference"};
     }
 
-
-    ## output directory  
-    if(!$opts_sub->{"outdir"}){
-        $opts_sub->{"outdir"} = abs_path "./";
-    }else{
-        if(-e  $opts_sub->{"outdir"} && !-d $opts_sub->{"outdir"}){
-            print "File $opts_sub->{outdir} already exists. Please provide a new directory name.\n";
-            ++$exit_code; #exit 0;
-        }
-        `mkdir $opts_sub->{"outdir"}` if !-d $opts_sub->{outdir};
-        $opts_sub->{"outdir"} = abs_path $opts_sub->{"outdir"};
-    }
-    `mkdir $opts_sub->{"outdir"}` if !-d $opts_sub->{outdir};
-    print "Output directory is: $opts_sub->{outdir}\n";
- 
-    ### 
-    if(!$opts_sub->{"prefix"}){
-        $opts_sub->{"prefix"} = "MethCoverage";
-    }
-
-#    if(!@{$opts_sub->{"context"}}){
-#        push @{$opts_sub->{"context"}}, "CG";
-#    }
-#
-#    if(!$opts_sub->{"minDepth"}){
-#        $opts_sub->{"minDepth"} = 3;
-#    }
-#
-#    if(!$opts_sub->{"maxDepth"}){
-#        $opts_sub->{"maxDepth"} = 400;
-#    }
-
+    #### Common arguments
+    my $cm_arg = SubCmd::CommonArgument -> new();
+    my $exit_num_return = $cm_arg -> common_argument($opts_sub);
+    $exit_code += $exit_num_return;
+    
  
     if($exit_code > 0){
         exit 0;

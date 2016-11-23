@@ -20,7 +20,7 @@ sub drawMeth{
     my $output = "$opts_sub->{outdir}/$opts_sub->{prefix}.tab";
     open OUT, "+>$opts_sub->{outdir}/$opts_sub->{prefix}.sh" or die "$!";
     my $fig = "$opts_sub->{outdir}/$opts_sub->{prefix}.pdf";
-    my $cmd = "R --vanilla --slave --input $output --percentage TRUE --output $fig < $FindBin::Bin/lib/Meth/LevDist.R";
+    my $cmd = "R --vanilla --slave --input $output --percentage TRUE --height $opts_sub->{height} --width $opts_sub->{width} --output $fig < $FindBin::Bin/lib/Meth/LevDist.R";
     print OUT "$cmd\n";
     close OUT;
     my $r_rep = `$cmd`;
@@ -80,7 +80,7 @@ sub generTab{
 	foreach my $tem_context(sort keys %rec_meth_context){
 	    for(my $i = 1; $i <= $BINNUM; ++$i){
 		#print "$sam_name, $tem_context, $i\n";
-		my $num = $rec_meth{$sam_name} -> {$tem_context} -> {$i-1};
+		my $num = exists $rec_meth{$sam_name} -> {$tem_context} -> {$i-1} ? $rec_meth{$sam_name} -> {$tem_context} -> {$i-1} : 0;
 		my $tot_num = $rec_meth_tot{$sam_name} -> {$tem_context};
 		my $perc = 100* $num/$tot_num;
 		my $bin = $opts_sub->{binMethLev} * $i - $opts_sub->{binMethLev}/2;
@@ -97,6 +97,7 @@ sub get_CT_num{
     my ($num_qualify, $num_remove) = (0, 0);
     open REG, $opts_sub->{region} or die "$!";
     while(my $reg = <REG>){
+	chomp $reg;
 	my ($chrom, $stt, $end) = split(/\s+/, $reg);
         my ($tot_c, $tot_t) = (0, 0);
 	my %rec_context;
@@ -128,6 +129,7 @@ sub get_CT_num{
 	    $rec_meth->{$sam_name}-> {$tem_context}-> {$bin_num} ++;
 	    $rec_meth_context->{$tem_context} ++;
 	    $rec_meth_tot->{$sam_name} -> {$tem_context} ++;
+	    print "Region\t$tem_context\t$reg\t$lev\t$sam_name\t$opts_sub->{methodAverage}\n";
 	}
     }
     print "Number of sites used: $num_qualify; Not used: $num_remove\n";

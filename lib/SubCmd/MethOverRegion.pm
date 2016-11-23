@@ -8,6 +8,7 @@ use Pod::Usage;
 use Cwd qw(abs_path);
 
 use Meth::OverRegion;
+use SubCmd::CommonArgument;
 
 ## class, $opts, $opts_sub
 sub new{
@@ -55,20 +56,32 @@ sub check_para_sub{
         $opts_sub->{"region"} = abs_path $opts_sub->{"region"};
     }
 
-    if(!$opts_sub->{"prefix"}){
-        print "Please provide --prefix for your output file!!!\n";
-        ++$exit_code; #exit 0;
+
+    if(!$opts_sub->{"regionName"}){
+        $opts_sub->{"regionName"} = "Gene";
+	print "\nIt seemed that the reigons you provided are Genes. Please make sure of this.\n\n"
     }
 
-    #flank regions
+   #flank regions
     if(!$opts_sub->{"flank"}){
         $opts_sub->{"flank"} = 2000;
     }
+   
+    if($opts_sub->{flank} % 1000 != 0){
+	print "The flank region size should be able to divivied by 1000 with no remainder\n";
+	++$exit_code; #exit 0;
+    }
+    
     # binLength
     if(!$opts_sub->{"binLength"}){
         $opts_sub->{"binLength"} = 100;
     }
-   
+
+    if($opts_sub->{flank} % $opts_sub->{"binLength"} != 0){
+        print "The flank region size should be able to divivied by length of bin with no remainder\n";
+        ++$exit_code; #exit 0;
+    }
+    
     # binNumber
     if(!$opts_sub->{"binNumber"}){
         $opts_sub->{"binNumber"} = 60;
@@ -83,41 +96,12 @@ sub check_para_sub{
     if(!$opts_sub->{"maxLength"}){
         $opts_sub->{"maxLength"} = 5000000;
     }
-    ## output directory  
-    if(!$opts_sub->{"outdir"}){
-        $opts_sub->{"outdir"} = abs_path "./";
-    }else{
-        if(-e  $opts_sub->{"outdir"} && !-d $opts_sub->{"outdir"}){
-            print "File $opts_sub->{outdir} already exists. Please provide a new directory name.\n";
-            ++$exit_code; #exit 0;
-        }
-        `mkdir $opts_sub->{"outdir"}` if !-d $opts_sub->{outdir};
-        $opts_sub->{"outdir"} = abs_path $opts_sub->{"outdir"};
-    }
-    `mkdir $opts_sub->{"outdir"}` if !-d $opts_sub->{outdir};
-    print "Output directory is: $opts_sub->{outdir}\n";
 
-    if(!@{$opts_sub->{"context"}}){
-        push @{$opts_sub->{"context"}}, "CG";
-    }
-
-    if(!$opts_sub->{"minDepth"}){
-        $opts_sub->{"minDepth"} = 5;
-    }
-    #$opts_sub->{legendTitle}
-    #if(!$opts_sub->{"legendTitle"}){
-    #    $opts_sub->{"legendTitle"} = "Samples";
-    #}
-
-    if(!$opts_sub->{"maxDepth"}){
-        $opts_sub->{"maxDepth"} = 10000;
-    }
-
-    if(!$opts_sub->{"regionName"}){
-        $opts_sub->{"regionName"} = "Gene";
-	print "\nIt seemed that the reigons you provided are Genes. Please make sure of this.\n\n"
-    }
- 
+    ### Common arguments
+    my $cm_arg = SubCmd::CommonArgument -> new();
+    my $exit_num_return = $cm_arg -> common_argument($opts_sub); 
+    $exit_code += $exit_num_return;
+   
     if($exit_code > 0){
         exit 0;
     }else{
