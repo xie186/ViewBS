@@ -9,7 +9,6 @@ regions.
 
 ViewBS MethOverRegion --region <region> 
 --sample <meth,sample_name> [--sample <meth,sample_name> .......]
---prefix <prefix for output>
 
 =head1 DESCRIPTION
 
@@ -64,29 +63,20 @@ regions, genes, transposable elements, etc.
 
 =item B<prefix [optional]>
 
- - Provide prefix for the output file.
+ - Provide prefix for the output file. [Default: MethOverRegion]
 
 =item B<regionName [Optional]>
 
  - The type of regions provided, like Gene, TE, DMR, etc. [Default: Gene]
 
-=item B<legendTitle [Optional]>
+=item B<height [optional]>
 
- - The title for the figure's legend, like sample, category, etc. [Default: Sample]
+ - Height of PDF figure. Unit is cm. [default: 10]
 
+=item B<width [optional]>
+
+ - Width of PDF figure. Unit is cm. [default: 10]
 
 =back
-
-=head1 DISCUSSION FORUM
-
-Recent changes, bug fixes and feature additions will be announced through this
-Google discussion group: ViewBS discussion forum. Users are encouraged to
-ask questions through this forum (instead of shooting me emails) so that the
-answers can be shared. If you are interested, you can sign up to receive
-updates through E-mails.
-
-=head1 Affiliation
-
-
 
 =cut

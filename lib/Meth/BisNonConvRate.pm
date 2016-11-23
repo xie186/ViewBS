@@ -20,7 +20,7 @@ sub drawMeth{
     my $output = "$opts_sub->{outdir}/$opts_sub->{prefix}.tab";
     open OUT, "+>$opts_sub->{outdir}/$opts_sub->{prefix}.sh" or die "$!";
     my $fig = "$opts_sub->{outdir}/$opts_sub->{prefix}.pdf";
-    my $cmd = "R --vanilla --slave --input $output --output $fig < $FindBin::Bin/lib/Meth/BisNonConvRate.R";
+    my $cmd = "R --vanilla --slave --input $output --height $opts_sub->{height} --width $opts_sub->{width} --output $fig < $FindBin::Bin/lib/Meth/BisNonConvRate.R";
     print OUT "$cmd\n";
     close OUT;
     my $r_rep = `$cmd`;

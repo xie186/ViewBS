@@ -11,17 +11,10 @@ v0.0.0
 =head1 SYNOPSIS
 
 ViewBS MethGeno
---project_dir directory to store the results
---data_dir directory for data 
---reference ref_index 
---fastq_surfix fq 
---SICER pair_list,...
 
 =head1 DESCRIPTION
 
-Onestop will help you process ChIP-seq data from the raw sequencde
-data, including default deconseq step, cutadapt step and mapping step, as well
-as calling peaks using SICER, calling diff-peaks using SICER-df. 
+Generate methylation information across chromosome.
 
 =head1 Required arguments
 
@@ -42,21 +35,20 @@ as calling peaks using SICER, calling diff-peaks using SICER-df.
 
 =item B<outdir>
 
- - Output directory
+ - Output directory. [Default: ./]
 
-=item B<prefix>
+=item B<prefix> 
 
- - Prefix for the output
+ - Prefix for the output  [Default: MethGeno]
+
+=item B<height [optional]>
+
+ - Height of PDF figure. Unit is cm. [default: 10]
+
+=item B<width [optional]>
+
+ - Width of PDF figure. Unit is cm. [default: 10]
 
 =back
-
-=head1 DISCUSSION FORUM
-
-Recent changes, bug fixes and feature additions will be announced through this
-Google discussion group: ViewBS discussion forum. Users are encouraged to
-ask questions through this forum (instead of shooting me emails) so that the
-answers can be shared. If you are interested, you can sign up to receive
-updates through E-mails.
-=head1 Affiliation
 
 =cut

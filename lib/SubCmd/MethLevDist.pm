@@ -9,6 +9,7 @@ use Cwd qw(abs_path);
 use Term::ANSIColor;
 
 use Meth::LevDist;
+use SubCmd::CommonArgument;
 
 ## class, $opts, $opts_sub
 sub new{
@@ -39,53 +40,27 @@ sub check_para_sub{
     }
     #print "After sample: $exit_code\n";
 
-    ## output directory  
-    if(!$opts_sub->{"outdir"}){
-        $opts_sub->{"outdir"} = abs_path "./";
-    }else{
-	if(-e $opts_sub->{"outdir"} && !-d $opts_sub->{"outdir"}){
-            print "File $opts_sub->{outdir} already exists. Please provide a new directory name.\n";
-            ++$exit_code; #exit 0;
-        }
-	`mkdir $opts_sub->{"outdir"}` if !-d $opts_sub->{outdir};
-	$opts_sub->{"outdir"} = abs_path $opts_sub->{"outdir"};
-    }
-    `mkdir $opts_sub->{"outdir"}` if !-d $opts_sub->{outdir};
-    print "Output directory is: $opts_sub->{outdir}\n";    
-    #print "After outdir: $exit_code\n";
-    ### 
-    if(!$opts_sub->{"prefix"}){
-        $opts_sub->{"prefix"} = "MethLevDist";
-    }
-    print "Output prefix is: $opts_sub->{prefix}\n";
-    
     if($opts_sub->{region}){
         $opts_sub->{region} = abs_path $opts_sub->{region};
 	print "\nDistribution of methylation levels in $opts_sub->{region} will be calculated!\n\n";
     }
 
-    if(!$opts_sub->{"minDepth"}){
-        $opts_sub->{"minDepth"} = 5;
-    }
-    print "Minmum read depth is $opts_sub->{minDepth}\n";
-
-    if(!$opts_sub->{"maxDepth"}){
-        $opts_sub->{"maxDepth"} = 10000;
-    }
-    print "Maximum read depth is $opts_sub->{maxDepth}\n";    
-  
     if(!$opts_sub->{"binMethLev"}){
         $opts_sub->{"binMethLev"} = 0.1;
     }
-    print "Bin size is: $opts_sub->{binMethLev}\n"; 
+    print "Bin size is: $opts_sub->{binMethLev}\n";
 
+    ### Common arguments
+    my $cm_arg = SubCmd::CommonArgument -> new();
+    my $exit_num_return = $cm_arg -> common_argument($opts_sub);
+    $exit_code += $exit_num_return;
+ 
     if($exit_code > 0){
 	print "$exit_code\n";
         exit 0;
     }else{
 	return "TRUE";
     }
-    
 }
 
 sub check_para{

@@ -9,7 +9,6 @@ ViewBS MethOneRegion - Extract methylation information for one region of each sa
 ViewBS MethHeatmap
 --region <region chr1:100-200>
 --sample <methlation information,sample_name> [--sample <methlation information,sample_name>]
---prefix <prefix for output file>
 
 =head1 DESCRIPTION
 
@@ -61,14 +60,5 @@ sample and plot the methylation information.
  - Provide prefix for the output file. [Default: MethOneRegion]
 
 =back
-
-=head1 DISCUSSION FORUM
-
-Recent changes, bug fixes and feature additions will be announced through this
-Google discussion group: ViewBS discussion forum. Users are encouraged to
-ask questions through this forum (instead of shooting me emails) so that the
-answers can be shared. If you are interested, you can sign up to receive
-updates through E-mails.
-=head1 Affiliation
 
 =cut

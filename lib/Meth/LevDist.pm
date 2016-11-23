@@ -20,7 +20,7 @@ sub drawMeth{
     my $output = "$opts_sub->{outdir}/$opts_sub->{prefix}.tab";
     open OUT, "+>$opts_sub->{outdir}/$opts_sub->{prefix}.sh" or die "$!";
     my $fig = "$opts_sub->{outdir}/$opts_sub->{prefix}.pdf";
-    my $cmd = "R --vanilla --slave --input $output --percentage TRUE --output $fig < $FindBin::Bin/lib/Meth/LevDist.R";
+    my $cmd = "R --vanilla --slave --input $output --percentage TRUE --height $opts_sub->{height} --width $opts_sub->{width} --output $fig < $FindBin::Bin/lib/Meth/LevDist.R";
     print OUT "$cmd\n";
     close OUT;
     my $r_rep = `$cmd`;
@@ -97,6 +97,7 @@ sub get_CT_num{
     my ($num_qualify, $num_remove) = (0, 0);
     open REG, $opts_sub->{region} or die "$!";
     while(my $reg = <REG>){
+	chomp $reg;
 	my ($chrom, $stt, $end) = split(/\s+/, $reg);
         my ($tot_c, $tot_t) = (0, 0);
 	my %rec_context;

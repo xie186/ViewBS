@@ -1,6 +1,6 @@
 Args <- commandArgs();
 
-cat("Usage: R --vanilla --slave --input <input tab> --xlab <Gene>  --output <output> < *R", "\n")
+cat("Usage: R --vanilla --slave --height <fig height> --width <fig width> --input <input tab> --xlab <Gene>  --output <output> < OverRegion.R", "\n")
 
 cat(Args, "\n")
 
@@ -12,9 +12,9 @@ for(i in 1:length(Args)){
     if(Args[i] == "--tts")              tss  = Args[i+1]
     if(Args[i] == "--xlab")             xlab  = Args[i+1]
     if(Args[i] == "--output")           fig = Args[i+1]
-
+    if(Args[i] == "--height")           fig_height = as.numeric(Args[i+1])
+    if(Args[i] == "--width")            fig_width  = as.numeric(Args[i+1])
 }
-
 
 library(ggplot2)
 tab<-read.table(meth,head=T);
@@ -43,5 +43,4 @@ p <- p + theme(legend.title=element_blank()) ## no legend title
 p = p + geom_vline(xintercept = c(1, max + min - 1), linetype = "dashed")
 p = p + expand_limits(y=0)
 p = p + ylab("Methylation level")
-ggsave(fig, p)
-
+ggsave(fig, p, height = fig_height, width = fig_width, unit="cm")

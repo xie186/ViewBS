@@ -8,7 +8,7 @@ use Pod::Usage;
 use Cwd qw(abs_path);
 
 use Meth::Heatmap;
-
+use SubCmd::CommonArgument;
 ## class, $opts, $opts_sub
 sub new{
     my $class     = shift;
@@ -47,60 +47,10 @@ sub check_para_sub{
 	$opts_sub->{"region"} = abs_path $opts_sub->{"region"};
     }
 
-    if(!$opts_sub->{"prefix"}){
-        print "Please provide --prefix for your output file!!!\n";
-        ++$exit_code; #exit 0;
-    }
-
-    # minDepth for DNA methylation data
-    if(!$opts_sub->{"minDepth"}){
-        $opts_sub->{"minDepth"} = 3;
-    }
-   
-    # maxDepth for DNA methylation data
-    if(!$opts_sub->{"maxDepth"}){
-        $opts_sub->{"maxDepth"} = 400;
-    }
-
-    ## output directory  
-    if(!$opts_sub->{"outdir"}){
-        $opts_sub->{"outdir"} = abs_path "./";
-    }else{
-        if(-e  $opts_sub->{"outdir"} && !-d $opts_sub->{"outdir"}){
-            print "File $opts_sub->{outdir} already exists. Please provide a new directory name.\n";
-            ++$exit_code; #exit 0;
-        }
-        `mkdir $opts_sub->{"outdir"}` if !-d $opts_sub->{outdir};
-        $opts_sub->{"outdir"} = abs_path $opts_sub->{"outdir"};
-    }
-    `mkdir $opts_sub->{"outdir"}` if !-d $opts_sub->{outdir};
-    print "Output directory is: $opts_sub->{outdir}\n";
-
-    if(!$opts_sub->{"cluster_rows"}){
-        $opts_sub->{"cluster_rows"} = "TRUE";
-    }else{
-	$opts_sub->{"cluster_rows"} = uc $opts_sub->{"cluster_rows"};
-	my $value = $opts_sub->{"cluster_rows"};
-	if($value ne "TRUE" && $value ne "FALSE"){
-	    print "--cluster_rows should be either FALSE or TRUE. Please check\n";
-	    ++$exit_code;
-	}
-    }
-
-    if(!$opts_sub->{"cluster_cols"}){
-        $opts_sub->{"cluster_cols"} = "FALSE";
-    }else{
-        $opts_sub->{"cluster_cols"} = uc $opts_sub->{"cluster_cols"};
-        my $value = $opts_sub->{"cluster_cols"};
-        if($value ne "TRUE" && $value ne "FALSE"){
-            print "--cluster_cols should be either FALSE or TRUE. Please check\n";
-            ++$exit_code;
-        }
-    }
-
-    if(!@{$opts_sub->{"context"}}){
-        push @{$opts_sub->{"context"}}, "CG";
-    }
+    ### Common arguments
+    my $cm_arg = SubCmd::CommonArgument -> new();
+    my $exit_num_return = $cm_arg -> common_argument($opts_sub);
+    $exit_code += $exit_num_return;
 
     if($exit_code > 0){
         exit 0;

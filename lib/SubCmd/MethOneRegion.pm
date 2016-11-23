@@ -8,6 +8,7 @@ use Pod::Usage;
 use Cwd qw(abs_path);
 
 use Meth::OneRegion;
+use SubCmd::CommonArgument;
 
 ## class, $opts, $opts_sub
 sub new{
@@ -35,8 +36,6 @@ sub check_para_sub{
     if(!@{$opts_sub->{"sample"}}){
 	print "Please provide --sample!\n";
 	++$exit_code; #exit 0;
-    }else{
-	
     }
 
     if(!$opts_sub->{"region"}){
@@ -44,46 +43,12 @@ sub check_para_sub{
         ++$exit_code; #exit 0;
     }else{
 	print "$opts_sub->{region}\n";
-        #$opts_sub->{"region"} = abs_path $opts_sub->{"region"};
     }
-
-    if(!$opts_sub->{"prefix"}){
-        print "Please provide --prefix for your output file!!!\n";
-        ++$exit_code; #exit 0;
-    }
-   
-    if(!$opts_sub->{flank}){
-        $opts_sub->{flank} = 400;
-    }
-
-    # minDepth for DNA methylation data
-    if(!$opts_sub->{minDepth}){
-        $opts_sub->{minDepth} = 5;
-    }
-   
-    # maxDepth for DNA methylation data
-    if(!$opts_sub->{"maxDepth"}){
-        $opts_sub->{"maxDepth"} = 10000;
-    }
-
-    ## output directory  
-    if(!$opts_sub->{"outdir"}){
-        $opts_sub->{"outdir"} = abs_path "./";
-    }else{
-        if(-e  $opts_sub->{"outdir"} && !-d $opts_sub->{"outdir"}){
-            print "File $opts_sub->{outdir} already exists. Please provide a new directory name.\n";
-            ++$exit_code; #exit 0;
-        }
-        `mkdir $opts_sub->{"outdir"}` if !-d $opts_sub->{outdir};
-        $opts_sub->{"outdir"} = abs_path $opts_sub->{"outdir"};
-    }
-    `mkdir $opts_sub->{"outdir"}` if !-d $opts_sub->{outdir};
-    print "Output directory is: $opts_sub->{outdir}\n"; 
-
-    #print "xxx\t@{$opts_sub->{context}}\n";
-    if(!@{$opts_sub->{"context"}}){
-        push @{$opts_sub->{"context"}}, "CG";
-    }
+  
+    #### Common arguments
+    my $cm_arg = SubCmd::CommonArgument -> new();
+    my $exit_num_return = $cm_arg -> common_argument($opts_sub);
+    $exit_code += $exit_num_return; 
 
     if($exit_code > 0){
         exit 0;
@@ -112,7 +77,6 @@ sub check_para{
         return 1;
     }
 }
-
 
 sub run_methOneRegion{ 
     my ($class, $opts_sub) = @_;
