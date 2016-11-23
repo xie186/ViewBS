@@ -59,12 +59,12 @@ sub generTab{
 	my @sample_list;
 	&get_meth_info($class, $opts_sub, \@sample_list, \%rec_meth_merge, $context);
 
-        next if !$opts_sub->{merge}; ### 
+        next if $opts_sub->{merge}; ### 
         my $output = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethHeatmap_$context.txt";
         open OUT, "+>$output" or die "$!:$output";
 	print OUT "\t", join("\t", @sample_list), "\n";
 	foreach my $id(keys %rec_meth_merge){
-	    print "$id\n";
+	    #print "$id\n";
 	    my @level = @{$rec_meth_merge{$id}->{$context}}{@sample_list};
 	    my $level = join("\t", @level);
 	    print OUT "$id\t$level\n";

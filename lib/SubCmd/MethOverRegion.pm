@@ -77,6 +77,8 @@ sub check_para_sub{
         $opts_sub->{"binLength"} = 100;
     }
 
+    $opts_sub->{adjustXaxis} = 1000/$opts_sub->{binLength}; ## this will be used in the R code.
+
     if($opts_sub->{flank} % $opts_sub->{"binLength"} != 0){
         print "The flank region size should be able to divivied by length of bin with no remainder\n";
         ++$exit_code; #exit 0;

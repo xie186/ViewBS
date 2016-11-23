@@ -11,8 +11,7 @@ ViewBS MethCoverage --sample <meth,sample_name> [--sample <meth,sample_name> ...
 
 =head1 DESCRIPTION
 
-MethCoverage will calculate DNA methylation information across the provide
-regions, genes, transposable elements, etc. 
+MethCoverage will generate the coverage report for BS-seq data.
 
 =head1 Required arguments
 

@@ -25,4 +25,4 @@ p <- ggplot(tab, aes(x=Depth, y=Percentage, group = Context, col=Context))
 p <- p + geom_line()
 p <- p + facet_wrap("Sample")
 
-ggsave(out, p, height=fig_height, width = fig_width, unit = "cm")
+ggsave(fig, p, height=fig_height, width = fig_width, unit = "cm")

@@ -1,6 +1,6 @@
 Args <- commandArgs();
 
-cat("Usage: R --vanilla --slave --height <fig height> --width <fig width> --input <input tab> --xlab <Gene>  --output <output> < OverRegion.R", "\n")
+cat("Usage: R --vanilla --slave --height <fig height> --width <fig width> --adjustXaxis <X> --input <input tab> --xlab <Gene>  --output <output> < OverRegion.R", "\n")
 
 cat(Args, "\n")
 
@@ -14,6 +14,7 @@ for(i in 1:length(Args)){
     if(Args[i] == "--output")           fig = Args[i+1]
     if(Args[i] == "--height")           fig_height = as.numeric(Args[i+1])
     if(Args[i] == "--width")            fig_width  = as.numeric(Args[i+1])
+    if(Args[i] == "--adjustXaxis")      adjustXaxis  = as.numeric(Args[i+1])
 }
 
 library(ggplot2)
@@ -31,7 +32,7 @@ max <- abs(max(tab$bin_num))
 #p = p + scale_x_continuous(breaks=c(min/2, (max + min)/2, max + min/2), labels=c("Upstream", xlab, "Downstream"))
 #p = p + theme(axis.text.x = element_blank())
 
-flank = paste( -(min -1)/10, "kb", sep = " ")
+flank = paste( -(min -1)/adjustXaxis, "kb", sep = " ")
 
 p = p + scale_x_continuous(breaks=c(min, max), labels=c(flank, flank));
 

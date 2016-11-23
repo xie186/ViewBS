@@ -2,8 +2,8 @@
 
 =head1 NAME
 
-ViewBS MethLevDist - Generate methylation information over a list of
-regions.
+ViewBS MethLevDist - Generate distribution of methylation levels genome wide or 
+for a list of regions, like genes, promoters, etc.
 
 =head1 SYNOPSIS
 

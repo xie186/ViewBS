@@ -49,4 +49,4 @@ percentage = type.convert(percentage, as.is=T)
 
 options(warn=-1)
 
-suppressWarnings(methGeno(input, fig, percentage))
+suppressWarnings(methGeno(input, fig, percentage, fig_height, fig_width))
