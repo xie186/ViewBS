@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 chmod 755 ext_tools/cpanm
 
 ### Getopt::Long::Subcommand
@@ -26,6 +25,7 @@ if ! type "tabix" > /dev/null; then
    make
    su -c "make install"
 fi 
+
 git clone https://github.com/samtools/htslib.git
 
 rep=`perl -e "use Bio::DB::HTS::Tabix"`
