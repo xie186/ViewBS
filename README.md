@@ -279,7 +279,7 @@ View MethOneRegion will output the methylation information for one region give b
 
 Here is an example:
 
-![](image/MethOneRegion.png)
+![image](image/MethOneRegion.png)
 
 To generate the figure above, you can use the following command line:
 ```
