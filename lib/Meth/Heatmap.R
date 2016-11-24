@@ -4,6 +4,7 @@ cat("Useage: R --vanilla --slave --input <> --height <heigtht> --width <width> -
 
 clus_col = "FALSE"
 clus_row = "TRUE"
+RANDOM_NUM = 4000
 
 fig_height1 = 12.7
 fig_width1  = 8.89
@@ -31,26 +32,32 @@ fig_width2  <- as.numeric(fig_width2)
 cat(clus_col, clus_row, "\n")
 clus_col = type.convert(clus_col, as.is=T)
 clus_row = type.convert(clus_row, as.is=T)
-print(1)
-   pdf(output1,height= fig_height1/2.52, width= fig_width1/2.52, onefile=FALSE)
-   cc<-read.table(cpg,header=T)
 
-   cc <- cc[complete.cases(cc),]  ## will only select rows with complete data in all columns
-   library(pheatmap)
-   #library("RColorBrewer")
-   x  <- as.matrix(cc)
-   
-   #heatmap.2(x, col=brewer.pal(11,"RdBu"), trace = "none", density.info=c("none"), labRow=FALSE, Colv = F, dendrogram = c("row"),margins=c(10,0))
-   #heatmap.2(x, col= colorpanel(100,low="lightyellow",mid="darkred",high="black"), keysize=2, trace = "none", density.info=c("none"), labRow=FALSE, Colv = F, dendrogram = c("none"),margins=c(10,0))
+pdf(output1,height= fig_height1/2.52, width= fig_width1/2.52, onefile=FALSE)
+cc<-read.table(cpg,header=T)
+
+cc <- cc[complete.cases(cc),]  ## will only select rows with complete data in all columns
+library(pheatmap)
+#library("RColorBrewer")
+x  <- as.matrix(cc)
+
+result <- 
+tryCatch({ 
    pheatmap(x, show_rownames = F, cluster_rows = clus_row, cluster_cols = clus_col)
-   dev.off()
+   }, error = function(err) {
+	x <- x[sample(1:nrow(x), RANDOM_NUM),]
+	pheatmap(x, show_rownames = F, cluster_rows = clus_row, cluster_cols = clus_col)
+   }
+)
+
+dev.off()
 
    library(reshape2);
    long <- melt(cc, measure=c(colnames(cc)),variable = "meth");
    library(ggplot2);
    p <- ggplot(long, aes(x=meth, y=value)) 
         #geom_boxplot(outlier.shape=NA) +
-   p <- p + geom_violin(aes(col=meth, fill=meth))
+   p <- p + geom_violin(aes(col=meth, fill=meth), scale = "width")
    p <- p+ geom_boxplot(width = 0.2, outlier.shape = 16, outlier.size = 0.01, col="gray", alpha = 0.7) + stat_boxplot(geom='errorbar', width=0.2, col="gray")
    p <- p + theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
   

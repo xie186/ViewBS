@@ -221,7 +221,7 @@ Region file format:
 *Note: If the file has 4th column, each row in this column should be unique.* 
 
 <p align="center">
-  <img src="./image/CHG_hypo_DMR_drm12cmt23_to_WT_MethHeatmap_CHG.png">
+  <img src="./image/MethHeatmap_hist.png">
 </p>
 <p align="center">
   <b>An example of MethHeatmap</b><br>
