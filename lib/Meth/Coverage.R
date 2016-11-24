@@ -23,6 +23,7 @@ library(ggplot2)
 #Sample  Context Depth   Percentage
 p <- ggplot(tab, aes(x=Depth, y=Percentage, group = Context, col=Context)) 
 p <- p + geom_line()
+p <- p + geom_point(size = 0.3)
 p <- p + facet_wrap("Sample")
 
 ggsave(fig, p, height=fig_height, width = fig_width, unit = "cm")
