@@ -29,7 +29,7 @@ make heatmap and violin-boxplot.
    
  - Suppress extended information or not. [Default: TRUE]
 
-=item B<region [required]>
+=item B<region [required*]>
 
  - regions you want to investigate. 
 
@@ -67,20 +67,30 @@ make heatmap and violin-boxplot.
 
 =item B<height [optional]>
 
- - Height of PDF figure (Heatmap). Unit is cm. [default: 10]
+ - Height of PDF figure (Heatmap). Unit is cm. [Default: 10]
 
 =item B<width [optional]>
 
- - Width of PDF figure (Heatmap). Unit is cm. [default: 10]
+ - Width of PDF figure (Heatmap). Unit is cm. [Default: 10]
 
 =item B<height2 [optional]>
 
- - Height of PDF figure (Violin and boxplot). Unit is cm. [default: 10]
+ - Height of PDF figure (Violin and boxplot). Unit is cm. [Default: 10]
 
 =item B<width2 [optional]>
 
- - Width of PDF figure (Violin and boxplot). Unit is cm. [default: 10]
+ - Width of PDF figure (Violin and boxplot). Unit is cm. [Default: 10]
 
+=item B<random_region [optional]>
+
+ - The number to select the regions randomly for the give list of regions.
+   When the given regions are too many, it may cause "cannot allocate 
+   vector of size" when generating the heatmap. Then we randomly select 
+   part of the data to generate the heatmap. [Default: 2000] 
+  
+   If ViewBS still "cannot allocate vector of size", please select a smaller 
+   number. 
+   
 =back
 
 =cut

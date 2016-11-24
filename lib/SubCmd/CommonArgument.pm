@@ -122,6 +122,11 @@ sub common_argument{
         }
     }
 
+    # random_region 
+    if(!$opts_sub->{random_region}){
+        $opts_sub->{random_region} = 2000;
+    }
+
     ##### For generating figures.  ######
    
     if(!$opts_sub->{width}){
