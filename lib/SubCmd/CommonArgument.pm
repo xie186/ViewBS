@@ -86,7 +86,7 @@ sub common_argument{
     }
 
     if(!$opts_sub->{"maxDepth"}){
-        $opts_sub->{"maxDepth"} = 100000;
+        $opts_sub->{"maxDepth"} = 1000000;
     }
 
     ##### lib/SubCmd/MethGeno.pm

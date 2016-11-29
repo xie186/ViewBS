@@ -3,7 +3,7 @@ methGeno <- function(meth, out, fig_height, fig_width){
     library(ggplot2)
     tab <-read.table(meth, header=T);
     p <- ggplot(tab, aes(x=(stt+end)/1000000, y=Methylation_level, group=sample_name,col = sample_name));
-    p <- p + geom_line(size = 1)+facet_wrap(~chr)+xlab("Chromosome")+ylab("Methylation level")
+    p <- p + geom_line()+facet_wrap(~chr)+xlab("Chromosome")+ylab("Methylation level")
     #p <- p + geom_line(size = 0.5, alpha=0.4)+facet_wrap(~chr)+xlab("Chromosome coordinate")+ylab("Methylation level")
     
     #p <- p + scale_fill_continuous(guide = guide_legend(title = "Sample")) # title text
@@ -15,7 +15,7 @@ methGeno <- function(meth, out, fig_height, fig_width){
         ggsave(out, p, width = fig_width, height = fig_height, unit = "cm")
     }else{
         p <- ggplot(tab, aes(x=(stt+end)/1000000, y=Methylation_level, group=sample_name,col = sample_name));
-        p <- p + geom_line(size = 1)+facet_wrap(~chr,ncol = 2)+xlab("Chromosome")+ylab("Methylation level")
+        p <- p + geom_line()+facet_wrap(~chr,ncol = 2)+xlab("Chromosome")+ylab("Methylation level")
 	#p <- p + scale_fill_continuous(guide = guide_legend(title = "Sample")) # title text
 	p <- p + scale_fill_continuous(guide = guide_legend(title = NULL))
   	#p <- p+ theme(legend.position = "top")

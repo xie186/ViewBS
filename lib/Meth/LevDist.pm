@@ -129,7 +129,7 @@ sub get_CT_num{
 	    $rec_meth->{$sam_name}-> {$tem_context}-> {$bin_num} ++;
 	    $rec_meth_context->{$tem_context} ++;
 	    $rec_meth_tot->{$sam_name} -> {$tem_context} ++;
-	    print "Region\t$tem_context\t$reg\t$lev\t$sam_name\t$opts_sub->{methodAverage}\n";
+	    print "Region\t$tem_context\t$reg\t$lev\t$sam_name\n";
 	}
     }
     print "Number of sites used: $num_qualify; Not used: $num_remove\n";
