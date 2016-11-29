@@ -249,7 +249,7 @@ Besides providing sample and region information in the commind line, you can als
 
 The TEXT file should follow the following format:
 
-| DNAmethylation | RegionName1 | Region_file1 |
+|#MethReportFile | LegendName  | RegionFile   |
 |----------------|-------------|--------------|
 | DNAmethylation | RegionName1 | Region_file2 |
 
