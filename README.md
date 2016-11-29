@@ -289,3 +289,11 @@ ViewBS MethOneRegion --region chr5:19499001-19499600 --sample bis_WT.tab.gz,WT -
 ## Where to find help
 
 If you have bugs, feature requests, please report the issues here: (https://github.com/readbio/ViewBS/issues)
+
+## Commercial use
+
+ViewBS uses GNU GPLv3 and is free for use by academic users. If you want to use it in commercial settings, please contact us.
+
+## How to cite
+
+Currently the manuscript of ViewBS is in preparation. 

@@ -25,10 +25,6 @@ regions, genes, transposable elements, etc.
 
 =item B<verbose>
    
-=item B<region [required]>
-
- - regions you want to investigate. 
-
 =item B<sample [required]>
 
  - Provide the sample information. [Format: methlationfile,samplename] 
@@ -36,6 +32,11 @@ regions, genes, transposable elements, etc.
    --sample more than once. The methylation information can also be read from
    a TEXT file. Instead of giving an explicit sample information pairs, 
    you need to write "file:" followed by the name of the TEXT file.
+   See details at: https://github.com/readbio/ViewBS
+
+=item B<region [required if "file:" not specified]>
+
+ - regions you want to investigate.
 
 =item B<binNumber [optional]>
 

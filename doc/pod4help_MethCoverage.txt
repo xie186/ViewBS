@@ -33,7 +33,8 @@ MethCoverage will generate the coverage report for BS-seq data.
    It is possible to specify more than one sample pair by using the options 
    --sample more than once. The methylation information can also be read from
    a TEXT file. Instead of giving an explicit sample information pairs, 
-   you need to write file: followed by the name of the TEXT file.
+   you need to write "file:" followed by the name of the TEXT file.
+   See details at: https://github.com/readbio/ViewBS
 
 =item B<outdir [optional]>
 
