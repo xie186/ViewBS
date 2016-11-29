@@ -282,6 +282,7 @@ Here is an example:
 ![image](image/MethOneRegion.png)
 
 To generate the figure above, you can use the following command line:
+
 ```
 ViewBS MethOneRegion --region chr5:19499001-19499600 --sample bis_WT.tab.gz,WT --sample bis_cmt23.tab.gz,cmt23 --prefix chr5_19499001-19499600 --context CHG
 ```

@@ -22,7 +22,6 @@ ViewBS MethGlobalLevl will generate global (bulk) methylation level report
  - Prints the help message and exists.
 
 =item B<--verbose>
-   
 
 =item B<sample [required]>
 
