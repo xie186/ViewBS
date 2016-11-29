@@ -26,8 +26,6 @@ if ! type "tabix" > /dev/null; then
    su -c "make install"
 fi 
 
-git clone https://github.com/samtools/htslib.git
-
 rep=`perl -e "use Bio::DB::HTS::Tabix"`
 if [ -z $rep];
 then

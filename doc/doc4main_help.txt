@@ -6,7 +6,7 @@ ViewBS - Tools for exploring and visualizing deep sequencing of  bisulfite seuqu
 
 =head1 VERSION
 
-0.2.0
+0.1.0
 
 =head1 SYNOPSIS
 
@@ -24,39 +24,43 @@ ViewBS is developped to mine and visualize bisulfite seuquencing data.
 
 Prints the help message and exits.
 
-=item B<-Subcommands:>
+=item B<Subcommands:>
 
-=item B<-MethCoverage>
+=item B<MethCoverage>
 
  - Generate coverage report for BS-seq data
 
-=item B<-BisNonConvRate>
+=item B<BisNonConvRate>
 
  - Generate bisulfite non-conversion rate for BS-seq data using the
    provided chromosome (usually chloroplast for plants). 
 
-=item B<-GlobalMethLev>
+=item B<GlobalMethLev>
  
  - Generate global (bulk) methylation level report for BS-seq data
 
-=item B<-MethLevDist>
+=item B<MethLevDist>
 
  - Generate distribution of methylation level for different sequence context (CG, 
    CHG and CHH) for BS-seq data
 
-=item B<-MethGeno>
+=item B<MethGeno>
 
  - Generate the methylation information across each chromosome and plot the 
    information.
 
-=item B<-MethOverRegion>
+=item B<MethOverRegion>
   
  - Generate the methylation information across the regions provided and generate 
    meta-plot. The regions can be genes, transposable elements, etc. 
 
-=item B<-MethHeatmap>
+=item B<MethHeatmap>
 
- - Generate methylation information for a list of regions in different samples or contexts.
+ - Generate heat map and violin-boxplot for selected regions.
+
+=item B<MethOneRegion>
+
+ - Visualize DNA methylation for a given regions.
    
 =back
 
@@ -64,27 +68,8 @@ Prints the help message and exits.
 
 =over 8
 
-Here is the discussion group from google group:
-https://groups.google.com/forum/#!forum/viewbs
+If you have bugs, feature requests, please report the issues here: (https://github.com/readbio/ViewBS/issues)
 
 =back
 
-=head1 Denpendcies
-
-=over 8
-
-=item B<perl> > v5.14.4
-
-=item B<Perl packages>
-   
- - Getopt::Long::Subcommand;
- - Bio::DB::HTS::Tabix; 
-
-=item B<R>  > v3.1.2
-
-=item B<R packages>
-
- - ggplot2;
- - pheatmap 
-
-=back
+=cut
