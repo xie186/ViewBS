@@ -1,5 +1,20 @@
 # ViewBS
 
+## Work flow of ViewBS
+
+ViewBS has several top level commands which determine the required and optimal arguments. These top level commands can be divided into two parts: methylation report and data visualization of functional regions.
+
+Methylation report part has several different top commands which can generate report about read coverage, distribution of methylation level, global methylation leve, etc.
+
+The part of visualization for functional regions also has several different top commands. For ViewBS, the first input that users should provide is the regions of interest. These regions could be functional elements, like genes, transposable elements (TE), or differentially methylated regions (DMR). The other type of input that the users should provide is the methylation information. Methylation information are the outputs from BS-seq aligner, like Bismark, etc.
+
+Here is the workflow of ViewBS:
+
+<p align="center">
+  <img src="./image/ViewBS_workflow.png">
+  <b>The workflow of ViewBS commands</b><br>
+</p>
+
 ##Installation
 
 ##### Requirements:
@@ -60,21 +75,6 @@ Here is an example:
 bgzip test.bis_rep.cov            ## test.bis_rep.cov.gz will be generated. Note: test.bis_rep.cov shoud be sorted based on chromosome coordinates.
 tabix -p vcf test.bis_rep.cov.gz  ## test.bis_rep.cov.gz.tbi will be generated. Now test.bis_rep.cov.gz can be used as input for ViewBS. 
 ```
-
-## Work flow of ViewBS
-
-ViewBS has several top level commands which determine the required and optimal arguments. These top level commands can be divided into two parts: methylation report and data visualization of functional regions. 
-
-Methylation report part has several different top commands which can generate report about read coverage, distribution of methylation level, global methylation leve, etc.
-
-The part of visualization for functional regions also has several different top commands. For ViewBS, the first input that users should provide is the regions of interest. These regions could be functional elements, like genes, transposable elements (TE), or differentially methylated regions (DMR). The other type of input that the users should provide is the methylation information. Methylation information are the outputs from BS-seq aligner, like Bismark, etc.
-
-Here is the workflow of ViewBS:
-
-<p align="center">
-  <img src="./image/ViewBS_workflow.png">
-  <b>The workflow of ViewBS commands</b><br>
-</p>
 
 ## USAGE
 
