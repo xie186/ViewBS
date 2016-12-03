@@ -132,10 +132,10 @@ sub processCMD{
 	    'maxDepth:s'     => \$opts_subcmd{maxDepth},
 	    'context:s'      => \@{$opts_subcmd{context}},    # context
 	    'flank:i'        => \$opts_subcmd{flank},
-	    'height:s'       => \$opts_subcmd{height},  ## figure size: height : float
-	    'width:s'        => \$opts_subcmd{width},   ## figure size: width : float
-	    'height2:s'       => \$opts_subcmd{height2}, ## for histogram : float
-	    'width2:s'        => \$opts_subcmd{width2},  ## for histogram : float
+	    'height:f'       => \$opts_subcmd{height},  ## figure size: height
+	    'width:f'        => \$opts_subcmd{width},   ## figure size: width
+	    'height2:f'       => \$opts_subcmd{height2}, ## for histogram
+	    'width2:f'        => \$opts_subcmd{width2},  ## for histogram
 	    'random_region:i' => \$opts_subcmd{random_region}, ## For heatmap error. annot allocate vector of size
 	    'methodAverage'  => \$opts_subcmd{methodAverage},  ## Calculate the average methylation level rather than the weighted methylated level.
          },
@@ -220,5 +220,7 @@ sub processCMD{
             },
         }
     );
+    push @{$opts_subcmd{subcommand}}, @{$resOpt->{subcommand}};
+    return $resOpt;
 }
 

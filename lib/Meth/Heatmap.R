@@ -30,7 +30,7 @@ cat(clus_col, clus_row, "\n")
 clus_col = type.convert(clus_col, as.is=T)
 clus_row = type.convert(clus_row, as.is=T)
 
-pdf(output1,height= fig_height1/2.52, width= fig_width1/2.52, onefile=FALSE)
+pdf(output1,height= fig_height1/2.54, width= fig_width1/2.54, onefile=FALSE)
 cc<-read.table(cpg,header=T)
 
 cc <- cc[complete.cases(cc),]  ## will only select rows with complete data in all columns
