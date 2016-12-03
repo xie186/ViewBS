@@ -70,7 +70,7 @@ sub common_argument{
     print "Output directory is: $opts_sub->{outdir}\n";
     
     if(!$opts_sub->{"prefix"}){
-	my ($sub_cmd) = @{$opts->{"subcommand"}};
+	my ($sub_cmd) = @{$opts_sub->{subcommand}};
 	$opts_sub->{prefix} = $sub_cmd;
 	print "Default output prefix is used: $sub_cmd\n"; 
     }else{
