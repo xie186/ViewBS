@@ -49,42 +49,6 @@ sub check_para_sub{
     my $exit_num_return = $cm_arg -> common_argument($opts_sub);
     $exit_code += $exit_num_return;
 
-    # window size 
-    if(!$opts_sub->{"win"}){
-        $opts_sub->{"win"} = 500000;
-    }
-   
-    # step size
-    if(!$opts_sub->{"step"}){
-        $opts_sub->{"step"} = 500000;
-    }
-   
-    ## output directory  
-    if(!$opts_sub->{"outdir"}){
-        $opts_sub->{"outdir"} = abs_path "./";
-    }else{
-        if(-e  $opts_sub->{"outdir"} && !-d $opts_sub->{"outdir"}){
-            print "File $opts_sub->{outdir} already exists. Please provide a new directory name.\n";
-            ++$exit_code; #exit 0;
-        }
-        `mkdir $opts_sub->{"outdir"}` if !-d $opts_sub->{outdir};
-        $opts_sub->{"outdir"} = abs_path $opts_sub->{"outdir"};
-    }
-    `mkdir $opts_sub->{"outdir"}` if !-d $opts_sub->{outdir};
-    print "Output directory is: $opts_sub->{outdir}\n";
-
-    if(!@{$opts_sub->{"context"}}){
-        push @{$opts_sub->{"context"}}, "CG";
-    }
-
-    if(!$opts_sub->{"minDepth"}){
-        $opts_sub->{"minDepth"} = 5;
-    }
-
-    if(!$opts_sub->{"maxDepth"}){
-        $opts_sub->{"maxDepth"} = 400;
-    }
-
     if($exit_code > 0){
         exit 0;
     }else{
