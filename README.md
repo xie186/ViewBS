@@ -80,7 +80,8 @@ tabix -p vcf test.bis_rep.cov.gz  ## test.bis_rep.cov.gz.tbi will be generated. 
 
 ### Download test data
 
-https://zenodo.org/record/58470#.V_UR-E0rJhE
+<iframe src="https://widgets.figshare.com/articles/4238990/embed?show_title=1" width="568" height="351" frameborder="0"></iframe>
+
 
 ### Top commands of ViewBS 
 
