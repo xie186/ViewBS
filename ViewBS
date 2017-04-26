@@ -172,8 +172,8 @@ sub processCMD{
                     # mandatory arguments
                     'regions:s'              => \$opts_subcmd{region},
                     'sample:s'               => \@{$opts_subcmd{sample}},
-                    'merge'                 => \$opts_subcmd{merge},
-                    # Optional arguments
+		     # Optional arguments
+                    'merge'                 => \$opts_subcmd{merge},   ### if --merge is true, then methylation level of different will be generated in one file rather than one file for each context
                     'cluster_cols:s'	     => \$opts_subcmd{cluster_cols},
 		    'cluster_rows:s'         => \$opts_subcmd{cluster_rows},
                 }
@@ -216,7 +216,7 @@ sub processCMD{
             },
         }
     );
-    push @{$opts_subcmd{subcommand}}, @{$resOpt->{subcommand}};
+    push @{$opts_subcmd{subcommand}}, @{$resOpt->{subcommand}} if exists $resOpt->{subcommand};
     return $resOpt;
 }
 

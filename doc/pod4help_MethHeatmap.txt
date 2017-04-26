@@ -35,8 +35,12 @@ make heatmap and violin-boxplot.
 
 =item B<sample [required]>
 
- - Provide the sample information. [Format: methlationfile,samplename] 
+ - Provide the sample information. [Format: methlationfile,samplename]
 
+=item B<merge [optional]>
+
+ - If --merge is TRUE, methylation level for different context will be genrated in one file.  
+ 
 =item B<minDepth [optional]>
 
  - Minimum read depth for calculating methylation level. [default: 5]

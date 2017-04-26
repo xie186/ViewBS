@@ -59,7 +59,7 @@ sub generTab{
 	my @sample_list;
 	&get_meth_info($class, $opts_sub, \@sample_list, \%rec_meth_merge, $context);
 
-        next if $opts_sub->{merge}; ### 
+        next if $opts_sub->{merge}; ### if --merge is true, then methylation level of different will be generated in one file rather than one file for each context.  
         my $output = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethHeatmap_$context.txt";
         open OUT, "+>$output" or die "$!:$output";
 	print OUT "\t", join("\t", @sample_list), "\n";
@@ -70,13 +70,14 @@ sub generTab{
 	    print OUT "$id\t$level\n";
 	}
     }
-    if($opts_sub->{merge}){
+    if($opts_sub->{merge}){ ## if --merge is true, then methylation level of different will be generated in one file rather than one file for each context.
         my $header = &gener_header_merge($class, $opts_sub);
 
 	my $output = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethHeatmap_mer.txt";
 	open OUT, "+>$output" or die "$!:$output";
         print OUT "\t$header\n";
         foreach my $id(keys %rec_meth_merge){
+	    ### 
             my $lev = &get_meth_lev($class, $opts_sub, $id, \%rec_meth_merge);
 	    print OUT "$id\t$lev\n";
         }
