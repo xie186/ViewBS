@@ -20,27 +20,26 @@ sub common_argument{
     my ($class, $opts_sub, $opts) = @_;
    
     my $exit_code = 0;
-    #### This is manly for MethOverRegion
+    my ($sub_cmd) = @{$opts_sub->{"subcommand"}};
+    print "Test: $sub_cmd\n";
+    #### This is mainly for MethOverRegion
     #flank regions
     if(!$opts_sub->{"flank"}){
-        $opts_sub->{"flank"} = 2000;
-    }
-   
-    if($opts_sub->{flank} % 1000 != 0){
-	print "The flank region size should be able to divivied by 1000 with no remainder\n";
-	++$exit_code; #exit 0;
-    }
-    
-    # binLength
-    if(!$opts_sub->{"binLength"}){
-        $opts_sub->{"binLength"} = 100;
+	if($sub_cmd eq "MethOverRegion"){
+	    $opts_sub->{"flank"} = 2000;
+            # binLength
+	    if(!$opts_sub->{"binLength"}){
+        	$opts_sub->{"binLength"} = 100;
+            }
+	    if($opts_sub->{flank} % $opts_sub->{"binLength"} != 0){
+                print "The flank region size should be able to be divided by length of bin with no remainder\n";
+	        ++$exit_code; #exit 0;
+	    }
+        }elsif($sub_cmd eq "MethOneRegion"){
+	    $opts_sub->{"flank"} = 300;
+        }
     }
 
-    if($opts_sub->{flank} % $opts_sub->{"binLength"} != 0){
-        print "The flank region size should be able to divivied by length of bin with no remainder\n";
-        ++$exit_code; #exit 0;
-    }
-    
     # binNumber
     if(!$opts_sub->{"binNumber"}){
         $opts_sub->{"binNumber"} = 60;

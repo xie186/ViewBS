@@ -47,7 +47,7 @@ sub check_para_sub{
   
     #### Common arguments
     my $cm_arg = SubCmd::CommonArgument -> new();
-    my $exit_num_return = $cm_arg -> common_argument($opts_sub);
+    my $exit_num_return = $cm_arg -> common_argument($opts_sub, $opts);
     $exit_code += $exit_num_return; 
 
     if($exit_code > 0){

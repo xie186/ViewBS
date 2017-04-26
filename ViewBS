@@ -37,13 +37,13 @@ use SubCmd::BisNonConvRate;
 
 my $main_path = dirname(abs_path $0);
 
-my %opts;   ##
+my %opts;   ## store the values for common parameters
 
 ### Return hash structure, with these keys: success, subcommand (array of str) by GetOptions
-my $resOpt = &processCMD();
+my $resOpt = &processCMD();  
 
 &check_parameter();
-my %opts_subcmd;
+my %opts_subcmd; ### store the values for sub command parameters
 sub check_parameter{
      
     # check if there is a subcommand given.
@@ -54,12 +54,8 @@ sub check_parameter{
     print "Subcommand: $sub_cmd\n";
 
     if($sub_cmd eq "MethGeno"){
-	#print "Keys: ", join("\t", keys %opts_onestop), "\n";
-        #print "Vals: ", join("\t", values %opts_onestop), "\n";
-	#&check_para_onestopsd();
 	print "@{$opts_subcmd{sample}}\n";
 	my $check_para = SubCmd::MethGeno -> new();
-	#print %opts_onestop, "\n";
 	my $status = $check_para -> check_para_sub(\%opts_subcmd, \%opts);
         if($status){
 	    $check_para -> run_methGeno(\%opts_subcmd, \%opts);
