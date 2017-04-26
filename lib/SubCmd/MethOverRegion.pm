@@ -35,20 +35,20 @@ sub check_para_sub{
 
     if(!@{$opts_sub->{"sample"}}){
 	print "Please provide --sample!\n";
-	exit 0;
+	++$exit_code;
     }
 
     my $samples = join("", @{$opts_sub->{sample}});
     if(!$opts_sub->{"region"}){
         if($samples !~ /file:/){
-            print "Please provide --region!\n$opts_sub->{region}::$samples\n";
-            exit 0;
+            print "Please provide --region!\n";
+	    ++$exit_code;
         }else{
             if(@{$opts_sub->{sample}} == 1){
      	        print "The sample and region information is stored in $samples\n";
             }else{
 	        print "Please check --sample parameter. Since a file is provided, you should only use --sample one time.\n"; 
-                exit 0;
+	        ++$exit_code;
  	    }
         }
     }else{
@@ -59,52 +59,16 @@ sub check_para_sub{
 
     if(!$opts_sub->{"regionName"}){
         $opts_sub->{"regionName"} = "Gene";
-	print "\nIt seemed that the reigons you provided are Genes. Please make sure of this.\n\n"
-    }
-
-   #flank regions
-    if(!$opts_sub->{"flank"}){
-        $opts_sub->{"flank"} = 2000;
-    }
-   
-    if($opts_sub->{flank} % 1000 != 0){
-	print "The flank region size should be able to divivied by 1000 with no remainder\n";
-	++$exit_code; #exit 0;
-    }
-    
-    # binLength
-    if(!$opts_sub->{"binLength"}){
-        $opts_sub->{"binLength"} = 100;
-    }
-
-    $opts_sub->{adjustXaxis} = 1000/$opts_sub->{binLength}; ## this will be used in the R code.
-
-    if($opts_sub->{flank} % $opts_sub->{"binLength"} != 0){
-        print "The flank region size should be able to divivied by length of bin with no remainder\n";
-        ++$exit_code; #exit 0;
-    }
-    
-    # binNumber
-    if(!$opts_sub->{"binNumber"}){
-        $opts_sub->{"binNumber"} = 60;
-    }
-   
-    # minLength
-    if(!$opts_sub->{"minLength"}){
-        $opts_sub->{"minLength"} = 300;
-    }
-
-    # maxLength
-    if(!$opts_sub->{"maxLength"}){
-        $opts_sub->{"maxLength"} = 5000000;
+	print "\nIt seemed that the reigons you provided are Genes. Please make sure of this.\n\n" if $exit_code == 0;
     }
 
     ### Common arguments
     my $cm_arg = SubCmd::CommonArgument -> new();
-    my $exit_num_return = $cm_arg -> common_argument($opts_sub); 
+    my $exit_num_return = $cm_arg -> common_argument($opts_sub, $exit_code); 
     $exit_code += $exit_num_return;
    
     if($exit_code > 0){
+	pod2usage(-exitval => 1, -verbose => 2, -input => "$FindBin::Bin/doc/pod4help_MethOverRegion.txt");
         exit 0;
     }else{
 	return "TRUE";

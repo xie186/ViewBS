@@ -39,7 +39,7 @@ make heatmap and violin-boxplot.
 
 =item B<merge [optional]>
 
- - If --merge is TRUE, methylation level for different context will be genrated in one file.  
+ - If --merge is provided (True), methylation level for different context will be genrated in one file.  
  
 =item B<minDepth [optional]>
 

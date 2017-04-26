@@ -46,10 +46,11 @@ sub check_para_sub{
    
     #### Common arguments
     my $cm_arg = SubCmd::CommonArgument -> new();
-    my $exit_num_return = $cm_arg -> common_argument($opts_sub);
+    my $exit_num_return = $cm_arg -> common_argument($opts_sub, $exit_code);
     $exit_code += $exit_num_return;
 
     if($exit_code > 0){
+	pod2usage(-exitval => 1, -verbose => 2, -input => "$FindBin::Bin/doc/pod4help_MethGeno.txt");
         exit 0;
     }else{
 	return "TRUE";

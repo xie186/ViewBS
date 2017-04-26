@@ -17,11 +17,11 @@ sub new{
 
 sub common_argument{
 
-    my ($class, $opts_sub, $opts) = @_;
+    my ($class, $opts_sub, $exit_code) = @_;
    
-    my $exit_code = 0;
+    my $exit_code_common = 0;
     my ($sub_cmd) = @{$opts_sub->{"subcommand"}};
-    print "Test: $sub_cmd\n";
+    #print "Test: $sub_cmd\n";
     #### This is mainly for MethOverRegion
     #flank regions
     if(!$opts_sub->{"flank"}){
@@ -33,7 +33,7 @@ sub common_argument{
             }
 	    if($opts_sub->{flank} % $opts_sub->{"binLength"} != 0){
                 print "The flank region size should be able to be divided by length of bin with no remainder\n";
-	        ++$exit_code; #exit 0;
+	        ++$exit_code_common; #exit 0;
 	    }
         }elsif($sub_cmd eq "MethOneRegion"){
 	    $opts_sub->{"flank"} = 300;
@@ -60,20 +60,20 @@ sub common_argument{
     }else{
         if(-e  $opts_sub->{"outdir"} && !-d $opts_sub->{"outdir"}){
             print "File $opts_sub->{outdir} already exists. Please provide a new directory name.\n";
-            ++$exit_code; #exit 0;
+            ++$exit_code_common; #exit 0;
         }
         `mkdir $opts_sub->{"outdir"}` if !-d $opts_sub->{outdir};
         $opts_sub->{"outdir"} = abs_path $opts_sub->{"outdir"};
     }
     `mkdir $opts_sub->{"outdir"}` if !-d $opts_sub->{outdir};
-    print "Output directory is: $opts_sub->{outdir}\n";
+    print "Output directory is: $opts_sub->{outdir}\n" if $exit_code == 0;
     
     if(!$opts_sub->{"prefix"}){
 	my ($sub_cmd) = @{$opts_sub->{subcommand}};
 	$opts_sub->{prefix} = $sub_cmd;
-	print "Default output prefix is used: $sub_cmd\n"; 
+	print "Default output prefix is used: $sub_cmd\n" if $exit_code == 0; 
     }else{
-	print "Output prefix: $opts_sub->{prefix}\n";
+	print "Output prefix: $opts_sub->{prefix}\n" if $exit_code == 0;
     }
     
     if(!@{$opts_sub->{"context"}}){
@@ -106,7 +106,7 @@ sub common_argument{
         my $value = $opts_sub->{"cluster_rows"};
         if($value ne "TRUE" && $value ne "FALSE"){
             print "--cluster_rows should be either FALSE or TRUE. Please check\n";
-            ++$exit_code;
+            ++$exit_code_common;
         }
     }
 
@@ -117,7 +117,7 @@ sub common_argument{
         my $value = $opts_sub->{"cluster_cols"};
         if($value ne "TRUE" && $value ne "FALSE"){
             print "--cluster_cols should be either FALSE or TRUE. Please check\n";
-            ++$exit_code;
+            ++$exit_code_common;
         }
     }
 
@@ -144,7 +144,7 @@ sub common_argument{
         $opts_sub->{height2} = 10;
     }
    
-    return $exit_code;
+    return $exit_code_common;
 }
 
 1;
