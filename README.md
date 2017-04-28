@@ -297,4 +297,17 @@ ViewBS uses GNU GPLv3 and is free for use by academic users. If you want to use 
 
 ## How to cite
 
-Currently the manuscript of ViewBS is in preparation. 
+Currently the manuscript of ViewBS is in preparation.
+
+## Authors
+
+__Written by:__
+ Xiaosan Huang
+ Email: huangxs@njau.edu.cn
+ Kong-Qing Li
+ Email: likq@njau.edu.cn
+
+__Designed and witten by:__
+ Shaojun Xie:
+ Email: xie186@purdue.edu
+ 
