@@ -302,12 +302,18 @@ Currently the manuscript of ViewBS is in preparation.
 ## Authors
 
 __Written by:__
+
  Xiaosan Huang
+
  Email: huangxs@njau.edu.cn
+
  Kong-Qing Li
+
  Email: likq@njau.edu.cn
 
-__Designed and witten by:__
+__Designed and written by:__
+
  Shaojun Xie:
+
  Email: xie186@purdue.edu
  
