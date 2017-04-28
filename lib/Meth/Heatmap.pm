@@ -161,8 +161,7 @@ sub get_CT_num{
 	    ++$tot_cover;
 	}
     }
-    my $level =  $tot_cover > 0 ? $tot_c_num / ($tot_c_num + $tot_t_num) : "NA";
-    
+    my $level =  $tot_cover > 0 ? $tot_c_num / ($tot_c_num + $tot_t_num) : "NA";     
     return $level;
 }
 

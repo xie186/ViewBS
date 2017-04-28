@@ -31,9 +31,12 @@ sub common_argument{
 	    if(!$opts_sub->{"binLength"}){
         	$opts_sub->{"binLength"} = 100;
             }
-	    if($opts_sub->{flank} % $opts_sub->{"binLength"} != 0){
-                print "The flank region size should be able to be divided by length of bin with no remainder\n";
+	    if(1000 % $opts_sub->{"binLength"} != 0){
+                print "ERROR: If we use 1000 to divide binLenght, we shoud get no remainder. Otherwise we need to reset binLength\n";
 	        ++$exit_code_common; #exit 0;
+	    }else{
+		### check lib/Meth/OverRegion.R
+		$opts_sub->{adjustXaxis} = 1000 / $opts_sub->{"binLength"}; 
 	    }
         }elsif($sub_cmd eq "MethOneRegion"){
 	    $opts_sub->{"flank"} = 300;
