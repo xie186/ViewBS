@@ -24,7 +24,8 @@ sub drawMeth{
         my $output = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethGeno_$context.txt";
         my $cmd_out = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethGeno_$context.sh";
 	my $fig = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethGeno_$context.pdf";
-	my $cmd = "R --vanilla --slave --input $output --height $opts_sub->{height} --width $opts_sub->{width} --output $fig < $FindBin::Bin/lib/Meth/Geno.R";
+	#my $cmd = "R --vanilla --slave --input $output --height $opts_sub->{height} --width $opts_sub->{width} --output $fig < $FindBin::Bin/lib/Meth/Geno.R";
+	my $cmd = "Rscript $FindBin::Bin/lib/Meth/Geno.R --input $output --height $opts_sub->{height} --width $opts_sub->{width} --output $fig";
 	open OUT, "+>$cmd_out" or die "$!:$cmd_out";
         my $r_rep = `$cmd`;
 	print OUT "$cmd\n";

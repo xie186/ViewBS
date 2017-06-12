@@ -22,7 +22,8 @@ sub drawMeth{
 	my $output = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethOneRegion_$context.txt";
         my $fig = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethOneRegion_$context.pdf";
 	my ($chr, $stt, $end) = $opts_sub->{region} =~ /(.*):(\d+)-(\d+)/;
-	my $cmd = "R --vanilla --slave --input $output --region $stt-$end --output $fig  < $FindBin::Bin/lib/Meth/OneRegion.R";
+	#my $cmd = "R --vanilla --slave --input $output --region $stt-$end --output $fig  < $FindBin::Bin/lib/Meth/OneRegion.R";
+        my $cmd = "Rscript $FindBin::Bin/lib/Meth/OneRegion.R --input $output --region $stt-$end --output $fig";
 	print OUT "$cmd\n";
         my $r_rep = `$cmd`;
         print "$class: $r_rep\n";

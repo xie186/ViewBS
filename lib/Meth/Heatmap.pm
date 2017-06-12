@@ -32,7 +32,8 @@ sub gener_cmd{
     my $output = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethHeatmap_$context.txt";
     my $fig1 = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethHeatmap_$context.pdf";
     my $fig2 = "$opts_sub->{outdir}/$opts_sub->{prefix}_MethHist_$context.pdf";
-    my $cmd = "R --vanilla --slave --input $output --output1 $fig1 --output2 $fig2  --cluster_cols $opts_sub->{cluster_cols} --cluster_rows $opts_sub->{cluster_rows}  --height $opts_sub->{height} --width $opts_sub->{width} --height2 $opts_sub->{height2} --width2 $opts_sub->{width2} --random_region $opts_sub->{random_region} < $FindBin::Bin/lib/Meth/Heatmap.R";
+    #my $cmd = "R --vanilla --slave --input $output --output1 $fig1 --output2 $fig2  --cluster_cols $opts_sub->{cluster_cols} --cluster_rows $opts_sub->{cluster_rows}  --height $opts_sub->{height} --width $opts_sub->{width} --height2 $opts_sub->{height2} --width2 $opts_sub->{width2} --random_region $opts_sub->{random_region} < $FindBin::Bin/lib/Meth/Heatmap.R";
+    my $cmd = "Rscript $FindBin::Bin/lib/Meth/Heatmap.R --input $output --output1 $fig1 --output2 $fig2  --cluster_cols $opts_sub->{cluster_cols} --cluster_rows $opts_sub->{cluster_rows}  --height $opts_sub->{height} --width $opts_sub->{width} --height2 $opts_sub->{height2} --width2 $opts_sub->{width2} --random_region $opts_sub->{random_region}";
      print OUT "$cmd\n";
      my $r_rep = `$cmd`;
      print "$class: $r_rep\n";
