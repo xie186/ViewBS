@@ -25,10 +25,10 @@ Here is the workflow of ViewBS:
    * Bio::DB::HTS::Tabix - Object oriented access to the underlying tbx C methods
    * Bio::SeqIO - Handler for SeqIO Formats
     ```
-    wget https://raw.githubusercontent.com/miyagawa/cpanminus/master/cpanm
+    wget https://raw.githubusercontent.com/xie186/ViewBS/master/ext_tools/cpanm
     chmod 755 cpanm
     ./cpanm Getopt::Long::Subcommand
-    ./cpanm Bio::DB::HTS::Tabix
+    ./cpanm Bio::DB::HTS::Tabix 
     ./cpanm Bio::SeqIO
     ```
 4. R version: > 3.3.0
@@ -301,19 +301,7 @@ Currently the manuscript of ViewBS is in preparation.
 
 ## Authors
 
-__Written by:__
+Xiaosan Huang (huangxs@njau.edu.cn), Kong-Qing Li (likq@njau.edu.cn) and Shaoling Zhang (slzhang@njau.edu.cn).
 
- Xiaosan Huang
+Shaojun Xie: (Email: xie186@purdue.edu)  and Jyothi Thimmapuram (jyothit@purdue.edu)
 
- Email: huangxs@njau.edu.cn
-
- Kong-Qing Li
-
- Email: likq@njau.edu.cn
-
-__Designed and written by:__
-
- Shaojun Xie:
-
- Email: xie186@purdue.edu
- 
