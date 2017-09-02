@@ -1,7 +1,7 @@
 ![](image/Header_bioinfoCore.png)
 # ViewBS
 
-## Work flow of ViewBS
+## Workflow of ViewBS
 
 ViewBS has several top level commands which determine the required and optimal arguments. These top level commands can be divided into two parts: methylation report and data visualization of functional regions.
 
