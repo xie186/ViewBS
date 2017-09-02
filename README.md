@@ -1,3 +1,4 @@
+![](image/Header_bioinfoCore.png)
 # ViewBS
 
 ## Work flow of ViewBS
