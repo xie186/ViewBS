@@ -302,7 +302,11 @@ Currently the manuscript of ViewBS is in preparation.
 
 ## Authors
 
+* Nanjing Agricultural University
+
 Xiaosan Huang (huangxs@njau.edu.cn), Kong-Qing Li (likq@njau.edu.cn) and Shaoling Zhang (slzhang@njau.edu.cn).
+
+* Purdue Univeristy
 
 Shaojun Xie: (Email: xie186@purdue.edu)  and Jyothi Thimmapuram (jyothit@purdue.edu)
 
