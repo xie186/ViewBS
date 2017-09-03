@@ -26,3 +26,59 @@ pwd
 ls
 #1504441094
 rm -rf bsseeker2bismark_res.rep.txt 
+#1504441097
+git add . 
+#1504441114
+git commit -m "rm bsseeker2bismark_res.rep.txt"
+#1504441130
+vi .git/info/exclude 
+#1504441173
+git push origin master
+#1504441749
+gith branch
+#1504441753
+git config user.name 
+#1504441758
+\
+#1504441760
+pwd
+#1504441761
+ls
+#1504441768
+vi README.md 
+#1504441839
+git add README.md 
+#1504441853
+git commit -m "update README.md"
+#1504441861
+git push origin master
+#1504443740
+pwd
+#1504443742
+ls
+#1504443747
+ppwd
+#1504443855
+pwd
+#1504443882
+vi ViewBS 
+#2017-09-03 Sun 13:53:24
+xie186 has entered /mnt/volume-nyc1-02/project/ViewBS from /mnt/volume-nyc1-02/project
+#1504446804
+cd ViewBS
+#1504446805
+ls
+#1504446807
+git pull
+#1504446818
+vi .git/info/exclude 
+#1504446830
+git pull -f
+#1504446838
+git branch
+#1504446847
+git push origin master
+#1504446878
+git pull -f push origin master
+#1504446884
+git pull -f origin master
