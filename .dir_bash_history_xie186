@@ -1,0 +1,28 @@
+#2017-09-03 Sun 12:16:03
+xie186 has entered /mnt/volume-nyc1-02/project/ViewBS from /mnt/volume-nyc1-02/project
+#1504440963
+cd ViewBS
+#1504440964
+ls
+#1504440984
+gith branch
+#1504440996
+git branch
+#1504441006
+git rm bsseeker2bismark_res.rep.txt 
+#1504441018
+ls
+#1504441026
+git rm bsseeker2bismark_res.rep.txt 
+#1504441063
+git pull 
+#1504441068
+git pull origin master
+#1504441076
+git pull origin dev
+#1504441080
+pwd
+#1504441080
+ls
+#1504441094
+rm -rf bsseeker2bismark_res.rep.txt 
