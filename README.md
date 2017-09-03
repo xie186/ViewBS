@@ -18,7 +18,7 @@ Here is the workflow of ViewBS:
 
 ##Installation
 
-##### Requirements:
+### Requirements:
 1. Install [htslib](https://github.com/samtools/htslib)
 2. Perl version: >= 5.14.4
 3. Perl packages:
