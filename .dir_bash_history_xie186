@@ -26,3 +26,15 @@ pwd
 ls
 #1504441094
 rm -rf bsseeker2bismark_res.rep.txt 
+#2017-09-03 Sun 13:26:02
+xie186 has entered /mnt/volume-nyc1-02/project/viewbs_new/ViewBS from /mnt/volume-nyc1-02/project/viewbs_new
+#1504445161
+cd ViewBS/
+#1504445162
+ls
+#1504445172
+git config user.name
+#1504445179
+git config user.name "readbio"
+#1504445182
+vi README.md 
