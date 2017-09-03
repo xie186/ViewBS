@@ -75,6 +75,7 @@ Since ViewBS uses Bio::DB::HTS::Tabix to quickly retrieves information from the 
 *Note: tabix and bgzip binaries are now part of the HTSlib project. https://github.com/samtools/htslib*
 
 Here is an example:
+
 ```
 bgzip test.bis_rep.cov            ## test.bis_rep.cov.gz will be generated. Note: test.bis_rep.cov shoud be sorted based on chromosome coordinates.
 tabix -p vcf test.bis_rep.cov.gz  ## test.bis_rep.cov.gz.tbi will be generated. Now test.bis_rep.cov.gz can be used as input for ViewBS. 
