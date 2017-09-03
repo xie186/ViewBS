@@ -38,3 +38,21 @@ git config user.name
 git config user.name "readbio"
 #1504445182
 vi README.md 
+#1504445256
+git add .
+#1504445268
+git commit -m "update README.md"
+#1504445276
+git push origin master
+#1504445610
+git remote -v
+#1504445710
+git config  user.email "xieshaojun0621@qq.com"
+#1504445726
+vi README.md 
+#1504445735
+git pull
+#1504445742
+git branch
+#1504445744
+vi README.md 
