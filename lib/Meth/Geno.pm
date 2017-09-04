@@ -81,6 +81,7 @@ sub get_CT_num{
     while ( my $line = $iter->next) {
 	#chrC    13      +       3       643     CG      CGG
         my ($chr, $pos, $strand, $c_num, $t_num, $tem_context, $seq) = split(/\t/, $line);
+        ### $context can be CG, CHG or CHH 
 	if($context eq $tem_context || $context eq "CXX"){
 	    next if ($c_num + $t_num < $opts_sub->{minDepth} || $c_num + $t_num > $opts_sub->{maxDepth});
 	    $tot_c_num += $c_num;

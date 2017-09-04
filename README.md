@@ -1,7 +1,16 @@
+
 ![](image/Header_bioinfoCore.png)
+
 # ViewBS
 
-## Workflow of ViewBS
+1. [Workflow of View](#workflow)
+2. [Installation](#install)
+3. [Preparation of input files](#input)
+4. [Usage](#usage)
+5. [Where to find help](#help)
+6. [How to cite](#cite)
+
+## Workflow of ViewBS <a name="workflow"></a>
 
 ViewBS has several top level commands which determine the required and optimal arguments. These top level commands can be divided into two parts: methylation report and data visualization of functional regions.
 
@@ -16,7 +25,8 @@ Here is the workflow of ViewBS:
   <b>The workflow of ViewBS commands</b><br>
 </p>
 
-##Installation
+
+##Installation <a name="install"></a>
 
 ### Requirements:
 1. Install [htslib](https://github.com/samtools/htslib)
@@ -43,7 +53,7 @@ Here is the workflow of ViewBS:
     install.packages("pheatmap", dep=T)
     install.packages("reshape2", dep=T)
     ```
-## Preparation of input files
+## Preparation of input files <a name="input"></a>
 
 * Input file: __Genome-wide cytosine methylation report__
 
@@ -81,7 +91,7 @@ bgzip test.bis_rep.cov            ## test.bis_rep.cov.gz will be generated. Note
 tabix -p vcf test.bis_rep.cov.gz  ## test.bis_rep.cov.gz.tbi will be generated. Now test.bis_rep.cov.gz can be used as input for ViewBS. 
 ```
 
-## USAGE
+## USAGE <a name="usage"></a>
 
 ### Download test data
 
@@ -292,7 +302,7 @@ To generate the figure above, you can use the following command line:
 ViewBS MethOneRegion --region chr5:19499001-19499600 --sample bis_WT.tab.gz,WT --sample bis_cmt23.tab.gz,cmt23 --prefix chr5_19499001-19499600 --context CHG
 ```
 
-## Where to find help
+## Where to find help <a name="help"></a>
 
 If you have bugs, feature requests, please report the issues here: (https://github.com/readbio/ViewBS/issues).
 
@@ -300,7 +310,7 @@ If you have bugs, feature requests, please report the issues here: (https://gith
 
 ViewBS uses GNU GPLv3 and is free for use by academic users. If you want to use it in commercial settings, please contact us.
 
-## How to cite
+## How to cite <a name="cite"></a>
 
 Currently the manuscript of ViewBS is in preparation.
 
