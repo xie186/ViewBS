@@ -26,7 +26,7 @@ Here is the workflow of ViewBS:
 </p>
 
 
-##Installation <a name="install"></a>
+## Installation <a name="install"></a>
 
 ### Requirements:
 1. Install [htslib](https://github.com/samtools/htslib)
