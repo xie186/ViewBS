@@ -36,6 +36,10 @@ sub check_para_sub{
 	print "Please provide --sample!\n";
 	++$exit_code; #exit 0;
     }
+   
+    #if(!@{$opts_sub->{"context"}}){
+    #    push @{$opts_sub->{"context"}}, "CXX";
+    #}
 
     if(!@{$opts_sub->{"chrom"}}){
         print "\nError: Please provide --chrom for the chromosome IDs that you want to use to estimate the non-conversion rate!\n\n";

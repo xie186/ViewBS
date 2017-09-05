@@ -1,4 +1,3 @@
-
 ![](image/Header_bioinfoCore.png)
 
 # ViewBS
@@ -47,7 +46,8 @@ Here is the workflow of ViewBS:
     * ggplot2
     * pheatmap
     * reshape2
-    Install some required libraries in R:
+
+    Install the required libraries in R:
     ```
     install.packages("ggplot2", dep=T)
     install.packages("pheatmap", dep=T)

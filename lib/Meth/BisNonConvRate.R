@@ -19,11 +19,13 @@ for(i in 1:length(Args)){
 
 tab <-read.table(input, head = T, sep = "\t")
 library(ggplot2)
-#Sample  Context MethylationLevel        Number  Percentage
+#Sample\tBisNonConvRate\tC_number\tTotal_Depth\tContext
 #library(reshape2)
 #tab <- melt(tab, id.vars="Sample")
+
 p <- ggplot(tab, aes(x=Sample, y=BisNonConvRate, fill=Sample)) +
            geom_bar(stat="identity",position="dodge") +
+           facet_wrap("Context") +
            ylab("Non conversion rate") +
            xlab("Sample")
 

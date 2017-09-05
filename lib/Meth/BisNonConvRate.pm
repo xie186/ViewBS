@@ -58,23 +58,32 @@ sub generTab{
 	while(my $line = <METH>){
 	    my ($chr, $pos, $strand, $c_num, $t_num, $tem_context, $seq) = split(/\t/, $line);
 	    my $depth = $c_num + $t_num;
-	    next if ($depth < $opts_sub->{minDepth} || $depth > $opts_sub->{maxDepth});
-	    $rec_meth{$sam_name} -> {$TOTC_DEP} += $c_num;
-	    $rec_meth{$sam_name} -> {$TOT_DEP}  += $depth;
+            ### If no context is provided, CXX will be given. 
+            $tem_context = "CXX" if(!@{$opts_sub->{"context"}});
+    	    next if ($depth < $opts_sub->{minDepth} || $depth > $opts_sub->{maxDepth});
+  	    $rec_meth{$tem_context} -> {$sam_name} -> {$TOTC_DEP} += $c_num;
+	    $rec_meth{$tem_context} -> {$sam_name} -> {$TOT_DEP}  += $depth;
 	}
 	close METH;
     }
 
     open OUT, "+>$opts_sub->{outdir}/$opts_sub->{prefix}.tab" or die "$!";
-    
-    print OUT "Sample\tBisNonConvRate\tC_number\tTotal_Depth\n";
-    foreach my $sam_name(keys %rec_meth){
-	my $c_num = $rec_meth{$sam_name} -> {$TOTC_DEP};
-	my $tot_num = $rec_meth{$sam_name}-> {$TOT_DEP};
-	my $meth_lev = sprintf("%.3f", $c_num/$tot_num);   ## Non-conversion rate here
-	print OUT "$sam_name\t$meth_lev\t$c_num\t$tot_num\n";
+    print OUT "Sample\tBisNonConvRate\tC_number\tTotal_Depth\tContext\n";
+
+    foreach my $context(@{$opts_sub->{context}}){ 
+        if (!exists $rec_meth{$context}){
+            print "\nError: $context not existed in the input file. Please double check!\n";
+            next;
+        }
+        my %rec_meth_context = %{$rec_meth{$tem_context}};
+        foreach my $sam_name(keys %rec_meth_context){
+    	    my $c_num = $rec_meth_context{$sam_name} -> {$TOTC_DEP};
+	    my $tot_num = $rec_meth_context{$sam_name}-> {$TOT_DEP};
+	    my $meth_lev = sprintf("%.3f", $c_num/$tot_num);   ## Non-conversion rate here
+	    print OUT "$sam_name\t$meth_lev\t$c_num\t$tot_num\t$context\n";
+        }
+        close OUT;
     }
-    close OUT;
 }
 
 1;
