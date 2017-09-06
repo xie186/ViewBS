@@ -41,12 +41,13 @@ x  <- as.matrix(cc)
 ### If the give region regions are too many, it may cause the error: "Error: cannot allocate vector of size". 
 # Error messages beginning cannot allocate vector of size indicate a failure to obtain memory, either because the size exceeded the address-space limit for a process or, more likely, because the system was unable to provide the memory. 
 # If this case, ViewBS will catch the error and randomly select RANDOM_NUM regions from the given list.
+heatmap_obj = "NA"
 result <- 
 tryCatch({ 
-   pheatmap(x, show_rownames = F, cluster_rows = clus_row, cluster_cols = clus_col)
+   heatmap_obj <- pheatmap(x, show_rownames = F, cluster_rows = clus_row, cluster_cols = clus_col)
    }, error = function(err) {
 	x <- x[sample(1:nrow(x), RANDOM_NUM),]
-	pheatmap(x, show_rownames = F, cluster_rows = clus_row, cluster_cols = clus_col)
+	heatmap_obj <- pheatmap(x, show_rownames = F, cluster_rows = clus_row, cluster_cols = clus_col)
    }
 )
 
@@ -70,5 +71,10 @@ ggsave(output2, p, width = fig_width2, height = fig_height2, units = "cm")
 
 #https://stackoverflow.com/questions/5577221/how-can-i-load-an-object-into-a-variable-name-that-i-specify-from-an-r-data-file
 
+out_rds_heat = paste(output1, ".rds", sep="")
+saveRDS(heatmap_obj$gtable, out_rds_heat)
+
 out_rds = paste(output2, ".rds", sep="")
 saveRDS(p, out_rds)
+
+
