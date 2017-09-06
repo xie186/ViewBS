@@ -50,6 +50,7 @@ Here is the workflow of ViewBS:
     Install the required libraries in R:
     ```
     install.packages("ggplot2", dep=T)
+    install.packages("cowplot", dep=T)
     install.packages("pheatmap", dep=T)
     install.packages("reshape2", dep=T)
     ```
