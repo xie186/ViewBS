@@ -26,7 +26,13 @@ library(ggplot2)
 p <- ggplot(tab, aes(x=Sample, y=BisNonConvRate, fill=Sample)) +
            geom_bar(stat="identity",position="dodge") +
            facet_wrap("Context") +
+           theme(axis.text.x=element_text(angle=45, hjust=1)) +
            ylab("Non conversion rate") +
            xlab("Sample")
 
 ggsave(fig, p,height = fig_height, width = fig_width, unit =  "cm")
+
+
+#https://stackoverflow.com/questions/5577221/how-can-i-load-an-object-into-a-variable-name-that-i-specify-from-an-r-data-file
+out_rds = paste(input, ".rds", sep="")
+saveRDS(p, out_rds)

@@ -10,7 +10,10 @@ methGeno <- function(meth, out, fig_height, fig_width){
            ylab("Methylation level") +
 	   xlab("Context")
 
-     ggsave(out, p, height = fig_height, width = fig_width, unit="cm")
+    ggsave(out, p, height = fig_height, width = fig_width, unit="cm")
+    #https://stackoverflow.com/questions/5577221/how-can-i-load-an-object-into-a-variable-name-that-i-specify-from-an-r-data-file
+    out_rds = paste(input, ".rds", sep="")
+    saveRDS(p, out_rds)
 }
 
 Args <- commandArgs();

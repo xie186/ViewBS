@@ -45,3 +45,8 @@ p = p + geom_vline(xintercept = c(1, max + min - 1), linetype = "dashed")
 p = p + expand_limits(y=0)
 p = p + ylab("Methylation level")
 ggsave(fig, p, height = fig_height, width = fig_width, unit="cm")
+
+#https://stackoverflow.com/questions/5577221/how-can-i-load-an-object-into-a-variable-name-that-i-specify-from-an-r-data-file
+out_rds = paste(fig, ".rds", sep="")
+saveRDS(p, out_rds)
+

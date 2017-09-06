@@ -38,7 +38,9 @@ sub check_para_sub{
     }
    
     #if(!@{$opts_sub->{"context"}}){
-    #    push @{$opts_sub->{"context"}}, "CXX";
+    #    #push @{$opts_sub->{"context"}}, "CXX";
+    #    print "CXX\n";
+    #	exit 1;
     #}
 
     if(!@{$opts_sub->{"chrom"}}){

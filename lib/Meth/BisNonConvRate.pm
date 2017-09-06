@@ -59,7 +59,7 @@ sub generTab{
 	    my ($chr, $pos, $strand, $c_num, $t_num, $tem_context, $seq) = split(/\t/, $line);
 	    my $depth = $c_num + $t_num;
             ### If no context is provided, CXX will be given. 
-            $tem_context = "CXX" if(!@{$opts_sub->{"context"}});
+            $tem_context = "CXX" if(!@{$opts_sub->{context}});
     	    next if ($depth < $opts_sub->{minDepth} || $depth > $opts_sub->{maxDepth});
   	    $rec_meth{$tem_context} -> {$sam_name} -> {$TOTC_DEP} += $c_num;
 	    $rec_meth{$tem_context} -> {$sam_name} -> {$TOT_DEP}  += $depth;
@@ -75,7 +75,7 @@ sub generTab{
             print "\nError: $context not existed in the input file. Please double check!\n";
             next;
         }
-        my %rec_meth_context = %{$rec_meth{$tem_context}};
+        my %rec_meth_context = %{$rec_meth{$context}};
         foreach my $sam_name(keys %rec_meth_context){
     	    my $c_num = $rec_meth_context{$sam_name} -> {$TOTC_DEP};
 	    my $tot_num = $rec_meth_context{$sam_name}-> {$TOT_DEP};

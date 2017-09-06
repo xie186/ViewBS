@@ -67,3 +67,8 @@ p <- p + ylab("Methylation level")
 p <- p + xlab("Sample")
 p <- p + theme(legend.title=element_blank()) ## no legend title
 ggsave(output2, p, width = fig_width2, height = fig_height2, units = "cm")
+
+#https://stackoverflow.com/questions/5577221/how-can-i-load-an-object-into-a-variable-name-that-i-specify-from-an-r-data-file
+
+out_rds = paste(output2, ".rds", sep="")
+saveRDS(p, out_rds)

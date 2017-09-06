@@ -50,3 +50,8 @@ percentage = type.convert(percentage, as.is=T)
 options(warn=-1)
 
 suppressWarnings(methGeno(input, fig, percentage, fig_height, fig_width))
+
+#https://stackoverflow.com/questions/5577221/how-can-i-load-an-object-into-a-variable-name-that-i-specify-from-an-r-data-file
+out_rds = paste(fig, ".rds", sep="")
+saveRDS(p, out_rds)
+

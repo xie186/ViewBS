@@ -18,6 +18,9 @@ methGeno <- function(meth, region, out){
       #par("fig") : NDC coordinates for the figure region,
       #par("plt") : NDC coordinates for the plot region,
       ggsave(out, p, height=length(levels(tab[,1]))*par("din")[2]/6)
+      #https://stackoverflow.com/questions/5577221/how-can-i-load-an-object-into-a-variable-name-that-i-specify-from-an-r-data-file
+     out_rds = paste(out, ".rds", sep="")
+     saveRDS(p, out_rds)
 }
 
 Args <- commandArgs();
@@ -34,3 +37,4 @@ for(i in 1:length(Args)){
 options(warn=-1)
 
 suppressWarnings(methGeno(input, region, fig))
+
