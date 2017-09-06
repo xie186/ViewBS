@@ -4,16 +4,6 @@
 ####################################################################
 # ViewBS - Tools for exploring and visualizing bisulfite sequencing 
 # (BS-seq) data. 
-# 
-# Written by: 
-# Xiaosan Huang 
-# Email: huangxs@njau.edu.cn
-# Kong-Qing Li 
-# Email: likq@njau.edu.cn
-# 
-# Designed and witten by: 
-# Shaojun Xie: 
-# Email: xie186@purdue.edu
 ####################################################################
 use strict;
 use warnings;
