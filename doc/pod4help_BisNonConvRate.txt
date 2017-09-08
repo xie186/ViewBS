@@ -34,7 +34,7 @@ Chromsome, like chloroplast genome in plant or PhiX genome.
    you need to write "file:" followed by the name of the TEXT file.
    See details at: https://github.com/readbio/ViewBS
 
-=item B<chrom [optional]>
+=item B<chrom [required]>
 
  - Chromosome ID that the users want to use to estimate non-conversion rate. 
 
@@ -42,6 +42,11 @@ Chromsome, like chloroplast genome in plant or PhiX genome.
 
  - Minimum read depth for calculating methylation level. [default: 1]
 
+=item B<context [optional]>
+
+ - Sequence context for calculating non-conversion rate. It is possible to specify 
+   more than one sample pair by using the option --context more than once. [default: CXX]
+ 
 =item B<maxDepth [optional]>
 
  - Maximum read depth for calculating methylation level. [default: 10000]

@@ -21,6 +21,10 @@ tab <-read.table(input, head = T, sep = "\t")
 
 library(ggplot2)
 #Sample  Context Depth   Percentage
+## If there is only one observation, meaning the user has a very low coverage depth (~1X). You may not get the figures and get the warning message below:
+
+### geom_path: Each group consist of only one observation. Do you need to adjust the group aesthetic?
+
 p <- ggplot(tab, aes(x=Depth, y=Percentage, group = Context, col=Context)) 
 p <- p + geom_line()
 p <- p + geom_point(size = 0.3)

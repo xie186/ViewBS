@@ -51,7 +51,7 @@ sub check_parameter{
 
     #get the subcommand name success and subcommand
     my ($sub_cmd) = @{$resOpt->{"subcommand"}}; 
-    print "\nSubcommand: $sub_cmd \n\n";
+    print "\nSubcommand: $sub_cmd\n";
 
     if($sub_cmd eq "MethGeno"){
 	print "@{$opts_subcmd{sample}}\n";

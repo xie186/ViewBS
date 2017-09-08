@@ -78,8 +78,12 @@ sub common_argument{
     }else{
 	print "Output prefix: $opts_sub->{prefix}\n" if $exit_code == 0;
     }
+   
     
-    if(!@{$opts_sub->{"context"}}){
+    # GlobalMethLev, BisNonConvRate, MethCoverage, MethLevDist, MethGeno, MethOverRegion, MethHeatmap, MethOneRegion
+ 
+    my %rec_cord = {""};
+    if(!@{$opts_sub->{"context"}} &&){
         push @{$opts_sub->{"context"}}, "CG";
     }
 

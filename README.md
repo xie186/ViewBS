@@ -2,7 +2,7 @@
 
 # ViewBS
 
-1. [Workflow of View](#workflow)
+1. [Workflow of ViewBS](#workflow)
 2. [Installation](#install)
 3. [Preparation of input files](#input)
 4. [Usage](#usage)

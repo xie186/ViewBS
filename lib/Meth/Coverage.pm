@@ -92,11 +92,14 @@ sub generTab{
 sub determine_max_depth{
     my ($class, $max_depth, $num_sam, $rec_meth_tot, $opts_sub) = @_;
     my $max_depth_rep;
+
+    ## Start from 1 to MAX_DEPTH
     for(my $i = 1; $i <= $max_depth; ++$i){
         my $num_cov = 0;
         for(my $j = $i; $j <= $max_depth; ++$j){
             $num_cov += $$rec_meth_tot{$j} if exists $$rec_meth_tot{$j};
         }
+        ## When the percentage of cytosines that can be covered is lower that 0.1. We stop there. 
         if($num_cov/($opts_sub->{"ref_C"}->{"C_G"} * $num_sam) < 0.1){
             $max_depth_rep = $i;
             last;
