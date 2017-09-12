@@ -27,25 +27,7 @@ if($path){
     print "tabix found in $path: PASSSED\n";
 }else{
     print "tabix not found:\n";
-    print "Check whether git was installed.\n";
-    my $chk_git = checkToolExists("git");
-    if($chk_git){
-       print "'git' found. Start to download htslib.\n";
-       my $cmd = <<CMD;
-git clone https://github.com/samtools/htslib.git
-cd htslib
-autoheader     # If using configure, generate the header template...
-autoconf       # ...and configure script (or use autoreconf to do both)
-./configure    # Optional, needed for choosing optional functionality
-make
-make --prefix ~/bin/ install 
-CMD
-       `git clone https://github.com/samtools/htslib.git`;
-       
-    }else{
-        print "'git' not found. Please install git first.\n";
-        exit;
-    } 
+    print "Please install htslib. \n";
 }
 
 foreach(@package_list){
@@ -54,7 +36,7 @@ foreach(@package_list){
     if(!$check){
         print "Perl module ($_) installed. PASSED\n";
     }else{
-        print "Perl module ($_) installed. FAILED\n";
+        print "Perl module ($_) not installed. installed. \n";
         
     }
 }

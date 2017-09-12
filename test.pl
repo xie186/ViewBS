@@ -1,7 +1,5 @@
-
-for($i = 1; $i <= 3; $i++){
-
-    for($j = $i; $j <= 3; ++$j){
-        print "$i\t$j\n";
-    }
-}
+print "$ENV{PATH}\n\n";
+print "$ENV{CVSROOT}\n\n";
+`export PATH=\$PATH:~/bin/`;
+my $xx = `echo \$PATH`;
+print "xx$xx\n";
