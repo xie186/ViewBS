@@ -1,5 +1,13 @@
-The users can follow the instructions to install the dependencies of ViewBS:
+Installation of ViewBS
+
+1. OPTION1: The users can follow the instructions to install the dependencies of ViewBS:
 
 Please go to the web link below for details:
 
 https://github.com/xie186/ViewBS#install
+
+2. Option2: User the helper script
+
+```
+perl INSTALL.pl
+```

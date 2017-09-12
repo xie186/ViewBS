@@ -1,8 +1,7 @@
-#!/usr/bin/env perl
+#!/usr/bin/perl -w
 
 # Shaojun Xie <xie186@purdue.edu>
 
-use warnings;
 use strict;
 use File::Basename;
 use Cwd qw(abs_path);
@@ -16,7 +15,7 @@ my @package_list=("Getopt::Long::Subcommand", "Bio::DB::HTS::Tabix", "Bio::SeqIO
 #print "$perl_num, $perl_version, $perl_subv\n";
 
 if ($] >= 5.014004){
-    print "Perl version($] >= 5.14.4): PASSED\n";
+    print "PASSED: Perl version($] >= 5.14.4).\n";
 }else{
     print "Error: Perl version needs to be above 5.14.4!\n";
     exit 1;
@@ -25,7 +24,7 @@ if ($] >= 5.014004){
 ## Check htslib install
 my $path = checkToolExists("tabix");
 if($path){
-    print "tabix found in $path: PASSSED\n";
+    print "PASSED: tabix found in $path.\n";
 }else{
     print "tabix not found:\n";
     print "Please install htslib (https://github.com/samtools/htslib) first. Then run this script again. If you already installed htslib, please make sure htslib is in your \$PATH\n";
@@ -46,7 +45,7 @@ foreach(@package_list){
     my $cmd_chk = qq(perl -e 'use $_;'  2>&1);
     my $check = `$cmd_chk`;
     if(!$check){
-        print "Perl module ($_) installed. PASSED\n";
+        print "PASSED: Perl module ($_) installed.\n";
     }else{
         print "Perl module ($_) not installed. Start to install using cpanm: \n";
         `$CPANM $_`;

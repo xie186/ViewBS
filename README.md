@@ -46,6 +46,7 @@ Here is the workflow of ViewBS:
     * ggplot2
     * pheatmap
     * reshape2
+    * cowplot
 
     Install the required libraries in R:
     ```
@@ -54,6 +55,11 @@ Here is the workflow of ViewBS:
     install.packages("pheatmap", dep=T)
     install.packages("reshape2", dep=T)
     ```
+> To make the installation of dependencies easier, a script was developped. `perl INSTALL.pl
+` can be used as a helper to install and check the dependencies. 
+
+
+
 ## Preparation of input files <a name="input"></a>
 
 * Input file: __Genome-wide cytosine methylation report__
