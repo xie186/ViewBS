@@ -27,7 +27,9 @@ Here is the workflow of ViewBS:
 
 ## Installation <a name="install"></a>
 
-### Requirements:
+> To make the installation of dependencies easier, a script was developped. `perl INSTALL.pl
+` can be used as a helper to install and check the dependencies.
+
 1. Install [htslib](https://github.com/samtools/htslib)
 2. Perl version: >= 5.14.4
 3. Perl packages:
@@ -55,10 +57,6 @@ Here is the workflow of ViewBS:
     install.packages("pheatmap", dep=T)
     install.packages("reshape2", dep=T)
     ```
-> To make the installation of dependencies easier, a script was developped. `perl INSTALL.pl
-` can be used as a helper to install and check the dependencies. 
-
-
 
 ## Preparation of input files <a name="input"></a>
 
