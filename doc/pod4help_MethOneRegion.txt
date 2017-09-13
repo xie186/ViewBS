@@ -39,6 +39,11 @@ sample and plot the methylation information.
    a TEXT file. Instead of giving an explicit sample information pairs, 
    you need to write file: followed by the name of the TEXT file.
 
+=item B<sample [optional]>
+  
+ -  Sequence context (CG, CHG or CHH) to plot. It is possible to specify more than 
+    one sample pair by using the options --sample more than once. [Default: CG]. 
+
 =item B<minDepth [optional]>
 
  - Minimum read depth for calculating methylation level. [default: 5]

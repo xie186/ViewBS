@@ -46,7 +46,8 @@ Chromsome, like chloroplast genome in plant or PhiX genome.
 
  - Sequence context for calculating non-conversion rate. It is possible to specify 
    more than one sample pair by using the option --context more than once. [default: CXX]
- 
+   CXX means non-conversion rate will be calculated based on all the 3 sequence context. 
+   
 =item B<maxDepth [optional]>
 
  - Maximum read depth for calculating methylation level. [default: 10000]

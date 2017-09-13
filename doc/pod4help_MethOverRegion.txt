@@ -38,6 +38,11 @@ regions, genes, transposable elements, etc.
 
  - regions you want to investigate.
 
+=item B<sample [optional]>
+
+ -  Sequence context (CG, CHG or CHH) to plot. It is possible to specify more than
+    one sample pair by using the options --sample more than once. [Default: CG].
+
 =item B<binNumber [optional]>
 
  - The number of bins for the given regions [default: 60]. 
