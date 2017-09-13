@@ -50,9 +50,8 @@ sub check_parameter{
     pod2usage(-exitval => 1, -verbose => 2, -input => "$main_path/doc/doc4main_help.txt") if (!exists $resOpt->{"subcommand"});
 
     #get the subcommand name success and subcommand
-    my ($sub_cmd) = @{$resOpt->{"subcommand"}}; 
+    my ($sub_cmd) = @{$resOpt->{subcommand}}; 
     print "\nSubcommand: $sub_cmd\n";
-
     if($sub_cmd eq "MethGeno"){
 	print "@{$opts_subcmd{sample}}\n";
 	my $check_para = SubCmd::MethGeno -> new();
@@ -211,7 +210,7 @@ sub processCMD{
                 summary => 'Estimate non-conversion rate of BS-seq data.',
                 options => {
                 'sample:s'               => \@{$opts_subcmd{sample}},
-	        'chrom:s'               => \@{$opts_subcmd{chrom}},
+	        'chrom:s'               => \$opts_subcmd{chrom},
                  }
             },
         }

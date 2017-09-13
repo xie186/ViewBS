@@ -57,10 +57,10 @@ sub generTab{
 	open METH, "zcat $meth_file |" or die "$!: $meth_file\n";
 	while(my $line = <METH>){
 	    my ($chr, $pos, $strand, $c_num, $t_num, $tem_context, $seq) = split(/\t/, $line);
+            my $depth = $c_num + $t_num;
             next if $chr ne "$opts_sub->{chrom}";
-	    my $depth = $c_num + $t_num;
             ### If no context is provided, CXX will be given. 
-            if(!@{$opts_sub->{context}}){
+            if(@{$opts_sub->{context}} == 1 && ${$opts_sub->{context}}[0] eq "CXX"){
                  $tem_context = "CXX";
             }
     	    next if ($depth < $opts_sub->{minDepth} || $depth > $opts_sub->{maxDepth});
@@ -72,7 +72,7 @@ sub generTab{
 
     open OUT, "+>$opts_sub->{outdir}/$opts_sub->{prefix}.tab" or die "$!";
     print OUT "Sample\tBisNonConvRate\tC_number\tTotal_Depth\tContext\n";
-    push @{$opts_sub->{context}}, "CXX";  ## if no context was given, CXX will be assinged
+    #push @{$opts_sub->{context}}, "CXX";  ## if no context was given, CXX will be assinged
     foreach my $context(@{$opts_sub->{context}}){ 
         if (!exists $rec_meth{$context}){
             print "\nError: $context not existed in the input file. Please double check!\n";
@@ -85,8 +85,8 @@ sub generTab{
 	    my $meth_lev = sprintf("%.3f", $c_num/$tot_num);   ## Non-conversion rate here
 	    print OUT "$sam_name\t$meth_lev\t$c_num\t$tot_num\t$context\n";
         }
-        close OUT;
     }
+    close OUT;
 }
 
 1;

@@ -20,7 +20,7 @@ sub common_argument{
     my ($class, $opts_sub, $exit_code) = @_;
    
     my $exit_code_common = 0;
-    my ($sub_cmd) = @{$opts_sub->{"subcommand"}};
+    my ($sub_cmd) = @{$opts_sub->{subcommand}};
     #print "Test: $sub_cmd\n";
     #### This is mainly for MethOverRegion
     #flank regions
@@ -72,7 +72,6 @@ sub common_argument{
     print "Output directory is: $opts_sub->{outdir}\n" if $exit_code == 0;
     
     if(!$opts_sub->{"prefix"}){
-	my ($sub_cmd) = @{$opts_sub->{subcommand}};
 	$opts_sub->{prefix} = $sub_cmd;
 	print "Default output prefix is used: $sub_cmd\n" if $exit_code == 0; 
     }else{
@@ -80,11 +79,15 @@ sub common_argument{
     }
    
     
-    # GlobalMethLev, BisNonConvRate, MethCoverage, MethLevDist, MethGeno, MethOverRegion, MethHeatmap, MethOneRegion
- 
-    my %rec_cord = {""};
-    if(!@{$opts_sub->{"context"}} &&){
-        push @{$opts_sub->{"context"}}, "CG";
+    # GlobalMethLev, BisNonConvRate, MethCoverage, MethLevDist, MethGeno, MethOverRegion, MethHeatmap, MethOneRegion 
+    #my %rec_cord = {""};
+    if(!@{$opts_sub->{context}}){
+        if($sub_cmd ne "BisNonConvRate"){
+	    print "$opts_sub->{subcommand} ne BisNonConvRate\n"; 
+            push @{$opts_sub->{context}}, "CG";
+        }else{
+	    push @{$opts_sub->{context}}, "CXX";  ## CXX means calculate conversion rate based on all the Cytosines. 
+        }
     }
 
     if(!$opts_sub->{"minDepth"}){

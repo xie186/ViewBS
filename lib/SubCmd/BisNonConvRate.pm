@@ -43,7 +43,7 @@ sub check_para_sub{
     #	exit 1;
     #}
 
-    if(!@{$opts_sub->{"chrom"}}){
+    if(!$opts_sub->{chrom}){
         print "\nError: Please provide --chrom for the chromosome IDs that you want to use to estimate the non-conversion rate!\n\n";
         ++$exit_code; #exit 0;
     }
@@ -51,7 +51,7 @@ sub check_para_sub{
 
     ### Common arguments
     my $cm_arg = SubCmd::CommonArgument -> new();
-    my $exit_num_return = $cm_arg->common_argument($opts_sub, $exit_code);
+    my $exit_num_return = $cm_arg->common_argument($opts_sub, $exit_code, $opts);
     $exit_code += $exit_num_return;     
  
     if($exit_code > 0){

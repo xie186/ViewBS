@@ -4,7 +4,8 @@ methGeno <- function(meth, out, percentage, fig_height, fig_width){
      library(ggplot2)
      #Sample  Context MethylationLevel        Number  Percentage
 
-     
+     out_rds = paste(fig, ".rds", sep="")
+ 
      if(isTRUE(percentage)){
          p <- ggplot(tab, aes(x=MethLevBinMidPoint, y=Percentage, fill=Context)) +
                geom_bar(stat="identity") +
@@ -13,6 +14,7 @@ methGeno <- function(meth, out, percentage, fig_height, fig_width){
 	       xlab("Methylation level") +
 	       ylab("Percentage (%)")
          ggsave(out, p, height = fig_height, width = fig_width, unit="cm")
+         saveRDS(p, out_rds)
      }else{
 	p <- ggplot(tab, aes(x=MethLevBinMidPoint, y=Number, fill=Context))
         p <- p + geom_bar(stat="identity") 
@@ -20,7 +22,8 @@ methGeno <- function(meth, out, percentage, fig_height, fig_width){
         p <- p + theme(legend.position="none") 
         p <- p + xlab("Methylation level") 
         p <- p + ylab("Number")
-         ggsave(out, p, height = fig_height, width = fig_width, unit="cm")
+        ggsave(out, p, height = fig_height, width = fig_width, unit="cm")
+        saveRDS(p, out_rds)
      }
 }
 
@@ -52,6 +55,4 @@ options(warn=-1)
 suppressWarnings(methGeno(input, fig, percentage, fig_height, fig_width))
 
 #https://stackoverflow.com/questions/5577221/how-can-i-load-an-object-into-a-variable-name-that-i-specify-from-an-r-data-file
-out_rds = paste(fig, ".rds", sep="")
-saveRDS(p, out_rds)
 
