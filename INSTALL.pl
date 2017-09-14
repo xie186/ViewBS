@@ -6,7 +6,7 @@ use strict;
 use File::Basename;
 use Cwd qw(abs_path);
 
-my @package_list=("local::lib", "Getopt::Long::Subcommand", "Bio::DB::HTS::Tabix", "Bio::SeqIO"); #, "HAHA::VIEWBS");
+my @package_list=("Getopt::Long::Subcommand", "Bio::DB::HTS::Tabix", "Bio::SeqIO"); #, "HAHA::VIEWBS");
 
 
 ## Check Perl Version
@@ -41,6 +41,22 @@ if(!-e $CPANM){
     print "PASSED: cpanm found in $dir\n";
 }
 
+my $cmd_chk_lib = qq(perl -e 'use local::lib;'  2>&1);
+my $chk_lib = `$cmd_chk_lib`;
+if(!$chk_lib){
+    print "PASSED: Perl module (local::lib) installed.\n";
+}else{
+    print <<OUT;
+Please run the following comand to install local::lib:
+
+    $CPANM --local-lib=~/perl5 local::lib && eval \$(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
+
+And the run `perl INSTALL.pl` again.
+OUT
+    exit 1;
+}
+
+
 foreach(@package_list){
     my $cmd_chk = qq(perl -e 'use $_;'  2>&1);
     my $check = `$cmd_chk`;
@@ -48,13 +64,7 @@ foreach(@package_list){
         print "PASSED: Perl module ($_) installed.\n";
     }else{
         print "Perl module ($_) not installed. Start to install using cpanm: \n";
-        if($_ ne "local::lib"){
-            `$CPANM $_`;
-        }else{
-            my $cmd = "$CPANM --local-lib=~/perl5 local::lib && " . 'eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)';
-            print "XXX:$cmd\n";
-	    `$cmd`;
-        }
+        `$CPANM $_`;
         if(!$check){
             print "PASSED: Perl module ($_) installed.\n";
         }else{
