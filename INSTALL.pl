@@ -6,7 +6,7 @@ use strict;
 use File::Basename;
 use Cwd qw(abs_path);
 
-my @package_list=("Getopt::Long::Subcommand", "Bio::DB::HTS::Tabix", "Bio::SeqIO"); #, "HAHA::VIEWBS");
+my @package_list=("local::lib", "Getopt::Long::Subcommand", "Bio::DB::HTS::Tabix", "Bio::SeqIO"); #, "HAHA::VIEWBS");
 
 
 ## Check Perl Version
@@ -48,12 +48,18 @@ foreach(@package_list){
         print "PASSED: Perl module ($_) installed.\n";
     }else{
         print "Perl module ($_) not installed. Start to install using cpanm: \n";
-        `$CPANM $_`;
-        $check = `$cmd_chk`;
+        if($_ ne "local::lib"){
+            `$CPANM $_`;
+        }else{
+            my $cmd = "$CPANM --local-lib=~/perl5 local::lib && " . 'eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)';
+            print "XXX:$cmd\n";
+	    `$cmd`;
+        }
         if(!$check){
             print "PASSED: Perl module ($_) installed.\n";
         }else{
             print "Installation of Perl module $_ failed. Please install manually\n";
+            
             exit 1;
         }
     }

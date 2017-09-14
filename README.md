@@ -39,6 +39,7 @@ Here is the workflow of ViewBS:
     ```
     wget https://raw.githubusercontent.com/xie186/ViewBS/master/ext_tools/cpanm
     chmod 755 cpanm
+    cpanm --local-lib=~/perl5 local::lib && eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
     ./cpanm Getopt::Long::Subcommand
     ./cpanm Bio::DB::HTS::Tabix 
     ./cpanm Bio::SeqIO
