@@ -35,7 +35,7 @@ sub check_para_sub{
         print "Please provide --genomeLength!!!\n";
         ++$exit_code; #exit 0;
     }else{
-	if(-e $opts_sub->{genomeLength}){
+	if(!-e $opts_sub->{genomeLength}){
 	    print "Error: $opts_sub->{genomeLength} not exists!\n";
 	    print "Please provide correct --genomeLength!\n";
 	    #++$exit_code; 
