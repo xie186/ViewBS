@@ -318,7 +318,7 @@ ViewBS uses GNU GPLv3 and is free for use by academic users. If you want to use 
 
 ## How to cite <a name="cite"></a>
 
-Currently the manuscript of ViewBS is in preparation.
+Xiaosan Huang, Shaoling Zhang, Kongqing Li, Jyothi Thimmapuram, Shaojun Xie; ViewBS: a powerful toolkit for visualization of high-throughput bisulfite sequencing data, Bioinformatics, , btx633, https://doi.org/10.1093/bioinformatics/btx633
 
 ## Authors
 
