@@ -83,10 +83,12 @@ sub common_argument{
     #my %rec_cord = {""};
     if(!@{$opts_sub->{context}}){
         if($sub_cmd ne "BisNonConvRate"){
-	    print "$opts_sub->{subcommand} ne BisNonConvRate\n"; 
+	    #print "$opts_sub->{subcommand} ne BisNonConvRate\n"; 
             push @{$opts_sub->{context}}, "CG";
         }else{
-	    push @{$opts_sub->{context}}, "CXX";  ## CXX means calculate conversion rate based on all the Cytosines. 
+            ## CXX means calculate conversion rate based on all the Cytosines.
+            # One reviewer asked one questions about whether we can calculate the conversion rate for different context. So we add --context for subcommand "BisNonConvRate"
+	    push @{$opts_sub->{context}}, "CXX"; 
         }
     }
 
