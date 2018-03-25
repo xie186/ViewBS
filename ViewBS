@@ -47,8 +47,7 @@ my %opts_subcmd; ### store the values for sub command parameters
 sub check_parameter{
      
     # check if there is a subcommand given.
-    pod2usage(-exitval => 1, -verbose => 2, -input => "$main_path/doc/doc4main_help.txt") if (!exists $resOpt->{"subcommand"});
-
+    pod2usage(-exitval => 1, -verbose => 2, -input => "$main_path/doc/doc4main_help.txt") if (!exists $resOpt->{"subcommand"} || ! ${$resOpt->{subcommand}}[0]);
     #get the subcommand name success and subcommand
     my ($sub_cmd) = @{$resOpt->{subcommand}}; 
     print "\nSubcommand: $sub_cmd\n";
