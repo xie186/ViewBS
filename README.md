@@ -30,6 +30,12 @@ Here is the workflow of ViewBS:
 > To make the installation of dependencies easier, a script was developped. `perl INSTALL.pl
 ` can be used as a helper to install and check the dependencies.
 
+### Download the lastest version:
+
+```
+https://github.com/xie186/ViewBS/releases/latest
+```
+
 1. Install [htslib](https://github.com/samtools/htslib)
 2. Perl version: >= 5.14.4
 3. Perl packages:
