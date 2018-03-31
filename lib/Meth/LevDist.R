@@ -12,14 +12,16 @@ methGeno <- function(meth, out, percentage, fig_height, fig_width){
                facet_grid( Context ~ Sample, scales = "free") + 
 	       theme(legend.position="none") +
 	       xlab("Methylation level") +
-	       ylab("Percentage (%)")
+	       ylab("Percentage (%)") +
+               theme(axis.text.x=element_text(angle=90,hjust=1))
          ggsave(out, p, height = fig_height, width = fig_width, unit="cm")
          saveRDS(p, out_rds)
      }else{
 	p <- ggplot(tab, aes(x=MethLevBinMidPoint, y=Number, fill=Context))
         p <- p + geom_bar(stat="identity") 
         p <- p + facet_grid( Context ~ Sample, scales = "free") 
-        p <- p + theme(legend.position="none") 
+        p <- p + theme(legend.position="none")
+        p <- p + theme(axis.text.x=element_text(angle=90,hjust=1)) 
         p <- p + xlab("Methylation level") 
         p <- p + ylab("Number")
         ggsave(out, p, height = fig_height, width = fig_width, unit="cm")
