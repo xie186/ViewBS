@@ -91,6 +91,7 @@ sub get_meth_info{
             my $iter = $tabix->query("$chr:$stt_flank-$end_flank");
             my ($tot_c_num, $tot_t_num) = (0, 0);
             #print "$chr:$stt_flank-$end_flank\t$iter\n";
+            next if !$iter; 
             while ( my $line = $iter->next) {
 		my ($chr, $pos, $C_strand, $c_num, $t_num, $tem_context, $seq) = split(/\t/, $line);
                 if($context eq $tem_context || $context eq "CXX"){
