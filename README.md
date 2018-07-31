@@ -73,6 +73,8 @@ ViewBS uses __Genome-wide cytosine methylation report__ as input file. It is sor
 ```
 <chromosome> <position> <strand> <count methylated> <count unmethylated> <C-context> <trinucleotide context>
 ```
+> NOTES: If you use other tools rather than Bismark to generate the methylation information, you can still use ViewBS. We already include the scripts to convert the results of other tools (BSseeker and Brat) https://github.com/xie186/ViewBS/tree/master/lib/scripts to __Genome-wide cytosine methylation report__ format. If the script for your tool is not included, please feel free to contact us at xie186@purdue.edu 
+
 Please see details in [Bismark](http://www.bioinformatics.babraham.ac.uk/projects/bismark/) websites.
 
 > *Tips: how to generate __Genome-wide Cytosine Methylation Report__*
