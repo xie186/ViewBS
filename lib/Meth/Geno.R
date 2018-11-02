@@ -1,8 +1,8 @@
 methGeno <- function(meth, out, fig_height, fig_width){
-    unit_Mb = 2000000
+    unit_Mb = 1000000
     library(ggplot2)
     tab <-read.table(meth, header=T);
-    p <- ggplot(tab, aes(x=(stt+end)/unit_Mb, y=Methylation_level, group=sample_name,col = sample_name));
+    p <- ggplot(tab, aes(x=(stt+end)/2/unit_Mb, y=Methylation_level, group=sample_name,col = sample_name));
     p <- p + geom_line()+facet_wrap(~chr)+xlab("Chromosome (Mb)")+ylab("Methylation level")
     #p <- p + geom_line(size = 0.5, alpha=0.4)+facet_wrap(~chr)+xlab("Chromosome coordinate")+ylab("Methylation level")
     
@@ -14,7 +14,7 @@ methGeno <- function(meth, out, fig_height, fig_width){
     if(length(levels(tab$chr)) <=8){
         ggsave(out, p, width = fig_width, height = fig_height, unit = "cm")
     }else{
-        p <- ggplot(tab, aes(x=(stt+end)/unit_Mb, y=Methylation_level, group=sample_name,col = sample_name));
+        p <- ggplot(tab, aes(x=(stt+end)/2/unit_Mb, y=Methylation_level, group=sample_name,col = sample_name));
         p <- p + geom_line()+facet_wrap(~chr,ncol = 2)+xlab("Chromosome (Mb)")+ylab("Methylation level")
 	#p <- p + scale_fill_continuous(guide = guide_legend(title = "Sample")) # title text
 	p <- p + scale_fill_continuous(guide = guide_legend(title = NULL))
