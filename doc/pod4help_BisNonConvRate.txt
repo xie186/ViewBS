@@ -40,7 +40,7 @@ Chromsome, like chloroplast genome in plant or PhiX genome.
 
 =item B<minDepth [optional]>
 
- - Minimum read depth for calculating methylation level. [default: 1]
+ - Minimum read depth for calculating methylation level. [default: 5]
 
 =item B<context [optional]>
 
