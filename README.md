@@ -258,7 +258,7 @@ Region file format:
 
 To generate the figure above, use the command shown as below:
 ```
-ViewBS MethOverRegion --region TAIR10_Transposable_Elements.chr1.bed --sample bis_WT.tab.gz,WT --sample bis_cmt23.tab.gz,cmt23 --sample bis_cmt2-3.tab.gz,cmt2-3 --sample bis_drm12cmt2.tab.gz,drm12cmt2 --sample bis_drm12cmt23.tab.gz,drm12cmt23 --prefix bis_TE_chr1_sample --context CHG
+ViewBS MethHeatmap --region CHG_hypo_DMR_drm12cmt23_to_WT.txt --sample bis_WT.tab.gz,WT --sample bis_drm12cmt23.tab.gz,drm12cmt23 --sample bis_cmt23.tab.gz,cmt23 --sample bis_cmt2-3.tab.gz,cmt2-3 --sample bis_drm12cmt2.tab.gz,drm12cmt2 --prefix CHG_hypo_DMR_drm12cmt23_to_WT --context CHG --outdir MethHeatmap
 ```
 
 #### MethOverRegion
