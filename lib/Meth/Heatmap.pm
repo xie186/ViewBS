@@ -151,6 +151,8 @@ sub get_CT_num{
     my $iter = $tabix->query("$chrom:$stt-$end");
     my ($tot_c_num, $tot_t_num, $tot_cover) = (0, 0, 0);
     my $total_cov_num = 0;
+    return "NA" if not defined $iter;
+    
     while ( my $line = $iter->next) {
 	#chrC    13      +       3       643     CG      CGG
         my ($chr, $pos, $strand, $c_num, $t_num, $tem_context, $seq) = split(/\t/, $line);
