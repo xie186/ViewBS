@@ -58,7 +58,9 @@ sub generTab{
 	        next if ($depth < $opts_sub->{minDepth} || $depth > $opts_sub->{maxDepth});
 	        my $lev = $c_num / $depth;
 	        my $bin_num = ($lev ==1) ? $BINNUM -1 : int ( $lev / $opts_sub->{binMethLev}); 
-	        $rec_meth{$sam_name}-> {$tem_context}-> {$bin_num} ++;
+	        ## Get the number of cytosines in each bin
+                $rec_meth{$sam_name}-> {$tem_context}-> {$bin_num} ++;
+                ## Get the number of cytosynes analyzed. 
 	        $rec_meth_tot{$sam_name} -> {$tem_context} ++;
 	        $rec_meth_context{$tem_context} ++;
 	    }
