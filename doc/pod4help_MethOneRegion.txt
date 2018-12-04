@@ -27,11 +27,11 @@ sample and plot the methylation information.
    
  - Suppress extended information or not. [Default: TRUE]
 
-=item B<region [required]>
+=item B<--region [required]>
 
  - One target region. [chr1:100-200]
 
-=item B<sample [required]>
+=item B<--sample [required]>
 
  - Provide the sample information. [Format: methlationFile,samplenName] 
    It is possible to specify more than one sample pair by using the options 
@@ -39,28 +39,28 @@ sample and plot the methylation information.
    a TEXT file. Instead of giving an explicit sample information pairs, 
    you need to write file: followed by the name of the TEXT file.
 
-=item B<sample [optional]>
+=item B<--sample [optional]>
   
  -  Sequence context (CG, CHG or CHH) to plot. It is possible to specify more than 
     one sample pair by using the options --sample more than once. [Default: CG]. 
 
-=item B<minDepth [optional]>
+=item B<--minDepth [optional]>
 
  - Minimum read depth for calculating methylation level. [default: 5]
 
-=item B<maxDepth [optional]>
+=item B<--maxDepth [optional]>
 
  - Maximum read depth for calculating methylation level. [default: 10000]
 
-=item B<flank [optional]>
+=item B<--flank [optional]>
 
  - Extend the provided reigons to the flanking regions. [default: 400]
 
-=item B<outdir [optional]>
+=item B<--outdir [optional]>
 
  - Output folder. [Default: ./]
 
-=item B<prefix [optional]>
+=item B<--prefix [optional]>
 
  - Provide prefix for the output file. [Default: MethOneRegion]
 
