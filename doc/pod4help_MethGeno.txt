@@ -20,12 +20,12 @@ Generate methylation information across chromosome.
 
  - Prints the help message and exists.
 
-=item B<genomeLength [required]>
+=item B<--genomeLength [required]>
 
  - chromosome length information. Can be generated using 'samtools faidx
    ref.fa'
 
-=item B<sample [required]>
+=item B<--sample [required]>
 
  - Provide the sample information. [Format: methlationfile,samplename]
    It is possible to specify more than one sample pair by using the options
@@ -34,19 +34,19 @@ Generate methylation information across chromosome.
    you need to write "file:" followed by the name of the TEXT file.
    See details at: https://github.com/readbio/ViewBS
 
-=item B<outdir>
+=item B<--outdir>
 
  - Output directory. [Default: ./]
 
-=item B<prefix> 
+=item B<--prefix> 
 
  - Prefix for the output  [Default: MethGeno]
 
-=item B<height [optional]>
+=item B<--height [optional]>
 
  - Height of PDF figure. Unit is cm. [default: 10]
 
-=item B<width [optional]>
+=item B<--width [optional]>
 
  - Width of PDF figure. Unit is cm. [default: 10]
 

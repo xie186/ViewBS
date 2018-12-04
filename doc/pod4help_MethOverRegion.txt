@@ -23,9 +23,9 @@ regions, genes, transposable elements, etc.
 
  - Prints the help message and exists.
 
-=item B<verbose>
+=item B<--verbose>
    
-=item B<sample [required]>
+=item B<--sample [required]>
 
  - Provide the sample information. [Format: methlationfile,samplename] 
    It is possible to specify more than one sample pair by using the options 
@@ -34,52 +34,52 @@ regions, genes, transposable elements, etc.
    you need to write "file:" followed by the name of the TEXT file.
    See details at: https://github.com/readbio/ViewBS
 
-=item B<region [required if "file:" not specified]>
+=item B<--region [required if "file:" not specified]>
 
  - regions you want to investigate.
 
-=item B<sample [optional]>
+=item B<--context [optional]>
 
  -  Sequence context (CG, CHG or CHH) to plot. It is possible to specify more than
     one sample pair by using the options --sample more than once. [Default: CG].
 
-=item B<binNumber [optional]>
+=item B<--binNumber [optional]>
 
  - The number of bins for the given regions [default: 60]. 
 
-=item B<flank [optional]>
+=item B<--flank [optional]>
 
  - Flanking regions [default: 2000].
 
-=item B<binLength [optional]>
+=item B<--binLength [optional]>
 
  - The length of bins for the flanking regions for the given regions [default: 100].
 
-=item B<minDepth [optional]>
+=item B<--minDepth [optional]>
 
  - Minimum read depth for calculating methylation level. [default: 5]
 
-=item B<maxDepth [optional]>
+=item B<--maxDepth [optional]>
 
  - Maximum read depth for calculating methylation level. [default: 400]
 
-=item B<outdir [optional]>
+=item B<--outdir [optional]>
 
  - Output directory. [./]
 
-=item B<prefix [optional]>
+=item B<--prefix [optional]>
 
  - Provide prefix for the output file. [Default: MethOverRegion]
 
-=item B<regionName [Optional]>
+=item B<--regionName [Optional]>
 
  - The type of regions provided, like Gene, TE, DMR, etc. [Default: Gene]
 
-=item B<height [optional]>
+=item B<--height [optional]>
 
  - Height of PDF figure. Unit is cm. [default: 10]
 
-=item B<width [optional]>
+=item B<--width [optional]>
 
  - Width of PDF figure. Unit is cm. [default: 10]
 
