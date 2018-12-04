@@ -1,5 +1,8 @@
 ![](image/Header_bioinfoCore.png)
 
+Table of Contents
+=================
+
 * [ViewBS](#viewbs)
   * [Workflow of ViewBS <a name="user\-content\-workflow"></a>](#workflow-of-viewbs-)
   * [Installation <a name="user\-content\-install"></a>](#installation-)
@@ -8,8 +11,8 @@
   * [USAGE <a name="user\-content\-usage"></a>](#usage-)
     * [Download test data](#download-test-data)
     * [Top commands of ViewBS](#top-commands-of-viewbs)
-      * [Top command: MethCoverage](#top-command-methcoverage)
-      * [Top command: BisNonConvRate](#top-command-bisnonconvrate)
+      * [MethCoverage](#methcoverage)
+      * [BisNonConvRate](#bisnonconvrate)
       * [GlobalMethLev](#globalmethlev)
       * [MethLevDist](#methlevdist)
       * [MethGeno](#methgeno)
@@ -17,7 +20,7 @@
       * [MethOverRegion](#methoverregion)
       * [MethOneRegion](#methoneregion)
     * [How to merge figures into one graph](#how-to-merge-figures-into-one-graph)
-      * [1\. Use the R script in ViewBS to do so:](#1-use-the-r-script-in-viewbs-to-do-so)
+      * [1\. Use the R script in ViewBS](#1-use-the-r-script-in-viewbs)
       * [2\. Use the template below to merge multiple figures into one graph\.](#2-use-the-template-below-to-merge-multiple-figures-into-one-graph)
   * [Where to find help <a name="user\-content\-help"></a>](#where-to-find-help-)
   * [Commercial use](#commercial-use)
@@ -25,13 +28,6 @@
   * [Authors](#authors)
 
 # ViewBS
-
-1. [Workflow of ViewBS](#workflow)
-2. [Installation](#install)
-3. [Preparation of input files](#input)
-4. [Usage](#usage)
-5. [Where to find help](#help)
-6. [How to cite](#cite)
 
 ## Workflow of ViewBS <a name="workflow"></a>
 
@@ -137,7 +133,7 @@ https://gitlab.com/BS-seq/ViewBS_testdata
 
 ### Top commands of ViewBS 
 
-#### Top command: MethCoverage
+#### MethCoverage
 
 <p align="center">
   <img src="image/methCoverage_example1.PNG" width="50%" height="50%">
@@ -165,7 +161,7 @@ Under *methCoverage* folder, there will be three files generated.
 * A shell script which can re-generate the figure in PDF file.
 * A figure in PDF file.
 
-#### Top command: BisNonConvRate
+#### BisNonConvRate
 
 <p align="center">
   <img src="image/BisNonConversionRate_example1.png" width="50%" height="50%">
@@ -346,7 +342,7 @@ In ViewBS, all the figure objects will be saved into RDS files. The users can re
 
 There are two ways to do this: 1) use the helper script named `mer_fig.R `; 2) the users can write R script to read the RDS files and merge the figures into one graph with [`cowplot`](https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html). 
 
-#### 1. Use the R script in ViewBS to do so:
+#### 1. Use the R script in ViewBS
 
 Example as below:
 
