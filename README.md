@@ -316,6 +316,83 @@ To generate the figure above, you can use the following command line:
 ViewBS MethOneRegion --region chr5:19499001-19499600 --sample bis_WT.tab.gz,WT --sample bis_cmt23.tab.gz,cmt23 --prefix chr5_19499001-19499600 --context CHG
 ```
 
+### How to merge figures into one graph 
+
+In ViewBS, all the figure objects will be saved into RDS files. The users can restore the RDS files and merge the figures into one graph. 
+
+There are two ways to do this: 1) use the helper script named `mer_fig.R `; 2) the users can write R script to read the RDS files and merge the figures into one graph with [`cowplot`](https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html). 
+
+#### 1. Use the R script in ViewBS to do so:
+
+Example as below:
+
+```
+cd $PATH2testdata
+Rscript ../../lib/scripts/mer_fig.R --input BisNonConvRate/cmt2_proj_allsam.tab.rds,MethGlobal/cmt2_proj_allsam.tab.rds,MethHeatmap/CHG_hypo_DMR_drm12cmt23_to_WT_MethHeatmap_CHG.pdf.rds --output testplot_col2.pdf --aspect_ratio 1.5 --ncol 2
+```
+
+Please see the following for the help information:
+
+```
+$ Rscript ../../lib/scripts/mer_fig.R -h
+
+USAGE
+    Usage: Rscript mer_fig.R --input <fig1.rds,fig2.rds> --labels <A,B,C,D> [options]
+
+DESCRIPTION
+    mer_fig.R is developed to merge figures into on graph.
+
+Options
+    -help | -h
+            Prints the help message and exits.
+
+    --input [required]
+           - RDS files. <fig1.rds,fig2.rds...>
+
+    --labels [optional]
+           - Labesl for each figure. Default: <A,B,C,D...>
+
+    --output [optional]
+           - Output files for the graph. Default: cowplot_mer_fig.pdf
+
+    --ncol [optional]
+           - Number of columns on the graph.
+
+    --base_height [optional]
+           - The height (in inches) of each sub-plot
+
+    --base_aspect_ratio [optional]
+           -  The aspect ratio of each sub-plot. Default: 1.6
+
+Error: Please check the help information!
+Execution halted
+
+```
+
+#### 2. Use the template below to merge multiple figures into one graph. 
+
+```
+library(cowplot) # https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html
+p1 <- readRDS("BisNonConvRate/cmt2_proj_allsam.tab.rds")
+p2 <- readRDS("MethGlobal/cmt2_proj_allsam.tab.rds")
+
+plot2by2 <- plot_grid(p1, p2,
+                      labels=c("A", "B"), ncol = 2)
+
+save_plot("plot2by2.pdf", plot2by2,
+          ncol = 2, # we're saving a grid plot of 2 columns
+          #nrow = 2, # and 2 rows
+          # each individual subplot should have an aspect ratio of 1.3
+          base_aspect_ratio = 2
+          )
+```
+
+Here is how `plot2by2.png` looks like:
+
+![](https://github.com/xie186/ViewBS/blob/master/image/plot2by2.png)
+
+> __Further improvement of the graph can be done in [Inkscape](https://inkscape.org/en/release/0.92.2/) if a PDF file was generated.__
+
 ## Where to find help <a name="help"></a>
 
 If you have bugs, feature requests, please report the issues here: (https://github.com/readbio/ViewBS/issues).
