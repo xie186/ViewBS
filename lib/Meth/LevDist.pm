@@ -64,7 +64,7 @@ sub generTab{
 	    }
 	    close METH;
         }
-    }else{
+    }else{   ### If --region is provided 
 	my @tabix;
 	for(my $i = 0; $i < @{$opts_sub->{sample_list}}; ++$i){
 	    my $sam_info = ${$opts_sub->{sample_list}}[$i];
