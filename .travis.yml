@@ -1,0 +1,13 @@
+language: perl
+
+perl:
+  - "5.22"
+  - "5.18"
+  - "5.12"
+
+install:
+ 
+
+
+language: r
+   

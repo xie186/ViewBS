@@ -32,8 +32,9 @@ sub check_para_sub{
     }
 
     my $exit_code = 0;
-
-    if(!@{$opts_sub->{"sample"}}){
+    #print "xxx\tcc${$opts_sub->{sample}}[0]dd\n";
+    if(!@{$opts_sub->{"sample"}} || length(${$opts_sub->{sample}}[0]) == 0){
+        #print "xxx\t@{$opts_sub->{sample}}\n";
 	print "Please provide --sample!\n";
 	++$exit_code; #exit 0;
     }
