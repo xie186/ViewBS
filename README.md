@@ -6,7 +6,6 @@ Table of Contents
 * [ViewBS](#viewbs)
   * [Workflow of ViewBS <a name="user\-content\-workflow"></a>](#workflow-of-viewbs-)
   * [Installation <a name="user\-content\-install"></a>](#installation-)
-    * [Download the lastest version:](#download-the-lastest-version)
   * [Preparation of input files <a name="user\-content\-input"></a>](#preparation-of-input-files-)
   * [USAGE <a name="user\-content\-usage"></a>](#usage-)
     * [Download test data](#download-test-data)
