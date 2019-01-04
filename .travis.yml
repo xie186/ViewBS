@@ -27,7 +27,7 @@ install:
   # Create environment with `requirement.tt`
   - conda create -y -q -n test-environment --file requirement.txt 
   - source activate test-environment
-  - cpanm --force Complete::Util
+  #- cpanm --force Complete::Util
   - cpanm --force Getopt::Long::Subcommand
 
 script:
