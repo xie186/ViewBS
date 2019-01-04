@@ -9,18 +9,21 @@ perl:
 
 install:
   # Install conda + bioconda
-  - wget https://repo.continuum.io/miniconda/Miniconda2-4.5.12-Linux-x86.sh -O miniconda.sh;
-  - bash miniconda.sh -b -p $HOME/miniconda
-  - export PATH="$HOME/miniconda/bin:$PATH"
+  - wget https://repo.anaconda.com/miniconda/Miniconda2-latest-Linux-x86_64.sh
+  - bash Miniconda2-latest-Linux-x86_64.sh -b
+  - export PATH="$HOME/miniconda2/bin:$PATH"
   #- hash -r
   #- conda config --set always_yes yes --set changeps1 no
-  - conda config --add channels bioconda
-  - conda config --add channels anaconda
+  - conda config --add channels biocondaiii
+  - conda config --add channels anacondai
+  - conda config --add channels conda-forge
+  - conda config --add channels r
+
   #- conda update -q conda
   - conda install anaconda-client
   - conda update -q conda
   - conda info -a
-  # Create environment with `requirement.txt`
+  # Create environment with `requirement.tt`
   - conda create -q -n test-environment --file requirement.txt 
   - source activate test-environment
   - cpanm Getopt::Long::Subcommand
