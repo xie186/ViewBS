@@ -32,12 +32,12 @@ install:
   #- cpanm --force Complete::Util
   #- cpanm Getopt::Long::Subcommand
 
-  - conda install -c bioconda r-pheatmap
-  - conda install -c r r-ggplot2
-  - conda install -c r r-reshape2
-  - conda install -c conda-forge r-cowplot
-  - conda install -c bioconda perl-bio-db-hts
-  - conda install -c bioconda perl-bioperl
+  - conda install -y -c bioconda r-pheatmap
+  - conda install -y -c r r-ggplot2
+  - conda install -y -c r r-reshape2
+  - conda install -y -c conda-forge r-cowplot
+  - conda install -y -c bioconda perl-bio-db-hts
+  - conda install -y -c bioconda perl-bioperl
   - cpanm Getopt::Long::Subcommand
 
 script:
