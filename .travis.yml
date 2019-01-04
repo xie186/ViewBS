@@ -18,6 +18,7 @@ install:
   - conda config --add channels anacondai
   - conda config --add channels conda-forge
   - conda config --add channels r
+  - conda -V  
 
   #- conda update -q conda
   #- conda install anaconda-client
