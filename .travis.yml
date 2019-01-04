@@ -12,8 +12,8 @@ install:
   - wget https://repo.anaconda.com/miniconda/Miniconda2-latest-Linux-x86_64.sh
   - bash Miniconda2-latest-Linux-x86_64.sh -b
   - export PATH="$HOME/miniconda2/bin:$PATH"
-  #- hash -r
-  #- conda config --set always_yes yes --set changeps1 no
+  - hash -r
+  - conda config --set always_yes yes --set changeps1 no
   - conda config --add channels bioconda
   - conda config --add channels anaconda
   - conda config --add channels conda-forge
@@ -42,3 +42,8 @@ install:
 
 script:
   - ./ViewBS MethLevDist --sample test_data/test_WT.tab.gz,WT
+
+after_success:
+  - test $TRAVIS_BRANCH = "master" && conda install conda-build && conda install anaconda-client && bash conda/conda_upload.sh
+
+
