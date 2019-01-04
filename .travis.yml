@@ -14,6 +14,7 @@ install:
   - export PATH="$HOME/miniconda2/bin:$PATH"
   - hash -r
   - conda config --set always_yes yes --set changeps1 no
+  - conda config --set anaconda_upload yes
   - conda config --add channels bioconda
   - conda config --add channels anaconda
   - conda config --add channels conda-forge
@@ -31,7 +32,7 @@ install:
   #- source activate test-environment
   #- cpanm --force Complete::Util
   #- cpanm Getopt::Long::Subcommand
-
+  - conda install -y python=2.7
   - conda install -y -c bioconda r-pheatmap
   - conda install -y -c r r-ggplot2
   - conda install -y -c r r-reshape2

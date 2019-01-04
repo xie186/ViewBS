@@ -1,8 +1,17 @@
 package:
   name: viewbs ## package/name must be lowercase
-  version: {{ environ['0.1.6'] }}
+  #version: {{ environ['0.1.6'] }}
+  version: 0.1.6
 
 build:
   script_env:
    - VERSION
    - CONDA_BLD_PATH
+
+requirements:
+  build:
+    - pip
+  run:
+    - soupsieve
+    - numpy >=1.13
+
