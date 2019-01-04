@@ -1,5 +1,5 @@
 package:
-  name: ViewBS
+  name: viewbs ## package/name must be lowercase
   version: {{ environ['0.1.6'] }}
 
 build:

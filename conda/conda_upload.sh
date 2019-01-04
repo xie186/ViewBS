@@ -1,5 +1,5 @@
 # Only need to change these two variables
-PKG_NAME=ViewBS
+PKG_NAME=viewbs
 USER=xie186
 
 OS=$TRAVIS_OS_NAME-64
