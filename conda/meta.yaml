@@ -1,4 +1,5 @@
 package:
+  name: ViewBS
   version: {{ environ['0.1.6'] }}
 
 build:
