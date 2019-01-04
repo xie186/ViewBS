@@ -27,9 +27,17 @@ install:
   # Create environment with `requirement.tt`
   - cat /proc/version
 
-  - conda create -y -q -n test-environment --file requirement.txt 
-  - source activate test-environment
+  #- conda create -y -q -n test-environment --file requirement.txt 
+  #- source activate test-environment
   #- cpanm --force Complete::Util
+  #- cpanm Getopt::Long::Subcommand
+
+  - conda install -c bioconda r-pheatmap
+  - conda install -c r r-ggplot2
+  - conda install -c r r-reshape2
+  - conda install -c conda-forge r-cowplot
+  - conda install -c bioconda perl-bio-db-hts
+  - conda install -c bioconda perl-bioperl
   - cpanm Getopt::Long::Subcommand
 
 script:
