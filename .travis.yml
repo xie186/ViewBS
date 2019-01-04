@@ -41,7 +41,7 @@ install:
   - cpanm Getopt::Long::Subcommand
 
 script:
-  - ./ViewBS MethLevDist --sample test_data/test_WT.tab.gz,WT
+  - ./ViewBS MethLevDist --sample data/test_data/test_WT.tab.gz,WT
 
 after_success:
   - test $TRAVIS_BRANCH = "master" && conda install conda-build && conda install anaconda-client && bash conda/conda_upload.sh
