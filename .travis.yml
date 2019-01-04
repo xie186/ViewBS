@@ -25,10 +25,12 @@ install:
   #- conda update -q conda
   #- conda info -a
   # Create environment with `requirement.tt`
+  - cat /proc/version
+
   - conda create -y -q -n test-environment --file requirement.txt 
   - source activate test-environment
   #- cpanm --force Complete::Util
-  - cpanm --force Getopt::Long::Subcommand
+  - cpanm Getopt::Long::Subcommand
 
 script:
   - /ViewBS MethLevDist --sample test_data/test_WT.tab.gz,WT
