@@ -47,14 +47,22 @@ Here is the workflow of ViewBS:
 
 ## Installation <a name="install"></a>
 
-> To make the installation of dependencies easier, a script was developped. `perl INSTALL.pl
-` can be used as a helper to install and check the dependencies.
+### Install `ViewBS` using `conda`
+
+Please see the link here: https://github.com/xie186/ViewBS/wiki/Install-ViewBS-using-conda 
+
+Then download the lasted version of `ViewBS`: https://github.com/xie186/ViewBS/releases/latest
 
 ### Download the lastest version:
 
 ```
 https://github.com/xie186/ViewBS/releases/latest
 ```
+
+> To make the installation of dependencies easier, a script was developped. `perl INSTALL.pl
+` can be used as a helper to install and check the dependencies.
+
+You can also install it step by step shown as below: 
 
 1. Install [htslib](https://github.com/samtools/htslib)
 2. Perl version: >= 5.14.4
