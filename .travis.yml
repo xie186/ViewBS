@@ -33,6 +33,7 @@ install:
   #- cpanm --force Complete::Util
   #- cpanm Getopt::Long::Subcommand
   - conda install -y python=2.7
+  - pip2.7 install soupsieve
   - conda install -y -c bioconda r-pheatmap
   - conda install -y -c r r-ggplot2
   - conda install -y -c r r-reshape2
