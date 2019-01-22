@@ -148,7 +148,7 @@ https://gitlab.com/BS-seq/ViewBS_testdata
   <img src="image/methCoverage_example1.PNG" width="50%" height="50%">
 </p>
 <p align="center">
-  <b>An Example of Coverage Distribution of BS-seq</b><br>
+  <b>An Example of Reverse Cumulative Plot with x-axis representing the coverage of BS-seq.</b><br>
 </p>
 
 To generate the figure above, use the command shown as below:
