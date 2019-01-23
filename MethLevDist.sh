@@ -1,1 +1,0 @@
-Rscript /media/xie186/easystore/WIC/njau_pear_meth/scripts/ViewBS/lib/Meth/LevDist.R --input /media/xie186/easystore/WIC/njau_pear_meth/scripts/ViewBS/MethLevDist.tab --percentage TRUE --height 10 --width 10 --output /media/xie186/easystore/WIC/njau_pear_meth/scripts/ViewBS/MethLevDist.pdf
