@@ -28,19 +28,19 @@ install:
   # Create environment with `requirement.tt`
   - cat /proc/version
 
-  #- conda create -y -q -n test-environment --file requirement.txt 
-  #- source activate test-environment
+  - conda env create --name test-environment --file environment.yaml 
+  - source activate test-environment
   #- cpanm --force Complete::Util
-  #- cpanm Getopt::Long::Subcommand
-  - conda install -y python=2.7
-  - pip2.7 install soupsieve
-  - conda install -y -c bioconda r-pheatmap
-  - conda install -y -c r r-ggplot2
-  - conda install -y -c r r-reshape2
-  - conda install -y -c conda-forge r-cowplot
-  - conda install -y -c bioconda perl-bio-db-hts
-  - conda install -y -c bioconda perl-bioperl
   - cpanm Getopt::Long::Subcommand
+  #- conda install -y python=2.7
+  #- pip2.7 install soupsieve
+  #- conda install -y -c bioconda r-pheatmap
+  #- conda install -y -c r r-ggplot2
+  #- conda install -y -c r r-reshape2
+  #- conda install -y -c conda-forge r-cowplot
+  #- conda install -y -c bioconda perl-bio-db-hts
+  #- conda install -y -c bioconda perl-bioperl
+  #- cpanm Getopt::Long::Subcommand
 
 script:
   - ./ViewBS MethLevDist --sample data/test_data/test_WT.tab.gz,WT
