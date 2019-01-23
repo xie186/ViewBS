@@ -32,20 +32,12 @@ install:
   - source activate test-environment
   #- cpanm --force Complete::Util
   - cpanm Getopt::Long::Subcommand
-  #- conda install -y python=2.7
-  #- pip2.7 install soupsieve
-  #- conda install -y -c bioconda r-pheatmap
-  #- conda install -y -c r r-ggplot2
-  #- conda install -y -c r r-reshape2
-  #- conda install -y -c conda-forge r-cowplot
-  #- conda install -y -c bioconda perl-bio-db-hts
-  #- conda install -y -c bioconda perl-bioperl
-  #- cpanm Getopt::Long::Subcommand
+  - conda config --set anaconda_upload yes
 
 script:
   - ./ViewBS MethLevDist --sample data/test_data/test_WT.tab.gz,WT
 
 after_success:
-  - test $TRAVIS_BRANCH = "master" && conda install conda-build && conda install anaconda-client && bash conda/conda_upload.sh
+  - test $TRAVIS_BRANCH = "master" && conda install conda-build && conda install anaconda-clienti &&  bash conda/conda_upload.sh
 
 

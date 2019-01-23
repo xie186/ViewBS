@@ -3,6 +3,8 @@
 ## Generate TOC 
 #~/software/gh-md-toc README.md
 #/media/xie*/e*/WIC/n*_p*_meth/scripts/ViewBS
+## conda env create --name test_viewbs --file environment.yaml
+
 
 test.sh
 .dir_bash_history*
