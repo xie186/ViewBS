@@ -8,10 +8,10 @@ build:
    - VERSION
    - CONDA_BLD_PATH
 
-requirements:
-  build:
-    - pip
-  run:
-    - soupsieve
-    - numpy >=1.13
+#requirements:
+#  build:
+#    - pip
+#  run:
+#    - soupsieve
+#    - numpy >=1.13
 
