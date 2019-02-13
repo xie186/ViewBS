@@ -33,6 +33,14 @@ sub processArgvSampleCoverage{
                 print "$line";
                 chomp $line;
                 my ($meth_file, $sam_name) = split(/\s+/, $line);
+                if(!$sam_name || !$meth_file){
+                    print "Sample information file should contain at least two collumns (methylation file and sample name). Please provide the correct sample information file\n";
+                    exit 1;
+                }
+                if(!-e $meth_file){
+                    print "File $meth_file not detected. Please check the sample information.\n";
+                    exit 1; 
+                }
                 push @{$opts_sub -> {$SAMPLELIST}}, "$meth_file,$sam_name";
             }
         }
