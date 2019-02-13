@@ -27,7 +27,7 @@ sub processArgvSampleCoverage{
             exit 0;
         }else{
             $sample[0] =~s/file://;
-            open SAM, $sample[0] or die "$!";
+            open SAM, $sample[0] or die "$!: $sample[0]";
             while( my $line = <SAM>){
                 next if $line =~ /#/;
                 print "$line";
@@ -105,7 +105,7 @@ sub processArgvSampleOverMid{
    }else{
         if(@sample > 1){
             print "Only one --sample should be provided if you use a TEXT file to provide the sample information.\n";
-            exit 0;
+            exit 1;
         }else{
             $sample[0] =~s/file://;
             open SAM, $sample[0] or die "$!";
@@ -134,7 +134,8 @@ sub processArgvSampleOneRegion{
    }else{
         if(@sample > 1){
             print "Only one --sample should be provided if you use a TEXT file to provide the sample information.\n";
-            exit 0;
+            #The only universally recognized values for EXPR are 0 for success and 1 for error; 
+            exit 1; 
         }else{
             $sample[0] =~s/file://;
             open SAM, $sample[0] or die "$!";
