@@ -8,6 +8,12 @@ build:
    - VERSION
    - CONDA_BLD_PATH
 
+test:
+  # downstreams:
+  #   - git
+  #   - automake
+  commands:
+    - ViewBS --help
 #requirements:
 #  build:
 #    - pip
