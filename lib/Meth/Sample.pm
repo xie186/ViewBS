@@ -105,7 +105,7 @@ sub processArgvSampleOverMid{
    }else{
         if(@sample > 1){
             print "Only one --sample should be provided if you use a TEXT file to provide the sample information.\n";
-            exit 1;
+            exit 1; # The only universally recognized values for EXPR are 0 for success and 1 for error;
         }else{
             $sample[0] =~s/file://;
             open SAM, $sample[0] or die "$!";
