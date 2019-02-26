@@ -66,7 +66,8 @@ https://github.com/xie186/ViewBS/releases/latest
 You can also install it step by step shown as below: 
 
 1. Install [htslib](https://github.com/samtools/htslib)
-2. Perl version: (v5.14.4, v5.16.3, v5.18.2, v5.22.1)
+2. Perl version: >v5.8.7
+  
 3. Perl packages:
    * Getopt::Long::Subcommand - Process command-line options, with subcommands and completion
    * Bio::DB::HTS::Tabix - Object oriented access to the underlying tbx C methods
@@ -76,6 +77,7 @@ You can also install it step by step shown as below:
     chmod 755 cpanm
     cpanm --local-lib=~/perl5 local::lib && eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
     ./cpanm Getopt::Long::Subcommand
+    ./cpanm Getopt::Long (> 2.50)
     ./cpanm Bio::DB::HTS::Tabix 
     ./cpanm Bio::SeqIO
     ```
