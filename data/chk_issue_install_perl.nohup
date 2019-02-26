@@ -1,0 +1,420 @@
+nohup: ignoring input
+Fetching perl 5.28.1 as /home/xie186/perl5/perlbrew/dists/perl-5.28.1.tar.gz
+Download http://www.cpan.org/src/5.0/perl-5.28.1.tar.gz to /home/xie186/perl5/perlbrew/dists/perl-5.28.1.tar.gz
+Installing /home/xie186/perl5/perlbrew/build/perl-5.28.1/perl-5.28.1 into ~/perl5/perlbrew/perls/perl-5.28.1
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.28.1.log
+
+perl-5.28.1 is successfully installed.
+Fetching perl 5.26.3 as /home/xie186/perl5/perlbrew/dists/perl-5.26.3.tar.bz2
+Download http://www.cpan.org/src/5.0/perl-5.26.3.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.26.3.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.26.3/perl-5.26.3 into ~/perl5/perlbrew/perls/perl-5.26.3
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.26.3.log
+
+perl-5.26.3 is successfully installed.
+Installing /home/xie186/perl5/perlbrew/build/perl-5.26.2/perl-5.26.2 into ~/perl5/perlbrew/perls/perl-5.26.2
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.26.2.log
+
+perl-5.26.2 is successfully installed.
+Fetching perl 5.26.1 as /home/xie186/perl5/perlbrew/dists/perl-5.26.1.tar.bz2
+Download http://www.cpan.org/authors/id/S/SH/SHAY/perl-5.26.1.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.26.1.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.26.1/perl-5.26.1 into ~/perl5/perlbrew/perls/perl-5.26.1
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.26.1.log
+
+perl-5.26.1 is successfully installed.
+Fetching perl 5.26.0 as /home/xie186/perl5/perlbrew/dists/perl-5.26.0.tar.bz2
+Download http://www.cpan.org/authors/id/X/XS/XSAWYERX/perl-5.26.0.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.26.0.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.26.0/perl-5.26.0 into ~/perl5/perlbrew/perls/perl-5.26.0
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.26.0.log
+
+perl-5.26.0 is successfully installed.
+Fetching perl 5.24.4 as /home/xie186/perl5/perlbrew/dists/perl-5.24.4.tar.bz2
+Download http://www.cpan.org/authors/id/S/SH/SHAY/perl-5.24.4.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.24.4.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.24.4/perl-5.24.4 into ~/perl5/perlbrew/perls/perl-5.24.4
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.24.4.log
+
+perl-5.24.4 is successfully installed.
+Fetching perl 5.24.3 as /home/xie186/perl5/perlbrew/dists/perl-5.24.3.tar.bz2
+Download http://www.cpan.org/authors/id/S/SH/SHAY/perl-5.24.3.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.24.3.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.24.3/perl-5.24.3 into ~/perl5/perlbrew/perls/perl-5.24.3
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.24.3.log
+
+perl-5.24.3 is successfully installed.
+Fetching perl 5.24.2 as /home/xie186/perl5/perlbrew/dists/perl-5.24.2.tar.bz2
+Download http://www.cpan.org/authors/id/S/SH/SHAY/perl-5.24.2.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.24.2.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.24.2/perl-5.24.2 into ~/perl5/perlbrew/perls/perl-5.24.2
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.24.2.log
+
+perl-5.24.2 is successfully installed.
+Fetching perl 5.24.0 as /home/xie186/perl5/perlbrew/dists/perl-5.24.0.tar.bz2
+Download http://www.cpan.org/authors/id/R/RJ/RJBS/perl-5.24.0.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.24.0.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.24.0/perl-5.24.0 into ~/perl5/perlbrew/perls/perl-5.24.0
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.24.0.log
+
+perl-5.24.0 is successfully installed.
+Fetching perl 5.22.4 as /home/xie186/perl5/perlbrew/dists/perl-5.22.4.tar.bz2
+Download http://www.cpan.org/authors/id/S/SH/SHAY/perl-5.22.4.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.22.4.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.22.4/perl-5.22.4 into ~/perl5/perlbrew/perls/perl-5.22.4
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.22.4.log
+
+perl-5.22.4 is successfully installed.
+Fetching perl 5.22.3 as /home/xie186/perl5/perlbrew/dists/perl-5.22.3.tar.bz2
+Download http://www.cpan.org/authors/id/S/SH/SHAY/perl-5.22.3.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.22.3.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.22.3/perl-5.22.3 into ~/perl5/perlbrew/perls/perl-5.22.3
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.22.3.log
+
+perl-5.22.3 is successfully installed.
+Fetching perl 5.22.2 as /home/xie186/perl5/perlbrew/dists/perl-5.22.2.tar.bz2
+Download http://www.cpan.org/authors/id/S/SH/SHAY/perl-5.22.2.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.22.2.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.22.2/perl-5.22.2 into ~/perl5/perlbrew/perls/perl-5.22.2
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.22.2.log
+
+perl-5.22.2 is successfully installed.
+Fetching perl 5.22.1 as /home/xie186/perl5/perlbrew/dists/perl-5.22.1.tar.bz2
+Download http://www.cpan.org/authors/id/S/SH/SHAY/perl-5.22.1.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.22.1.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.22.1/perl-5.22.1 into ~/perl5/perlbrew/perls/perl-5.22.1
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.22.1.log
+
+perl-5.22.1 is successfully installed.
+Fetching perl 5.22.0 as /home/xie186/perl5/perlbrew/dists/perl-5.22.0.tar.bz2
+Download http://www.cpan.org/authors/id/R/RJ/RJBS/perl-5.22.0.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.22.0.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.22.0/perl-5.22.0 into ~/perl5/perlbrew/perls/perl-5.22.0
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.22.0.log
+
+perl-5.22.0 is successfully installed.
+Fetching perl 5.20.3 as /home/xie186/perl5/perlbrew/dists/perl-5.20.3.tar.bz2
+Download http://www.cpan.org/authors/id/S/SH/SHAY/perl-5.20.3.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.20.3.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.20.3/perl-5.20.3 into ~/perl5/perlbrew/perls/perl-5.20.3
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.20.3.log
+
+perl-5.20.3 is successfully installed.
+Fetching perl 5.20.2 as /home/xie186/perl5/perlbrew/dists/perl-5.20.2.tar.bz2
+Download http://www.cpan.org/authors/id/S/SH/SHAY/perl-5.20.2.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.20.2.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.20.2/perl-5.20.2 into ~/perl5/perlbrew/perls/perl-5.20.2
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.20.2.log
+
+perl-5.20.2 is successfully installed.
+Fetching perl 5.20.1 as /home/xie186/perl5/perlbrew/dists/perl-5.20.1.tar.bz2
+Download http://www.cpan.org/authors/id/S/SH/SHAY/perl-5.20.1.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.20.1.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.20.1/perl-5.20.1 into ~/perl5/perlbrew/perls/perl-5.20.1
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.20.1.log
+
+perl-5.20.1 is successfully installed.
+Fetching perl 5.20.0 as /home/xie186/perl5/perlbrew/dists/perl-5.20.0.tar.bz2
+Download http://www.cpan.org/authors/id/R/RJ/RJBS/perl-5.20.0.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.20.0.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.20.0/perl-5.20.0 into ~/perl5/perlbrew/perls/perl-5.20.0
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.20.0.log
+
+perl-5.20.0 is successfully installed.
+Fetching perl 5.18.4 as /home/xie186/perl5/perlbrew/dists/perl-5.18.4.tar.bz2
+Download http://www.cpan.org/authors/id/R/RJ/RJBS/perl-5.18.4.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.18.4.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.18.4/perl-5.18.4 into ~/perl5/perlbrew/perls/perl-5.18.4
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.18.4.log
+
+perl-5.18.4 is successfully installed.
+Fetching perl 5.18.3 as /home/xie186/perl5/perlbrew/dists/perl-5.18.3.tar.bz2
+Download http://www.cpan.org/authors/id/R/RJ/RJBS/perl-5.18.3.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.18.3.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.18.3/perl-5.18.3 into ~/perl5/perlbrew/perls/perl-5.18.3
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.18.3.log
+
+perl-5.18.3 is successfully installed.
+Fetching perl 5.18.2 as /home/xie186/perl5/perlbrew/dists/perl-5.18.2.tar.bz2
+Download http://www.cpan.org/authors/id/R/RJ/RJBS/perl-5.18.2.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.18.2.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.18.2/perl-5.18.2 into ~/perl5/perlbrew/perls/perl-5.18.2
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.18.2.log
+
+perl-5.18.2 is successfully installed.
+Fetching perl 5.18.1 as /home/xie186/perl5/perlbrew/dists/perl-5.18.1.tar.bz2
+Download http://www.cpan.org/authors/id/R/RJ/RJBS/perl-5.18.1.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.18.1.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.18.1/perl-5.18.1 into ~/perl5/perlbrew/perls/perl-5.18.1
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.18.1.log
+
+perl-5.18.1 is successfully installed.
+Fetching perl 5.18.0 as /home/xie186/perl5/perlbrew/dists/perl-5.18.0.tar.bz2
+Download http://www.cpan.org/authors/id/R/RJ/RJBS/perl-5.18.0.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.18.0.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.18.0/perl-5.18.0 into ~/perl5/perlbrew/perls/perl-5.18.0
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.18.0.log
+
+perl-5.18.0 is successfully installed.
+Installing /home/xie186/perl5/perlbrew/build/perl-5.16.3/perl-5.16.3 into ~/perl5/perlbrew/perls/perl-5.16.3
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.16.3.log
+
+perl-5.16.3 is successfully installed.
+Fetching perl 5.16.2 as /home/xie186/perl5/perlbrew/dists/perl-5.16.2.tar.bz2
+Download http://www.cpan.org/authors/id/R/RJ/RJBS/perl-5.16.2.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.16.2.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.16.2/perl-5.16.2 into ~/perl5/perlbrew/perls/perl-5.16.2
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.16.2.log
+
+perl-5.16.2 is successfully installed.
+Fetching perl 5.16.1 as /home/xie186/perl5/perlbrew/dists/perl-5.16.1.tar.bz2
+Download http://www.cpan.org/authors/id/R/RJ/RJBS/perl-5.16.1.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.16.1.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.16.1/perl-5.16.1 into ~/perl5/perlbrew/perls/perl-5.16.1
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.16.1.log
+
+perl-5.16.1 is successfully installed.
+Fetching perl 5.16.0 as /home/xie186/perl5/perlbrew/dists/perl-5.16.0.tar.bz2
+Download http://www.cpan.org/authors/id/R/RJ/RJBS/perl-5.16.0.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.16.0.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.16.0/perl-5.16.0 into ~/perl5/perlbrew/perls/perl-5.16.0
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.16.0.log
+
+perl-5.16.0 is successfully installed.
+Fetching perl 5.14.3 as /home/xie186/perl5/perlbrew/dists/perl-5.14.3.tar.bz2
+Download http://www.cpan.org/authors/id/D/DO/DOM/perl-5.14.3.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.14.3.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.14.3/perl-5.14.3 into ~/perl5/perlbrew/perls/perl-5.14.3
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.14.3.log
+
+perl-5.14.3 is successfully installed.
+Fetching perl 5.14.2 as /home/xie186/perl5/perlbrew/dists/perl-5.14.2.tar.bz2
+Download http://www.cpan.org/authors/id/F/FL/FLORA/perl-5.14.2.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.14.2.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.14.2/perl-5.14.2 into ~/perl5/perlbrew/perls/perl-5.14.2
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.14.2.log
+
+perl-5.14.2 is successfully installed.
+Fetching perl 5.14.1 as /home/xie186/perl5/perlbrew/dists/perl-5.14.1.tar.bz2
+Download http://www.cpan.org/authors/id/J/JE/JESSE/perl-5.14.1.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.14.1.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.14.1/perl-5.14.1 into ~/perl5/perlbrew/perls/perl-5.14.1
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.14.1.log
+
+perl-5.14.1 is successfully installed.
+Fetching perl 5.14.0 as /home/xie186/perl5/perlbrew/dists/perl-5.14.0.tar.bz2
+Download http://www.cpan.org/authors/id/J/JE/JESSE/perl-5.14.0.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.14.0.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.14.0/perl-5.14.0 into ~/perl5/perlbrew/perls/perl-5.14.0
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.14.0.log
+
+perl-5.14.0 is successfully installed.
+Fetching perl 5.12.5 as /home/xie186/perl5/perlbrew/dists/perl-5.12.5.tar.bz2
+Download http://www.cpan.org/authors/id/D/DO/DOM/perl-5.12.5.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.12.5.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.12.5/perl-5.12.5 into ~/perl5/perlbrew/perls/perl-5.12.5
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.12.5.log
+
+perl-5.12.5 is successfully installed.
+Fetching perl 5.12.4 as /home/xie186/perl5/perlbrew/dists/perl-5.12.4.tar.bz2
+Download http://www.cpan.org/authors/id/L/LB/LBROCARD/perl-5.12.4.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.12.4.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.12.4/perl-5.12.4 into ~/perl5/perlbrew/perls/perl-5.12.4
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.12.4.log
+
+perl-5.12.4 is successfully installed.
+Fetching perl 5.12.3 as /home/xie186/perl5/perlbrew/dists/perl-5.12.3.tar.bz2
+Download http://www.cpan.org/authors/id/R/RJ/RJBS/perl-5.12.3.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.12.3.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.12.3/perl-5.12.3 into ~/perl5/perlbrew/perls/perl-5.12.3
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.12.3.log
+
+perl-5.12.3 is successfully installed.
+Fetching perl 5.12.2 as /home/xie186/perl5/perlbrew/dists/perl-5.12.2.tar.bz2
+Download http://www.cpan.org/authors/id/J/JE/JESSE/perl-5.12.2.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.12.2.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.12.2/perl-5.12.2 into ~/perl5/perlbrew/perls/perl-5.12.2
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.12.2.log
+
+perl-5.12.2 is successfully installed.
+Fetching perl 5.12.1 as /home/xie186/perl5/perlbrew/dists/perl-5.12.1.tar.bz2
+Download http://www.cpan.org/authors/id/J/JE/JESSE/perl-5.12.1.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.12.1.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.12.1/perl-5.12.1 into ~/perl5/perlbrew/perls/perl-5.12.1
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.12.1.log
+
+perl-5.12.1 is successfully installed.
+Fetching perl 5.12.0 as /home/xie186/perl5/perlbrew/dists/perl-5.12.0.tar.bz2
+Download http://www.cpan.org/authors/id/J/JE/JESSE/perl-5.12.0.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.12.0.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.12.0/perl-5.12.0 into ~/perl5/perlbrew/perls/perl-5.12.0
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.12.0.log
+
+perl-5.12.0 is successfully installed.
+Fetching perl 5.10.1 as /home/xie186/perl5/perlbrew/dists/perl-5.10.1.tar.bz2
+Download http://www.cpan.org/authors/id/D/DA/DAPM/perl-5.10.1.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.10.1.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.10.1/perl-5.10.1 into ~/perl5/perlbrew/perls/perl-5.10.1
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.10.1.log
+
+perl-5.10.1 is successfully installed.
+Fetching perl 5.10.0 as /home/xie186/perl5/perlbrew/dists/perl-5.10.0.tar.gz
+Download http://www.cpan.org/authors/id/R/RG/RGARCIA/perl-5.10.0.tar.gz to /home/xie186/perl5/perlbrew/dists/perl-5.10.0.tar.gz
+Installing /home/xie186/perl5/perlbrew/build/perl-5.10.0/perl-5.10.0 into ~/perl5/perlbrew/perls/perl-5.10.0
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.10.0.log
+
+perl-5.10.0 is successfully installed.
+Fetching perl 5.8.9 as /home/xie186/perl5/perlbrew/dists/perl-5.8.9.tar.bz2
+Download http://www.cpan.org/authors/id/N/NW/NWCLARK/perl-5.8.9.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.8.9.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.8.9/perl-5.8.9 into ~/perl5/perlbrew/perls/perl-5.8.9
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.8.9.log
+
+perl-5.8.9 is successfully installed.
+Fetching perl 5.8.8 as /home/xie186/perl5/perlbrew/dists/perl-5.8.8.tar.bz2
+Download http://www.cpan.org/authors/id/N/NW/NWCLARK/perl-5.8.8.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.8.8.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.8.8/perl-5.8.8 into ~/perl5/perlbrew/perls/perl-5.8.8
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.8.8.log
+
+perl-5.8.8 is successfully installed.
+Fetching perl 5.8.7 as /home/xie186/perl5/perlbrew/dists/perl-5.8.7.tar.bz2
+Download http://www.cpan.org/authors/id/N/NW/NWCLARK/perl-5.8.7.tar.bz2 to /home/xie186/perl5/perlbrew/dists/perl-5.8.7.tar.bz2
+Installing /home/xie186/perl5/perlbrew/build/perl-5.8.7/perl-5.8.7 into ~/perl5/perlbrew/perls/perl-5.8.7
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.perl-5.8.7.log
+
+perl-5.8.7 is successfully installed.
+Fetching perl 5.24.4 as /home/xie186/perl5/perlbrew/dists/cperl-5.24.4.tar.gz
+Download https://github.com/perl11/cperl/archive/cperl-5.24.4.tar.gz to /home/xie186/perl5/perlbrew/dists/cperl-5.24.4.tar.gz
+Installing /home/xie186/perl5/perlbrew/build/cperl-5.24.4/cperl-cperl-5.24.4 into ~/perl5/perlbrew/perls/cperl-5.24.4
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.cperl-5.24.4.log
+
+cperl-5.24.4 is successfully installed.
+Fetching perl 5.26.4 as /home/xie186/perl5/perlbrew/dists/cperl-5.26.4.tar.gz
+Download https://github.com/perl11/cperl/archive/cperl-5.26.4.tar.gz to /home/xie186/perl5/perlbrew/dists/cperl-5.26.4.tar.gz
+Installing /home/xie186/perl5/perlbrew/build/cperl-5.26.4/cperl-cperl-5.26.4 into ~/perl5/perlbrew/perls/cperl-5.26.4
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.cperl-5.26.4.log
+
+cperl-5.26.4 is successfully installed.
+Fetching perl 5.28.0 as /home/xie186/perl5/perlbrew/dists/cperl-5.28.0.tar.gz
+Download https://github.com/perl11/cperl/archive/cperl-5.28.0.tar.gz to /home/xie186/perl5/perlbrew/dists/cperl-5.28.0.tar.gz
+Installing /home/xie186/perl5/perlbrew/build/cperl-5.28.0/cperl-cperl-5.28.0 into ~/perl5/perlbrew/perls/cperl-5.28.0
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.cperl-5.28.0.log
+
+cperl-5.28.0 is successfully installed.
+Fetching perl 5.28.1 as /home/xie186/perl5/perlbrew/dists/cperl-5.28.1.tar.gz
+Download https://github.com/perl11/cperl/archive/cperl-5.28.1.tar.gz to /home/xie186/perl5/perlbrew/dists/cperl-5.28.1.tar.gz
+Installing /home/xie186/perl5/perlbrew/build/cperl-5.28.1/cperl-cperl-5.28.1 into ~/perl5/perlbrew/perls/cperl-5.28.1
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.cperl-5.28.1.log
+
+cperl-5.28.1 is successfully installed.
+Fetching perl 5.29.0 as /home/xie186/perl5/perlbrew/dists/cperl-5.29.0.tar.gz
+Download https://github.com/perl11/cperl/archive/cperl-5.29.0.tar.gz to /home/xie186/perl5/perlbrew/dists/cperl-5.29.0.tar.gz
+Installing /home/xie186/perl5/perlbrew/build/cperl-5.29.0/cperl-cperl-5.29.0 into ~/perl5/perlbrew/perls/cperl-5.29.0
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.cperl-5.29.0.log
+
+cperl-5.29.0 is successfully installed.

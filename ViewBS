@@ -38,12 +38,12 @@ use SubCmd::BisNonConvRate;
 my $main_path = dirname(abs_path $0);
 
 my %opts;   ## store the values for common parameters
+my %opts_subcmd; ### store the values for sub command parameters
 
 ### Return hash structure, with these keys: success, subcommand (array of str) by GetOptions
 my $resOpt = &processCMD();  
 
 &check_parameter();
-my %opts_subcmd; ### store the values for sub command parameters
 sub check_parameter{
      
     # check if there is a subcommand given.
@@ -214,6 +214,7 @@ sub processCMD{
             },
         }
     );
+    #print "UUXXX", join("\t", $resOpt->{subcommand}), "\n";
     push @{$opts_subcmd{subcommand}}, @{$resOpt->{subcommand}} if exists $resOpt->{subcommand};
     return $resOpt;
 }

@@ -19,7 +19,7 @@ sub new{
 sub check_para_sub{
 
     my ($class, $opts_sub, $opts) = @_;
-
+    #print "$opts_sub\t", join("\n", keys %$opts_sub), "\n";
     if($opts->{help}){
         pod2usage(-exitval => 0, -verbose => 2, -input => "$FindBin::Bin/doc/pod4help_MethCoverage.txt");
         exit 0;
