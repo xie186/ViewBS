@@ -1,0 +1,147 @@
+#!/usr/bin/env perl 
+#!/usr/bin/perl --
+
+####################################################################
+# ViewBS - Tools for exploring and visualizing bisulfite sequencing 
+# (BS-seq) data. 
+####################################################################
+use strict;
+use warnings;
+
+use Getopt::Long::Subcommand;
+use Pod::Usage;
+use File::Basename;
+use Cwd qw(abs_path);
+use Benchmark;
+my $t_stt = Benchmark->new;
+
+#use FindBin;
+#use lib "$FindBin::Bin";
+$|++;    # Do not buffer output
+#$| = 1; # Do not buffer output 
+
+#Self written libraries.
+## Package written by Shanshan Huang
+use lib dirname(abs_path $0) . '/lib';  #include seft written packages in @INC.
+
+my $main_path = dirname(abs_path $0);
+
+my %opts;   ## store the values for common parameters
+my %opts_subcmd; ### store the values for sub command parameters
+
+### Return hash structure, with these keys: success, subcommand (array of str) by GetOptions
+my $resOpt = &processCMD();  
+
+my ($sub_cmd) = @{$resOpt->{subcommand}}; 
+print "\nSubcommand: $sub_cmd\n";
+
+if($sub_cmd eq "BisNonConvRate"){
+    print "Sample list: @{$opts_subcmd{sample}}\n";
+}
+
+sub processCMD{
+    $resOpt = GetOptions(   # Return hash structure, with these keys: success, subcommand (array of str)
+        ## common options recognized by all subcommands
+        options => {
+	    'help|h|?'       => \$opts{help},
+	    'version|v'      => \$opts{version},
+	    'verbose'        => \$opts{verbose},
+	    'outdir:s'       => \$opts_subcmd{outdir},
+	    'prefix:s'       => \$opts_subcmd{prefix},
+	    'minDepth:s'     => \$opts_subcmd{minDepth},
+	    'maxDepth:s'     => \$opts_subcmd{maxDepth},
+	    'context:s'      => \@{$opts_subcmd{context}},    # context
+	    'flank:i'        => \$opts_subcmd{flank},
+	    'height:f'       => \$opts_subcmd{height},  ## figure size: height
+	    'width:f'        => \$opts_subcmd{width},   ## figure size: width
+	    'height2:f'       => \$opts_subcmd{height2}, ## for histogram
+	    'width2:f'        => \$opts_subcmd{width2},  ## for histogram
+	    'random_region:i' => \$opts_subcmd{random_region}, ## For heatmap error. annot allocate vector of size
+	    'methodAverage'  => \$opts_subcmd{methodAverage},  ## Calculate the average methylation level rather than the weighted methylated level.
+         },
+         subcommands => {
+             MethGeno => {       
+                 summary => 'Plot methylation information across the chromsome.',
+                 # subcommand-specific options
+                 options => {
+		    # mandatory arguments
+        	    'genomeLength|g:s'       => \$opts_subcmd{genomeLength},
+		    'sample:s'               => \@{$opts_subcmd{sample}},
+		    # Optional arguments
+		    'win:i'                  => \$opts_subcmd{win},
+                    'step:i'                 => \$opts_subcmd{step},       
+		    'minLength:s'            => \$opts_subcmd{minLength},  # cutoff for minimum length of chromosome.
+		    'split:s'                => \$opts_subcmd{'split'},      #
+                 }
+            },
+	    MethOverRegion => {
+		summary => 'Plot average distribution of methylation over your defined regions.',
+		options => {
+		    # mandatory arguments
+		    'region:s'              => \$opts_subcmd{region},
+                    'sample:s'               => \@{$opts_subcmd{sample}},
+		    # Optional arguments
+		    'binLength:i'	     => \$opts_subcmd{binLength},
+		    'binNumber:i'            => \$opts_subcmd{binNumber},
+	            'minLength:i'	     => \$opts_subcmd{minLength},
+		    'maxLength:i'            => \$opts_subcmd{maxLength},
+                    'type:s'                 => \$opts_subcmd{type},
+	            'regionName:s'           => \$opts_subcmd{regionName},
+	            #'legendTitle:s'          => \$opts_subcmd{legendTitle},
+		}
+	    },
+	    MethHeatmap => {
+                summary => 'Generate heatmap for a given regions.',
+                options => {
+                    # mandatory arguments
+                    'regions:s'              => \$opts_subcmd{region},
+                    'sample:s'               => \@{$opts_subcmd{sample}},
+		     # Optional arguments
+                    'merge'                 => \$opts_subcmd{merge},   ### if --merge is true, then methylation level of different will be generated in one file rather than one file for each context
+                    'cluster_cols:s'	     => \$opts_subcmd{cluster_cols},
+		    'cluster_rows:s'         => \$opts_subcmd{cluster_rows},
+                }
+            },
+	    MethOneRegion => {
+                summary => 'Generate heatmap for a given regions.',
+                options => {
+	        'regions:s'              => \$opts_subcmd{region},
+                'sample:s'               => \@{$opts_subcmd{sample}},
+	         }
+	    },
+            MethCoverage => {
+                summary => 'Generate statistics of read coverage of the provided samples.',
+                options => {
+		'reference:s'		 => \$opts_subcmd{reference},
+                'sample:s'               => \@{$opts_subcmd{sample}},
+		'outdir:s'               => \$opts_subcmd{outdir},
+                 }
+            },
+	    MethLevDist => {
+                summary => 'Generate distribution of methylation levels for the provided samples.',
+                options => {
+                'sample:s'               => \@{$opts_subcmd{sample}},
+		'regions:s'              => \$opts_subcmd{region},
+		'binMethLev:s'		 => \$opts_subcmd{binMethLev},
+                 }
+            },
+	    GlobalMethLev => {
+                summary => 'Generate global (bulk) methylation levels for the provided samples.',
+                options => {
+                'sample:s'               => \@{$opts_subcmd{sample}},
+                 }
+            },
+	    BisNonConvRate => {
+                summary => 'Estimate non-conversion rate of BS-seq data.',
+                options => {
+                'sample:s'               => \@{$opts_subcmd{sample}},
+	        'chrom:s'               => \$opts_subcmd{chrom},
+                 }
+            },
+        }
+    );
+    #print "UUXXX", join("\t", $resOpt->{subcommand}), "\n";
+    push @{$opts_subcmd{subcommand}}, @{$resOpt->{subcommand}} if exists $resOpt->{subcommand};
+    return $resOpt;
+}
+
