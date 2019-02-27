@@ -105,7 +105,7 @@ sub determine_max_depth{
             last;
         }
     }
-    print "Maximum depth that will be calculed is $max_depth_rep\n";
+    print "Maximum depth that will be calculated is $max_depth_rep\n";
     return $max_depth_rep;
 }
 
