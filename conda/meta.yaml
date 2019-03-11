@@ -1,7 +1,11 @@
 package:
   name: viewbs ## package/name must be lowercase
   #version: {{ environ['0.1.6'] }}
-  version: 0.1.6
+  version: 0.1.7
+
+source:
+  git_url: https://github.com/xie186/ViewBS.git
+  git_rev: v0.1.7
 
 build:
   script_env:
