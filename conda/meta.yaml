@@ -25,3 +25,8 @@ test:
 #    - soupsieve
 #    - numpy >=1.13
 
+about:
+  home: https://github.com/xie186/ViewBS
+  license: GPL-3.0
+  license_file: license.txt
+  summary: https://github.com/xie186/ViewBS 
