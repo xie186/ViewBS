@@ -48,7 +48,7 @@ Here is the workflow of ViewBS:
 
 ### Installation via `conda` [recommended]
 
-Please see the link here: https://github.com/xie186/ViewBS/wiki/Install-ViewBS-using-conda 
+Please see the link here: https://github.com/xie186/ViewBS/wiki/Configure-running-environment-for-ViewBS-using-conda
 
 Then download the lasted version of `ViewBS`: https://github.com/xie186/ViewBS/releases/latest
 
