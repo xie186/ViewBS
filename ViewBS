@@ -43,6 +43,13 @@ my %opts_subcmd; ### store the values for sub command parameters
 ### Return hash structure, with these keys: success, subcommand (array of str) by GetOptions
 my $resOpt = &processCMD();  
 
+### Version
+my $VERSION = "v0.1.8";
+if($opts{version}){
+    print " $VERSION\n";
+    exit 0;
+}
+
 &check_parameter();
 sub check_parameter{
      
