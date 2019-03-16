@@ -6,6 +6,7 @@
 ## conda env create --name test_viewbs --file environment.yaml
 
 
+*.simg
 test.sh
 .dir_bash_history*
 ViewBS_testdata/
