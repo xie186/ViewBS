@@ -55,7 +55,7 @@ Then download the lasted version of `ViewBS`: https://github.com/xie186/ViewBS/r
 ### Installation with `Docker`
 
 ```
-docker build -t xie186:latest .
+docker pull xie186/viewbs
 ## Use "docker run <image name>" ViewBS" to replace "ViewBS". Here is an example:
 cd ViewBS_testdata/
 docker run -v ${PWD}:/data -w /data bc1743f3418f ViewBS MethOneRegion --region chr5:19497000-19499600 --sample bis_WT.tab.gz,WT --sample bis_cmt23.tab.gz,cmt23 --outdir MethOneRegion --prefix chr5_19497000-19499600 --context CHG
@@ -64,7 +64,7 @@ docker run -v ${PWD}:/data -w /data bc1743f3418f ViewBS MethOneRegion --region c
 ## 2) bc1743f3418f: IMAGE ID (run `docker image ls` to get the IMAGE ID). 
 ```
 
-> Because docker needs `root` access, sometimes it's not available. But `singularity` is an alternative software. 
+> Because docker needs `root` access, sometimes it's not available. But `singularity` is an alternative software. Please see the link here for details: https://github.com/xie186/ViewBS/wiki/Run-ViewBS-with-%60Docker%60-or-%60Singularity%60#singularity
 
 ### Installation of dependencies step by step
 
