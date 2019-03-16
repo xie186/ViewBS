@@ -57,4 +57,7 @@ https://ropenscilabs.github.io/r-docker-tutorial/04-Dockerhub.html
 
 https://www.osc.edu/resources/getting_started/howto/howto_use_docker_and_singularity_containers_at_osc
 
+https://hpc.nih.gov/apps/singularity.html
+
+
 
