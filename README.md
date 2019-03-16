@@ -64,6 +64,8 @@ docker run -v ${PWD}:/data -w /data bc1743f3418f ViewBS MethOneRegion --region c
 ## 2) bc1743f3418f: IMAGE ID (run `docker image ls` to get the IMAGE ID). 
 ```
 
+> Because docker needs `root` access, sometimes it's not available. But `singularity` is an alternative software. 
+
 ### Installation of dependencies step by step
 
 Download the lastest version:
