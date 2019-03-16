@@ -55,7 +55,13 @@ Then download the lasted version of `ViewBS`: https://github.com/xie186/ViewBS/r
 ### Installation with `Docker`
 
 ```
+docker build -t xie186:latest .
+## Use "docker run <image name>" ViewBS" to replace "ViewBS". Here is an example:
+cd ViewBS_testdata/
+docker run -v ${PWD}:/data -w /data bc1743f3418f ViewBS MethOneRegion --region chr5:19497000-19499600 --sample bis_WT.tab.gz,WT --sample bis_cmt23.tab.gz,cmt23 --outdir MethOneRegion --prefix chr5_19497000-19499600 --context CHG
 
+## 1) ${PWD}:/data: means mount the current directory to /data in Docker image
+## 2) bc1743f3418f: IMAGE ID (run `docker image ls` to get the IMAGE ID). 
 ```
 
 ### Installation of dependencies step by step
