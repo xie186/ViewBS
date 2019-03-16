@@ -52,6 +52,12 @@ Please see the link here: https://github.com/xie186/ViewBS/wiki/Configure-runnin
 
 Then download the lasted version of `ViewBS`: https://github.com/xie186/ViewBS/releases/latest
 
+### Installation with `Docker`
+
+```
+
+```
+
 ### Installation of dependencies step by step
 
 Download the lastest version:
