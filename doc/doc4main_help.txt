@@ -4,10 +4,6 @@
 
 ViewBS - Tools for exploring and visualizing deep sequencing of  bisulfite seuquencing (BS-seq) data.
 
-=head1 VERSION
-
-0.1.7
-
 =head1 SYNOPSIS
 
 ViewBS <subcmd> [options]
@@ -20,9 +16,13 @@ ViewBS is developped to mine and visualize bisulfite seuquencing data.
 
 =over 8
 
-=item B<-help> | B<-h>
+=item B<--help> | B<-h>
 
 Prints the help message and exits.
+
+=item B<--version> | B<-v>
+
+Prints the version information and exits.
 
 =item B<Subcommands:>
 
