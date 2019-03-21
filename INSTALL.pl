@@ -35,10 +35,10 @@ if($path){
 my $dir = dirname(abs_path $0);
 my $CPANM = "$dir/ext_tools/cpanm";
 if(!-e $CPANM){
-    print "Error: cpanm not found in $dir. Please check.\n";
+    print "Error: cpanm not found at $CPANM. Please check.\n";
     exit 1;
 }else{
-    print "PASSED: cpanm found in $dir\n";
+    print "PASSED: cpanm found at $CPANM\n";
 }
 
 my $cmd_chk_lib = qq(perl -e 'use local::lib;'  2>&1);
@@ -64,8 +64,8 @@ foreach(@package_list){
         print "PASSED: Perl module ($_) installed.\n";
     }else{
         print "Perl module ($_) not installed. Start to install using cpanm: \n";
-        `$CPANM $_`;
-        if(!$check){
+        my $inst_check = `$CPANM $_`;
+        if(!$inst_check){
             print "PASSED: Perl module ($_) installed.\n";
         }else{
             print "Installation of Perl module $_ failed. Please install manually\n";
