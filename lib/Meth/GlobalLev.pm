@@ -50,7 +50,7 @@ sub generTab{
     my %rec_meth_tot_lev;    #sum of the methylation level for all cytosines
     my %rec_meth_tot;        #Number of sites for each context.
     my %rec_meth_context;
- 
+    #print "@{$opts_sub->{sample_list}}\n"; 
     my @sample_list; 
     foreach my $sam_info(@{$opts_sub->{sample_list}}){   ## sample information: meth_file,sample,region
         my ($meth_file, $sam_name) = split(/,/, $sam_info);
@@ -75,7 +75,9 @@ sub generTab{
     my @context = sort keys %rec_meth_context;
     
     print OUT "Sample\t", join("\t", @context), "\n";
-    foreach my $sam_name(keys %rec_meth){
+    ## keys %rec_meth ====> @sample_list 
+    ## because we want to keep the order of the input samples
+    foreach my $sam_name(@sample_list){
 	my @meth_lev;
 	foreach my $tem_context(sort keys %rec_meth_context){
 	    my $c_num = $rec_meth{$sam_name}-> {$tem_context} -> {$TOTC_DEP};

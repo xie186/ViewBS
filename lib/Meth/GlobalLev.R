@@ -5,6 +5,8 @@ methGeno <- function(meth, out, fig_height, fig_width){
      #Sample  Context MethylationLevel        Number  Percentage
      library(reshape2)
      tab <- melt(tab, id.vars="Sample")
+     ### Define the order of the samples
+     tab$Sample = factor(tab$Sample, levels = unique(tab$Sample))
      p <- ggplot(tab, aes(x=variable, y=value, group=Sample,fill=Sample)) +
 	   geom_bar(stat="identity",position="dodge") +
            ylab("Methylation level") +
