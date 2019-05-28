@@ -73,7 +73,8 @@ sub generTab{
   
     open OUT, "+>$opts_sub->{outdir}/$opts_sub->{prefix}.tab" or die "$!";
     print OUT "Sample\tContext\tDepth\tPercentage\n";
-    foreach my $sam_name(keys %rec_meth){
+    ###  @sample_list with order
+    foreach my $sam_name(@sample_list){
 	foreach my $tem_context(sort keys %rec_meth_context){
 	    for(my $i = 1; $i <= $max_depth_rep; ++$i){
 		my $num_cov = 0;
