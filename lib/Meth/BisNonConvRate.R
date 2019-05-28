@@ -23,7 +23,7 @@ library(ggplot2)
 #library(reshape2)
 #tab <- melt(tab, id.vars="Sample")
 
-p <- ggplot(tab, aes(x=Sample, y=BisNonConvRate, fill=Sample)) +
+p <- ggplot(tab, aes(x=Sample, y=C_number/Total_Depth*100, fill=Sample)) +
            geom_bar(stat="identity",position="dodge") +
            facet_wrap("Context") +
            theme(axis.text.x=element_text(angle=45, hjust=1)) +
