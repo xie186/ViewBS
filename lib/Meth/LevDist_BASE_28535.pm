@@ -48,16 +48,10 @@ sub generTab{
     my %rec_meth;
     my %rec_meth_tot;
     my %rec_meth_context;
-    my @sample_list;
     if(!$opts_sub->{region}){ 
         foreach my $sam_info(@{$opts_sub->{sample_list}}){   ## sample information: meth_file,sample,region
             my ($meth_file, $sam_name) = split(/,/, $sam_info);
-<<<<<<< HEAD
-            push @sample_list, $sam_name;
     	    open METH, "zcat $meth_file |" or die "$!: $meth_file\n";
-=======
-    	    open METH, "gzip -cd $meth_file |" or die "$!: $meth_file\n";
->>>>>>> 13506b5004027e472bc0ecc421b51b02514ca31e
  	    while(my $line = <METH>){
 	        my ($chr, $pos, $strand, $c_num, $t_num, $tem_context, $seq) = split(/\t/, $line);
    	        my $depth = $c_num + $t_num;
@@ -77,7 +71,6 @@ sub generTab{
 	for(my $i = 0; $i < @{$opts_sub->{sample_list}}; ++$i){
 	    my $sam_info = ${$opts_sub->{sample_list}}[$i];
 	    my ($meth_file, $sam_name) = split(/,/, $sam_info);
-            push @sample_list, $sam_name;
 	    my $tabix = Bio::DB::HTS::Tabix->new(filename => $meth_file);
             &get_CT_num($class, $opts_sub, $tabix, $sam_name, \%rec_meth, \%rec_meth_tot, \%rec_meth_context); 
            
@@ -86,9 +79,7 @@ sub generTab{
 
     open OUT, "+>$opts_sub->{outdir}/$opts_sub->{prefix}.tab" or die "$!";
     print OUT "Sample\tContext\tMethLevBinMidPoint\tNumber\tPercentage\n";
-    ## Us @sample_list to make sure the order in the figure legend is the same 
-    ## as the input sample list
-    foreach my $sam_name(@sample_list){
+    foreach my $sam_name(keys %rec_meth){
 	foreach my $tem_context(sort keys %rec_meth_context){
 	    for(my $i = 1; $i <= $BINNUM; ++$i){
 		#print "$sam_name, $tem_context, $i\n";

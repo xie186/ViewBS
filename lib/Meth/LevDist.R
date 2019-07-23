@@ -1,6 +1,8 @@
 methGeno <- function(meth, out, percentage, fig_height, fig_width){
      print(meth)
      tab <-read.table(meth, head = T, sep = "\t")
+     tab$Sample = factor(tab$Sample, levels = unique(tab$Sample))
+     #tab$Sample = factor(tab$Sample, levels = unique(tab$Sample))
      library(ggplot2)
      #Sample  Context MethylationLevel        Number  Percentage
 

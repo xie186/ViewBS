@@ -43,7 +43,10 @@ sub check_para_sub{
         }
         $opts_sub->{genomeLength} = abs_path $opts_sub->{genomeLength};
     }
-   
+
+    if(!$opts_sub->{"maxChromNumber"}){
+        $opts_sub->{"maxChromNumber"} = 60;
+    }   
     #### Common arguments
     my $cm_arg = SubCmd::CommonArgument -> new();
     my $exit_num_return = $cm_arg -> common_argument($opts_sub, $exit_code);

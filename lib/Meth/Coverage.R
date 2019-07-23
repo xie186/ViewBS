@@ -25,6 +25,8 @@ library(ggplot2)
 
 ### geom_path: Each group consist of only one observation. Do you need to adjust the group aesthetic?
 
+tab$Sample = factor(tab$Sample, levels = unique(tab$Sample))
+
 p <- ggplot(tab, aes(x=Depth, y=Percentage, group = Context, col=Context)) 
 p <- p + geom_line()
 p <- p + geom_point(size = 0.3)
