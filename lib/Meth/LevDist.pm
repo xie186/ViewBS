@@ -52,12 +52,9 @@ sub generTab{
     if(!$opts_sub->{region}){ 
         foreach my $sam_info(@{$opts_sub->{sample_list}}){   ## sample information: meth_file,sample,region
             my ($meth_file, $sam_name) = split(/,/, $sam_info);
-<<<<<<< HEAD
             push @sample_list, $sam_name;
-    	    open METH, "zcat $meth_file |" or die "$!: $meth_file\n";
-=======
+    	    #open METH, "zcat $meth_file |" or die "$!: $meth_file\n";
     	    open METH, "gzip -cd $meth_file |" or die "$!: $meth_file\n";
->>>>>>> 13506b5004027e472bc0ecc421b51b02514ca31e
  	    while(my $line = <METH>){
 	        my ($chr, $pos, $strand, $c_num, $t_num, $tem_context, $seq) = split(/\t/, $line);
    	        my $depth = $c_num + $t_num;
