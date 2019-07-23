@@ -146,8 +146,10 @@ Since ViewBS uses Bio::DB::HTS::Tabix to quickly retrieves information from the 
 Here is an example:
 
 ```
-bgzip test.bis_rep.cov            ## test.bis_rep.cov.gz will be generated. Note: test.bis_rep.cov shoud be sorted based on chromosome coordinates.
-tabix -p vcf test.bis_rep.cov.gz  ## test.bis_rep.cov.gz.tbi will be generated. Now test.bis_rep.cov.gz can be used as input for ViewBS. 
+bgzip test.bis_rep.cov            ## test.bis_rep.cov.gz will be generated. Note: test.bis_rep.cov shoud be sorted based on chromosome coordinates. 
+tabix -C -p vcf test.bis_rep.cov.gz  ## test.bis_rep.cov.gz.csi will be generated. Now test.bis_rep.cov.gz can be used as input for ViewBS. 
+## If there is no chromosome length beyond (2^29-1), you can also run: 
+tabix -p vcf test.bis_rep.cov.gz  ## test.bis_rep.cov.gz.tbi will be generated. Now test.bis_rep.cov.gz can be used as input for ViewBS.
 ```
 
 ## USAGE <a name="usage"></a>
