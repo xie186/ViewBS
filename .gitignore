@@ -3,7 +3,7 @@
 ## Generate TOC 
 #~/software/gh-md-toc README.md
 #/media/xie*/e*/WIC/n*_p*_meth/scripts/ViewBS
-## conda env export -n env_ViewBS --no-builds  > environment.yaml
+## conda env export -n env_ViewBS --no-builds |grep -v 'prefix' | cut -f1 -d "=" > environment.yaml
 
 
 *.simg
