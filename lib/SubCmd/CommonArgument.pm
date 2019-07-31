@@ -105,6 +105,7 @@ sub common_argument{
     if(!$opts_sub->{"win"}){
         $opts_sub->{"win"} = 500000;
     }
+
     ## step size
     if(!$opts_sub->{"step"}){
         $opts_sub->{"step"} = 500000;
