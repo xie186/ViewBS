@@ -55,7 +55,7 @@ sub generTab{
     foreach my $sam_info(@{$opts_sub->{sample_list}}){   ## sample information: meth_file,sample,region
         my ($meth_file, $sam_name) = split(/,/, $sam_info);
         push @sample_list, $sam_name;
-	open METH, "zcat $meth_file |" or die "$!: $meth_file\n";
+	open METH, "gzip -cd $meth_file |" or die "$!: $meth_file\n";
 	while(my $line = <METH>){
 	    my ($chr, $pos, $strand, $c_num, $t_num, $tem_context, $seq) = split(/\t/, $line);
 	    my $depth = $c_num + $t_num;
@@ -73,7 +73,8 @@ sub generTab{
   
     open OUT, "+>$opts_sub->{outdir}/$opts_sub->{prefix}.tab" or die "$!";
     print OUT "Sample\tContext\tDepth\tPercentage\n";
-    foreach my $sam_name(keys %rec_meth){
+    ###  @sample_list with order
+    foreach my $sam_name(@sample_list){
 	foreach my $tem_context(sort keys %rec_meth_context){
 	    for(my $i = 1; $i <= $max_depth_rep; ++$i){
 		my $num_cov = 0;

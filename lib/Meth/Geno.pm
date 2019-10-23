@@ -11,6 +11,7 @@ use Bio::DB::HTS::Tabix;
 #use Meth::Sample;
 
 my %rec_geno_len;
+my @chrom_id;
 
 sub new{
     my $class     = shift;
@@ -100,10 +101,18 @@ sub genomeLength{
     while(my $line = <GENO>){
 	chomp $line;
 	my ($chr, $len) = split(/\s+/, $line);
-	print "$chr\t$len\n";
+        if($len < $opts_sub -> {minLength}){
+            print "Chromosome/Scafoold $chr won't be used because of short length: $len\n";
+            next;
+        }
+	print "Chromosome/Scafoold ($chr): $len\n";
 	$rec_geno_len{$chr} = $len;
+        push @chrom_id, $chr;
     }
     close GENO;
+    if(@chrom_id > $opts_sub -> {"maxChromNumber"}){
+        die "There are too many numbers (>$opts_sub->{maxChromNumber})\n";
+    }
 }
 1;
 

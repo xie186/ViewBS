@@ -34,6 +34,25 @@ Generate methylation information across chromosome.
    you need to write "file:" followed by the name of the TEXT file.
    See details at: https://github.com/readbio/ViewBS
 
+=item B<--win [optional]>
+
+ - Window size. Default: 500000
+
+=item B<--step [optional]>
+
+ - Step size. Default: 500000
+
+=item B<--minLength [optional]>
+
+ - Minimum length for a chromosome to output. Default: 0
+
+=item B<--maxChromNumber [optional]>
+
+ - Maximum number of chromosome IDs with lenght > 'minLength'.
+   Default: 60. 
+
+maxChromNumber
+
 =item B<--outdir>
 
  - Output directory. [Default: ./]

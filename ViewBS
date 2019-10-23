@@ -151,7 +151,8 @@ sub processCMD{
 		    # Optional arguments
 		    'win:i'                  => \$opts_subcmd{win},
                     'step:i'                 => \$opts_subcmd{step},       
-		    'minLength:s'            => \$opts_subcmd{minLength},  # cutoff for minimum length of chromosome.
+		    'minLength:i'            => \$opts_subcmd{minLength},  # cutoff for minimum length of chromosome.
+                    'maxChromNumber:i'         => \$opts_subcmd{maxChromNumber}, ## maximum number of chromosome IDs
 		    'split:s'                => \$opts_subcmd{'split'},      #
                  }
             },

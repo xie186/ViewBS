@@ -1,0 +1,12 @@
+# 2019/07/25
+
+Update help message for `MethGeno`:
+
+https://github.com/xie186/ViewBS/commit/0bc051b37ecb7e8d75f6c1063e22581655802d1a
+
+# 2019/07/25
+
+Update README.md:
+
+https://github.com/xie186/ViewBS/commit/50cf437a5f3447972d4964b78352394eefca95fe
+

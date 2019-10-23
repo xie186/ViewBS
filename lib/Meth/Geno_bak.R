@@ -1,22 +1,10 @@
-
 methGeno <- function(meth, out, fig_height, fig_width){
     unit_Mb = 1000000
     library(ggplot2)
-    #library(cowplot)
     tab <-read.table(meth, header=T);
-    tab$sample_name = factor(tab$sample_name, levels = unique(tab$sample_name))
     p <- ggplot(tab, aes(x=(stt+end)/2/unit_Mb, y=Methylation_level, group=sample_name,col = sample_name));
-    p <- p + 
-         geom_line()+
-         #geom_bar(stat = "identity") +
+    p <- p + geom_line()+
          facet_grid(~chr, scales = 'free_x', space = 'free_x', switch = 'x') + 
-         theme_classic() + 
-         theme(axis.text.x = element_blank(),  
-                axis.ticks.x = element_blank(),
-                strip.text.x = element_text(angle = 90),
-                panel.background = element_rect(fill = c("lightgray")),
-                strip.background = element_blank(),
-                panel.spacing = unit(0.01, "lines")) +
          #facet_wrap(~chr)+
          xlab("Chromosome (Mb)")+
          ylab("Methylation level")
@@ -27,18 +15,17 @@ methGeno <- function(meth, out, fig_height, fig_width){
     
     p <- p + theme(legend.position = "top")
     p <- p + theme(legend.title=element_blank())
-    #if(length(levels(tab$chr)) <=8){
-    #    ggsave(out, p, width = fig_width, height = fig_height, unit = "cm")
-    #}else{
-    #    p <- ggplot(tab, aes(x=(stt+end)/2/unit_Mb, y=Methylation_level, group=sample_name,col = sample_name));
-    #    p <- p + geom_line()+facet_wrap(~chr,ncol = 2)+xlab("Chromosome (Mb)")+ylab("Methylation level")
- 	#p <- p + scale_fill_continuous(guide = guide_legend(title = "Sample")) # title text
-    #	p <- p + scale_fill_continuous(guide = guide_legend(title = NULL))
-     	#p <- p+ theme(legend.position = "top")
-    #	p <- p + theme(legend.title=element_blank())
-    #    ggsave(out, p, width = fig_width, height = 7*length(levels(tab$chr))/3, units = "cm")
-    #}
-    ggsave(out, p, width = fig_width, height = fig_height, unit = "cm")
+    if(length(levels(tab$chr)) <=8){
+        ggsave(out, p, width = fig_width, height = fig_height, unit = "cm")
+    }else{
+        p <- ggplot(tab, aes(x=(stt+end)/2/unit_Mb, y=Methylation_level, group=sample_name,col = sample_name));
+        p <- p + geom_line()+facet_wrap(~chr,ncol = 2)+xlab("Chromosome (Mb)")+ylab("Methylation level")
+	#p <- p + scale_fill_continuous(guide = guide_legend(title = "Sample")) # title text
+	p <- p + scale_fill_continuous(guide = guide_legend(title = NULL))
+  	#p <- p+ theme(legend.position = "top")
+	p <- p + theme(legend.title=element_blank())
+        ggsave(out, p, width = fig_width, height = 7*length(levels(tab$chr))/3, units = "cm")
+    }
     #https://stackoverflow.com/questions/5577221/how-can-i-load-an-object-into-a-variable-name-that-i-specify-from-an-r-data-file
     out_rds = paste(input, ".rds", sep="")
     saveRDS(p, out_rds)
