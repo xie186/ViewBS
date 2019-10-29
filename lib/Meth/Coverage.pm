@@ -44,13 +44,12 @@ sub generTab{
     print "Start reading the methylation file\n" if !$opts_sub->{verbose};
 
     my %rec_meth;
+    # record read depth at differet coverage for CG context
     my %rec_meth_tot;
     my %rec_meth_context;
     my $max_depth = 0;
     my $min_depth = 10000;
-   
-    &cal_CG_num($class, $opts_sub);
-    
+     
     my @sample_list; 
     foreach my $sam_info(@{$opts_sub->{sample_list}}){   ## sample information: meth_file,sample,region
         my ($meth_file, $sam_name) = split(/,/, $sam_info);
@@ -60,7 +59,7 @@ sub generTab{
 	    my ($chr, $pos, $strand, $c_num, $t_num, $tem_context, $seq) = split(/\t/, $line);
 	    my $depth = $c_num + $t_num;
 	    $rec_meth{$sam_name} -> {$tem_context} -> {$depth} ++;
-	    $rec_meth_tot{$depth} ++;
+	    $rec_meth_tot{$depth} ++ if $tem_context eq "CG";
 	    $rec_meth_context{$tem_context} ++;
 	    $min_depth = $depth if $depth < $min_depth;
 	    $max_depth = $depth if $depth > $max_depth;
@@ -68,6 +67,16 @@ sub generTab{
 	close METH;
     }
 
+    if($min_depth ==0){
+        print "Even cytosine sites with 0 read covered was outputted so we are going to use the total row numbers for CG (CHG/CHH) as Denominator\n";
+        foreach my $temcontxt(keys %rec_meth_context){
+            $opts_sub->{"ref_C"}->{$temcontxt} = $rec_meth_context{$temcontxt};
+            #print "$temcontxt\t$rec_meth_context{$temcontxt}\n";
+        }
+    }else{
+        print "Cytosine sites withour any reads seems not to be outputed so we are going to calculate the number of CG (CHG/CHH) as Denominator\n";
+        &cal_CG_num($class, $opts_sub);
+    }
     my $num_sam = keys %rec_meth;  # how many samples
     my ($max_depth_rep) = &determine_max_depth($class, $max_depth, $num_sam, \%rec_meth_tot, $opts_sub);   ## to detemine when should we stop
   
@@ -81,6 +90,7 @@ sub generTab{
 		for(my $j = $i; $j <= $max_depth; ++$j){
 		    $num_cov += $rec_meth{$sam_name} -> {$tem_context} -> {$j} if exists $rec_meth{$sam_name} -> {$tem_context} -> {$j};
 		}
+                print "$sam_name\t$num_cov/$opts_sub->{ref_C}->{$tem_context}\n";
 		my $perc = 100* $num_cov/$opts_sub->{"ref_C"}->{$tem_context};
 		print OUT "$sam_name\t$tem_context\t$i\t$perc\n";
 	    }
@@ -101,7 +111,7 @@ sub determine_max_depth{
             $num_cov += $$rec_meth_tot{$j} if exists $$rec_meth_tot{$j};
         }
         ## When the percentage of cytosines that can be covered is lower that 0.1. We stop there. 
-        if($num_cov/($opts_sub->{"ref_C"}->{"C_G"} * $num_sam) < 0.1){
+        if($num_cov/($opts_sub->{"ref_C"}->{"CG"} * $num_sam) < 0.1){
             $max_depth_rep = $i;
             last;
         }
@@ -123,12 +133,12 @@ sub cal_CG_num{
     while ( my $seq = $seq_in->next_seq() ) {
         my $id = $seq->id;
 	my $seq = $seq->seq;
-	my $num_c_g = $seq =~ tr/CG/CG/; ### cal total C and G number
-	my $num_cg = $seq =~ s/CG/CG/g;	### calculate CG number
+	my $num_c_g = $seq =~ tr/CGcg/CGcg/; ### cal total C and G number
+	my $num_cg = $seq =~ s/CG/CG/gi;	### calculate CG number
 	$num_cg = $num_cg * 2;
-	my $num_cag = $seq =~ s/CAG/CAG/g;
-	my $num_ctg = $seq =~ s/CTG/CTG/g;
-	my $num_ccg = $seq =~ s/CCG/CCG/g;
+	my $num_cag = $seq =~ s/CAG/CAG/gi;
+	my $num_ctg = $seq =~ s/CTG/CTG/gi;
+	my $num_ccg = $seq =~ s/CCG/CCG/gi;
 	my $num_chg = 2* ($num_cag + $num_ctg + $num_ccg);
 	my $num_chh = $num_c_g - $num_cg - $num_chg;
 	print "$id:$num_c_g\t$num_cg\t$num_chg\t$num_chh\n";
