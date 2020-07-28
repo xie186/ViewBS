@@ -107,11 +107,13 @@ sub get_meth_info{
 sub judge_bin{
     my ($class, $rec_meth_bin, $sam_name, $stt,$end,$strand,$pos1,$c_num,$t_num, $opts_sub) = @_;
     my ($bin_length, $bin_num, $flank) = ($opts_sub->{binLength}, $opts_sub->{binNumber}, $opts_sub->{flank});
+    #print "YY: $bin_length, $bin_num, $flank: bin_length, bin_num, flank\n";
     my $unit = ($end-$stt+1)/($bin_num - 0.01);
     my $keys = 0;
     if($strand eq '+'){
         if($pos1 < $stt){
 	    my $flank_len = $stt - $pos1;
+            #print "XX: $bin_length\n";
             $keys = $flank_len == $flank ? -int($flank_len/$bin_length) +1 : -int($flank_len/$bin_length);
             $keys = "$PROM\t$keys";
         }elsif($pos1>=$stt && $pos1<$end){

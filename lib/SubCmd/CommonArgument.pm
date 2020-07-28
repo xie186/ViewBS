@@ -22,22 +22,24 @@ sub common_argument{
     my $exit_code_common = 0;
     my ($sub_cmd) = @{$opts_sub->{subcommand}};
     #print "Test: $sub_cmd\n";
+    if(!$opts_sub->{"binLength"}){
+        $opts_sub->{"binLength"} = 100;
+    }
+
+    if(1000 % $opts_sub->{"binLength"} != 0){
+        print "ERROR: If we use 1000 to divide binLenght, we shoud get no remainder. Otherwise we need to reset binLength\n";
+        ++$exit_code_common; #exit 0;
+    }else{
+        ### check lib/Meth/OverRegion.R
+        $opts_sub->{adjustXaxis} = 1000 / $opts_sub->{"binLength"};
+    }
+
     #### This is mainly for MethOverRegion
     #flank regions
     if(!$opts_sub->{"flank"}){
 	if($sub_cmd eq "MethOverRegion"){
 	    $opts_sub->{"flank"} = 2000;
-            # binLength
-	    if(!$opts_sub->{"binLength"}){
-        	$opts_sub->{"binLength"} = 100;
-            }
-	    if(1000 % $opts_sub->{"binLength"} != 0){
-                print "ERROR: If we use 1000 to divide binLenght, we shoud get no remainder. Otherwise we need to reset binLength\n";
-	        ++$exit_code_common; #exit 0;
-	    }else{
-		### check lib/Meth/OverRegion.R
-		$opts_sub->{adjustXaxis} = 1000 / $opts_sub->{"binLength"}; 
-	    }
+	    ### check lib/Meth/OverRegion.R
         }elsif($sub_cmd eq "MethOneRegion"){
 	    $opts_sub->{"flank"} = 300;
         }
