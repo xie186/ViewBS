@@ -60,6 +60,8 @@ If you want to install `ViewBS` in an existing conda environment, please run:
 
 ```
 conda activate <your_environment_name>
+## If you want to install a specific verison, 
+## replace 'viewbs' with 'viewbs=<version_number>' (e.g. 'viewbs=0.1.10')
 conda install -c bioconda viewbs
 ```
 
@@ -73,7 +75,6 @@ conda create -n env4viewbs -c bioconda viewbs
 ## To activate the environment
 conda activate env4viewbs
 ```
-
 
 ### Installation with `Docker`
 
