@@ -48,6 +48,8 @@ Here is the workflow of ViewBS:
 
 ### Installation via `conda` [recommended]
 
+>Special thanks to @xuzhougeng
+
 #### Install `conda`
 
 First you need to install miniconda following the instructions here: https://conda.io/en/latest/miniconda.html
