@@ -17,6 +17,7 @@ methGeno <- function(meth, region, out){
       #par("pin") : the current plot region dimensions in inches,
       #par("fig") : NDC coordinates for the figure region,
       #par("plt") : NDC coordinates for the plot region,
+      tab[,1] <- as.factor(tab[,1])
       ggsave(out, p, height=length(levels(tab[,1]))*par("din")[2]/6)
       #https://stackoverflow.com/questions/5577221/how-can-i-load-an-object-into-a-variable-name-that-i-specify-from-an-r-data-file
      out_rds = paste(out, ".rds", sep="")
