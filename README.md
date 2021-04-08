@@ -48,7 +48,7 @@ Here is the workflow of ViewBS:
 
 ### Installation via `conda` [recommended]
 
->Special thanks to [@xuzhougeng](https://github.com/xuzhougeng)
+> Special thanks to [@xuzhougeng](https://github.com/xuzhougeng)
 
 #### Install `conda`
 
