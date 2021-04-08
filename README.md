@@ -48,9 +48,30 @@ Here is the workflow of ViewBS:
 
 ### Installation via `conda` [recommended]
 
-Please see the link here: https://github.com/xie186/ViewBS/wiki/Configure-running-environment-for-ViewBS-using-conda
+#### Install `conda`
 
-Then download the lasted version of `ViewBS`: https://github.com/xie186/ViewBS/releases/latest
+First you need to install miniconda following the instructions here: https://conda.io/en/latest/miniconda.html
+
+#### Scenario 1
+
+If you want to install `ViewBS` in an existing conda environment, please run:
+
+```
+conda activate <your_environment_name>
+conda install -c bioconda viewbs
+```
+
+#### Scenario 2
+
+If you want to install `ViewBS` in a new conda environment, please run:
+
+```
+## You can change `env4viewbs` to other name you want
+conda create -n env4viewbs -c bioconda viewbs
+## To activate the environment
+conda activate env4viewbs
+```
+
 
 ### Installation with `Docker`
 
