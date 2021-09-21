@@ -85,7 +85,7 @@ sub generTab{
         foreach my $sam_name(@sample_list){
     	    my $c_num = $rec_meth_context{$sam_name} -> {$TOTC_DEP};
 	    my $tot_num = $rec_meth_context{$sam_name}-> {$TOT_DEP};
-	    my $meth_lev = sprintf("%.3f", $c_num/$tot_num);   ## Non-conversion rate here
+	    my $meth_lev = sprintf("%.5f", $c_num/$tot_num);   ## Non-conversion rate here
 	    print OUT "$sam_name\t$meth_lev\t$c_num\t$tot_num\t$context\n";
         }
     }
