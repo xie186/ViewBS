@@ -5,6 +5,7 @@ methGeno <- function(meth, out, fig_height, fig_width){
     #library(cowplot)
     tab <-read.table(meth, header=T);
     tab$sample_name = factor(tab$sample_name, levels = unique(tab$sample_name))
+    tab$chr = factor(tab$chr, levels = unique(tab$chr))
     p <- ggplot(tab, aes(x=(stt+end)/2/unit_Mb, y=Methylation_level, group=sample_name,col = sample_name));
     p <- p + 
          geom_line()+
@@ -14,7 +15,7 @@ methGeno <- function(meth, out, fig_height, fig_width){
          theme(axis.text.x = element_blank(),  
                 axis.ticks.x = element_blank(),
                 strip.text.x = element_text(angle = 90),
-                panel.background = element_rect(fill = c("lightgray")),
+                panel.background = element_rect(fill = "lightgray", colour='gray'),
                 strip.background = element_blank(),
                 panel.spacing = unit(0.01, "lines")) +
          #facet_wrap(~chr)+
