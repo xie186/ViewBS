@@ -44,7 +44,7 @@ my %opts_subcmd; ### store the values for sub command parameters
 my $resOpt = &processCMD();  
 
 ### Version
-my $VERSION = "v0.1.8";
+my $VERSION = "v0.1.11";
 if($opts{version}){
     print " $VERSION\n";
     exit 0;

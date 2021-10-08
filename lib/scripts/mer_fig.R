@@ -1,3 +1,5 @@
+#!/usr/bin/env Rscript
+
 Args <- commandArgs();
 
 args = 0
