@@ -6,8 +6,16 @@
 ## conda env export -n env_ViewBS --no-builds |grep -v 'prefix' | cut -f1 -d "=" > environment.yaml
 
 
+############Update checklist ###################
+#1. Docker
+#2. Bioconda
+#3. Version infor
+
 *.simg
 test.sh
 .dir_bash_history*
 ViewBS_testdata/
+
+
+
 
