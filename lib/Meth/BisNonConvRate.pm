@@ -52,6 +52,9 @@ sub generTab{
 
     my @sample_list; 
     foreach my $sam_info(@{$opts_sub->{sample_list}}){   ## sample information: meth_file,sample,region
+        if($sam_info!~/,/){
+            die "Error: Both methylation information and sample information should be provided here.Please double check! \n";
+        }
         my ($meth_file, $sam_name) = split(/,/, $sam_info);
         push @sample_list, $sam_name;
 	open METH, "gzip -cd $meth_file |" or die "$!: $meth_file\n";
@@ -79,10 +82,10 @@ sub generTab{
             next;
         }
         my %rec_meth_context = %{$rec_meth{$context}};
-        foreach my $sam_name(keys %rec_meth_context){
+        foreach my $sam_name(@sample_list){
     	    my $c_num = $rec_meth_context{$sam_name} -> {$TOTC_DEP};
 	    my $tot_num = $rec_meth_context{$sam_name}-> {$TOT_DEP};
-	    my $meth_lev = sprintf("%.3f", $c_num/$tot_num);   ## Non-conversion rate here
+	    my $meth_lev = sprintf("%.5f", $c_num/$tot_num);   ## Non-conversion rate here
 	    print OUT "$sam_name\t$meth_lev\t$c_num\t$tot_num\t$context\n";
         }
     }
