@@ -76,7 +76,9 @@ USER biodocker
 # Install ViewBS
 # reference: https://github.com/andreirozanski/rozanskide-trim_galore/blob/master/Dockerfile
 
-RUN cd /home/biodocker/ && git clone https://github.com/xie186/ViewBS.git
+## `git reset --hard ` to v0.1.11 https://github.com/xie186/ViewBS/releases/tag/v0.1.11 
+RUN cd /home/biodocker/ && git clone https://github.com/xie186/ViewBS.git && cd ViewBS/ && \
+      git reset --hard 1e871bc  
 ENV PATH /home/biodocker/ViewBS/:$PATH 
 
 # CHANGE WORKDIR TO /DATA
