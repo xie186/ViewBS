@@ -73,7 +73,7 @@ sub generTab{
 
     open OUT, "+>$opts_sub->{outdir}/$opts_sub->{prefix}.tab" or die "$!";
     my @context = sort keys %rec_meth_context;
-    
+    for(@context){chomp $_};
     print OUT "Sample\t", join("\t", @context), "\n";
     ## keys %rec_meth ====> @sample_list 
     ## because we want to keep the order of the input samples
