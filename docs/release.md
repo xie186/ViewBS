@@ -83,6 +83,13 @@ Record the code signing decision for every release candidate:
 - macOS: unsigned development archive, signed binary, or signed and notarized archive.
 - Windows: unsigned development archive or Authenticode-signed `.exe`.
 
+Current 0.2.0-alpha.0 decision:
+
+- macOS and Windows archives are unsigned development artifacts.
+- GitHub release notes must label these artifacts as unsigned and mention expected first-run warnings.
+- SHA256 checksums must remain attached for every release archive.
+- Revisit signed macOS notarization and Windows Authenticode signing before a stable public release.
+
 If the release artifacts are unsigned:
 
 - label them clearly as unsigned;

@@ -98,10 +98,9 @@ On a normal Rust installation, the same commands can usually be run as `cargo ..
 
 `plan.md` currently lists release work that still needs external validation:
 
-- Run GitHub Actions matrices on Linux, macOS, and Windows before tagging a release.
 - Populate external large performance/memory datasets for `VIEWBS_BENCH_DATA_DIR` and record Tier 7 baselines.
-- Validate and publish the updated Bioconda and Docker packages from release artifacts.
-- Decide whether macOS and Windows artifacts need code signing before public distribution.
+- Publish or explicitly defer the updated Bioconda and Docker packages from release artifacts.
+- Revisit macOS notarization and Windows Authenticode signing before a stable public release.
 
 Recent post-handoff progress:
 
@@ -130,6 +129,8 @@ Recent post-handoff progress:
 - `conda/conda_upload.sh` now runs a real `GlobalMethLev` table-and-SVG plot smoke command from the built Conda package.
 - `.github/workflows/packaging.yml` now builds and smoke-tests Docker and Conda packages on `viewbs-rs` pushes.
 - `tests/packaging_metadata.rs` includes a metadata test to keep the packaging validation workflow present.
+- `docs/release.md` records the 0.2.0-alpha.0 macOS and Windows signing decision as unsigned development artifacts with checksums and first-run warning notes.
+- `tests/packaging_metadata.rs` includes a metadata test to keep that signing decision recorded.
 - `.travis.yml` and `ViewBSdocker/README_bak.md` were removed so the Rust rewrite does not retain stale Perl-era CI or duplicate Docker docs.
 - `tests/packaging_metadata.rs` includes a metadata test to keep those obsolete files out.
 - The old root `ViewBS` Perl launcher was moved to `legacy/ViewBS.pl`.
