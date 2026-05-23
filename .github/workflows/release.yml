@@ -120,7 +120,8 @@ jobs:
 
           if ("${{ matrix.archive }}" -eq "zip") {
             Expand-Archive -Path $archive -DestinationPath $extractDir -Force
-            $binary = Join-Path (Join-Path $extractDir $archiveRoot) (if ("${{ runner.os }}" -eq "Windows") { "ViewBS.exe" } else { "ViewBS" })
+            $binaryName = if ("${{ runner.os }}" -eq "Windows") { "ViewBS.exe" } else { "ViewBS" }
+            $binary = Join-Path (Join-Path $extractDir $archiveRoot) $binaryName
           } else {
             tar -xzf $archive -C $extractDir
             $binary = Join-Path (Join-Path $extractDir $archiveRoot) "ViewBS"

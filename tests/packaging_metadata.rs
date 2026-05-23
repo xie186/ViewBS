@@ -162,6 +162,10 @@ fn release_workflow_tests_downloaded_archives_with_real_commands() {
     assert!(workflow.contains("test_WT.tab.gz"));
     assert!(workflow.contains("test_WT.tab.gz.tbi"));
     assert!(workflow.contains("unexpected legacy runtime dependency"));
+    assert!(
+        !workflow.contains("(if (\"${{ runner.os }}\""),
+        "PowerShell if statements are not expressions; assign the binary name before Join-Path"
+    );
     assert_absent(&workflow, &["rscript", "cpanm", "bio::db::hts"]);
 }
 

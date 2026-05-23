@@ -90,6 +90,7 @@ Status as of 2026-05-23:
 - `docs/release.md` documents the remaining release validation gates for GitHub Actions matrices, external Tier 7 benchmark data, Bioconda/Docker validation, and macOS/Windows signing decisions.
 - Release archive staging now includes `INSTALL` so copied bundles carry user-facing install notes.
 - The release artifact workflow now runs as a dry-run archive build on `viewbs-rs` branch pushes, while publishing remains restricted to version tags.
+- The release artifact workflow uses Windows-compatible PowerShell in archive extraction smoke tests.
 - `conda/conda_upload.md` and `conda/conda_upload.sh` now document and automate Rust package build, smoke-test, and opt-in Anaconda upload flow without Travis-era upload logic.
 - Obsolete Perl-era Travis CI configuration and stale backup Docker README were removed; CI is now represented by GitHub Actions.
 - The legacy Perl launcher was moved from the repository root to `legacy/ViewBS.pl` so the root `ViewBS` name belongs to the Rust binary.
