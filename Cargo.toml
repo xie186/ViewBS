@@ -1,0 +1,67 @@
+[package]
+name = "viewbs"
+version = "0.2.0-alpha.0"
+edition = "2021"
+license = "GPL-3.0-only"
+description = "Rust rewrite of ViewBS for exploring and visualizing bisulfite sequencing data"
+repository = "https://github.com/xie186/ViewBS"
+readme = "README.md"
+keywords = ["bioinformatics", "methylation", "bisulfite", "visualization"]
+categories = ["command-line-utilities", "science", "visualization"]
+include = [
+    "/CHANGELOG.md",
+    "/Cargo.lock",
+    "/Cargo.toml",
+    "/README.md",
+    "/benches/**",
+    "/data/test_data/test_WT.tab.gz",
+    "/data/test_data/test_WT.tab.gz.tbi",
+    "/docs/**",
+    "/license.txt",
+    "/plan.md",
+    "/src/**",
+    "/testdata/**",
+    "/tests/**",
+]
+
+[lib]
+name = "viewbs"
+path = "src/lib.rs"
+
+[[bin]]
+name = "ViewBS"
+path = "src/main.rs"
+required-features = ["cli"]
+
+[[bench]]
+name = "performance"
+harness = false
+
+[features]
+default = ["cli", "plots", "serde"]
+cli = ["dep:clap"]
+plots = ["dep:base64", "dep:kuva", "dep:svg2pdf"]
+parallel = ["dep:rayon"]
+serde = ["dep:serde"]
+
+[dependencies]
+base64 = { version = "0.22", optional = true }
+clap = { version = "4.5", features = ["derive"], optional = true }
+csv = "1.3"
+flate2 = "1.0"
+kuva = { version = "0.2", features = ["full"], optional = true }
+noodles-bgzf = "0.47"
+noodles-csi = "0.56"
+noodles-tabix = "0.62"
+rayon = { version = "1.10", optional = true }
+serde = { version = "1.0", features = ["derive"], optional = true }
+svg2pdf = { version = "0.13", optional = true }
+thiserror = "1.0"
+
+[dev-dependencies]
+assert_cmd = "2.0"
+criterion = "0.5"
+insta = "1.42"
+noodles-core = "0.20"
+serde_json = "1.0"
+tempfile = "3.10"

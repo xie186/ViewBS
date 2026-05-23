@@ -1,0 +1,5 @@
+sample_name	region	bin_num	C_number	T_number	Methylation_level
+WT	Body	1	2	31	0.06060606060606061
+WT	Body	2	6	36	0.14285714285714285
+WT	Body	4	3	30	0.09090909090909091
+WT	Downstream	6	8	34	0.19047619047619047

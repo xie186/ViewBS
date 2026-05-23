@@ -1,0 +1,167 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build-artifacts:
+    name: Build ${{ matrix.artifact }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            artifact: linux-x86_64
+            archive: tar.gz
+          - os: macos-13
+            target: x86_64-apple-darwin
+            artifact: macos-x86_64
+            archive: tar.gz
+          - os: macos-14
+            target: aarch64-apple-darwin
+            artifact: macos-aarch64
+            archive: tar.gz
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+            artifact: windows-x86_64
+            archive: zip
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+
+      - name: Cache cargo
+        uses: Swatinem/rust-cache@v2
+
+      - name: Build release binary
+        run: cargo build --release --all-features --target ${{ matrix.target }}
+
+      - name: Smoke test built binary
+        shell: pwsh
+        run: |
+          $binaryName = if ("${{ runner.os }}" -eq "Windows") { "ViewBS.exe" } else { "ViewBS" }
+          $binary = Join-Path "target/${{ matrix.target }}/release" $binaryName
+          & $binary --version
+          & $binary --help
+
+      - name: Stage archive contents
+        shell: pwsh
+        run: |
+          $binaryName = if ("${{ runner.os }}" -eq "Windows") { "ViewBS.exe" } else { "ViewBS" }
+          $archiveRoot = "ViewBS-${{ matrix.artifact }}"
+          $stage = Join-Path "dist" $archiveRoot
+          New-Item -ItemType Directory -Path $stage -Force | Out-Null
+          New-Item -ItemType Directory -Path (Join-Path $stage "examples") -Force | Out-Null
+
+          Copy-Item (Join-Path "target/${{ matrix.target }}/release" $binaryName) (Join-Path $stage $binaryName)
+          Copy-Item "README.md" (Join-Path $stage "README.md")
+          Copy-Item "license.txt" (Join-Path $stage "license.txt")
+          Copy-Item "CHANGELOG.md" (Join-Path $stage "CHANGELOG.md")
+          Copy-Item "data/test_data/test_WT.tab.gz" (Join-Path $stage "examples/test_WT.tab.gz")
+          Copy-Item "data/test_data/test_WT.tab.gz.tbi" (Join-Path $stage "examples/test_WT.tab.gz.tbi")
+
+      - name: Create archive and checksum
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Path "dist/artifacts" -Force | Out-Null
+          $archiveRoot = "ViewBS-${{ matrix.artifact }}"
+          $stage = Join-Path "dist" $archiveRoot
+          $archive = if ("${{ matrix.archive }}" -eq "zip") {
+            "dist/artifacts/$archiveRoot.zip"
+          } else {
+            "dist/artifacts/$archiveRoot.tar.gz"
+          }
+
+          if ("${{ matrix.archive }}" -eq "zip") {
+            Compress-Archive -Path $stage -DestinationPath $archive -Force
+          } else {
+            tar -czf $archive -C "dist" $archiveRoot
+          }
+
+          $hash = Get-FileHash -Algorithm SHA256 $archive
+          "$($hash.Hash.ToLowerInvariant())  $([System.IO.Path]::GetFileName($archive))" | Set-Content "$archive.sha256"
+
+      - name: Test archive contents
+        shell: pwsh
+        run: |
+          $archiveRoot = "ViewBS-${{ matrix.artifact }}"
+          $archive = if ("${{ matrix.archive }}" -eq "zip") {
+            "dist/artifacts/$archiveRoot.zip"
+          } else {
+            "dist/artifacts/$archiveRoot.tar.gz"
+          }
+          $checksum = Get-Content "$archive.sha256"
+          $expectedHash = ($checksum -split "\s+")[0]
+          $actualHash = (Get-FileHash -Algorithm SHA256 $archive).Hash.ToLowerInvariant()
+          if ($actualHash -ne $expectedHash) {
+            throw "checksum verification failed for $archive"
+          }
+
+          $extractDir = "dist/extracted"
+          New-Item -ItemType Directory -Path $extractDir -Force | Out-Null
+
+          if ("${{ matrix.archive }}" -eq "zip") {
+            Expand-Archive -Path $archive -DestinationPath $extractDir -Force
+            $binary = Join-Path (Join-Path $extractDir $archiveRoot) (if ("${{ runner.os }}" -eq "Windows") { "ViewBS.exe" } else { "ViewBS" })
+          } else {
+            tar -xzf $archive -C $extractDir
+            $binary = Join-Path (Join-Path $extractDir $archiveRoot) "ViewBS"
+          }
+
+          & $binary --version
+          & $binary --help
+
+          $root = Join-Path $extractDir $archiveRoot
+          $examples = Join-Path $root "examples"
+          $samplePath = Join-Path $examples "test_WT.tab.gz"
+          $sampleArg = "$samplePath,WT"
+          $smokeOut = Join-Path $root "smoke"
+          New-Item -ItemType Directory -Path $smokeOut -Force | Out-Null
+
+          & $binary GlobalMethLev --sample $sampleArg --outdir $smokeOut --prefix global --minDepth 1 --maxDepth 100 --plot-format pdf
+          $globalPlot = Join-Path $smokeOut "global.pdf"
+          if (!(Test-Path $globalPlot)) {
+            throw "GlobalMethLev smoke test did not create $globalPlot"
+          }
+
+          & $binary MethOneRegion --sample $sampleArg --region "chr2:1006-1010" --outdir $smokeOut --prefix one --minDepth 1 --maxDepth 100 --no-plot
+          $oneRegionTable = Join-Path $smokeOut "one_MethOneRegion_CG.txt"
+          if (!(Test-Path $oneRegionTable)) {
+            throw "MethOneRegion smoke test did not create $oneRegionTable"
+          }
+
+          if ("${{ runner.os }}" -eq "Linux") {
+            $deps = (& ldd $binary) -join "`n"
+            if ($deps -match "perl|libR|hts") {
+              throw "unexpected legacy runtime dependency in release binary: $deps"
+            }
+          }
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ViewBS-${{ matrix.artifact }}
+          path: |
+            dist/artifacts/*
+
+      - name: Publish GitHub release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/artifacts/*

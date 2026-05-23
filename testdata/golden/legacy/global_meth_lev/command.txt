@@ -1,0 +1,13 @@
+Legacy command intent:
+
+ViewBS GlobalMethLev --sample sample.tab,WT --outdir out --prefix global --minDepth 1 --maxDepth 100
+
+Expected output provenance:
+
+The local legacy Perl entrypoint cannot be executed in this environment because Getopt::Long::Subcommand is not installed. This fixture follows the checked-in legacy implementation in lib/Meth/GlobalLev.pm:
+
+- keep records with 1 <= methylated + unmethylated <= 100;
+- collect observed contexts in sorted order;
+- preserve sample order from --sample;
+- use weighted methylation by default;
+- format each context value with sprintf("%.3f").

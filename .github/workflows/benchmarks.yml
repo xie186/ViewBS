@@ -1,0 +1,49 @@
+name: Benchmarks
+
+on:
+  schedule:
+    - cron: "17 5 * * 0"
+  workflow_dispatch:
+    inputs:
+      bench_data_dir:
+        description: "Optional path containing sample.tab.gz, sample.tab.gz.tbi, and regions.bed"
+        required: false
+        default: ""
+        type: string
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  tier7:
+    name: Tier 7 performance benchmarks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache cargo
+        uses: Swatinem/rust-cache@v2
+
+      - name: Configure benchmark data
+        shell: bash
+        run: |
+          if [ -n "${{ github.event.inputs.bench_data_dir }}" ]; then
+            echo "VIEWBS_BENCH_DATA_DIR=${{ github.event.inputs.bench_data_dir }}" >> "$GITHUB_ENV"
+          elif [ -d benchdata ]; then
+            echo "VIEWBS_BENCH_DATA_DIR=$PWD/benchdata" >> "$GITHUB_ENV"
+          fi
+
+      - name: Run Criterion benchmarks
+        run: cargo bench --bench performance --all-features
+
+      - name: Upload Criterion report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: criterion-results
+          path: target/criterion
+          if-no-files-found: warn

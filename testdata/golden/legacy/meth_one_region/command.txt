@@ -1,0 +1,11 @@
+Legacy command intent:
+
+ViewBS MethOneRegion --sample data/test_data/test_WT.tab.gz,WT --region chr2:1006-1010 --outdir out --prefix one --context CG --minDepth 1 --maxDepth 100 --flank 0
+
+Expected output provenance:
+
+The local legacy Perl entrypoint cannot be executed in this environment because Getopt::Long::Subcommand is not installed. This fixture uses the checked-in indexed methylation fixture data/test_data/test_WT.tab.gz and follows the checked-in legacy implementation in lib/Meth/OneRegion.pm:
+
+- query chr2:1006-1010;
+- keep CG records with 1 <= methylated + unmethylated <= 100;
+- write per-site methylation levels as C_num / (C_num + T_num).

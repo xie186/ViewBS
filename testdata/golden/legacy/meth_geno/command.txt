@@ -1,0 +1,12 @@
+Legacy command intent:
+
+ViewBS MethGeno --sample data/test_data/test_WT.tab.gz,WT --genomeLength genome.fai --outdir out --prefix geno --context CG --minDepth 1 --maxDepth 100 --win 10 --step 10 --minLength 1
+
+Expected output provenance:
+
+The local legacy Perl entrypoint cannot be executed in this environment because Getopt::Long::Subcommand is not installed. This fixture uses the checked-in indexed methylation fixture data/test_data/test_WT.tab.gz and follows the checked-in legacy implementation in lib/Meth/Geno.pm:
+
+- read chromosome lengths from genome.fai;
+- query fixed windows with --win 10 and --step 10;
+- aggregate C/T counts per window and sample;
+- use weighted methylation level C_number / (C_number + T_number + 0.000000001).

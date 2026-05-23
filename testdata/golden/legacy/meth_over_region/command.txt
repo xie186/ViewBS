@@ -1,0 +1,12 @@
+Legacy command intent:
+
+ViewBS MethOverRegion --sample data/test_data/test_WT.tab.gz,WT --region regions.bed --outdir out --prefix over --context CG --minDepth 1 --maxDepth 100 --flank 10 --binLength 5 --binNumber 5 --minLength 1 --maxLength 1000000
+
+Expected output provenance:
+
+The local legacy Perl entrypoint cannot be executed in this environment because Getopt::Long::Subcommand is not installed. This fixture uses the checked-in indexed methylation fixture data/test_data/test_WT.tab.gz and follows the checked-in legacy implementation in lib/Meth/OverRegion.pm:
+
+- parse BED-like regions with strand;
+- query body plus flanks;
+- preserve upstream/body/downstream bin assignment;
+- aggregate C/T counts per sample, segment, and bin.

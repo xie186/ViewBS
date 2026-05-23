@@ -1,0 +1,12 @@
+Legacy command intent:
+
+ViewBS MethHeatmap --sample data/test_data/test_WT.tab.gz,WT --regions regions.bed --outdir out --prefix heat --context CG --minDepth 1 --maxDepth 100
+
+Expected output provenance:
+
+The local legacy Perl entrypoint cannot be executed in this environment because Getopt::Long::Subcommand is not installed. This fixture uses the checked-in indexed methylation fixture data/test_data/test_WT.tab.gz and follows the checked-in legacy implementation in lib/Meth/Heatmap.pm:
+
+- query each region for each sample and context;
+- compute weighted methylation levels;
+- preserve NA for regions with no usable records;
+- write one matrix per context when --merge is not set.

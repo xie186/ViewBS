@@ -1,0 +1,12 @@
+Legacy command intent:
+
+ViewBS MethCoverage --sample sample.tab,WT --reference reference.fa --outdir out --prefix coverage
+
+Expected output provenance:
+
+The local legacy Perl entrypoint cannot be executed in this environment because Getopt::Long::Subcommand is not installed. This fixture follows the checked-in legacy implementation in lib/Meth/Coverage.pm and the reference context counting behavior covered by the Rust test suite:
+
+- count cytosine depth by context;
+- when zero-depth cytosines are absent, use reference-derived context counts as denominators;
+- emit reverse cumulative coverage percentages by context and depth;
+- preserve integer percentage formatting.

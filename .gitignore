@@ -15,7 +15,7 @@
 test.sh
 .dir_bash_history*
 ViewBS_testdata/
-
-
-
+target/
+/benchdata/
+*.pending-snap
 

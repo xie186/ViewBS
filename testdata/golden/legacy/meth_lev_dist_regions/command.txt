@@ -1,0 +1,12 @@
+Legacy command intent:
+
+ViewBS MethLevDist --sample data/test_data/test_WT.tab.gz,WT --regions regions.bed --outdir out --prefix dist_regions --minDepth 1 --maxDepth 100 --binMethLev 0.5
+
+Expected output provenance:
+
+The local legacy Perl entrypoint cannot be executed in this environment because Getopt::Long::Subcommand is not installed. This fixture uses the checked-in indexed methylation fixture data/test_data/test_WT.tab.gz and follows the checked-in legacy implementation in lib/Meth/LevDist.pm:
+
+- query regions from regions.bed;
+- compute weighted region methylation levels;
+- bin region-level methylation by --binMethLev;
+- preserve midpoint labels and integer percentage formatting.

@@ -1,0 +1,14 @@
+Legacy command intent:
+
+ViewBS BisNonConvRate --sample sample.tab,WT --chrom chrC --outdir out --prefix bis --minDepth 1 --maxDepth 100
+
+Expected output provenance:
+
+The local legacy Perl entrypoint cannot be executed in this environment because Getopt::Long::Subcommand is not installed. This fixture follows the checked-in legacy implementation in lib/Meth/BisNonConvRate.pm:
+
+- keep records from --chrom only;
+- default context is CXX, meaning all cytosine contexts;
+- keep records with 1 <= methylated + unmethylated <= 100;
+- report C_number as total methylated cytosines;
+- report Total_Depth as total methylated plus unmethylated depth;
+- format BisNonConvRate with five decimal places.

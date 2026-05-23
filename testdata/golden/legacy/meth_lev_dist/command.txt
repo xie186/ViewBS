@@ -1,0 +1,13 @@
+Legacy command intent:
+
+ViewBS MethLevDist --sample sample.tab,WT --outdir out --prefix dist --minDepth 1 --maxDepth 100 --binMethLev 0.5
+
+Expected output provenance:
+
+The local legacy Perl entrypoint cannot be executed in this environment because Getopt::Long::Subcommand is not installed. This fixture follows the checked-in legacy implementation in lib/Meth/LevDist.pm:
+
+- keep records with 1 <= methylated + unmethylated <= 100;
+- bin methylation levels by --binMethLev;
+- use bin midpoints as output labels;
+- emit zero-count bins for observed contexts;
+- preserve integer percentage formatting.
