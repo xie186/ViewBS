@@ -24,7 +24,7 @@ Current uncommitted work in this checkout:
 - `plan.md`: implementation-status updates for README migration notes.
 - `tests/packaging_metadata.rs`: metadata tests guarding the README against legacy `.rds`/Rscript plotting instructions, old helper-script paths, stale `ViewBS.pl` examples, legacy figure-regeneration shell-script wording, fallback package channels being presented ahead of release archives, missing legacy differences documentation, and missing release validation documentation.
 - `docs/release.md`: release-candidate validation checklist for the remaining external gates.
-- `.github/workflows/release.yml`: release archives now stage `INSTALL` alongside `README.md`, `license.txt`, `CHANGELOG.md`, and smoke-test example data.
+- `.github/workflows/release.yml`: release archives now stage `INSTALL` alongside `README.md`, `license.txt`, `CHANGELOG.md`, and smoke-test example data. The workflow also runs dry-run artifact builds on `viewbs-rs` branch pushes, while GitHub release publication remains tag-only.
 - `conda/conda_upload.md` and `conda/conda_upload.sh`: Rust-focused Bioconda build, smoke-test, and opt-in upload flow replacing stale Travis-era instructions.
 - `.travis.yml` and `ViewBSdocker/README_bak.md`: removed obsolete Perl-era CI and stale backup Docker documentation.
 - `legacy/ViewBS.pl`: moved from the repository root so the root `ViewBS` name is reserved for the Rust binary.
@@ -119,6 +119,8 @@ Recent post-handoff progress:
 - `tests/packaging_metadata.rs` includes a metadata test to keep that release validation checklist present.
 - `.github/workflows/release.yml` now stages `INSTALL` in release archives so copied release bundles include user-facing install notes.
 - `tests/packaging_metadata.rs` includes a metadata test to keep release archives staging `INSTALL`.
+- `.github/workflows/release.yml` now runs dry-run artifact builds on `viewbs-rs` pushes because the manual dispatch endpoint is unavailable until the workflow exists on the default branch.
+- `tests/packaging_metadata.rs` includes a metadata test to keep the release dry-run trigger available on the rewrite branch.
 - `conda/conda_upload.md` and `conda/conda_upload.sh` now describe/build/smoke-test the Rust Conda package and require explicit upload credentials/flags.
 - `tests/packaging_metadata.rs` includes a metadata test to prevent the Conda upload path from regressing to Travis-era package publishing instructions.
 - `.travis.yml` and `ViewBSdocker/README_bak.md` were removed so the Rust rewrite does not retain stale Perl-era CI or duplicate Docker docs.

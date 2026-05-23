@@ -151,6 +151,8 @@ fn legacy_perl_launcher_is_not_kept_as_the_root_viewbs_entrypoint() {
 fn release_workflow_tests_downloaded_archives_with_real_commands() {
     let workflow = fs::read_to_string(".github/workflows/release.yml").unwrap();
 
+    assert!(workflow.contains("branches:"));
+    assert!(workflow.contains("viewbs-rs"));
     assert!(workflow.contains("Test archive contents"));
     assert!(workflow.contains("Get-FileHash -Algorithm SHA256"));
     assert!(workflow.contains("checksum verification failed"));
@@ -317,6 +319,8 @@ fn release_validation_checklist_covers_remaining_release_gates() {
 
     assert!(docs.contains("# ViewBS Release Validation"));
     assert!(docs.contains("GitHub Actions matrices"));
+    assert!(docs.contains("pushes to `viewbs-rs`"));
+    assert!(docs.contains("default branch"));
     assert!(docs.contains("VIEWBS_BENCH_DATA_DIR"));
     assert!(docs.contains("Bioconda"));
     assert!(docs.contains("Docker"));

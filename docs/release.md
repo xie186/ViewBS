@@ -16,7 +16,7 @@ Required evidence:
 - Feature-matrix tests pass for default, no-default-features, and all-features.
 - Tier 6 smoke tests pass on Linux, macOS, and Windows.
 
-Run the release workflow as a dry-run artifact build before pushing a tag:
+Run the release workflow as a dry-run artifact build before pushing a tag. The workflow runs automatically on pushes to `viewbs-rs`, or it can be started manually once the workflow exists on the repository default branch:
 
 ```bash
 gh workflow run release.yml --ref viewbs-rs
