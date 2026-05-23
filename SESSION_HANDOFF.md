@@ -99,7 +99,6 @@ On a normal Rust installation, the same commands can usually be run as `cargo ..
 `plan.md` currently lists release work that still needs external validation:
 
 - Populate external large performance/memory datasets for `VIEWBS_BENCH_DATA_DIR` and record Tier 7 baselines.
-- Publish or explicitly defer the updated Bioconda and Docker packages from release artifacts.
 - Revisit macOS notarization and Windows Authenticode signing before a stable public release.
 
 Recent post-handoff progress:
@@ -133,6 +132,8 @@ Recent post-handoff progress:
 - `tests/packaging_metadata.rs` includes a metadata test to keep that signing decision recorded.
 - `ci/record_tier7_baseline.sh` records release-candidate Tier 7 benchmarks with the external data manifest, Criterion report, and `/usr/bin/time -v` evidence once `VIEWBS_BENCH_DATA_DIR` is available.
 - `docs/benchmarks.md` and `docs/release.md` now point release validation to that helper script.
+- `docs/release.md` records the 0.2.0-alpha.0 package decision: Docker and Conda publication is deferred until a public release tag is cut from the validated commit.
+- `tests/packaging_metadata.rs` includes a metadata test to keep that package defer decision recorded.
 - `.travis.yml` and `ViewBSdocker/README_bak.md` were removed so the Rust rewrite does not retain stale Perl-era CI or duplicate Docker docs.
 - `tests/packaging_metadata.rs` includes a metadata test to keep those obsolete files out.
 - The old root `ViewBS` Perl launcher was moved to `legacy/ViewBS.pl`.

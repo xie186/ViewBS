@@ -78,6 +78,12 @@ Docker:
 - Run one mounted-volume table command and one plot command.
 - Confirm the runtime image does not install R, Perl, htslib, or external plotting runtimes.
 
+Current 0.2.0-alpha.0 package decision:
+
+- Docker and Conda package validation runs on `viewbs-rs` branch pushes.
+- Package publication is deferred until a public release tag is cut from the validated commit.
+- If package publication is deferred for a release candidate, keep the Packaging workflow URL with the release notes so the validation evidence is still traceable.
+
 ## 4. macOS and Windows signing decision
 
 Record the code signing decision for every release candidate:

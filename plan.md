@@ -97,6 +97,7 @@ Status as of 2026-05-23:
 - A packaging GitHub Actions workflow now builds and smoke-tests the Docker image and Conda package on `viewbs-rs` branch pushes.
 - The 0.2.0-alpha.0 macOS and Windows signing decision is recorded as unsigned development artifacts with checksums and first-run warning notes.
 - `ci/record_tier7_baseline.sh` records release-candidate Tier 7 benchmarks with the external data manifest, Criterion report, and `/usr/bin/time -v` evidence.
+- The 0.2.0-alpha.0 package decision is recorded: Docker and Conda publication is deferred until a public release tag is cut from the validated commit.
 - Obsolete Perl-era Travis CI configuration and stale backup Docker README were removed; CI is now represented by GitHub Actions.
 - The legacy Perl launcher was moved from the repository root to `legacy/ViewBS.pl` so the root `ViewBS` name belongs to the Rust binary.
 - Root install files now document Rust release archives, Cargo source builds, package-maintainer paths, and a small Rust development Conda environment instead of Perl/R dependency installation.
@@ -104,7 +105,6 @@ Status as of 2026-05-23:
 Remaining release work:
 
 - Populate external large realistic performance/memory datasets for `VIEWBS_BENCH_DATA_DIR` and record release-candidate Tier 7 baselines.
-- Publish or explicitly defer the updated Bioconda and Docker packages from release artifacts.
 - Revisit macOS notarization and Windows Authenticode signing before a stable public release.
 
 ## Repository Strategy

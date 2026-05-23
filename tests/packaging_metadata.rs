@@ -368,6 +368,8 @@ fn release_validation_checklist_covers_remaining_release_gates() {
     assert!(docs.contains("Docker"));
     assert!(docs.contains("macOS"));
     assert!(docs.contains("Windows"));
+    assert!(docs.contains("Current 0.2.0-alpha.0 package decision"));
+    assert!(normalized.contains("package publication is deferred"));
     assert!(docs.contains("Current 0.2.0-alpha.0 decision"));
     assert!(normalized.contains("unsigned development artifacts"));
     assert!(docs.contains("SHA256 checksums"));
