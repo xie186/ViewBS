@@ -59,6 +59,8 @@ Pair the heatmap memory proxy with OS-level memory evidence for release candidat
 
 ## 3. Bioconda and Docker validation
 
+The `Packaging` workflow runs Docker and Conda smoke tests automatically on pushes to `viewbs-rs`, and can also be started manually after the workflow exists on the repository default branch.
+
 Bioconda:
 
 - Build the recipe from `conda/meta.yaml`.

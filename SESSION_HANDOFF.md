@@ -127,6 +127,9 @@ Recent post-handoff progress:
 - `tests/packaging_metadata.rs` includes a metadata test to keep stale macOS 13 release runners out.
 - `conda/conda_upload.md` and `conda/conda_upload.sh` now describe/build/smoke-test the Rust Conda package and require explicit upload credentials/flags.
 - `tests/packaging_metadata.rs` includes a metadata test to prevent the Conda upload path from regressing to Travis-era package publishing instructions.
+- `conda/conda_upload.sh` now runs a real `GlobalMethLev` table-and-SVG plot smoke command from the built Conda package.
+- `.github/workflows/packaging.yml` now builds and smoke-tests Docker and Conda packages on `viewbs-rs` pushes.
+- `tests/packaging_metadata.rs` includes a metadata test to keep the packaging validation workflow present.
 - `.travis.yml` and `ViewBSdocker/README_bak.md` were removed so the Rust rewrite does not retain stale Perl-era CI or duplicate Docker docs.
 - `tests/packaging_metadata.rs` includes a metadata test to keep those obsolete files out.
 - The old root `ViewBS` Perl launcher was moved to `legacy/ViewBS.pl`.

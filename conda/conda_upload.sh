@@ -32,6 +32,19 @@ conda run -n "$env_name" ViewBS --version
 conda run -n "$env_name" ViewBS --help >/dev/null
 conda run -n "$env_name" ViewBS GlobalMethLev --help >/dev/null
 
+smoke_dir="${VIEWBS_CONDA_SMOKE_DIR:-target/conda-smoke-$env_name}"
+rm -rf "$smoke_dir"
+mkdir -p "$smoke_dir"
+conda run -n "$env_name" ViewBS GlobalMethLev \
+  --sample data/test_data/test_WT.tab.gz,WT \
+  --outdir "$smoke_dir" \
+  --prefix conda_global \
+  --minDepth 1 \
+  --maxDepth 100 \
+  --plot-format svg >/dev/null
+test -s "$smoke_dir/conda_global.tab"
+test -s "$smoke_dir/conda_global.svg"
+
 if [[ "$upload" == "1" ]]; then
   if [[ -z "${ANACONDA_API_TOKEN:-}" ]]; then
     echo "ANACONDA_API_TOKEN is required when VIEWBS_CONDA_UPLOAD=1" >&2

@@ -80,6 +80,9 @@ fn conda_upload_docs_and_script_are_rust_release_focused() {
     assert!(script.contains("upload \"$package_path\""));
     assert!(script.contains("anaconda -t \"$ANACONDA_API_TOKEN\""));
     assert!(script.contains("ANACONDA_API_TOKEN"));
+    assert!(script.contains("--plot-format svg"));
+    assert!(script.contains("conda_global.tab"));
+    assert!(script.contains("conda_global.svg"));
     assert_absent(
         &combined,
         &[
@@ -230,6 +233,24 @@ fn tier7_benchmarks_are_documented_and_can_use_external_data() {
     assert!(workflow.contains("VIEWBS_BENCH_DATA_DIR"));
 
     assert!(gitignore.contains("/benchdata/"));
+}
+
+#[test]
+fn packaging_validation_workflow_runs_docker_and_conda_smoke_tests() {
+    let workflow = fs::read_to_string(".github/workflows/packaging.yml").unwrap();
+
+    assert!(workflow.contains("name: Packaging"));
+    assert!(workflow.contains("viewbs-rs"));
+    assert!(workflow.contains("docker build"));
+    assert!(workflow.contains("docker run"));
+    assert!(workflow.contains("ViewBSdocker/Dockerfile"));
+    assert!(workflow.contains("conda-incubator/setup-miniconda"));
+    assert!(workflow.contains("Build and smoke-test Conda package"));
+    assert!(workflow.contains("conda/conda_upload.sh"));
+    assert!(workflow.contains("VIEWBS_CONDA_UPLOAD: \"0\""));
+    assert!(workflow.contains("GlobalMethLev"));
+    assert!(workflow.contains("--plot-format svg"));
+    assert_absent(&workflow, &["rscript", "perl", "htslib"]);
 }
 
 #[test]

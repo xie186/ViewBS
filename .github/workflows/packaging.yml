@@ -1,0 +1,68 @@
+name: Packaging
+
+on:
+  push:
+    branches:
+      - viewbs-rs
+  workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  docker:
+    name: Docker package smoke
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -f ViewBSdocker/Dockerfile -t viewbs:packaging-smoke .
+
+      - name: Run Docker smoke tests
+        run: |
+          docker run --rm viewbs:packaging-smoke --version
+          docker run --rm viewbs:packaging-smoke --help
+          mkdir -p target/docker-smoke
+          docker run --rm \
+            -v "${PWD}:/work" \
+            -w /work \
+            --entrypoint ViewBS \
+            viewbs:packaging-smoke \
+            GlobalMethLev \
+            --sample data/test_data/test_WT.tab.gz,WT \
+            --outdir target/docker-smoke \
+            --prefix docker_global \
+            --minDepth 1 \
+            --maxDepth 100 \
+            --plot-format svg
+          test -s target/docker-smoke/docker_global.tab
+          test -s target/docker-smoke/docker_global.svg
+
+  conda:
+    name: Conda package smoke
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -el {0}
+    env:
+      VIEWBS_CONDA_UPLOAD: "0"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Conda
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          miniforge-version: latest
+          channels: conda-forge
+          channel-priority: strict
+          activate-environment: viewbs-build
+          auto-activate-base: false
+
+      - name: Install package build tools
+        run: conda install -y conda-build anaconda-client
+
+      - name: Build and smoke-test Conda package
+        run: conda/conda_upload.sh conda

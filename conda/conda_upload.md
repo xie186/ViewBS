@@ -39,10 +39,11 @@ conda create -y -n viewbs-conda-test target/conda-bld/*/viewbs-*.tar.bz2
 conda run -n viewbs-conda-test ViewBS --version
 conda run -n viewbs-conda-test ViewBS --help
 conda run -n viewbs-conda-test ViewBS GlobalMethLev --help
+conda run -n viewbs-conda-test ViewBS GlobalMethLev --sample data/test_data/test_WT.tab.gz,WT --outdir target/conda-smoke --prefix conda_global --minDepth 1 --maxDepth 100 --plot-format svg
 conda env remove -y -n viewbs-conda-test
 ```
 
-For release candidates, also run one small table command and one plot command from the installed package. Do not upload until the package has been validated against the current release candidate.
+The helper script performs the same table-and-SVG smoke command and checks `conda_global.tab` and `conda_global.svg`. Do not upload until the package has been validated against the current release candidate.
 
 ## Upload
 

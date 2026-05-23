@@ -93,6 +93,8 @@ Status as of 2026-05-23:
 - The release artifact workflow uses Windows-compatible PowerShell in archive extraction smoke tests.
 - The release artifact workflow uses the current `macos-15-intel` runner label for x86_64 macOS artifacts instead of the retired macOS 13 runner.
 - `conda/conda_upload.md` and `conda/conda_upload.sh` now document and automate Rust package build, smoke-test, and opt-in Anaconda upload flow without Travis-era upload logic.
+- The Conda smoke script now runs a real `GlobalMethLev` table-and-SVG plot command from the built package.
+- A packaging GitHub Actions workflow now builds and smoke-tests the Docker image and Conda package on `viewbs-rs` branch pushes.
 - Obsolete Perl-era Travis CI configuration and stale backup Docker README were removed; CI is now represented by GitHub Actions.
 - The legacy Perl launcher was moved from the repository root to `legacy/ViewBS.pl` so the root `ViewBS` name belongs to the Rust binary.
 - Root install files now document Rust release archives, Cargo source builds, package-maintainer paths, and a small Rust development Conda environment instead of Perl/R dependency installation.
