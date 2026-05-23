@@ -37,6 +37,65 @@ fn conda_recipe_builds_the_rust_binary_without_legacy_runtimes() {
 }
 
 #[test]
+fn root_install_docs_are_rust_release_focused() {
+    let install = fs::read_to_string("INSTALL").unwrap();
+    let environment = fs::read_to_string("environment.yaml").unwrap();
+
+    assert!(install.contains("ViewBS Rust Installation"));
+    assert!(install.contains("release archives"));
+    assert!(install.contains("cargo install --locked --path ."));
+    assert!(install.contains("conda/meta.yaml"));
+    assert!(environment.contains("name: viewbs-rust-dev"));
+    assert!(environment.contains("rust"));
+    assert!(environment.contains("pkg-config"));
+    assert_absent(
+        &format!("{install}\n{environment}"),
+        &[
+            "install.pl",
+            "rscript",
+            "r-base",
+            "perl",
+            "htslib",
+            "bio::db::hts",
+            "cpanm",
+        ],
+    );
+}
+
+#[test]
+fn conda_upload_docs_and_script_are_rust_release_focused() {
+    let docs = fs::read_to_string("conda/conda_upload.md").unwrap();
+    let script = fs::read_to_string("conda/conda_upload.sh").unwrap();
+    let combined = format!("{docs}\n{script}");
+
+    assert!(docs.contains("# ViewBS Bioconda Release Upload"));
+    assert!(docs.contains("conda/meta.yaml"));
+    assert!(docs.contains("conda build conda"));
+    assert!(docs.contains("ViewBS --version"));
+    assert!(docs.contains("ViewBS --help"));
+    assert!(docs.contains("GlobalMethLev"));
+    assert!(script.contains("set -euo pipefail"));
+    assert!(script.contains("conda build"));
+    assert!(script.contains("conda run"));
+    assert!(script.contains("upload \"$package_path\""));
+    assert!(script.contains("anaconda -t \"$ANACONDA_API_TOKEN\""));
+    assert!(script.contains("ANACONDA_API_TOKEN"));
+    assert_absent(
+        &combined,
+        &[
+            "travis",
+            ".travis",
+            "cdp",
+            "miniconda2",
+            "travis_os_name",
+            "conda_upload_token",
+            "version=`date",
+            "python testing",
+        ],
+    );
+}
+
+#[test]
 fn dockerfile_uses_a_rust_builder_and_minimal_runtime() {
     let dockerfile = fs::read_to_string("ViewBSdocker/Dockerfile").unwrap();
 
@@ -60,6 +119,32 @@ fn dockerfile_uses_a_rust_builder_and_minimal_runtime() {
             "pheatmap",
         ],
     );
+}
+
+#[test]
+fn legacy_perl_ci_and_backup_docker_docs_are_not_kept() {
+    assert!(
+        !std::path::Path::new(".travis.yml").exists(),
+        "Rust rewrite uses GitHub Actions; the stale Perl Travis config should not remain"
+    );
+    assert!(
+        !std::path::Path::new("ViewBSdocker/README_bak.md").exists(),
+        "Docker docs should keep one Rust-focused README, not a stale backup file"
+    );
+}
+
+#[test]
+fn legacy_perl_launcher_is_not_kept_as_the_root_viewbs_entrypoint() {
+    assert!(
+        !std::path::Path::new("ViewBS").exists(),
+        "The Rust rewrite owns the root ViewBS binary name; preserve the Perl launcher under legacy/"
+    );
+
+    let legacy = fs::read_to_string("legacy/ViewBS.pl").unwrap();
+    assert!(legacy.starts_with("#!/usr/bin/env perl"));
+    assert!(legacy.contains("use Getopt::Long::Subcommand"));
+    assert!(legacy.contains("basename($main_path) eq \"legacy\""));
+    assert!(legacy.contains("dirname($main_path)"));
 }
 
 #[test]
@@ -89,6 +174,7 @@ fn release_archives_include_user_facing_release_notes() {
     assert!(changelog.contains("Rust"));
     assert!(manifest.contains("/CHANGELOG.md"));
     assert!(workflow.contains("Copy-Item \"CHANGELOG.md\""));
+    assert!(workflow.contains("Copy-Item \"INSTALL\""));
 }
 
 #[test]
@@ -133,4 +219,125 @@ fn tier7_benchmarks_are_documented_and_can_use_external_data() {
     assert!(workflow.contains("VIEWBS_BENCH_DATA_DIR"));
 
     assert!(gitignore.contains("/benchdata/"));
+}
+
+#[test]
+fn readme_documents_rust_plot_artifacts_instead_of_legacy_rds_workflow() {
+    let readme = fs::read_to_string("README.md").unwrap();
+    let normalized = readme.to_ascii_lowercase();
+
+    assert!(readme.contains("ViewBS merge-figures"));
+    assert!(readme.contains("SVG"));
+    assert!(readme.contains("PDF"));
+    assert!(readme.contains("PNG"));
+    assert!(normalized.contains("no longer writes `.rds`"));
+    assert!(normalized.contains("pure rust"));
+    assert!(normalized.contains("without r"));
+    assert_absent(
+        &readme,
+        &["rscript", "readrds", "cowplot", ".tab.rds", "fig1.rds"],
+    );
+}
+
+#[test]
+fn readme_documents_rust_converter_commands_instead_of_legacy_scripts() {
+    let readme = fs::read_to_string("README.md").unwrap();
+
+    assert!(readme.contains("ViewBS convert bsseeker"));
+    assert!(readme.contains("ViewBS convert brat"));
+    assert!(readme.contains("ViewBS convert gff"));
+    assert!(readme.contains("bsseeker2bismark.pl"));
+    assert!(readme.contains("brat2bismark.pl"));
+    assert!(readme.contains("gff2tab.pl"));
+    assert_absent(
+        &readme,
+        &[
+            "lib/scripts",
+            "scripts to convert",
+            "use the r script in viewbs",
+        ],
+    );
+}
+
+#[test]
+fn readme_command_examples_describe_native_plot_outputs() {
+    let readme = fs::read_to_string("README.md").unwrap();
+    let normalized = readme.to_ascii_lowercase();
+
+    assert!(readme.contains("ViewBS MethLevDist"));
+    assert!(normalized.contains("plot artifact"));
+    assert!(normalized.contains("generated directly by viewbs"));
+    assert_absent(
+        &readme,
+        &[
+            "viewbs.pl",
+            "shell script which can re-generate",
+            "re-generate the figure",
+        ],
+    );
+}
+
+#[test]
+fn readme_presents_release_archives_as_primary_distribution() {
+    let readme = fs::read_to_string("README.md").unwrap();
+    let release_archive_pos = readme
+        .find("### Installation from release archives")
+        .expect("README should document release archive installation");
+    let conda_pos = readme
+        .find("### Installation via `conda`")
+        .expect("README should keep Conda installation as a fallback");
+    let docker_pos = readme
+        .find("### Installation with `Docker`")
+        .expect("README should keep Docker installation as a fallback");
+
+    assert!(release_archive_pos < conda_pos);
+    assert!(release_archive_pos < docker_pos);
+    assert!(readme.contains("release archives are the primary distribution"));
+    assert!(readme.contains("Fallback package channels"));
+    assert_absent(&readme, &["installation via `conda` [recommended]"]);
+}
+
+#[test]
+fn readme_documents_legacy_differences_for_the_rust_rewrite() {
+    let readme = fs::read_to_string("README.md").unwrap();
+    let normalized = readme.to_ascii_lowercase();
+
+    assert!(readme.contains("### Legacy differences"));
+    assert!(normalized.contains("command names and input formats remain compatible"));
+    assert!(normalized.contains("intentional differences"));
+    assert!(normalized.contains("serialized `.rds`"));
+    assert!(normalized.contains("runtime dependencies"));
+    assert!(normalized.contains("helper-script names"));
+}
+
+#[test]
+fn release_validation_checklist_covers_remaining_release_gates() {
+    let docs = fs::read_to_string("docs/release.md").unwrap();
+    let normalized = docs.to_ascii_lowercase();
+
+    assert!(docs.contains("# ViewBS Release Validation"));
+    assert!(docs.contains("GitHub Actions matrices"));
+    assert!(docs.contains("VIEWBS_BENCH_DATA_DIR"));
+    assert!(docs.contains("Bioconda"));
+    assert!(docs.contains("Docker"));
+    assert!(docs.contains("macOS"));
+    assert!(docs.contains("Windows"));
+    assert!(normalized.contains("do not tag"));
+    assert!(normalized.contains("release-candidate tier 7 baseline"));
+    assert!(normalized.contains("code signing decision"));
+}
+
+#[test]
+fn session_handoff_doc_records_resume_context_and_external_gates() {
+    let handoff = fs::read_to_string("SESSION_HANDOFF.md").unwrap();
+
+    assert!(handoff.contains("# ViewBS Rust Rewrite Handoff"));
+    assert!(handoff.contains("Use $superpowers to implement plan.md"));
+    assert!(handoff.contains("viewbs-rs"));
+    assert!(handoff.contains("git bundle create"));
+    assert!(handoff.contains("release archives now stage `INSTALL`"));
+    assert!(handoff.contains("VIEWBS_BENCH_DATA_DIR"));
+    assert!(handoff.contains("Bioconda"));
+    assert!(handoff.contains("Docker"));
+    assert!(handoff.contains("code signing"));
 }

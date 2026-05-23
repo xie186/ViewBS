@@ -1,15 +1,21 @@
-Installation of ViewBS
+ViewBS Rust Installation
 
-1. OPTION 1: The users can follow the instructions to install the dependencies of ViewBS:
+The Rust rewrite is distributed primarily as release archives. Download the archive for your operating system from:
 
-Please go to the web link below for details:
+https://github.com/xie186/ViewBS/releases/latest
 
-https://github.com/xie186/ViewBS#install
+Unpack the archive and put the `ViewBS` executable on your `PATH`.
 
-2. Option 2: User the helper script to install all the dependecies:
-
+To build from source:
 
 ```
-cd ViewBS
-perl INSTALL.pl
+cargo install --locked --path .
 ```
+
+For package maintainers:
+
+- Bioconda packaging is defined in `conda/meta.yaml`.
+- Docker packaging is defined in `ViewBSdocker/Dockerfile`.
+- Release-candidate validation is documented in `docs/release.md`.
+
+The standalone Rust binary does not require external scripting, plotting, or indexed-file runtimes to run ViewBS commands.

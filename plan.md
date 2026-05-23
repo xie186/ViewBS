@@ -82,6 +82,17 @@ Status as of 2026-05-23:
 - Release archives and Cargo packages include `CHANGELOG.md` with Rust rewrite release notes.
 - Tier 7 Criterion benchmarks cover parser throughput, indexed queries, `MethGeno`, `MethHeatmap` runtime, a heatmap memory-size proxy, heatmap plot generation, and output artifact size. The benchmark harness can use `VIEWBS_BENCH_DATA_DIR` for large external data that stays outside the crates.io package.
 - A scheduled/manual GitHub Actions benchmark workflow runs the Tier 7 suite and uploads Criterion reports.
+- README migration notes document that `.rds` figure objects were removed, SVG/PDF/PNG are the replacement plot artifacts, `ViewBS merge-figures` replaces the legacy R helper workflow, and the Rust binary runs without R, Perl, htslib, or external plotting tools.
+- README input-preparation notes document the Rust converter subcommands and legacy helper aliases instead of sending users to old helper-script paths.
+- README command examples now use the `ViewBS` binary name and describe plot artifacts generated directly by ViewBS instead of legacy regeneration shell scripts.
+- README installation notes now present standalone release archives as the primary distribution and Conda/Docker as fallback package channels.
+- README migration notes include a dedicated legacy differences section covering removed `.rds` objects, direct PDF/SVG/PNG plots, `ViewBS merge-figures`, removed runtime dependencies, and helper-name compatibility aliases.
+- `docs/release.md` documents the remaining release validation gates for GitHub Actions matrices, external Tier 7 benchmark data, Bioconda/Docker validation, and macOS/Windows signing decisions.
+- Release archive staging now includes `INSTALL` so copied bundles carry user-facing install notes.
+- `conda/conda_upload.md` and `conda/conda_upload.sh` now document and automate Rust package build, smoke-test, and opt-in Anaconda upload flow without Travis-era upload logic.
+- Obsolete Perl-era Travis CI configuration and stale backup Docker README were removed; CI is now represented by GitHub Actions.
+- The legacy Perl launcher was moved from the repository root to `legacy/ViewBS.pl` so the root `ViewBS` name belongs to the Rust binary.
+- Root install files now document Rust release archives, Cargo source builds, package-maintainer paths, and a small Rust development Conda environment instead of Perl/R dependency installation.
 
 Remaining release work:
 
@@ -1015,9 +1026,16 @@ Suggested versioning:
 Migration notes:
 
 - Explain that command names and inputs are preserved.
-- Document removed `.rds` output and replacement plot artifacts.
+- Document removed `.rds` output and replacement plot artifacts. Completed in README migration notes.
 - Document pure Rust dependency changes.
-- Include a `legacy differences` section for any intentional behavior changes.
+- Replace legacy figure regeneration script wording in README examples. Completed in README command-output notes.
+- Present release archives as the primary installation path, with Conda and Docker as fallback channels. Completed in README installation notes.
+- Include a `legacy differences` section for any intentional behavior changes. Completed in README migration notes.
+- Document the release-candidate validation checklist. Completed in `docs/release.md`; external validation gates remain open until current evidence is collected.
+- Replace stale Bioconda upload instructions. Completed in `conda/conda_upload.md` and `conda/conda_upload.sh`; actual package publication still requires release-candidate validation.
+- Remove stale Perl-era CI and backup Docker docs. Completed by dropping `.travis.yml` and `ViewBSdocker/README_bak.md`.
+- Move the legacy Perl launcher out of the root `ViewBS` path. Completed by moving it to `legacy/ViewBS.pl`.
+- Replace stale root installation files. Completed by rewriting `INSTALL`, replacing `environment.yaml`, and removing `INSTALL.pl`.
 
 ## `kuva` Plot Library Spike Checklist
 

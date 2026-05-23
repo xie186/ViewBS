@@ -70,6 +70,7 @@ jobs:
 
           Copy-Item (Join-Path "target/${{ matrix.target }}/release" $binaryName) (Join-Path $stage $binaryName)
           Copy-Item "README.md" (Join-Path $stage "README.md")
+          Copy-Item "INSTALL" (Join-Path $stage "INSTALL")
           Copy-Item "license.txt" (Join-Path $stage "license.txt")
           Copy-Item "CHANGELOG.md" (Join-Path $stage "CHANGELOG.md")
           Copy-Item "data/test_data/test_WT.tab.gz" (Join-Path $stage "examples/test_WT.tab.gz")

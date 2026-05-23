@@ -22,7 +22,7 @@ $|++;    # Do not buffer output
 
 #Self written libraries.
 ## Package written by Shanshan Huang
-use lib dirname(abs_path $0) . '/lib';  #include seft written packages in @INC.
+use lib (-d dirname(abs_path $0) . '/lib' ? dirname(abs_path $0) . '/lib' : dirname(dirname(abs_path $0)) . '/lib');  #include seft written packages in @INC.
 use SubCmd::MethGeno;
 use Meth::Geno;
 use Meth::Sample;
@@ -36,6 +36,7 @@ use SubCmd::GlobalMethLev;
 use SubCmd::BisNonConvRate;
 
 my $main_path = dirname(abs_path $0);
+$main_path = dirname($main_path) if basename($main_path) eq "legacy" && -d dirname($main_path) . "/lib";
 
 my %opts;   ## store the values for common parameters
 my %opts_subcmd; ### store the values for sub command parameters
@@ -226,4 +227,3 @@ sub processCMD{
     push @{$opts_subcmd{subcommand}}, @{$resOpt->{subcommand}} if exists $resOpt->{subcommand};
     return $resOpt;
 }
-

@@ -9,18 +9,18 @@ Table of Contents
   * [Preparation of input files <a name="user\-content\-input"></a>](#preparation-of-input-files-)
   * [USAGE <a name="user\-content\-usage"></a>](#usage-)
     * [Download test data](#download-test-data)
-    * [Top commands of ViewBS](#top-commands-of-viewbs)
-      * [MethCoverage](#methcoverage)
-      * [BisNonConvRate](#bisnonconvrate)
-      * [GlobalMethLev](#globalmethlev)
-      * [MethLevDist](#methlevdist)
-      * [MethGeno](#methgeno)
-      * [View MethHeatmap](#view-methheatmap)
-      * [MethOverRegion](#methoverregion)
-      * [MethOneRegion](#methoneregion)
-    * [How to merge figures into one graph](#how-to-merge-figures-into-one-graph)
-      * [1\. Use the R script in ViewBS](#1-use-the-r-script-in-viewbs)
-      * [2\. Use the template below to merge multiple figures into one graph\.](#2-use-the-template-below-to-merge-multiple-figures-into-one-graph)
+	    * [Top commands of ViewBS](#top-commands-of-viewbs)
+	      * [MethCoverage](#methcoverage)
+	      * [BisNonConvRate](#bisnonconvrate)
+	      * [GlobalMethLev](#globalmethlev)
+	      * [MethLevDist](#methlevdist)
+	      * [MethGeno](#methgeno)
+	      * [View MethHeatmap](#view-methheatmap)
+	      * [MethOverRegion](#methoverregion)
+	      * [MethOneRegion](#methoneregion)
+	    * [How to merge figures into one graph](#how-to-merge-figures-into-one-graph)
+	    * [Rust rewrite migration notes](#rust-rewrite-migration-notes)
+	      * [Legacy differences](#legacy-differences)
   * [Where to find help <a name="user\-content\-help"></a>](#where-to-find-help-)
   * [Commercial use](#commercial-use)
   * [How to cite <a name="user\-content\-cite"></a>](#how-to-cite-)
@@ -46,7 +46,29 @@ Here is the workflow of ViewBS:
 
 ## Installation <a name="install"></a>
 
-### Installation via `conda` [recommended]
+### Installation from release archives
+
+Download the latest release:
+
+```
+https://github.com/xie186/ViewBS/releases/latest
+```
+
+Choose the archive for your operating system, unpack it, and put the `ViewBS` executable on your `PATH`.
+
+The release archives are the primary distribution for the Rust version. The Rust release is a standalone command-line tool. It does not require R, Perl, htslib, or external plotting tools to run ViewBS commands or generate plots.
+
+To build from source instead, install Rust and run:
+
+```
+cargo install --locked --path .
+```
+
+### Fallback package channels
+
+Bioconda and Docker remain available for managed environments, shared clusters, and containerized workflows.
+
+### Installation via `conda`
 
 > Special thanks to [@xuzhougeng](https://github.com/xuzhougeng) for writing bioconda recipe for ViewBS (https://github.com/xie186/ViewBS/issues/57). 
 
@@ -90,50 +112,6 @@ docker run -v ${PWD}:/data -w /data bc1743f3418f ViewBS MethOneRegion --region c
 
 > Because docker needs `root` access, sometimes it's not available. But `singularity` is an alternative software. Please see the link here for details: https://github.com/xie186/ViewBS/wiki/Run-ViewBS-with-%60Docker%60-or-%60Singularity%60#singularity
 
-### Installation of dependencies step by step
-
-Download the lastest version:
-
-```
-https://github.com/xie186/ViewBS/releases/latest
-```
-
-> To make the installation of dependencies easier, a script was developped. `perl INSTALL.pl
-` can be used as a helper to install and check the dependencies.
-
-You can also install it step by step shown as below: 
-
-1. Install [htslib](https://github.com/samtools/htslib)
-2. Perl version: >v5.8.7
-  
-3. Perl packages:
-   * Getopt::Long::Subcommand - Process command-line options, with subcommands and completion
-   * Bio::DB::HTS::Tabix - Object oriented access to the underlying tbx C methods
-   * Bio::SeqIO - Handler for SeqIO Formats
-    ```
-    wget https://raw.githubusercontent.com/xie186/ViewBS/master/ext_tools/cpanm
-    chmod 755 cpanm
-    cpanm --local-lib=~/perl5 local::lib && eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
-    ./cpanm Getopt::Long::Subcommand
-    ./cpanm Getopt::Long (> 2.50)
-    ./cpanm Bio::DB::HTS::Tabix 
-    ./cpanm Bio::SeqIO
-    ```
-4. R version: > 3.3.0
-5. R packages
-    * ggplot2
-    * pheatmap
-    * reshape2
-    * cowplot
-
-    Install the required libraries in R:
-    ```
-    install.packages("ggplot2", dep=T)
-    install.packages("cowplot", dep=T)
-    install.packages("pheatmap", dep=T)
-    install.packages("reshape2", dep=T)
-    ```
-
 ## Preparation of input files <a name="input"></a>
 
 * Input file: __Genome-wide cytosine methylation report__
@@ -142,7 +120,7 @@ ViewBS uses __Genome-wide cytosine methylation report__ as input file. It is sor
 ```
 <chromosome> <position> <strand> <count methylated> <count unmethylated> <C-context> <trinucleotide context>
 ```
-> NOTES: If you use other tools rather than Bismark to generate the methylation information, you can still use ViewBS. You have two ways to use ViewBS: 1) if you have the bam file (e.g. bam file generated by [bwa-meth](https://github.com/brentp/bwa-meth)), you can use [MethylDackel](https://github.com/dpryan79/MethylDackel) with '--cytosine_report' to output the methylation information in __Genome-wide cytosine methylation report__ format; 2) We also include the scripts to convert the results of other tools (BSseeker and Brat) https://github.com/xie186/ViewBS/tree/master/lib/scripts to __Genome-wide cytosine methylation report__ format. If the script for your tool is not included, please feel free to contact us at xie186@purdue.edu 
+> NOTES: If you use other tools rather than Bismark to generate the methylation information, you can still use ViewBS. If you have a BAM file, for example one generated by [bwa-meth](https://github.com/brentp/bwa-meth), you can use [MethylDackel](https://github.com/dpryan79/MethylDackel) with `--cytosine_report` to output the methylation information in __Genome-wide cytosine methylation report__ format. ViewBS also provides Rust converter subcommands for several common input formats.
 
 
 Please see details in [Bismark](http://www.bioinformatics.babraham.ac.uk/projects/bismark/) websites.
@@ -157,14 +135,32 @@ Please see details in [Bismark](http://www.bioinformatics.babraham.ac.uk/project
 > ### This step will generate a file named bis_test.tab
 > coverage2cytosine -CX -o test.bis_rep.cov --genome_folder ara/ test.bismark.cov
 > ```
-*For BS-seq that is processed by Bismark but by other tools like [BRAT](http://compbio.cs.ucr.edu/brat/), [BS seeker2](https://github.com/BSSeeker/BSseeker2), ViewBS provides supports to convert DNA methylation data in other format to the format of genome-wide cytosine methylation report. Supports for other tools will be developed upon requests from the users. If you have DNA methylation data generated by other tools and you have difficulties on converting the data format, just give a post in the [issuse](https://github.com/readbio/ViewBS/issues). We're happy to add new functions for the file format conversion. *
+*For BS-seq processed by tools such as [BRAT](http://compbio.cs.ucr.edu/brat/) or [BS seeker2](https://github.com/BSSeeker/BSseeker2), ViewBS can convert methylation data into the genome-wide cytosine methylation report format.*
+
+Rust converter commands:
+
+```
+ViewBS convert bsseeker --input sample.CGmap --output sample.tab
+ViewBS convert brat --input sample.brat --output sample.tab
+ViewBS convert gff --input annotation.gff3 --output regions.tab
+```
+
+The legacy helper names are still accepted as compatibility aliases for existing workflows:
+
+```
+ViewBS bsseeker2bismark.pl --input sample.CGmap --output sample.tab
+ViewBS brat2bismark.pl --input sample.brat --output sample.tab
+ViewBS gff2tab.pl --input annotation.gff3 --output regions.tab
+```
+
+If you have DNA methylation data generated by other tools and have difficulty converting the data format, please open an issue at https://github.com/readbio/ViewBS/issues.
 
 For details, please see the link below:
 https://github.com/xie186/ViewBS/wiki/Support-for-nonBismark-results
 
-* Tabix indexing 
+* Tabix indexing
 
-Since ViewBS uses Bio::DB::HTS::Tabix to quickly retrieves information from the input (TAB-delited) files, the __Genome-wide Cytosine Methylation Report__ files should be *bgzip*ped and *tabix* indexed. *bgzip* and *tabix* . 
+Region-query commands can read BGZF-compressed methylation reports with Tabix `.tbi` or CSI `.csi` indexes directly through the Rust binary. The __Genome-wide Cytosine Methylation Report__ files should be sorted by chromosome coordinate before indexing.
 
 *Note: tabix and bgzip binaries are now part of the HTSlib project. https://github.com/samtools/htslib*
 
@@ -198,7 +194,7 @@ To generate the figure above, use the command shown as below:
 ```
 ViewBS MethCoverage --reference TAIR10_chr_all.fasta --sample bis_WT.tab.gz,WT --sample bis_cmt23.tab.gz,cmt23 --sample bis_cmt2-3.tab.gz,cmt2-3 --sample bis_drm12cmt23.tab.gz,drm12cmt12 --sample bis_drm12cmt2.tab.gz,drm12cmt2 --outdir methCoverage --prefix cmt2_proj_allsam
 ```
-Under *methCoverage* folder, there will be three files generated.
+Under *methCoverage* folder, ViewBS writes table and plot outputs.
 
 * Table for global methylation level.
 
@@ -210,8 +206,7 @@ Under *methCoverage* folder, there will be three files generated.
 | ...    	| ...      	| ...   	| ...              	|
 | WT     	| CG       	| 1     	| 93.8364493009668 	|
 
-* A shell script which can re-generate the figure in PDF file.
-* A figure in PDF file.
+* Plot artifact generated directly by ViewBS (PDF by default; SVG/PNG via `--plot-format`).
 
 #### BisNonConvRate
 
@@ -226,7 +221,7 @@ To generate the figure above, use the command shown as below:
 ```
 ViewBS BisNonConvRate --chrom chrC --sample bis_WT.tab.gz,WT --sample bis_cmt23.tab.gz,cmt23 --sample bis_cmt2-3.tab.gz,cmt2-3 --sample bis_drm12cmt2.tab.gz,drm12cmt2 --sample bis_drm12cmt23.tab.gz,drm12cmt23 --outdir BisNonConvRate --prefix cmt2_proj_allsam
 ```
-Under *BisNonConvRate*, there will be three files generated.
+Under *BisNonConvRate*, ViewBS writes table and plot outputs.
 
 * Table for global methylation level.
 
@@ -238,8 +233,7 @@ Under *BisNonConvRate*, there will be three files generated.
 | cmt23      | 0.046          |
 | WT         | 0.075          |
 
-* A shell script which can re-generate the figure in PDF file.
-* A figure in PDF file.
+* Plot artifact generated directly by ViewBS (PDF by default; SVG/PNG via `--plot-format`).
 
 #### GlobalMethLev
 
@@ -254,7 +248,7 @@ To generate the figure above, use the command shown as below:
 ```
 ViewBS GlobalMethLev --sample bis_WT.tab.gz,WT --sample bis_cmt23.tab.gz,cmt23 --sample bis_cmt2-3.tab.gz,cmt2-3 --sample bis_drm12cmt2.tab.gz,drm12cmt2 --sample bis_drm12cmt23.tab.gz,drm12cmt23 --outdir methGlobal --prefix cmt2_proj_allsam
 ```
-Under *methGlobal*, there will be three files generated.
+Under *methGlobal*, ViewBS writes table and plot outputs.
 
 * Table for global methylation level.
 
@@ -266,8 +260,7 @@ Under *methGlobal*, there will be three files generated.
 | drm12cmt23 	| 0.219 	| 0.004 	| 0.005 	|
 | WT         	| 0.245 	| 0.079 	| 0.029 	|
 
-* A shell script which can re-generate the figure in PDF file.
-* A figure in PDF file. 
+* Plot artifact generated directly by ViewBS (PDF by default; SVG/PNG via `--plot-format`).
 
 #### MethLevDist
 
@@ -280,7 +273,7 @@ Under *methGlobal*, there will be three files generated.
 
 To generate the figure above, use the command shown as below:
 ```
-ViewBS.pl MethLevDist --sample bis_WT.tab.gz,WT --sample bis_cmt23.tab.gz,cmt23 --sample bis_cmt2-3.tab.gz,cmt2-3 --sample bis_drm12cmt23.tab.gz,drm12cmt12 --sample bis_drm12cmt2.tab.gz,drm12cmt2 --outdir methLevDist --prefix cmt2_proj_allsam --binMethLev 0.1
+ViewBS MethLevDist --sample bis_WT.tab.gz,WT --sample bis_cmt23.tab.gz,cmt23 --sample bis_cmt2-3.tab.gz,cmt2-3 --sample bis_drm12cmt23.tab.gz,drm12cmt12 --sample bis_drm12cmt2.tab.gz,drm12cmt2 --outdir methLevDist --prefix cmt2_proj_allsam --binMethLev 0.1
 ```
 * Table for numbers and percentages of sites in each methylation level bin.
 
@@ -292,8 +285,7 @@ ViewBS.pl MethLevDist --sample bis_WT.tab.gz,WT --sample bis_cmt23.tab.gz,cmt23 
 | ...    	| ...      	| ...              	| ...      	| ..         	|
 | WT     	| CG       	| 0.05             	| 3470693  	| 13.73      	|
 
-* A shell script which can re-generate the figure in PDF file.
-* A figure in PDF file.
+* Plot artifact generated directly by ViewBS (PDF by default; SVG/PNG via `--plot-format`).
 
 #### MethGeno
 
@@ -398,82 +390,47 @@ To generate the figure above, you can use the following command line:
 ViewBS MethOneRegion --region chr5:19499001-19499600 --sample bis_WT.tab.gz,WT --sample bis_cmt23.tab.gz,cmt23 --prefix chr5_19499001-19499600 --context CHG
 ```
 
-### How to merge figures into one graph 
+### How to merge figures into one graph
 
-In ViewBS, all the figure objects will be saved into RDS files. The users can restore the RDS files and merge the figures into one graph. 
+The Rust version of ViewBS writes plot artifacts directly as PDF by default, with SVG and PNG available through `--plot-format`. ViewBS no longer writes `.rds` figure objects.
 
-There are two ways to do this: 1) use the helper script named `mer_fig.R `; 2) the users can write R script to read the RDS files and merge the figures into one graph with [`cowplot`](https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html). 
-
-#### 1. Use the R script in ViewBS
-
-Example as below:
+Use `ViewBS merge-figures` to combine existing SVG, PDF, or PNG plots into one output figure without R:
 
 ```
 cd $PATH2testdata
-Rscript ../../lib/scripts/mer_fig.R --input BisNonConvRate/cmt2_proj_allsam.tab.rds,MethGlobal/cmt2_proj_allsam.tab.rds,MethHeatmap/CHG_hypo_DMR_drm12cmt23_to_WT_MethHeatmap_CHG.pdf.rds --output testplot_col2.pdf --aspect_ratio 1.5 --ncol 2
+ViewBS merge-figures \
+  --input BisNonConvRate/cmt2_proj_allsam.pdf \
+  --input MethGlobal/cmt2_proj_allsam.pdf \
+  --input MethHeatmap/CHG_hypo_DMR_drm12cmt23_to_WT_MethHeatmap_CHG.pdf \
+  --labels A,B,C \
+  --output testplot_col2.pdf \
+  --ncol 2 \
+  --base-aspect-ratio 1.5
 ```
 
-Please see the following for the help information:
+The same command can write SVG or PNG by choosing the extension in `--output`. SVG is the best reusable format when the combined figure will be edited later.
 
-```
-$ Rscript ../../lib/scripts/mer_fig.R -h
+### Rust rewrite migration notes
 
-USAGE
-    Usage: Rscript mer_fig.R --input <fig1.rds,fig2.rds> --labels <A,B,C,D> [options]
+Command names and input file formats are preserved where possible. Plot files replace the old serialized figure-object workflow:
 
-DESCRIPTION
-    mer_fig.R is developed to merge figures into on graph.
+- tables are still written as legacy `.tab` or `.txt` outputs;
+- plots are written as PDF by default;
+- use `--plot-format svg` or `--plot-format png` for alternate plot artifacts;
+- `ViewBS merge-figures` replaces the old helper-script figure merge path;
+- the standalone binary is pure Rust and runs without R, Perl, htslib, or external plotting tools.
 
-Options
-    -help | -h
-            Prints the help message and exits.
+### Legacy differences
 
-    --input [required]
-           - RDS files. <fig1.rds,fig2.rds...>
+Command names and input formats remain compatible where possible. The intentional differences in the Rust rewrite are:
 
-    --labels [optional]
-           - Labesl for each figure. Default: <A,B,C,D...>
+- serialized `.rds` figure objects are no longer written;
+- plot outputs are normal PDF, SVG, or PNG files generated directly by ViewBS;
+- `ViewBS merge-figures` replaces the old R-based figure merge workflow;
+- runtime dependencies on R, Perl, htslib, and external plotting tools were removed from the standalone binary;
+- helper-script names such as `bsseeker2bismark.pl`, `brat2bismark.pl`, `gff2tab.pl`, and `mer_fig.R` are compatibility aliases for existing workflows, not separate Perl or R entry points.
 
-    --output [optional]
-           - Output files for the graph. Default: cowplot_mer_fig.pdf
-
-    --ncol [optional]
-           - Number of columns on the graph.
-
-    --base_height [optional]
-           - The height (in inches) of each sub-plot
-
-    --base_aspect_ratio [optional]
-           -  The aspect ratio of each sub-plot. Default: 1.6
-
-Error: Please check the help information!
-Execution halted
-
-```
-
-#### 2. Use the template below to merge multiple figures into one graph. 
-
-```
-library(cowplot) # https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html
-p1 <- readRDS("BisNonConvRate/cmt2_proj_allsam.tab.rds")
-p2 <- readRDS("MethGlobal/cmt2_proj_allsam.tab.rds")
-
-plot2by2 <- plot_grid(p1, p2,
-                      labels=c("A", "B"), ncol = 2)
-
-save_plot("plot2by2.pdf", plot2by2,
-          ncol = 2, # we're saving a grid plot of 2 columns
-          #nrow = 2, # and 2 rows
-          # each individual subplot should have an aspect ratio of 1.3
-          base_aspect_ratio = 2
-          )
-```
-
-Here is how `plot2by2.png` looks like:
-
-![](https://github.com/xie186/ViewBS/blob/master/image/plot2by2.png)
-
-> __Further improvement of the graph can be done in [Inkscape](https://inkscape.org/en/release/0.92.2/) if a PDF file was generated.__
+Further improvement of the graph can be done in [Inkscape](https://inkscape.org/) if an SVG or PDF file was generated.
 
 ## Where to find help <a name="help"></a>
 
@@ -496,4 +453,3 @@ Drs. Xiaosan Huang (huangxs@njau.edu.cn), Kong-Qing Li (likq@njau.edu.cn) and Sh
 * Purdue Univeristy
 
 Drs. Shaojun Xie: (Email: xie186@purdue.edu)  and Jyothi Thimmapuram (jyothit@purdue.edu)
-

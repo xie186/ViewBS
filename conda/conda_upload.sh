@@ -1,13 +1,50 @@
-# Only need to change these two variables
-PKG_NAME=viewbs
-USER=xie186
+#!/usr/bin/env bash
+set -euo pipefail
 
-#CONDA_UPLOAD_TOKEN=5c2fbd4489a6f38805b0003e
-OS=$TRAVIS_OS_NAME-64
-mkdir ~/conda-bld
-conda config --set anaconda_upload yes
-export CONDA_BLD_PATH=~/conda-bld
-export VERSION=`date +%Y.%m.%d`
-conda build .
-anaconda -t $CONDA_UPLOAD_TOKEN upload  # -l nightly $CONDA_BLD_PATH/$OS/$PKG_NAME-`date +%Y.%m.%d`-0.tar.bz2 --force
-#anaconda -t $CONDA_UPLOAD_TOKEN upload -u $USER -l nightly $CONDA_BLD_PATH/$OS/$PKG_NAME-`date +%Y.%m.%d`-0.tar.bz2 --force
+recipe_dir="${1:-conda}"
+build_dir="${VIEWBS_CONDA_BLD_PATH:-target/conda-bld}"
+env_name="${VIEWBS_CONDA_TEST_ENV:-viewbs-conda-smoke-$$}"
+upload="${VIEWBS_CONDA_UPLOAD:-0}"
+anaconda_user="${VIEWBS_ANACONDA_USER:-xie186}"
+label="${VIEWBS_CONDA_LABEL:-}"
+
+cleanup() {
+  conda env remove -y -n "$env_name" >/dev/null 2>&1 || true
+}
+trap cleanup EXIT
+
+mkdir -p "$build_dir"
+conda build "$recipe_dir" --output-folder "$build_dir"
+
+package_path="$(
+  find "$build_dir" -type f \( -name 'viewbs-*.conda' -o -name 'viewbs-*.tar.bz2' \) \
+    | sort \
+    | tail -n 1
+)"
+
+if [[ -z "$package_path" ]]; then
+  echo "No built viewbs Conda package found under $build_dir" >&2
+  exit 1
+fi
+
+conda create -y -n "$env_name" "$package_path"
+conda run -n "$env_name" ViewBS --version
+conda run -n "$env_name" ViewBS --help >/dev/null
+conda run -n "$env_name" ViewBS GlobalMethLev --help >/dev/null
+
+if [[ "$upload" == "1" ]]; then
+  if [[ -z "${ANACONDA_API_TOKEN:-}" ]]; then
+    echo "ANACONDA_API_TOKEN is required when VIEWBS_CONDA_UPLOAD=1" >&2
+    exit 2
+  fi
+
+  upload_args=(upload "$package_path" --user "$anaconda_user")
+  if [[ -n "$label" ]]; then
+    upload_args+=(-l "$label")
+  fi
+
+  anaconda -t "$ANACONDA_API_TOKEN" "${upload_args[@]}"
+else
+  echo "Built and smoke-tested $package_path"
+  echo "Set VIEWBS_CONDA_UPLOAD=1 and ANACONDA_API_TOKEN to upload."
+fi
