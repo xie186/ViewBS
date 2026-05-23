@@ -42,10 +42,10 @@ regions.bed
 Run Criterion with the external data:
 
 ```bash
-VIEWBS_BENCH_DATA_DIR=/path/to/viewbs-benchdata cargo bench --bench performance --all-features
+VIEWBS_BENCH_DATA_DIR=/path/to/viewbs-benchdata ./ci/record_tier7_baseline.sh
 ```
 
-Record the release-candidate Tier 7 baseline from `target/criterion` and include:
+Record the release-candidate Tier 7 baseline from `target/tier7-baselines/<commit>-<timestamp>/baseline.md` and include:
 
 - parser throughput;
 - indexed query throughput;
@@ -53,7 +53,9 @@ Record the release-candidate Tier 7 baseline from `target/criterion` and include
 - `MethHeatmap` region runtime;
 - `MethHeatmap` memory proxy cells;
 - heatmap plot generation time;
-- output artifact size.
+- output artifact size;
+- benchmark data file sizes and SHA256 hashes;
+- `/usr/bin/time -v` memory and runtime evidence.
 
 Pair the heatmap memory proxy with OS-level memory evidence for release candidates, such as `/usr/bin/time -v` on Linux.
 

@@ -214,6 +214,8 @@ fn tier7_benchmarks_are_documented_and_can_use_external_data() {
     let benchmarks = fs::read_to_string("benches/performance.rs").unwrap();
     let docs = fs::read_to_string("docs/benchmarks.md").unwrap();
     let workflow = fs::read_to_string(".github/workflows/benchmarks.yml").unwrap();
+    let record_script = fs::read_to_string("ci/record_tier7_baseline.sh").unwrap();
+    let manifest = fs::read_to_string("Cargo.toml").unwrap();
     let gitignore = fs::read_to_string(".gitignore").unwrap();
 
     assert!(benchmarks.contains("VIEWBS_BENCH_DATA_DIR"));
@@ -226,6 +228,16 @@ fn tier7_benchmarks_are_documented_and_can_use_external_data() {
     assert!(docs.contains("large realistic data"));
     assert!(docs.contains("outside the crates.io package"));
     assert!(docs.contains("memory proxy"));
+    assert!(docs.contains("ci/record_tier7_baseline.sh"));
+    assert!(docs.contains("release-candidate baseline"));
+
+    assert!(record_script.contains("VIEWBS_BENCH_DATA_DIR"));
+    assert!(record_script.contains("bench --bench performance --all-features"));
+    assert!(record_script.contains("/usr/bin/time -v"));
+    assert!(record_script.contains("target/criterion"));
+    assert!(record_script.contains("baseline.md"));
+
+    assert!(manifest.contains("/ci/record_tier7_baseline.sh"));
 
     assert!(workflow.contains("schedule:"));
     assert!(workflow.contains("workflow_dispatch:"));

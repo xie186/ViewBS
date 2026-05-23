@@ -14,6 +14,7 @@ include = [
     "/Cargo.toml",
     "/README.md",
     "/benches/**",
+    "/ci/record_tier7_baseline.sh",
     "/data/test_data/test_WT.tab.gz",
     "/data/test_data/test_WT.tab.gz.tbi",
     "/docs/**",

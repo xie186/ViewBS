@@ -131,6 +131,8 @@ Recent post-handoff progress:
 - `tests/packaging_metadata.rs` includes a metadata test to keep the packaging validation workflow present.
 - `docs/release.md` records the 0.2.0-alpha.0 macOS and Windows signing decision as unsigned development artifacts with checksums and first-run warning notes.
 - `tests/packaging_metadata.rs` includes a metadata test to keep that signing decision recorded.
+- `ci/record_tier7_baseline.sh` records release-candidate Tier 7 benchmarks with the external data manifest, Criterion report, and `/usr/bin/time -v` evidence once `VIEWBS_BENCH_DATA_DIR` is available.
+- `docs/benchmarks.md` and `docs/release.md` now point release validation to that helper script.
 - `.travis.yml` and `ViewBSdocker/README_bak.md` were removed so the Rust rewrite does not retain stale Perl-era CI or duplicate Docker docs.
 - `tests/packaging_metadata.rs` includes a metadata test to keep those obsolete files out.
 - The old root `ViewBS` Perl launcher was moved to `legacy/ViewBS.pl`.

@@ -26,6 +26,14 @@ regions.bed
 
 The `meth_heatmap_memory_proxy_cells` benchmark reports the number of heatmap matrix cells written after each run. It is a memory proxy for regression tracking, not a direct RSS measurement. For release candidates, pair it with OS-level memory tools such as `/usr/bin/time -v` on Linux.
 
+For a release-candidate baseline, prefer the checked-in helper so the Criterion report, benchmark data manifest, and OS memory/time evidence land together:
+
+```bash
+VIEWBS_BENCH_DATA_DIR=/path/to/viewbs-benchdata ./ci/record_tier7_baseline.sh
+```
+
+The script writes `target/tier7-baselines/<commit>-<timestamp>/baseline.md`, copies `target/criterion`, and stores `/usr/bin/time -v` output in `time.txt`. Attach or archive that directory with the release-candidate notes.
+
 Useful Tier 7 signals:
 
 - `whole_file_scan_methyl_report`: parser throughput.

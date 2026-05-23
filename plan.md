@@ -96,6 +96,7 @@ Status as of 2026-05-23:
 - The Conda smoke script now runs a real `GlobalMethLev` table-and-SVG plot command from the built package.
 - A packaging GitHub Actions workflow now builds and smoke-tests the Docker image and Conda package on `viewbs-rs` branch pushes.
 - The 0.2.0-alpha.0 macOS and Windows signing decision is recorded as unsigned development artifacts with checksums and first-run warning notes.
+- `ci/record_tier7_baseline.sh` records release-candidate Tier 7 benchmarks with the external data manifest, Criterion report, and `/usr/bin/time -v` evidence.
 - Obsolete Perl-era Travis CI configuration and stale backup Docker README were removed; CI is now represented by GitHub Actions.
 - The legacy Perl launcher was moved from the repository root to `legacy/ViewBS.pl` so the root `ViewBS` name belongs to the Rust binary.
 - Root install files now document Rust release archives, Cargo source builds, package-maintainer paths, and a small Rust development Conda environment instead of Perl/R dependency installation.
