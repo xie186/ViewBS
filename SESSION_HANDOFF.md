@@ -123,6 +123,8 @@ Recent post-handoff progress:
 - `tests/packaging_metadata.rs` includes a metadata test to keep the release dry-run trigger available on the rewrite branch.
 - `.github/workflows/release.yml` now avoids using `if` as a PowerShell expression in the Windows archive extraction smoke test.
 - `tests/packaging_metadata.rs` includes a metadata test for that Windows release-workflow syntax issue.
+- `.github/workflows/release.yml` now uses `macos-15-intel` for the x86_64 macOS release artifact because the old `macos-13` label no longer starts reliably on GitHub-hosted runners.
+- `tests/packaging_metadata.rs` includes a metadata test to keep stale macOS 13 release runners out.
 - `conda/conda_upload.md` and `conda/conda_upload.sh` now describe/build/smoke-test the Rust Conda package and require explicit upload credentials/flags.
 - `tests/packaging_metadata.rs` includes a metadata test to prevent the Conda upload path from regressing to Travis-era package publishing instructions.
 - `.travis.yml` and `ViewBSdocker/README_bak.md` were removed so the Rust rewrite does not retain stale Perl-era CI or duplicate Docker docs.

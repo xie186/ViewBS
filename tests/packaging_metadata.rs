@@ -153,6 +153,11 @@ fn release_workflow_tests_downloaded_archives_with_real_commands() {
 
     assert!(workflow.contains("branches:"));
     assert!(workflow.contains("viewbs-rs"));
+    assert!(workflow.contains("macos-15-intel"));
+    assert!(
+        !workflow.contains("macos-13"),
+        "macOS 13 hosted runners are stale; use a current Intel macOS label"
+    );
     assert!(workflow.contains("Test archive contents"));
     assert!(workflow.contains("Get-FileHash -Algorithm SHA256"));
     assert!(workflow.contains("checksum verification failed"));
